@@ -1,0 +1,134 @@
+\documentclass[11pt]{amsbook}
+
+\usepackage{geometry}
+\geometry{
+    b5paper,
+    inner=1.25in,
+    outer=0.75in,
+    top=1in,
+    bottom=1.25in
+}
+
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{enumerate, enumitem}
+\usepackage{xcolor}
+
+\definecolor{burgundy}{HTML}{BA0F30}
+
+% Unicode-math fonts
+
+% \usepackage{setspace}
+% % 1.15 line spacing
+% \setstretch{1.1}
+% Remove chapter from section numbering
+\renewcommand{\thesection}{\arabic{section}}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={burgundy},
+    citecolor={burgundy},
+    urlcolor={burgundy}
+}
+
+% Custom theorem environment for theorems
+% Red header, black text
+
+
+
+\newtheoremstyle{custom}
+  {6pt} % Space above
+  {6pt} % Space below
+  {\color{burgundy}} % Body font
+  {\parindent} % Indent amount
+  {\color{burgundy}\scshape} % Theorem head font
+  {.} % Punctuation after theorem head
+  { } % Space after theorem head
+  {\thmname{#1}{\thmnumber{ #2}}\thmnote{ (#3)}} % Theorem head spec (can be left empty, meaning `normal')
+
+
+
+% Theorem and definition environments
+\swapnumbers
+\theoremstyle{custom}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{sectionthm}[theorem]{}
+
+\newenvironment{solution}[1][Solution]
+  {\begin{proof}[#1]}
+  {\end{proof}}
+
+%   % Add medskip before solution environment
+% \makeatletter
+% \renewenvironment{solution}[1][Solution]{%
+%   \par
+%   \pushQED{\qed}%
+%   \normalfont\topsep6\p@\@plus6\p@\relax\trivlist
+%   \item[\hskip\labelsep\itshape#1.]\ignorespaces
+% }{%
+%   \popQED\endtrivlist\@endpefalse
+% }
+
+\usepackage{microtype}
+
+
+
+\usepackage[backend=biber]{biblatex}
+\DeclareFieldFormat[article]{title}{\mkbibquote{#1}} % make article titles in quotes
+\DeclareFieldFormat[thesis]{title}{\mkbibemph{#1}} % make theses italics
+\addbibresource{./bib/bibliography.bib}
+\setlength\bibitemsep{0.4\itemsep}
+\renewcommand*{\bibfont}{\small}
+\usepackage{tikz-cd}
+
+
+
+\title{Algebra Reviewer}
+\author{Roel Christian Yambao}
+\date{2024}
+
+% Custom commands
+\newcommand{\order}[1]{\lvert #1 \rvert}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\cyclic}[1]{\langle #1 \rangle}
+\newcommand{\Grp}{\mathsf{Grp}}
+\newcommand{\charx}{\operatorname{char}}
+\newcommand{\img}{\operatorname{im}}
+
+
+% \newcommand{\field}{\mathsf{k}}
+% Redefine \phi to use \varphi
+\AtBeginDocument{%
+  \let\phi\varphi
+  \let\epsilon\varepsilon
+}
+
+\begin{document}
+
+\raggedbottom
+
+\maketitle
+
+\tableofcontents
+
+\include{ch/groups}
+\include{ch/rings}
+\include{ch/fields}
+
+\cleardoublepage
+\nocite{*}
+\printbibliography
+
+\end{document}

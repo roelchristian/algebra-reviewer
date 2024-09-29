@@ -1,1 +1,169 @@
 \chapter{Preliminaries}
+
+\section{Set theory review}
+
+\begin{definition}[Relation]
+    A relation \(R\) on a set \(A\) is a subset of \(A \times A\). For all \(a,
+    b \in A\), we would usually write \(a R b\) to denote that \((a, b) \in R\).
+\end{definition}
+
+\begin{definition}[Equivalence relation]
+    An equivalence relation on a set \(A\) is a relation \(R\) on \(A\) that
+    satisfies the following properties:
+    \begin{enumerate}[label=(\alph*)]
+        \item Reflexivity: For all \(a \in A\), \(a R a\).
+        \item Symmetry: For all \(a, b \in A\), if \(a R b\), then \(b R a\).
+        \item Transitivity: For all \(a, b, c \in A\), if \(a R b\) and \(b R
+        c\), then \(a R c\).
+    \end{enumerate}
+
+    When \(R\) is an equivalence relation on \(A\), we would usually write \(a
+    \sim b\) to denote that \(a R b\).
+\end{definition}
+
+\begin{example}
+    In the set \(\R\) of real numbers, the relation \(=\) is an equivalence
+    relation but \(<\) is not. In the first example (relying on our knowledge of
+    \(\R\) from elementary mathematics without establishing it here), we have
+    for all real numbers \(a, b, c\): (1) \(a = a\) (reflexivity), (2) if \(a =
+    b\), then \(b = a\) (symmetry), and (3) if \(a = b\) and \(b = c\), then \(a
+    = c\) (transitivity). As for \(<\), it is enough to observe that \(1 < 2\)
+    holds but \(2 < 1\) does not.
+\end{example}
+
+\begin{example}
+    Consider the set \(\Z\) of integers and define the relation
+    \[
+        a \sim b \text{ if and only if } n \mid (a - b) \text{ for some } n \in \Z.
+    \]
+    (This is congruence modulo \(n\).) We can verify that this relation is an
+    equivalence relation. For all integers \(a, b, c\):
+    \begin{enumerate}[label=(\alph*), itemsep=0pt, wide]
+        \item Reflexivity: \(n \mid (a - a)\) for \(n = 0\).
+        \item Symmetry: If \(n \mid (a - b)\), then \(n \mid (b - a)\).
+        \item Transitivity: If \(n \mid (a - b)\) and \(m \mid (b - c)\), then
+        \[n \mid ((a - b) + (b - c)) = (a - c).\]
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    Given an equivalence relation \(\sim\) on a set \(A\), the equivalence class
+    of an element \(a \in A\) is the set
+    \[
+        [a]_{\sim} = \{b \in A : a \sim b\}.
+    \]
+    We shall often drop the subscript \(\sim\) and write \([a]\) instead if the
+    equivalence relation is clear from context.
+\end{definition}
+
+\begin{definition}
+    A partition \(\mathcal{P}\) of a set \(A\) is a collection of nonempty
+    subsets of \(A\) such that
+    \begin{enumerate}[label=(\alph*)]
+        \item The union of all sets in \(\mathcal{P}\) is \(A\).
+        \item The intersection of any two distinct sets in \(\mathcal{P}\) is
+        empty.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Let \(\sim\) be an equivalence relation on a set \(A\). Then the equivalence
+    classes of \(\sim\) form a partition of \(A\).
+\end{theorem}
+
+\begin{definition}
+    The \emph{quotient} of a set \(A\) with respect to an equivalence relation
+    \(\sim\) is the set of equivalence classes of \(\sim\). We denote this set
+    by \(A/\sim\).
+\end{definition}
+
+\section{Set functions}
+
+\begin{definition}
+    A function \(f\) from a set \(A\) to a set \(B\) is a relation \(f \subseteq
+    A \times B\) such that for all \(a \in A\), there exists a unique \(b \in
+    B\) such that \((a, b) \in f\).
+\end{definition}
+
+\begin{sectionthm}
+    We introduce some terminology and notation. if \((a, b) \in f\), it is
+    customary to write \(f(a) = b\). We call \(f(a)\) the \emph{image} of \(a\)
+    under \(f\). Because \(f(a) = b\) is unique, it follows immediately that if
+    \(a = b\) we must have \(f(a) = f(b)\). Following the convention in the
+    literature, we would say that \(f\) is \emph{well-defined.}
+
+    If \(f\) is a function from \(A\) to \(B\), we write
+    \[
+        f: A \to B \text{ or } \begin{tikzcd}
+            A \arrow[r, "f"] & B.
+        \end{tikzcd}
+    \]
+    We call the latter a \emph{diagram}. The notation \(a \mapsto f(a)\) is also used to explicitly define the
+    function \(f\).
+
+    The \emph{domain} of \(f : A \to B\) is the set \(\dom f = \{a \in A : f(a)
+    \text{ is defined}\}\) while the \emph{codomain} of \(f\) is the set \(B\). 
+
+    If \(S \subset A\), the \emph{image} of \(S\) under \(f\) is the set
+    \[
+        f(S) = \{f(a) : a \in S\}.
+    \]
+    If \(S = A\) then we simply write \(\img f\) for \(f(A)\). This is called
+    the \emph{image} of \(f\).
+\end{sectionthm}
+
+\begin{sectionthm}
+    The function \(f\) is \emph{injective} (or \emph{one-to-one}) if for all
+    \(a, b \in A\), \(f(a) = f(b)\) implies \(a = b\). The function \(f\) is
+    \emph{surjective} (or \emph{onto}) if for all \(b \in B\), there exists an
+    \(a \in A\) such that \(f(a) = b\). The function \(f\) is \emph{bijective}
+    if it is both injective and surjective. If there exists a bijection between two sets \(A\) and \(B\), we say that \(A\) and \(B\) are \emph{isomorphic} and write
+    \[
+        A \cong B.
+    \]
+
+    When drawing diagrams, we would sometimes write \(\hookrightarrow\) and \(\twoheadrightarrow\) to emphasize that a function is injective and surjective, respectively.
+\end{sectionthm}
+
+\begin{sectionthm}
+    If \(f: A \to B\) and \(g: B \to C\) are functions, then the \emph{composition} of \(f\) and \(g\) (written \(g \circ f\)) is the function from \(A\) to \(C\) defined by
+    \[
+        (g \circ f)(a) = g(f(a)),
+    \]
+    for all \(a \in A\). We can represent this as the diagram
+    \[
+        \begin{tikzcd}
+            A \arrow[r, "f"'] \arrow[rr, "g \circ f", bend left] & B \arrow[r, "g"'] & C
+        \end{tikzcd}
+    \]
+    We say that the diagram above \emph{commutes} if \(g \circ f = g(f(a))\) (which is precisely our definition of composition).
+
+    We can verify that composition is associative: if \(f: A \to B\), \(g: B \to C\), and \(h: C \to D\), then
+    \[
+        h \circ (g \circ f) = (h \circ g) \circ f.
+    \]
+    Graphically, this is represented as the diagram
+    \[
+        \begin{tikzcd}
+            A \arrow[rr, "f"'] \arrow[rrrr, "g \circ f", bend left] &  & B \arrow[rr, "g"'] \arrow[swap, rrrr, "h \circ g", bend right] &  & C \arrow[rr, "h"'] &  & D
+        \end{tikzcd}
+    \]
+    which again commutes.
+\end{sectionthm}
+
+\begin{sectionthm}
+    For each set \(A\) we can define the function
+    \[
+        \id_A: A \to A
+    \]
+    which sends each element \(a \in A\) to itself. This is called the \emph{identity function} on \(A\). We can verify that the diagrams
+    \[
+        \begin{tikzcd}
+            A \arrow[r, "f"'] \arrow[rr, "f", bend left] & B \arrow[r, "\id_B"'] & B & \text{and}& A \arrow[r, "\id_A"'] \arrow[rr, "f", bend left] & A \arrow[r, "f"'] & B
+        \end{tikzcd}
+    \]
+    commute, i.e.,
+    \[
+        f \circ \id_A = f = \id_B \circ f.
+    \]
+\end{sectionthm}

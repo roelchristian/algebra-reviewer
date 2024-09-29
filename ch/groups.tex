@@ -4,17 +4,21 @@
 \section{Definition and basic properties}
 
 \begin{definition}
-    A \emph{group} is a nonempty set \(G\) together with a binary operation \(\cdot\) satisfying the following axioms:
+    A \emph{group} is a nonempty set \(G\) together with a binary operation
+    \(\cdot\) satisfying the following axioms:
     \begin{enumerate}
-        \item The operation \(\cdot\) is associative, i.e., for all \(a, b, c \in G\),
+        \item The operation \(\cdot\) is associative, i.e., for all \(a, b, c
+        \in G\),
         \[
             (a \cdot b) \cdot c = a \cdot (b \cdot c).
         \]
-        \item There exists an identity element \(e \in G\) such that for all \(a \in G\),
+        \item There exists an identity element \(e \in G\) such that for all \(a
+        \in G\),
         \[
             e \cdot a = a \cdot e = a.
         \]
-        \item For each \(a \in G\), there exists an element \(b \in G\) such that
+        \item For each \(a \in G\), there exists an element \(b \in G\) such
+        that
         \[
             a \cdot b = b \cdot a = e.
         \]
@@ -22,15 +26,20 @@
 \end{definition}
 
 \begin{remark}
-    A nonempty set \(G\) satisfying only the first axiom is called a \emph{semigroup}. A semigroup satisfying the second axiom is called a \emph{monoid}. 
+    A nonempty set \(G\) satisfying only the first axiom is called a
+    \emph{semigroup}. A semigroup satisfying the second axiom is called a
+    \emph{monoid}. 
 \end{remark}
 
 \begin{remark}
-    We shall often write \(ab\) instead of \(a \cdot b\) for simplicity. The group operation will also be often referred to as `multiplication' and the element \(ab\) as the `product' of \(a\) and \(b\).
+    We shall often write \(ab\) instead of \(a \cdot b\) for simplicity. The
+    group operation will also be often referred to as `multiplication' and the
+    element \(ab\) as the `product' of \(a\) and \(b\).
 \end{remark}
 
-\begin{notation}[Exponential notation]\label{notation:exponential}
-    The product \(a \cdot \cdots \cdot a\) of \(n\) factors of \(a\) will be denoted by \(a^n\).
+\begin{notation}[Exponential notation]\label{notation:exponential} The product
+    \(a \cdot \cdots \cdot a\) of \(n\) factors of \(a\) will be denoted by
+    \(a^n\).
 \end{notation}
 
 
@@ -57,7 +66,8 @@
 \end{proof}
 
 \begin{remark}
-    The preceding theorems allow us to speak of \emph{the} identity element and \emph{the} inverse of an element in a group.
+    The preceding theorems allow us to speak of \emph{the} identity element and
+    \emph{the} inverse of an element in a group.
 \end{remark}
 
 \begin{theorem}
@@ -65,11 +75,14 @@
 \end{theorem}
 
 \begin{proof}
-    Suppose \(b \neq a\) is the inverse of \(a^{-1}\) where \(b \in G\). Then \(a^{-1}b = e = ba^{-1}\). But \(a\) also satisfies this property, and since inverses are unique, we must have \(b = a\).
+    Suppose \(b \neq a\) is the inverse of \(a^{-1}\) where \(b \in G\). Then
+    \(a^{-1}b = e = ba^{-1}\). But \(a\) also satisfies this property, and since
+    inverses are unique, we must have \(b = a\).
 \end{proof}
 
 \begin{theorem}
-    Let \(G\) be a group and \(a, b\) elements of \(G\). Then \((ab)^{-1} = b^{-1}a^{-1}\).
+    Let \(G\) be a group and \(a, b\) elements of \(G\). Then \((ab)^{-1} =
+    b^{-1}a^{-1}\).
 \end{theorem}
 
 \begin{proof}
@@ -99,57 +112,84 @@
 \end{proof}
 
 \begin{definition}
-    A group \(G\) is said to be \emph{abelian} (or \emph{commutative}) if for all \(a, b \in G\),
+    A group \(G\) is said to be \emph{abelian} (or \emph{commutative}) if for
+    all \(a, b \in G\),
     \[
         ab = ba.
     \]
 \end{definition}
 
 \begin{notation}
-    If \(G\) is an abelian group then we shall often write \(a + b\) instead of \(ab\) and refer to the group operation as `addition' and the element \(a + b\) as the `sum' of \(a\) and \(b\), following the convention for abelian groups. Similarly we shall write \(-a\) instead of \(a^{-1}\) for the inverse of an element \(a \in G\). The identity element will be denoted by \(0\).
+    If \(G\) is an abelian group then we shall often write \(a + b\) instead of
+    \(ab\) and refer to the group operation as `addition' and the element \(a +
+    b\) as the `sum' of \(a\) and \(b\), following the convention for abelian
+    groups. Similarly we shall write \(-a\) instead of \(a^{-1}\) for the
+    inverse of an element \(a \in G\). The identity element will be denoted by
+    \(0\).
 
-    As a parallel to the exponential notation in \S~\ref{notation:exponential}, we shall write \(na\) instead of \(a + \cdots + a\) for the sum of \(n\) terms of \(a\).
+    As a parallel to the exponential notation in \S~\ref{notation:exponential},
+    we shall write \(na\) instead of \(a + \cdots + a\) for the sum of \(n\)
+    terms of \(a\).
 \end{notation}
 
 \begin{theorem}
     If \(G\) is a group and \(a \in G\) then for all integers \(m\) and \(n\),
     \begin{enumerate}[label=(\alph*)]
-        \item \(a^m a^n = a^{m + n}\) (or \(ma + na = (m + n)a\) in additive notation).
+        \item \(a^m a^n = a^{m + n}\) (or \(ma + na = (m + n)a\) in additive
+        notation).
         \item \((a^m)^n = a^{mn}\) (or \(n(ma) = (mn)a\) in additive notation).
     \end{enumerate}
 \end{theorem}
 
 \begin{remark}
-    The preceding theorem allows us to write \(a^{-n}\) for the product of \(n\) factors of \(a^{-1}\) and \(a^0 = e\). (In additive notation, this is equivalent to writing \(-na\) for the sum of \(n\) terms of \(-a\) and \(0a = 0\) where the \(0\) on the left-hand side is the integer \(0\) and the \(0\) on the right-hand side is the identity element of the group.)
+    The preceding theorem allows us to write \(a^{-n}\) for the product of \(n\)
+    factors of \(a^{-1}\) and \(a^0 = e\). (In additive notation, this is
+    equivalent to writing \(-na\) for the sum of \(n\) terms of \(-a\) and \(0a
+    = 0\) where the \(0\) on the left-hand side is the integer \(0\) and the
+    \(0\) on the right-hand side is the identity element of the group.)
 \end{remark}
 
 \section{Examples of groups}
 
 \begin{definition}
-    Let \(X\) be a set. The set of all bijections from \(X\) to itself forms a group under composition of functions, called the \emph{symmetric group} (or \emph{permutation group}) on \(X\), denoted by \(S_X\). If \(X = \{1, 2, \ldots, n\}\), then we write \(S_n\) instead of \(S_X\).
+    Let \(X\) be a set. The set of all bijections from \(X\) to itself forms a
+    group under composition of functions, called the \emph{symmetric group} (or
+    \emph{permutation group}) on \(X\), denoted by \(S_X\). If \(X = \{1, 2,
+    \ldots, n\}\), then we write \(S_n\) instead of \(S_X\).
 \end{definition}
 
-% \begin{example}
-%     Consider the set \(X = \{1, 2\}\). Let \(\sigma\) be the map that maps every element of \(X\) to itself, i.e., \(1 \mapsto 1\) and \(2 \mapsto 2\) and let \(\tau\) be the map that swaps the elements of \(X\), i.e., \(1 \mapsto 2\) and \(2 \mapsto 1\). The set \(\{\sigma, \tau\}\) are the only possible permutations of \(X\). The group \(S_X\) is then given by
-% \end{example}
+% \begin{example} Consider the set \(X = \{1, 2\}\). Let \(\sigma\) be the map
+%     that maps every element of \(X\) to itself, i.e., \(1 \mapsto 1\) and \(2
+%     \mapsto 2\) and let \(\tau\) be the map that swaps the elements of \(X\),
+%     i.e., \(1 \mapsto 2\) and \(2 \mapsto 1\). The set \(\{\sigma, \tau\}\)
+%     are the only possible permutations of \(X\). The group \(S_X\) is then
+%     given by \end{example}
 
 \begin{definition}
     \label{def:zmodn}
-    Let \(n\) be a positive integer. Recall that congruence modulo \(n\), defined by
+    Let \(n\) be a positive integer. Recall that congruence modulo \(n\),
+    defined by
     \[
         a \equiv b \pmod{n} \quad \text{if and only if} \quad n \mid (a - b),
     \]
-    for all integers \(a, b\), is an equivalence relation on \(\Z\). The set of equivalence classes modulo \(n\) forms a group under addition modulo \(n\), denoted by \(\Z/n\Z\).
+    for all integers \(a, b\), is an equivalence relation on \(\Z\). The set of
+    equivalence classes modulo \(n\) forms a group under addition modulo \(n\),
+    denoted by \(\Z/n\Z\).
 \end{definition}
 
 \section{Homomorphisms and the category {\normalfont\sffamily Grp}}
 
 \begin{sectionthm}
-    Recall that we have defined a group to be the pair \((G, m_G)\) where \(G\) is a set and \(m_G\) is a binary operation on \(G\). That is, \(m_G\) is a map from \(G \times G\) to \(G\). For two groups \((G, m_G)\) and \((H, m_H)\), we would like to define a map
+    Recall that we have defined a group to be the pair \((G, m_G)\) where \(G\)
+    is a set and \(m_G\) is a binary operation on \(G\). That is, \(m_G\) is a
+    map from \(G \times G\) to \(G\). For two groups \((G, m_G)\) and \((H,
+    m_H)\), we would like to define a map
     \[
         \phi: (G, m_G) \to (H, m_H)
     \]
-    that is a function (which with some abuse of notation we shall also denote by \(\phi\)) between the underlying sets \(G\) and \(H\) that `preserves' the group structure.
+    that is a function (which with some abuse of notation we shall also denote
+    by \(\phi\)) between the underlying sets \(G\) and \(H\) that `preserves'
+    the group structure.
 
     If we define the function
     \[
@@ -162,42 +202,59 @@
             G \arrow{r}{\phi} & H
         \end{tikzcd}
     \]
-    By requiring that the diagram commute, we obtain a function \(\phi: G \to H\) that does exactly what we want. Indeed if the diagram commutes, then for all \(a, b \in G\),
+    By requiring that the diagram commute, we obtain a function \(\phi: G \to
+    H\) that does exactly what we want. Indeed if the diagram commutes, then for
+    all \(a, b \in G\),
     \[
         \begin{tikzcd}
             (a, b) \arrow[swap, mapsto]{d}{m_G} & & (a, b) \arrow{r}{\phi \times \phi} & (\phi(a), \phi(b)) \arrow[mapsto]{d}{m_H} \\
             a\cdot b \arrow[mapsto]{r}{\phi} & \phi(a\cdot b) && \phi(a)\cdot\phi(b)
         \end{tikzcd}
     \]
-    where \(\cdot\) on the left-hand side is the group operation in \(G\) and \(\cdot\) on the right-hand side is the group operation in \(H\). Since the diagram commutes, we must arrive at the same element in \(H\) by following the two paths. This gives us the following more familiar definition.
+    where \(\cdot\) on the left-hand side is the group operation in \(G\) and
+    \(\cdot\) on the right-hand side is the group operation in \(H\). Since the
+    diagram commutes, we must arrive at the same element in \(H\) by following
+    the two paths. This gives us the following more familiar definition.
 \end{sectionthm}
 
 \begin{definition}
-    Let \(G\) and \(H\) be groups. A \emph{homomorphism} from \(G\) to \(H\) is a map \(\phi: G \to H\) that satisfies
+    Let \(G\) and \(H\) be groups. A \emph{homomorphism} from \(G\) to \(H\) is
+    a map \(\phi: G \to H\) that satisfies
     \[
         \phi(ab) = \phi(a)\phi(b)
     \]
     for all \(a, b \in G\).
 
-    We introduce some additional terminology. If a homomorphism \(\phi: G \to H\) is injective as a map between sets, then we say that \(\phi\) is a \emph{monomorphism}. If \(\phi\) is surjective, then we say that \(\phi\) is an \emph{epimorphism}. If \(\phi\) is both injective and surjective, then we say that \(\phi\) is an \emph{isomorphism}. In this case, we say that \(G\) and \(H\) are \emph{isomorphic} and write \(G \cong H\).
+    We introduce some additional terminology. If a homomorphism \(\phi: G \to
+    H\) is injective as a map between sets, then we say that \(\phi\) is a
+    \emph{monomorphism}. If \(\phi\) is surjective, then we say that \(\phi\) is
+    an \emph{epimorphism}. If \(\phi\) is both injective and surjective, then we
+    say that \(\phi\) is an \emph{isomorphism}. In this case, we say that \(G\)
+    and \(H\) are \emph{isomorphic} and write \(G \cong H\).
 
-    A homomorphism from a group to itself is called an \emph{endomorphism}. An isomorphism from a group to itself is called an \emph{automorphism}.
+    A homomorphism from a group to itself is called an \emph{endomorphism}. An
+    isomorphism from a group to itself is called an \emph{automorphism}.
 \end{definition}
 
 \begin{remark}
-    We are again being imprecise but we shall not distinguish between the the multiplications in \(G\) and \(H\) and simply write \(\phi(ab) = \phi(a)\phi(b)\) when the context is clear.
+    We are again being imprecise but we shall not distinguish between the the
+    multiplications in \(G\) and \(H\) and simply write \(\phi(ab) =
+    \phi(a)\phi(b)\) when the context is clear.
 \end{remark}
 
 \begin{definition}
-    If \(G\) and \(H\) are groups, we denote the set of group homomorphisms from \(G\) to \(H\) as
+    If \(G\) and \(H\) are groups, we denote the set of group homomorphisms from
+    \(G\) to \(H\) as
     \[
         \Hom_{\Grp}(G, H).
     \]
-    This allows us to define the category \(\Grp\) whose objects are groups and whose morphisms are group homomorphisms as in the following theorem.
+    This allows us to define the category \(\Grp\) whose objects are groups and
+    whose morphisms are group homomorphisms as in the following theorem.
 \end{definition}
 
 \begin{theorem}
-    The category \(\Grp\) is a category whose objects are groups and whose morphisms are group homomorphisms.
+    The category \(\Grp\) is a category whose objects are groups and whose
+    morphisms are group homomorphisms.
 \end{theorem}
 
 \begin{proof}
@@ -205,69 +262,104 @@
 \end{proof}
 
 \begin{sectionthm}
-    It should be noted that we have defined morphisms in the category \(\Grp\) using only the underlying set and the corresponding group operation. However, our definition of a group also posits the existence of an identity element and of inverses. We are able to do so because, as the following theorem shows, preserving the group operation is enough to preserve the identity element and inverses.
+    It should be noted that we have defined morphisms in the category \(\Grp\)
+    using only the underlying set and the corresponding group operation.
+    However, our definition of a group also posits the existence of an identity
+    element and of inverses. We are able to do so because, as the following
+    theorem shows, preserving the group operation is enough to preserve the
+    identity element and inverses.
 \end{sectionthm}
 
 \begin{theorem}
-    A homomorphism preserves the identity element and inverses, i.e., given a homomorphism \(\phi: G \to H\),
+    A homomorphism preserves the identity element and inverses, i.e., given a
+    homomorphism \(\phi: G \to H\),
     \begin{enumerate}[label=(\alph*)]
         \item \(\phi(e_G) = e_H\), and
         \item \(\phi(a^{-1}) = \phi(a)^{-1}\),
     \end{enumerate}
-    where \(e_G\) and \(e_H\) are the identity elements of \(G\) and \(H\) respectively, and \(a \in G\).
+    where \(e_G\) and \(e_H\) are the identity elements of \(G\) and \(H\)
+    respectively, and \(a \in G\).
 \end{theorem}
 
 \begin{proof}
     We prove each part in turn.
 
     \begin{enumerate}[label=(\alph*), wide]
-        \item We have \(\phi(e_G) = \phi(e_G e_G) = \phi(e_G) \phi(e_G)\). This implies that \(\phi(e_G) = e_H\).
-        \item Multiplying \(\phi(a)\) by \(\phi(a^{-1})\) gives us \(\phi(a)\phi(a^{-1}) = \phi(aa^{-1}) = \phi(e_G) = e_H\). This implies that \(\phi(a^{-1}) = \phi(a)^{-1}\).
+        \item We have \(\phi(e_G) = \phi(e_G e_G) = \phi(e_G) \phi(e_G)\). This
+        implies that \(\phi(e_G) = e_H\).
+        \item Multiplying \(\phi(a)\) by \(\phi(a^{-1})\) gives us
+        \(\phi(a)\phi(a^{-1}) = \phi(aa^{-1}) = \phi(e_G) = e_H\). This implies
+        that \(\phi(a^{-1}) = \phi(a)^{-1}\).
     \end{enumerate}
 \end{proof}
 
 \begin{remark}
-    The second assertion in the preceding theorem is equivalent to saying that the diagram
+    The second assertion in the preceding theorem is equivalent to saying that
+    the diagram
     \[
         \begin{tikzcd}
             G \arrow{r}{\phi} \arrow[swap]{d}{\iota_G} & H \arrow{d}{\iota_H} \\
             G \arrow[swap]{r}{\phi} & H
         \end{tikzcd}
     \]
-    commutes. (Here \(\iota_G\) and \(\iota_H\) are the identity maps on \(G\) and \(H\) respectively.)
+    commutes. (Here \(\iota_G\) and \(\iota_H\) are the identity maps on \(G\)
+    and \(H\) respectively.)
 \end{remark}
 
 \begin{example}
-    We return to \(\Hom(G, H)\). Clearly \(\Hom(G, H)\) is non-empty because we can construct at the very least a homomorphism that maps every element of \(G\) to the identity element of \(H\). Alternatively, from a category-theoretic perspective, the fact thet the trivial group are initial and terminal objects in \(\Grp\) allows us to define the unique morphisms
+    We return to \(\Hom(G, H)\). Clearly \(\Hom(G, H)\) is non-empty because we
+    can construct at the very least a homomorphism that maps every element of
+    \(G\) to the identity element of \(H\). Alternatively, from a
+    category-theoretic perspective, the fact thet the trivial group are initial
+    and terminal objects in \(\Grp\) allows us to define the unique morphisms
     \[
         G \to T \quad \text{and} \quad T \to G
     \]
-    (where \(T\) is the trivial group) whose composition is exactly the homomorphism that maps every element of \(G\) to the identity element of \(H\).
+    (where \(T\) is the trivial group) whose composition is exactly the
+    homomorphism that maps every element of \(G\) to the identity element of
+    \(H\).
 \end{example}
 
 \begin{example}
-    Consider the dihedral group \(D_6\) (recall that \(D_6\) is the group of symmetries of a regular triangle) and the map \(D_6 \to S_3\) that sends each symmetry of the triangle to the corresponding permutation of the vertices. We claim that this map is a group homomorphism.
+    Consider the dihedral group \(D_6\) (recall that \(D_6\) is the group of
+    symmetries of a regular triangle) and the map \(D_6 \to S_3\) that sends
+    each symmetry of the triangle to the corresponding permutation of the
+    vertices. We claim that this map is a group homomorphism.
 \end{example}
 
 \begin{example}
-    The exponential function is a homomorphism from the group of real numbers under addition to the group of positive real numbers under multiplication. Indeed,
+    The exponential function is a homomorphism from the group of real numbers
+    under addition to the group of positive real numbers under multiplication.
+    Indeed,
     \[
         \exp (a + b) = \exp a \exp b.
     \]
-    A similar class of examples can be given by defining the map \(\epsilon_g : \Z \to G\) for some group \(G\) by \(\epsilon_g(n) = g^n\) for some \(g \in G\). This is a homomorphism because
+    A similar class of examples can be given by defining the map \(\epsilon_g :
+    \Z \to G\) for some group \(G\) by \(\epsilon_g(n) = g^n\) for some \(g \in
+    G\). This is a homomorphism because
     \[
         \epsilon_g(m + n) = g^{m + n} = g^m g^n = \epsilon_g(m) \epsilon_g(n).
     \]
-    The image of \(\epsilon_g\) is a cyclic subgroup of \(G\) generated by \(g\). Therefore if \(\epsilon_g\) is surjective, then \(G\) itself must be cyclic and generated by \(g\).
+    The image of \(\epsilon_g\) is a cyclic subgroup of \(G\) generated by
+    \(g\). Therefore if \(\epsilon_g\) is surjective, then \(G\) itself must be
+    cyclic and generated by \(g\).
 \end{example}
 
 \begin{example}
-    Let \(n\) be a positive integer. The map \(\Z \to \Z/n\Z\) defined by \(a \mapsto [a]_n\) for all \(a \in G\) (and where \([a]_n\) is the equivalence class of \(a\) modulo \(n\)) is a group homomorphism. Since this is equivalent to sending \(a\) to \(a \cdot [1]_n\) we see that this is the same as the map \(\epsilon_{[1]_n}\) in the preceding example.
+    Let \(n\) be a positive integer. The map \(\Z \to \Z/n\Z\) defined by \(a
+    \mapsto [a]_n\) for all \(a \in G\) (and where \([a]_n\) is the equivalence
+    class of \(a\) modulo \(n\)) is a group homomorphism. Since this is
+    equivalent to sending \(a\) to \(a \cdot [1]_n\) we see that this is the
+    same as the map \(\epsilon_{[1]_n}\) in the preceding example.
 \end{example}
 
 \begin{remark}
     \label{rem:homomorphism-order}
-    As our motivation for defining a group homomorphism was the desire to find a mapping that preserves the group structure, it should be natural to ask whether it would also preserve the order of an element in a group. If we consider an element \(g\) of order \(n\) in a group \(G\) and a group homomorphism \(\phi: G \to H\), we can establish by induction that
+    As our motivation for defining a group homomorphism was the desire to find a
+    mapping that preserves the group structure, it should be natural to ask
+    whether it would also preserve the order of an element in a group. If we
+    consider an element \(g\) of order \(n\) in a group \(G\) and a group
+    homomorphism \(\phi: G \to H\), we can establish by induction that
     \[
         \phi(g)^n = \phi(g^n) = \phi(e_G) = e_H.
     \]
@@ -276,23 +368,37 @@
 
 \begin{theorem}
     \label{thm:order-divides-n-homomorphism}
-    Let \(\phi: G \to H\) be a group homomorphism and let \(g \in G\) be an element of finite order. Then \(\order{\phi(g)}\) divides \(\order{g}\).
+    Let \(\phi: G \to H\) be a group homomorphism and let \(g \in G\) be an
+    element of finite order. Then \(\order{\phi(g)}\) divides \(\order{g}\).
 \end{theorem}
 
 \begin{proof}
-    Since \(\phi(g)^{\order{g}} = e_H\) as we have remarked in \S~\ref{rem:homomorphism-order}, Theorem~\ref{thm:order-divides-n} gives us this result.
+    Since \(\phi(g)^{\order{g}} = e_H\) as we have remarked in
+    \S~\ref{rem:homomorphism-order}, Theorem~\ref{thm:order-divides-n} gives us
+    this result.
 \end{proof}
 
 \begin{example}
-    There are no nontrivial homomorphisms from the group of integers under addition modulo \(n\) to the additive group of integers. Since every element of \(\Z/n\Z\) has finite order, the preceding theorem implies that the image of any homomorphism from \(\Z/n\Z\) to \(\Z\) must be the identity \(0\) as it is the only element of finite order in \(\Z\).
+    There are no nontrivial homomorphisms from the group of integers under
+    addition modulo \(n\) to the additive group of integers. Since every element
+    of \(\Z/n\Z\) has finite order, the preceding theorem implies that the image
+    of any homomorphism from \(\Z/n\Z\) to \(\Z\) must be the identity \(0\) as
+    it is the only element of finite order in \(\Z\).
 \end{example}
 
 \begin{example}
-    It is important to note that Theorem~\ref{thm:order-divides-n-homomorphism} does not imply that the order itself is preserved. As a counterexample, consider the element \(1 \in \Z\) and the map \(\pi_n : \Z \to \Z/n\Z\) defined by \(a \mapsto [a]_n\). The order of \(1\) in \(\Z\) is infinite, but the order of \(\pi_n(1)\) in \(\Z/n\Z\) is \(n\). Isomorphisms, however, do preserve the order of elements, as we shall see in the following sections.
+    It is important to note that Theorem~\ref{thm:order-divides-n-homomorphism}
+    does not imply that the order itself is preserved. As a counterexample,
+    consider the element \(1 \in \Z\) and the map \(\pi_n : \Z \to \Z/n\Z\)
+    defined by \(a \mapsto [a]_n\). The order of \(1\) in \(\Z\) is infinite,
+    but the order of \(\pi_n(1)\) in \(\Z/n\Z\) is \(n\). Isomorphisms, however,
+    do preserve the order of elements, as we shall see in the following
+    sections.
 \end{example}
 
 \begin{theorem}
-    An isomorphism of groups \(\phi: G \to H\) is an isomorphism in the category \(\Grp\), i.e., it admits an inverse
+    An isomorphism of groups \(\phi: G \to H\) is an isomorphism in the category
+    \(\Grp\), i.e., it admits an inverse
     \[
         \phi^{-1}: H \to G
     \]
@@ -300,21 +406,29 @@
 \end{theorem}
 
 \begin{proof}
-    Suppose that \(\phi: G \to H\) is an isomorphism of groups (i.e., it is bijective as a map between sets). Then it has an inverse \(\phi^{-1}: H \to G\) that is also a map between sets. We claim that \(\phi^{-1}\) is a group homomorphism. Let \(a, b \in H\). Then there exist \(x, y \in G\) such that \(\phi(x) = a\) and \(\phi(y) = b\). We have
+    Suppose that \(\phi: G \to H\) is an isomorphism of groups (i.e., it is
+    bijective as a map between sets). Then it has an inverse \(\phi^{-1}: H \to
+    G\) that is also a map between sets. We claim that \(\phi^{-1}\) is a group
+    homomorphism. Let \(a, b \in H\). Then there exist \(x, y \in G\) such that
+    \(\phi(x) = a\) and \(\phi(y) = b\). We have
     \[
         \phi^{-1}(ab) = \phi^{-1}(\phi(x)\phi(y)) = \phi^{-1}(\phi(xy)) = xy = \phi^{-1}(a)\phi^{-1}(b).
     \]
     
-    Conversely, suppose that \(\phi\) is a group homomorphism that admits an inverse \(\phi^{-1}\) that is also a group homomorphism. Then \(\phi\) is bijective as a map between sets and thus an isomorphism of groups.
+    Conversely, suppose that \(\phi\) is a group homomorphism that admits an
+    inverse \(\phi^{-1}\) that is also a group homomorphism. Then \(\phi\) is
+    bijective as a map between sets and thus an isomorphism of groups.
 \end{proof}
 
 
 \begin{theorem}
-    Let \(\phi: G \to H\) be an isomorphism. Then \(\order{\phi(g)} = \order{g}\) for all \(g \in G\).
+    Let \(\phi: G \to H\) be an isomorphism. Then \(\order{\phi(g)} =
+    \order{g}\) for all \(g \in G\).
 \end{theorem}
 
 \begin{theorem}
-    Let \(\phi : G \to H\) be an isomorphism. Then \(G\) is abelian if and only if \(H\) is abelian.
+    Let \(\phi : G \to H\) be an isomorphism. Then \(G\) is abelian if and only
+    if \(H\) is abelian.
 \end{theorem}
 
 \begin{proof}
@@ -332,68 +446,98 @@
 \section{Quotient groups and the isomorphism theorems}
 
 \begin{definition}
-    Let \(H\) be a subgroup of a group \(G\) and \(a, b \in G\). We say that \(a\) is \emph{left congruent} to \(b\) modulo \(H\) if \(a^{-1}b \in H\) and write \(a \equiv_L b \pmod{H}\). Similarly, we say that \(a\) is \emph{right congruent} to \(b\) modulo \(H\) if \(ba^{-1} \in H\) and write \(a \equiv_R b \pmod{H}\). If \(a \equiv_L b \pmod{H}\) and \(a \equiv_R b \pmod{H}\), then we say that \(a\) is \emph{congruent} to \(b\) modulo \(H\) and simply write \(a \equiv b \pmod{H}\).
+    Let \(H\) be a subgroup of a group \(G\) and \(a, b \in G\). We say that
+    \(a\) is \emph{left congruent} to \(b\) modulo \(H\) if \(a^{-1}b \in H\)
+    and write \(a \equiv_L b \pmod{H}\). Similarly, we say that \(a\) is
+    \emph{right congruent} to \(b\) modulo \(H\) if \(ba^{-1} \in H\) and write
+    \(a \equiv_R b \pmod{H}\). If \(a \equiv_L b \pmod{H}\) and \(a \equiv_R b
+    \pmod{H}\), then we say that \(a\) is \emph{congruent} to \(b\) modulo \(H\)
+    and simply write \(a \equiv b \pmod{H}\).
 \end{definition}
 
 \begin{theorem}
-    Let \(H\) be a subgroup of a group \(G\). Then left (resp. right) congruence modulo \(H\) is an equivalence relation on \(G\).
+    Let \(H\) be a subgroup of a group \(G\). Then left (resp. right) congruence
+    modulo \(H\) is an equivalence relation on \(G\).
 \end{theorem}
 
 \begin{proof}
-    We prove that left congruence is an equivalence relation. The proof that right congruence is an equivalence relation is similar.
+    We prove that left congruence is an equivalence relation. The proof that
+    right congruence is an equivalence relation is similar.
 
     \begin{enumerate}
-        \item \emph{Reflexivity:} For all \(a \in G\), we have \(a^{-1}a = e \in H\), so \(a \equiv_L a \pmod{H}\).
-        \item \emph{Symmetry:} Suppose \(a \equiv_L b \pmod{H}\). Then \(a^{-1}b \in H\), so \((a^{-1}b)^{-1} = b^{-1}a \in H\), i.e., \(b \equiv_L a \pmod{H}\).
-        \item \emph{Transitivity:} Suppose \(a \equiv_L b \pmod{H}\) and \(b \equiv_L c \pmod{H}\). Then \(a^{-1}b \in H\) and \(b^{-1}c \in H\), so \((a^{-1}b)(b^{-1}c) = a^{-1}c \in H\), i.e., \(a \equiv_L c \pmod{H}\).
+        \item \emph{Reflexivity:} For all \(a \in G\), we have \(a^{-1}a = e \in
+        H\), so \(a \equiv_L a \pmod{H}\).
+        \item \emph{Symmetry:} Suppose \(a \equiv_L b \pmod{H}\). Then \(a^{-1}b
+        \in H\), so \((a^{-1}b)^{-1} = b^{-1}a \in H\), i.e., \(b \equiv_L a
+        \pmod{H}\).
+        \item \emph{Transitivity:} Suppose \(a \equiv_L b \pmod{H}\) and \(b
+        \equiv_L c \pmod{H}\). Then \(a^{-1}b \in H\) and \(b^{-1}c \in H\), so
+        \((a^{-1}b)(b^{-1}c) = a^{-1}c \in H\), i.e., \(a \equiv_L c \pmod{H}\).
     \end{enumerate}
 \end{proof}
 
 \begin{theorem}
     \label{thm:cosets-equiv-classes}
-    The equivalence class of an element \(a \in G\) under left (resp. right) congruence modulo \(H\) is given by \(aH = \{ah : h \in H\}\) (resp. \(Ha = \{ha : h \in H\}\)).
+    The equivalence class of an element \(a \in G\) under left (resp. right)
+    congruence modulo \(H\) is given by \(aH = \{ah : h \in H\}\) (resp. \(Ha =
+    \{ha : h \in H\}\)).
 \end{theorem}
 
 \begin{proof}
-    The equivalence class of \(a\) under left congruence modulo \(H\) is given by
+    The equivalence class of \(a\) under left congruence modulo \(H\) is given
+    by
     \[
         \{ x \in G : x \equiv_L a \pmod{H} \} = \{ x \in G : x^{-1}a \in H \}.
     \]
-    Since \(H < G\), \((x^{-1}a)^{-1} = a^{-1}x \in H\). Thus \(a^{-1}x = h\) for some \(h \in H\), and so \(x = ah\). The proof for right congruence is similar.
+    Since \(H < G\), \((x^{-1}a)^{-1} = a^{-1}x \in H\). Thus \(a^{-1}x = h\)
+    for some \(h \in H\), and so \(x = ah\). The proof for right congruence is
+    similar.
 \end{proof}
 
 \begin{definition}
-    The sets \(aH\) and \(Ha\) in Theorem~\ref{thm:cosets-equiv-classes} are called the \emph{left coset} and \emph{right coset} of \(H\) containing \(a\), respectively.
+    The sets \(aH\) and \(Ha\) in Theorem~\ref{thm:cosets-equiv-classes} are
+    called the \emph{left coset} and \emph{right coset} of \(H\) containing
+    \(a\), respectively.
 \end{definition}
 
 \begin{theorem}
-    Let \(H\) be a subgroup of a group \(G\). Then \(\order{aH} = \order{H} = \order{Ha}\) for all \(a \in G\).
+    Let \(H\) be a subgroup of a group \(G\). Then \(\order{aH} = \order{H} =
+    \order{Ha}\) for all \(a \in G\).
 \end{theorem}
 
 \begin{proof}
-    Consider the map \(\phi: H \to aH\) defined by \(\phi(h) = ah\). We claim that \(\phi\) is a bijection. The map is clearly surjective. Suppose \(\phi(h) = \phi(h')\). Then \(ah = ah'\), so \(h = h'\). Thus \(\phi\) is injective. Therefore, \(\order{aH} = \order{H}\). The proof for \(\order{Ha}\) is similar.
+    Consider the map \(\phi: H \to aH\) defined by \(\phi(h) = ah\). We claim
+    that \(\phi\) is a bijection. The map is clearly surjective. Suppose
+    \(\phi(h) = \phi(h')\). Then \(ah = ah'\), so \(h = h'\). Thus \(\phi\) is
+    injective. Therefore, \(\order{aH} = \order{H}\). The proof for
+    \(\order{Ha}\) is similar.
 \end{proof}
 
 \begin{theorem}
-    Let \(H\) be a subgroup of a group \(G\). Then \(G\) is the disjoint union of the left (resp. right) cosets of \(H\).
+    Let \(H\) be a subgroup of a group \(G\). Then \(G\) is the disjoint union
+    of the left (resp. right) cosets of \(H\).
 \end{theorem}
 
 \begin{proof}
-    Since left (resp. right) congruence modulo \(H\) is an equivalence relation on \(G\), the left (resp. right) cosets of \(H\) form a partition of \(G\).
+    Since left (resp. right) congruence modulo \(H\) is an equivalence relation
+    on \(G\), the left (resp. right) cosets of \(H\) form a partition of \(G\).
 \end{proof}
 
 
 \begin{theorem}
-    Let \(H < G\) and let \(a, b \in G\). If \(aH = bH\), then \(a^{-1}b \in H\).
+    Let \(H < G\) and let \(a, b \in G\). If \(aH = bH\), then \(a^{-1}b \in
+    H\).
 \end{theorem}
 
 \begin{proof}
-    Since \(aH = bH\), we have \(a \in bH\), i.e., \(a = bh\) for some \(h \in H\). This implies that \(a^{-1}b = h \in H\).
+    Since \(aH = bH\), we have \(a \in bH\), i.e., \(a = bh\) for some \(h \in
+    H\). This implies that \(a^{-1}b = h \in H\).
 \end{proof}
 
 \begin{definition}
     \label{def:normal-subgroup}
-    A subgroup \(N\) of a group \(G\) is said to be \emph{normal} if for all \(g \in G\) and \(n \in N\),
+    A subgroup \(N\) of a group \(G\) is said to be \emph{normal} if for all \(g
+    \in G\) and \(n \in N\),
     \[
         gng^{-1} \in N.
     \]
@@ -401,19 +545,27 @@
 \end{definition}
 
 \begin{remark}
-    The operation \(gng^{-1}\) is called \emph{conjugation} by \(g\). Thus, Definition~\ref{def:normal-subgroup} can be stated as: a subgroup \(N\) of a group \(G\) is normal if it is invariant under conjugation by elements of \(G\).
+    The operation \(gng^{-1}\) is called \emph{conjugation} by \(g\). Thus,
+    Definition~\ref{def:normal-subgroup} can be stated as: a subgroup \(N\) of a
+    group \(G\) is normal if it is invariant under conjugation by elements of
+    \(G\).
 \end{remark}
 
 \begin{example}
-    It immediately follows from the definition that every subgroup of an abelian group is normal. In general, however, not all subgroups are normal. An example of a commutative group where every subgroup is normal is the quaternion group \(Q_8\).
+    It immediately follows from the definition that every subgroup of an abelian
+    group is normal. In general, however, not all subgroups are normal. An
+    example of a commutative group where every subgroup is normal is the
+    quaternion group \(Q_8\).
 \end{example}
 
 \begin{theorem}
-    Let \(\phi : G \to H\) be a group homomorphism. Then the \(\ker \phi\) is a normal subgroup of \(G\).
+    Let \(\phi : G \to H\) be a group homomorphism. Then the \(\ker \phi\) is a
+    normal subgroup of \(G\).
 \end{theorem}
 
 \begin{proof}
-    We have already established that \(\ker \phi < G\). Let \(g \in G\) and \(n \in \ker \phi\). Write \(e'\) for the identity element of \(H\). Then
+    We have already established that \(\ker \phi < G\). Let \(g \in G\) and \(n
+    \in \ker \phi\). Write \(e'\) for the identity element of \(H\). Then
     \[
         \phi(gng^{-1}) = \phi(g)\phi(n)\phi(g^{-1}) = \phi(g)e'\phi(g^{-1}) = \phi(g)\phi(g^{-1}) = e'.
     \]
@@ -421,50 +573,84 @@
 \end{proof}
 
 \begin{theorem}
-    A subgroup \(N\) of a group \(G\) is normal if and only if the left (resp. right) cosets of \(N\) are the same as the right (resp. left) cosets of \(N\). That is, left and right congruence modulo \(N\) define the same equivalence relation on \(G\).
+    A subgroup \(N\) of a group \(G\) is normal if and only if the left (resp.
+    right) cosets of \(N\) are the same as the right (resp. left) cosets of
+    \(N\). That is, left and right congruence modulo \(N\) define the same
+    equivalence relation on \(G\).
 \end{theorem}
 
 \begin{proof}
-    Suppose \(N \triangleleft G\), and let \(a \in G\). Let \(x \in gN\). Then \(x = gn\) for some \(n \in N\). Since \(N \triangleleft G\), we have \(gng^{-1} \in N\), so \(x = gn = gng^{-1}g = n'g\) for some \(n' \in N\). Thus \(x \in Ng\) and \(gN \subseteq Ng\). The proof that \(Ng \subseteq gN\) is similar. Conversely, suppose that left and right cosets of \(N\) coincide. Let \(g \in G\) and \(n \in N\). Then \(gn \in Ng = gN\), so \(gn = n'g\) for some \(n' \in N\). This implies that \(gng^{-1} = n' \in N\), and since \(g\) and \(n\) were arbitrary, we have \(N \triangleleft G\).
+    Suppose \(N \triangleleft G\), and let \(a \in G\). Let \(x \in gN\). Then
+    \(x = gn\) for some \(n \in N\). Since \(N \triangleleft G\), we have
+    \(gng^{-1} \in N\), so \(x = gn = gng^{-1}g = n'g\) for some \(n' \in N\).
+    Thus \(x \in Ng\) and \(gN \subseteq Ng\). The proof that \(Ng \subseteq
+    gN\) is similar. Conversely, suppose that left and right cosets of \(N\)
+    coincide. Let \(g \in G\) and \(n \in N\). Then \(gn \in Ng = gN\), so \(gn
+    = n'g\) for some \(n' \in N\). This implies that \(gng^{-1} = n' \in N\),
+    and since \(g\) and \(n\) were arbitrary, we have \(N \triangleleft G\).
 \end{proof}
 
 \begin{theorem}
     \label{thm:quotient-group}
-    Let \(N \triangleleft G\). The set of all (left) cosets of \(N\) in \(G\) forms a group under the operation
+    Let \(N \triangleleft G\). The set of all (left) cosets of \(N\) in \(G\)
+    forms a group under the operation
     \[
         (aN)(bN) = abN,
     \]
-    for all \(a, b \in G\). This is called the \emph{quotient group} of \(G\) modulo \(N\), denoted by \(G/N\).
+    for all \(a, b \in G\). This is called the \emph{quotient group} of \(G\)
+    modulo \(N\), denoted by \(G/N\).
 \end{theorem}
 
 \begin{proof}
-    First we show that the operation is well-defined. Suppose \(a, a', b, b' \in G\) such that \(aN = a'N\) and \(bN = b'N\). Then \(a^{-1}a' \in N\) and \(b^{-1}b' \in N\). The first statement implies that \(b^{-1}a^{-1}a' \in b^{-1}H = Hb^{-1}\) (because \(N\)) is normal. Thus there exists an element \(n \in N\) such that \(b^{-1}a^{-1}a' = nb^{-1}\); multiplying on the right by \(b'\) gives us \(b^{-1}a^{-1}a'b' = nb^{-1}b' \in N\). We can simplify this to \((ab)^{-1}(a'b') \in N\), which implies that \((ab)N = (a'b')N\).
+    First we show that the operation is well-defined. Suppose \(a, a', b, b' \in
+    G\) such that \(aN = a'N\) and \(bN = b'N\). Then \(a^{-1}a' \in N\) and
+    \(b^{-1}b' \in N\). The first statement implies that \(b^{-1}a^{-1}a' \in
+    b^{-1}H = Hb^{-1}\) (because \(N\)) is normal. Thus there exists an element
+    \(n \in N\) such that \(b^{-1}a^{-1}a' = nb^{-1}\); multiplying on the right
+    by \(b'\) gives us \(b^{-1}a^{-1}a'b' = nb^{-1}b' \in N\). We can simplify
+    this to \((ab)^{-1}(a'b') \in N\), which implies that \((ab)N = (a'b')N\).
 
-    The operation is associative because multiplication in \(G\) is associative. The identity element of the group is \(eN = N\) where \(e\) is the identity element of \(G\). The inverse of \(aN\) is \(a^{-1}N\). Thus the set of all left cosets of \(N\) in \(G\) forms a group under the operation \((aN)(bN) = abN\).
+    The operation is associative because multiplication in \(G\) is associative.
+    The identity element of the group is \(eN = N\) where \(e\) is the identity
+    element of \(G\). The inverse of \(aN\) is \(a^{-1}N\). Thus the set of all
+    left cosets of \(N\) in \(G\) forms a group under the operation \((aN)(bN) =
+    abN\).
 \end{proof}
 
 \begin{remark}
-    The definition of a quotient group in Theorem~\ref{thm:quotient-group} uses left cosets for concreteness, but since we are dealing with a normal subgroup, it holds for right cosets as well.
+    The definition of a quotient group in Theorem~\ref{thm:quotient-group} uses
+    left cosets for concreteness, but since we are dealing with a normal
+    subgroup, it holds for right cosets as well.
 \end{remark}
 
 \begin{theorem}
     \label{thm:induced-homomorphism}
-    Let \(N\) be a normal subgroup of a group \(G\). If \(\phi: G \to H\) is a group homomorphism such that \(N \subset \ker \phi\), then there exists a unique group homomorphism \(\overline{\phi}: G/N \to H\) so that the diagram
+    Let \(N\) be a normal subgroup of a group \(G\). If \(\phi: G \to H\) is a
+    group homomorphism such that \(N \subset \ker \phi\), then there exists a
+    unique group homomorphism \(\overline{\phi}: G/N \to H\) so that the diagram
     \[
         \begin{tikzcd}
             G \arrow{r}{\phi} \arrow[swap]{d}{\pi} & H \\
             G/N \arrow[dashed]{ur}{\overline{\phi}}
         \end{tikzcd}
     \]
-    commutes. Here \(\pi: G \to G/N\) is the canonical projection map, defined by \(\pi(g) = gN\).
+    commutes. Here \(\pi: G \to G/N\) is the canonical projection map, defined
+    by \(\pi(g) = gN\).
 \end{theorem}
 
 \begin{proof}
-    Let \(b \in aN\) for some \(a \in G\). Then \(b = an\) for some \(n \in N\). Thus \(\phi(b) = \phi(an) = \phi(a)\phi(n)\). Since \(N \subset \ker \phi\), we have \(\phi(n) = e\), so \(\phi(b) = \phi(a)\). This implies that \(\phi\) sends elements of \(G/N\) to elements of \(H\) in a well-defined manner and the map \(\overline{\phi}\) defined by \(\overline{\phi}(aN) = \phi(a)\) is similarly well-defined. Since
+    Let \(b \in aN\) for some \(a \in G\). Then \(b = an\) for some \(n \in N\).
+    Thus \(\phi(b) = \phi(an) = \phi(a)\phi(n)\). Since \(N \subset \ker \phi\),
+    we have \(\phi(n) = e\), so \(\phi(b) = \phi(a)\). This implies that
+    \(\phi\) sends elements of \(G/N\) to elements of \(H\) in a well-defined
+    manner and the map \(\overline{\phi}\) defined by \(\overline{\phi}(aN) =
+    \phi(a)\) is similarly well-defined. Since
     \[
     \overline{\phi}(aNbN) = \overline{\phi}(abN) = \phi(ab) = \phi(a)\phi(b) = \overline{\phi}(aN)\overline{\phi}(bN),
     \]
-    the map \(\overline{\phi}\) is a group homomorphism. Because \(\overline{\phi}\) is determined by \(\phi\), the map \(\overline{\phi}\) is unique.
+    the map \(\overline{\phi}\) is a group homomorphism. Because
+    \(\overline{\phi}\) is determined by \(\phi\), the map \(\overline{\phi}\)
+    is unique.
 
     We finally have
     \[
@@ -474,15 +660,18 @@
 \end{proof}
 
 \begin{remark}
-    The map \(\overline{\phi}\) is called the \emph{homomorphism induced by \(\phi\)}.
+    The map \(\overline{\phi}\) is called the \emph{homomorphism induced by
+    \(\phi\)}.
 \end{remark}
 
 \begin{theorem}
-    Given the same conditions as in the preceding theorem, the following statements hold:
+    Given the same conditions as in the preceding theorem, the following
+    statements hold:
     \begin{enumerate}[label=(\alph*)]
         \item \(\img \phi = \img \overline{\phi}\).
         \item \(\ker \overline{\phi} = (\ker \phi)/N\).
-        \item The map \(\overline{\phi}\) is an isomorphism if and only if \(\phi\) is an epimorphism and \(\ker \phi = N\).
+        \item The map \(\overline{\phi}\) is an isomorphism if and only if
+        \(\phi\) is an epimorphism and \(\ker \phi = N\).
     \end{enumerate}
 \end{theorem}
 
@@ -490,39 +679,73 @@
     We prove each part in turn.
 
     \begin{enumerate}[label=(\alph*), wide]
-        \item For any \(x \in \img \phi\), there exists an element \(g \in G\) such that \(x = \phi(g)\). Then \(\overline{\phi}(gN) = \phi(g) = x\), so \(x \in \img \overline{\phi}\). Conversely if \(x \in \img \overline{\phi}\), then there exists some coset \(gN\) such that \(x = \overline{\phi}(gN) = \phi(g)\), so \(x \in \img \phi\). Thus \(\img \phi = \img \overline{\phi}\).
+        \item For any \(x \in \img \phi\), there exists an element \(g \in G\)
+        such that \(x = \phi(g)\). Then \(\overline{\phi}(gN) = \phi(g) = x\),
+        so \(x \in \img \overline{\phi}\). Conversely if \(x \in \img
+        \overline{\phi}\), then there exists some coset \(gN\) such that \(x =
+        \overline{\phi}(gN) = \phi(g)\), so \(x \in \img \phi\). Thus \(\img
+        \phi = \img \overline{\phi}\).
         
-        \item If a coset \(gN \in \ker \overline{\phi}\), then \(\overline{\phi}(gN) = \phi(g) = e\), so \(g \in \ker \phi\). This implies that \(\ker \overline{\phi} = \{gN : g \in \ker \phi\} = (\ker \phi)/N\).
+        \item If a coset \(gN \in \ker \overline{\phi}\), then
+        \(\overline{\phi}(gN) = \phi(g) = e\), so \(g \in \ker \phi\). This
+        implies that \(\ker \overline{\phi} = \{gN : g \in \ker \phi\} = (\ker
+        \phi)/N\).
         
-        \item If \(\overline{\phi}\) is an isomorphism, then it is also an epimorphism. Since \(\img \phi = \img \overline{\phi}\),it follows that \(\phi\) is also an epimorphism. Since \(\overline{\phi}\) is also injective, we have \(\ker \overline{\phi} = \{e_{G/N}\} = N\) (by our definition of the identity element of \(G/N\)). Thus \(\ker \phi = N\).
+        \item If \(\overline{\phi}\) is an isomorphism, then it is also an
+        epimorphism. Since \(\img \phi = \img \overline{\phi}\),it follows that
+        \(\phi\) is also an epimorphism. Since \(\overline{\phi}\) is also
+        injective, we have \(\ker \overline{\phi} = \{e_{G/N}\} = N\) (by our
+        definition of the identity element of \(G/N\)). Thus \(\ker \phi = N\).
         
-        Conversely, if \(\phi\) is an epimorphism and \(\ker \phi = N\), then \(\img \phi = H = \img \overline{\phi}\) and \(\overline{\phi}\) is an epimorphism. Since \(\ker \overline{\phi} = (\ker \phi)/N = \{e_{G/N}\} = N\), \(\overline{\phi}\) is also injective and therefore an isomorphism.
+        Conversely, if \(\phi\) is an epimorphism and \(\ker \phi = N\), then
+        \(\img \phi = H = \img \overline{\phi}\) and \(\overline{\phi}\) is an
+        epimorphism. Since \(\ker \overline{\phi} = (\ker \phi)/N = \{e_{G/N}\}
+        = N\), \(\overline{\phi}\) is also injective and therefore an
+        isomorphism.
     \end{enumerate}
 \end{proof}
 
 \begin{example}
-    We consider one important class of examples. The cyclic group \(\Z/n\Z\) have been previously defined as the equivalence classes of integers under the relation
+    We consider one important class of examples. The cyclic group \(\Z/n\Z\)
+    have been previously defined as the equivalence classes of integers under
+    the relation
     \[
         a \equiv b \pmod{n} \quad \text{if and only if} \quad n \mid (a - b).
     \]
-    The condition \(n \mid (a - b)\) is equivalent to \(a - b \in n\Z\) (in additive notation). Since \(\Z\) is abelian, \(n\Z\) is a normal subgroup of \(\Z\). The quotient group \(\Z/n\Z\) is then the set of all cosets of \(n\Z\) in \(\Z\), i.e., the set of all equivalence classes of integers modulo \(n\). Using additive notation, we can write the equivalence class of an integer \(a\) as
+    The condition \(n \mid (a - b)\) is equivalent to \(a - b \in n\Z\) (in
+    additive notation). Since \(\Z\) is abelian, \(n\Z\) is a normal subgroup of
+    \(\Z\). The quotient group \(\Z/n\Z\) is then the set of all cosets of
+    \(n\Z\) in \(\Z\), i.e., the set of all equivalence classes of integers
+    modulo \(n\). Using additive notation, we can write the equivalence class of
+    an integer \(a\) as
     \[
         [a]_n = \{a + kn : k \in \Z\} = a + n\Z.
     \]
     Addition in \(\Z/n\Z\) matches our definition of coset multiplication above.
 
-    Now consider some map \(\epsilon_g: \Z \to G\) (for some group \(G\) with order \(n\)) that sends an integer \(\nu\) to the element \(g^\nu \in G\). This map is a group homomorphism by the properties of exponents. The kernel of \(\epsilon_g\) is then given by
+    Now consider some map \(\epsilon_g: \Z \to G\) (for some group \(G\) with
+    order \(n\)) that sends an integer \(\nu\) to the element \(g^\nu \in G\).
+    This map is a group homomorphism by the properties of exponents. The kernel
+    of \(\epsilon_g\) is then given by
     \[
         \ker \epsilon_g = \{ \nu \in \Z : g^\nu = e \},
     \]
-    which are precisely the integers \(\nu\) that divide the order of \(g\), which is \(n\). This in turn is the subgroup \(n\Z\). By Theorem \ref{thm:induced-homomorphism}, \(\epsilon_g\) can be decomposed through the quotient group \(\Z/n\Z\):
+    which are precisely the integers \(\nu\) that divide the order of \(g\),
+    which is \(n\). This in turn is the subgroup \(n\Z\). By Theorem
+    \ref{thm:induced-homomorphism}, \(\epsilon_g\) can be decomposed through the
+    quotient group \(\Z/n\Z\):
     \[
         \begin{tikzcd}
             \Z \arrow{r}{\epsilon_g} \arrow[swap]{d}{\pi} & G \\
             \Z/n\Z \arrow[dashed, "\overline{\epsilon}_g" below]{ur}
         \end{tikzcd}
     \]
-    That is, the map \(\epsilon_g\) induces a unique homomorphism \(\overline{\epsilon}_g: \Z/n\Z \to G\) such that \(\epsilon_g = \overline{\epsilon}_g \circ \pi\) where again \(\pi: \Z \to \Z/n\Z\) is the canonical projection map that sends an integer to its equivalence class modulo \(n\). The map \(\overline{\epsilon}_g\) is an isomorphism since \(\ker \epsilon_g = n\Z\) and \(\epsilon_g\) is an epimorphism.
+    That is, the map \(\epsilon_g\) induces a unique homomorphism
+    \(\overline{\epsilon}_g: \Z/n\Z \to G\) such that \(\epsilon_g =
+    \overline{\epsilon}_g \circ \pi\) where again \(\pi: \Z \to \Z/n\Z\) is the
+    canonical projection map that sends an integer to its equivalence class
+    modulo \(n\). The map \(\overline{\epsilon}_g\) is an isomorphism since
+    \(\ker \epsilon_g = n\Z\) and \(\epsilon_g\) is an epimorphism.
 \end{example}
 
 \begin{theorem}[Canonical decomposition of a group homomorphism]
@@ -535,10 +758,12 @@
 \end{theorem}
 
 \begin{proof}
-    We omit the proof as it is simply a restatement of everything we have established so far.
+    We omit the proof as it is simply a restatement of everything we have
+    established so far.
 \end{proof}
 
-The next result is immediately implied in the preceding theorem but we state it nonetheless because of its importance.
+The next result is immediately implied in the preceding theorem but we state it
+nonetheless because of its importance.
 
 \begin{theorem}[First isomorphism theorem]
     Let \(\phi: G \to H\) be a group homomorphism. Then

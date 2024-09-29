@@ -506,8 +506,8 @@
 
 \begin{remark}
     Another way to construct a group is to look at subsets of a group that are
-    themselves groups. Consider a group \((G, \mult)\) and a subset \(H\) of
-    the underlying set \(G\). Suppose further that \((H, \mult')\) is itself a
+    themselves groups. Consider a group \((G, \mult)\) and a subset \(H\) of the
+    underlying set \(G\). Suppose further that \((H, \mult')\) is itself a
     group. How are the group operations \(\mult\) and \(\mult'\) related? We
     first consider the following definition.
 \end{remark}
@@ -999,3 +999,46 @@ nonetheless because of its importance.
         \alpha: G \to \Aut_{\catg{C}}(X),
     \]
 \end{definition}
+
+\begin{definition}
+    An (left) action of a group \(G\) on a set \(X\) is a map
+    \[
+        \alpha: G \times X \to X
+    \]
+    such that for all \(g, h \in G\) and \(x \in X\), we have
+    \begin{enumerate}[label=(\alph*)]
+        \item \(\alpha(e, x) = x\) and
+        \item \(\alpha(gh, x) = \alpha(g, \alpha(h, x)).\)
+    \end{enumerate}
+
+    As with multiplication in a group, it would be convenient to simply write
+    \(\alpha(g, x)\) as \(gx\).
+\end{definition}
+
+\begin{example}
+    Every group \(G\) acts on the underlying set of the group through the map
+    \(\alpha: G \times G \to G\) defined by \(\alpha(g, x) = gx\) (where the
+    multiplication on the right-hand side is the group operation of \(G\)). This
+    action is referred to as \emph{left multiplication}.
+
+    We can also verify that the map \(\gamma: G \times G \to G\) defined by
+    \[
+        \gamma(g, x) = gxg^{-1}
+    \]
+    is an action of \(G\) on itself. Indeed, we have
+    \[
+        \gamma(e, x) = exe^{-1} = x
+    \]
+    and
+    \[
+        \gamma(g, \gamma(h, x)) = g(hxh^{-1})g^{-1} = (gh)x(gh)^{-1} = \gamma(gh, x),
+    \]
+    for all \(g, h, x \in G\). This action is called \emph{conjugation}.
+\end{example}
+
+\begin{sectionthm}
+    An action of a group \(G\) on a set \(X\) is said to be \emph{faithful} if
+    for all \(g \in G\), \(gx = x\) if and only if \(g = e\).
+\end{sectionthm}
+
+\section{The Sylow theorems}

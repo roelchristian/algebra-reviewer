@@ -33,11 +33,18 @@
 \end{remark}
 
 \begin{remark}
-    Because we require the existence of an identity element in a group \(G\), we can conclude that the set \(G\) is nonempty. At the very least it must contain the identity element. This group is called the \emph{trivial group} and is denoted by \(\{e\}\). Note also that any singleton \(\{*\}\) is a group if we define the binary operation to be the trivial operation \(\mult(*, *) = *\) so that the choice of writing \(\{e\}\) instead of \(\{*\}\) or any other symbol is purely a matter of convention.
+    Because we require the existence of an identity element in a group \(G\), we
+    can conclude that the set \(G\) is nonempty. At the very least it must
+    contain the identity element. This group is called the \emph{trivial group}
+    and is denoted by \(\{e\}\). Note also that any singleton \(\{*\}\) is a
+    group if we define the binary operation to be the trivial operation
+    \(\mult(*, *) = *\) so that the choice of writing \(\{e\}\) instead of
+    \(\{*\}\) or any other symbol is purely a matter of convention.
 \end{remark}
 
 \begin{theorem}
-    The identity element in a group is unique. For each \(a \in G\), the inverse element of \(a\) is unique.
+    The identity element in a group is unique. For each \(a \in G\), the inverse
+    element of \(a\) is unique.
 \end{theorem}
 
 \begin{proof}
@@ -102,7 +109,12 @@
 \end{proof}
 
 \begin{remark}
-    Theorem \ref{thm:generalized-associative-law} tells us that we can write \(a_1 a_2 \cdots a_n\) as a meaningful product without the need for brackets. Where each of the \(a_i\) is equal to an element \(a\) of the group, we shall write \(a^n\) for the product of \(n\) terms of \(a\). Thus \(a^1 = a\), \(a^2 = aa\), and so on. We also define \(a^0\) to be the identity element of the group and \(a^{-n}\) to be \((a^{-1})^n\).
+    Theorem \ref{thm:generalized-associative-law} tells us that we can write
+    \(a_1 a_2 \cdots a_n\) as a meaningful product without the need for
+    brackets. Where each of the \(a_i\) is equal to an element \(a\) of the
+    group, we shall write \(a^n\) for the product of \(n\) terms of \(a\). Thus
+    \(a^1 = a\), \(a^2 = aa\), and so on. We also define \(a^0\) to be the
+    identity element of the group and \(a^{-n}\) to be \((a^{-1})^n\).
 \end{remark}
 
 \begin{theorem}
@@ -117,13 +129,19 @@
 \begin{proof}
     We prove each part in turn.
     \begin{enumerate}[label=(\alph*), wide]
-        \item We prove this by induction on \(n\). The case \(n = 1\) is trivial. Suppose the result holds for \(n = k\). Then
+        \item We prove this by induction on \(n\). The case \(n = 1\) is
+        trivial. Suppose the result holds for \(n = k\). Then
         \begin{align*}
             a^{k + 1} & = a^k a\\
             (a^{k + 1})^{-1} & = (a^k a)^{-1} = a^{-1} (a^k)^{-1}\\
             & = a^{-1} (a^{-1})^k = (a^{-1})^{k + 1}.
         \end{align*}
-        \item We only outline the proof. For \(m > 0\), \(n > 0\) this result follows directly from the generalized associative law. For \(m < 0\), \(n < 0\), we can replace \(a, m, n\) by \(a^{-1}, -m, -n\) respectively and argue similarly. The case \(m = 0\) and \(n = 0\) is trivial. The case \(m \geq 0\), \(n < 0\) and \(m < 0\), \(n \geq 0\) can be shown by induction on \(m\) and \(n\), respectively.
+        \item We only outline the proof. For \(m > 0\), \(n > 0\) this result
+        follows directly from the generalized associative law. For \(m < 0\),
+        \(n < 0\), we can replace \(a, m, n\) by \(a^{-1}, -m, -n\) respectively
+        and argue similarly. The case \(m = 0\) and \(n = 0\) is trivial. The
+        case \(m \geq 0\), \(n < 0\) and \(m < 0\), \(n \geq 0\) can be shown by
+        induction on \(m\) and \(n\), respectively.
         
         \item TODO
 
@@ -162,15 +180,26 @@
     \[
         a + b \quad \text{instead of} \quad ab
     \]
-    in an abelian group and refer to the operation and the term \(a + b\) as `addition' and the `sum' of \(a\) and \(b\), respectively. We shall also write \(-a\) instead of \(a^{-1}\), \(na\) instead of \(a^n\), and \(0\) for the identity element of the group. The sum \(a + (-b)\) for elements \(a, b\) of an abelian group will also be abbreviated to \(a - b\). Note that \(na\) does not refer to the `group product' in the sense of our definition of a group, but is purely a matter of notation.
+    in an abelian group and refer to the operation and the term \(a + b\) as
+    `addition' and the `sum' of \(a\) and \(b\), respectively. We shall also
+    write \(-a\) instead of \(a^{-1}\), \(na\) instead of \(a^n\), and \(0\) for
+    the identity element of the group. The sum \(a + (-b)\) for elements \(a,
+    b\) of an abelian group will also be abbreviated to \(a - b\). Note that
+    \(na\) does not refer to the `group product' in the sense of our definition
+    of a group, but is purely a matter of notation.
 \end{remark}
 
 \begin{theorem}
-    In an abelian group \(G\), \((ab)^n = a^n b^n\) and \((ab)^{-1} = a^{-1} b^{-1}\) for all \(a, b \in G\) and all integers \(n\).
+    In an abelian group \(G\), \((ab)^n = a^n b^n\) and \((ab)^{-1} = a^{-1}
+    b^{-1}\) for all \(a, b \in G\) and all integers \(n\).
 \end{theorem}
 
 \begin{definition}
-    An element \(a\) of a group \(G\) is said to have \emph{finite order} if there exists a positive integer \(n\) such that \(a^n = e\). In this case, the smallest such positive integer is called the \emph{order} of \(a\) and is denoted by \(\order{a}\). If no such positive integer exists, then \(a\) is said to have \emph{infinite order} and we write \(\order{a} = \infty\).
+    An element \(a\) of a group \(G\) is said to have \emph{finite order} if
+    there exists a positive integer \(n\) such that \(a^n = e\). In this case,
+    the smallest such positive integer is called the \emph{order} of \(a\) and
+    is denoted by \(\order{a}\). If no such positive integer exists, then \(a\)
+    is said to have \emph{infinite order} and we write \(\order{a} = \infty\).
 \end{definition}
 
 
@@ -328,8 +357,8 @@
             G \arrow[swap]{r}{\phi} & H
         \end{tikzcd}
     \]
-    commutes. (Here \(\id_G\) and \(\id_H\) are the identity maps on \(G\)
-    and \(H\) respectively.)
+    commutes. (Here \(\id_G\) and \(\id_H\) are the identity maps on \(G\) and
+    \(H\) respectively.)
 \end{remark}
 
 \begin{example}
@@ -468,49 +497,81 @@
 \section{Free groups}
 
 \begin{sectionthm}
-    Given some set \(X\) that does not necessarily have any group structure, we would now like to construct another group \(F(X)\) containing \(X\) as a subset
+    Given some set \(X\) that does not necessarily have any group structure, we
+    would now like to construct another group \(F(X)\) containing \(X\) as a
+    subset
 \end{sectionthm}
 
 \section{Subgroups}
 
 \begin{remark}
-    Another way to construct a group is to look at subsets of a group that are themselves groups. Consider a group \((G, \mult)\) and a subset \(H\) of  the underlying set \(G\). Suppose further that \((H, \mult')\) is itself a group. How are the group operations \(\mult\) and \(\mult'\) related? We first consider the following definition.
+    Another way to construct a group is to look at subsets of a group that are
+    themselves groups. Consider a group \((G, \mult)\) and a subset \(H\) of
+    the underlying set \(G\). Suppose further that \((H, \mult')\) is itself a
+    group. How are the group operations \(\mult\) and \(\mult'\) related? We
+    first consider the following definition.
 \end{remark}
 
 \begin{definition}
-    Let \((G, \mult)\) and \((H, \mult')\) be groups such that \(H \subset G\). We say that \(H\) is a \emph{subgroup} of \(G\) the inclusion function \(\iota : H \to G\) is a group homomorphism. If \(H\) is a subgroup of \(G\), we write \(H < G\).
+    Let \((G, \mult)\) and \((H, \mult')\) be groups such that \(H \subset G\).
+    We say that \(H\) is a \emph{subgroup} of \(G\) the inclusion function
+    \(\iota : H \to G\) is a group homomorphism. If \(H\) is a subgroup of
+    \(G\), we write \(H < G\).
 \end{definition}
 
 \begin{remark}
-    Let us first fix some notation and write \(a \cdot b\) for \(\mult(a,b)\) and \(a * b\) for \(\mult'(a,b)\). Then because \(\iota\) is a group homomorphism, we have
+    Let us first fix some notation and write \(a \cdot b\) for \(\mult(a,b)\)
+    and \(a * b\) for \(\mult'(a,b)\). Then because \(\iota\) is a group
+    homomorphism, we have
     \[
         \iota(a * b) = \iota(a) \cdot \iota(b).
     \]
-    Moreover, because \(\iota\) is a group homomorphism, it must preserve the identity element and inverses. Thus \(\iota(e_H) = e_G\) and \(\iota(a^{-1}) = \iota(a)^{-1}\) for all \(a \in H\). We can thus see that the group operation \(\mult'\) in \(H\) is the restriction of the group operation \(\mult\) in \(G\) to \(H\). Thus, we can alternatively characterize a subgroup as a subset \(H\) of a group \(G\) that is itself a group under the group operation of \(G\). The next result is a useful criterion for determining whether a subset is a subgroup.
+    Moreover, because \(\iota\) is a group homomorphism, it must preserve the
+    identity element and inverses. Thus \(\iota(e_H) = e_G\) and \(\iota(a^{-1})
+    = \iota(a)^{-1}\) for all \(a \in H\). We can thus see that the group
+    operation \(\mult'\) in \(H\) is the restriction of the group operation
+    \(\mult\) in \(G\) to \(H\). Thus, we can alternatively characterize a
+    subgroup as a subset \(H\) of a group \(G\) that is itself a group under the
+    group operation of \(G\). The next result is a useful criterion for
+    determining whether a subset is a subgroup.
 \end{remark}
 
 \begin{theorem}[Subgroup test]
     \label{thm:subgroup-test}
-    A nonempty subset \(H\) of a group \(G\) is a subgroup if and only if for all \(a, b \in H\), we have \(ab^{-1} \in H\).
+    A nonempty subset \(H\) of a group \(G\) is a subgroup if and only if for
+    all \(a, b \in H\), we have \(ab^{-1} \in H\).
 \end{theorem}
 
 \begin{proof}
-    The forward implication follows directly from the definition. Conversely, suppose that \(H\) is a nonempty subset of \(G\) such that \(ab^{-1} \in H\) for all \(a, b \in H\). Then \(e = aa^{-1} \in H\) for all \(a \in H\). Moreover, if \(a \in H\), then \(a^{-1} = ea^{-1} \in H\). Finally, if \(a, b \in H\), then \(ab = a(b^{-1})^{-1} \in H\). Thus \(H\) is a subgroup of \(G\).
+    The forward implication follows directly from the definition. Conversely,
+    suppose that \(H\) is a nonempty subset of \(G\) such that \(ab^{-1} \in H\)
+    for all \(a, b \in H\). Then \(e = aa^{-1} \in H\) for all \(a \in H\).
+    Moreover, if \(a \in H\), then \(a^{-1} = ea^{-1} \in H\). Finally, if \(a,
+    b \in H\), then \(ab = a(b^{-1})^{-1} \in H\). Thus \(H\) is a subgroup of
+    \(G\).
 \end{proof}
 
 \begin{theorem}
     \label{thm:intersection-subgroups}
-    If \(\{H_{\alpha}\}_{\alpha \in A}\) is any collection of subgroups of a group \(G\), then the intersection
+    If \(\{H_{\alpha}\}_{\alpha \in A}\) is any collection of subgroups of a
+    group \(G\), then the intersection
     \[
         H = \bigcap_{\alpha \in A} H_{\alpha}
     \]
-    is a subgroup of \(G\). Moreover \(H\) is the largest subgroup of \(G\) contained in each of the subgroups \(H_{\alpha}\).
+    is a subgroup of \(G\). Moreover \(H\) is the largest subgroup of \(G\)
+    contained in each of the subgroups \(H_{\alpha}\).
 \end{theorem}
 
 \begin{proof}
-    The intersection \(H\) is nonempty because \(e \in H_\alpha\) for all \(\alpha\). If \(a, b \in H\), then \(a, b \in H_\alpha\) for all \(\alpha \in A\). Thus \(ab^{-1} \in H_\alpha\) for all \(\alpha \in A\), so \(ab^{-1} \in H\).
+    The intersection \(H\) is nonempty because \(e \in H_\alpha\) for all
+    \(\alpha\). If \(a, b \in H\), then \(a, b \in H_\alpha\) for all \(\alpha
+    \in A\). Thus \(ab^{-1} \in H_\alpha\) for all \(\alpha \in A\), so
+    \(ab^{-1} \in H\).
 
-    To show that \(H\) is the largest subgroup of \(G\) contained in each of the subgroups \(H_{\alpha}\), suppose that \(K\) is a subgroup of \(G\) such that \(K \subset H_{\alpha}\) for all \(\alpha \in A\). Then by our definition of \(H\), we have \(K \subset H\).
+    To show that \(H\) is the largest subgroup of \(G\) contained in each of the
+    subgroups \(H_{\alpha}\), suppose that \(K\) is a subgroup of \(G\) such
+    that \(K \subset H_{\alpha}\) for all \(\alpha \in A\). Then by our
+    definition of \(H\), we have \(K \subset H\).
 \end{proof}
 
 \section{Quotient groups and the isomorphism theorems}
@@ -638,33 +699,46 @@
     Suppose \(N \triangleleft G\), and let \(a \in G\). Let \(x \in gN\). Then
     \(x = gn\) for some \(n \in N\). Since \(N \triangleleft G\), we have
     \(gng^{-1} \in N\), so \(x = gn = gng^{-1}g = n'g\) for some \(n' \in N\).
-    Thus \(x \in Ng\) and \(gN \subset Ng\). The proof that \(Ng \subset
-    gN\) is similar. Conversely, suppose that left and right cosets of \(N\)
-    coincide. Let \(g \in G\) and \(n \in N\). Then \(gn \in Ng = gN\), so \(gn
-    = n'g\) for some \(n' \in N\). This implies that \(gng^{-1} = n' \in N\),
-    and since \(g\) and \(n\) were arbitrary, we have \(N \triangleleft G\).
+    Thus \(x \in Ng\) and \(gN \subset Ng\). The proof that \(Ng \subset gN\) is
+    similar. Conversely, suppose that left and right cosets of \(N\) coincide.
+    Let \(g \in G\) and \(n \in N\). Then \(gn \in Ng = gN\), so \(gn = n'g\)
+    for some \(n' \in N\). This implies that \(gng^{-1} = n' \in N\), and since
+    \(g\) and \(n\) were arbitrary, we have \(N \triangleleft G\).
 \end{proof}
 
 \begin{theorem}
     \label{thm:normal-subgroup-props}
-    Let \(N\) and \(K\) be subgroups of a group \(G\), with \(N\) normal in \(G\). Then:
+    Let \(N\) and \(K\) be subgroups of a group \(G\), with \(N\) normal in
+    \(G\). Then:
     \begin{enumerate}[label=(\alph*)]
         \item \(N \cap K\) is a normal subgroup of \(K\);
-        \item \(NK\) is a subgroup of G and \(N\) is normal in \(NK = \{nk : n \in N, k \in K\}\); and
-        \item if \(K\) is normal in \(G\) and \(N \cap K = \{e\}\), then \(kn = nk\) for all \(n \in N\) and \(k \in K\).
+        \item \(NK\) is a subgroup of G and \(N\) is normal in \(NK = \{nk : n
+        \in N, k \in K\}\); and
+        \item if \(K\) is normal in \(G\) and \(N \cap K = \{e\}\), then \(kn =
+        nk\) for all \(n \in N\) and \(k \in K\).
     \end{enumerate}
 \end{theorem}
 
 \begin{proof}
     We prove each part in turn.
     \begin{enumerate}[label=(\alph*), wide]
-        \item The intersection \(H \cap K\) is a subgroup of \(K\) by Theorem~\ref{thm:intersection-subgroups}. Since \(N \triangleleft G\), we must have \(gng^{-1} \in N\) for all \(g \in G\) and \(n \in N\). Let \(x \in N \cap K\) and \(k \in K\). Then \(x \in K\) and because \(K < G\) (i.e., closed), we must have \(kxk^{-1} \in K\). On the other hand, we also have \(x \in N\) and because \(k \in K \subset G\) we have \(kxk^{-1} \in N\). Thus \(kxk^{-1} \in N \cap K\), and so \(N \cap K \triangleleft K\).
+        \item The intersection \(H \cap K\) is a subgroup of \(K\) by
+        Theorem~\ref{thm:intersection-subgroups}. Since \(N \triangleleft G\),
+        we must have \(gng^{-1} \in N\) for all \(g \in G\) and \(n \in N\). Let
+        \(x \in N \cap K\) and \(k \in K\). Then \(x \in K\) and because \(K <
+        G\) (i.e., closed), we must have \(kxk^{-1} \in K\). On the other hand,
+        we also have \(x \in N\) and because \(k \in K \subset G\) we have
+        \(kxk^{-1} \in N\). Thus \(kxk^{-1} \in N \cap K\), and so \(N \cap K
+        \triangleleft K\).
         
-        \item Let \(a, b \in NK\). Then \(a = n_1k_1\) and \(b = n_2k_2\) for some \(n_1, n_2 \in N\) and \(k_1, k_2 \in K\). Since \(N \triangleleft G\), and \(k^{-1}_1k_1 = e \in N\), we have
+        \item Let \(a, b \in NK\). Then \(a = n_1k_1\) and \(b = n_2k_2\) for
+        some \(n_1, n_2 \in N\) and \(k_1, k_2 \in K\). Since \(N \triangleleft
+        G\), and \(k^{-1}_1k_1 = e \in N\), we have
         \[
             ab = (n_1k_1)(n_2k_2) = n_1k_1n_2(k^{-1}_1k_1)k_2 = n_1(k_1n_2k^{-1}_1)k_1k_2
         \]
-        Since \(N\) is normal \(k_1n_2k^{-1}_1\) must be equal to some element \(n_3 \in N\), so \(ab = n_1n_3k_1k_2 \in NK\).
+        Since \(N\) is normal \(k_1n_2k^{-1}_1\) must be equal to some element
+        \(n_3 \in N\), so \(ab = n_1n_3k_1k_2 \in NK\).
     \end{enumerate}
 \end{proof}
 
@@ -703,12 +777,13 @@
 
 \begin{theorem}
     Let \(\phi : G \to H\) be a group homomorphism. Then the \(\ker \phi\) is a
-    normal subgroup of \(G\). Conversely, if \(N\) is a normal subgroup of \(G\),
-    then the map
+    normal subgroup of \(G\). Conversely, if \(N\) is a normal subgroup of
+    \(G\), then the map
     \[
         \pi : G \to G/N
     \]
-    defined by \(\pi(g) = gN\) is an epimorphism with kernel \(N\). We call \(\pi\) the \emph{canonical projection}.
+    defined by \(\pi(g) = gN\) is an epimorphism with kernel \(N\). We call
+    \(\pi\) the \emph{canonical projection}.
 \end{theorem}
 
 \begin{proof}
@@ -719,7 +794,9 @@
     \]
     Therefore, \(gng^{-1} \in \ker \phi\).
 
-    On the other hand, since each element of \(G/N\) is of the form \(gN\) for some \(g \in G\), the map \(\pi\) is surjective. By our definition of coset multiplication, we also have
+    On the other hand, since each element of \(G/N\) is of the form \(gN\) for
+    some \(g \in G\), the map \(\pi\) is surjective. By our definition of coset
+    multiplication, we also have
     \[
         \pi(g)\pi(g') = gN \cdot g'N = gg'N = \pi(gg'),
     \]
@@ -879,18 +956,24 @@ nonetheless because of its importance.
 \end{theorem}
 
 \begin{theorem}[Second isomorphism theorem]
-    Let \(K\) and \(N\) be subgroups of a group \(G\) such that \(\normal{N}{G}\). Then \(N \cap K\) is normal in \(K\), and
+    Let \(K\) and \(N\) be subgroups of a group \(G\) such that
+    \(\normal{N}{G}\). Then \(N \cap K\) is normal in \(K\), and
     \[
         K/(N \cap K) \cong NK/N.
     \]
 \end{theorem}
 
 \begin{proof}
-    Recall from Theorem~\ref{thm:normal-subgroup-props} that \(NK\) is a subgroup of \(G\) and \(N\) is normal in \(NK\). Consider the map
+    Recall from Theorem~\ref{thm:normal-subgroup-props} that \(NK\) is a
+    subgroup of \(G\) and \(N\) is normal in \(NK\). Consider the map
     \[
         \phi : K \to NK/N.
     \]
-    Every element of \(NK/N\) is of the form \(nkN\) for some \(n \in N\) and \(k \in K\). Since \(N \triangleleft G\), this implies that \(nk = kn'\) for some \(n' \in N\) and \(nkN = kn'N = kN\). That is, every element of \(NK/N\) is the image of some element of \(K\) and \(\phi\) is surjective. Moreover, \(\phi\) is the composition
+    Every element of \(NK/N\) is of the form \(nkN\) for some \(n \in N\) and
+    \(k \in K\). Since \(N \triangleleft G\), this implies that \(nk = kn'\) for
+    some \(n' \in N\) and \(nkN = kn'N = kN\). That is, every element of
+    \(NK/N\) is the image of some element of \(K\) and \(\phi\) is surjective.
+    Moreover, \(\phi\) is the composition
     \[
         \begin{tikzcd}
             K \arrow[r, "\iota", hook] & NK \arrow[r, "\pi", two heads] & NK/N.
@@ -910,7 +993,8 @@ nonetheless because of its importance.
 \section{Group actions}
 
 \begin{definition}
-    The action of a group \(G\) on an object \(X\) in a category \(\catg{C}\) is a (group) homomorphism
+    The action of a group \(G\) on an object \(X\) in a category \(\catg{C}\) is
+    a (group) homomorphism
     \[
         \alpha: G \to \Aut_{\catg{C}}(X),
     \]

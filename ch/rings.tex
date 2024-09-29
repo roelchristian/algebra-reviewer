@@ -4,32 +4,49 @@
 \section{Rings and homomorphisms}
 
 \begin{definition}
-    A \emph{ring} is a nonempty set \(R\) together with two binary operations \(+\) and \(\cdot\) (often called `addition' and `multiplication') such that:
+    A \emph{ring} is a nonempty set \(R\) together with two binary operations
+    \(+\) and \(\cdot\) (often called `addition' and `multiplication') such
+    that:
     \begin{enumerate}[label=(\alph*)]
         \item \((R, +)\) is an abelian group with identity element \(0\),
-        \item Multiplication is associative, i.e. \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) for all \(a, b, c \in R\),
-        \item Multiplication is distributive over addition, i.e. \(a \cdot (b + c) = a \cdot b + a \cdot c\) and \((a + b) \cdot c = a \cdot c + b \cdot c\) for all \(a, b, c \in R\).
+        \item Multiplication is associative, i.e. \((a \cdot b) \cdot c = a
+        \cdot (b \cdot c)\) for all \(a, b, c \in R\),
+        \item Multiplication is distributive over addition, i.e. \(a \cdot (b +
+        c) = a \cdot b + a \cdot c\) and \((a + b) \cdot c = a \cdot c + b \cdot
+        c\) for all \(a, b, c \in R\).
     \end{enumerate}
 
-    If, in addition, the ring has a multiplicative identity element \(1\) such that \(1 \cdot a = a \cdot 1 = a\) for all \(a \in R\), then we say that \(R\) is a \emph{ring with unity} or a \emph{ring with \(1\)}.
+    If, in addition, the ring has a multiplicative identity element \(1\) such
+    that \(1 \cdot a = a \cdot 1 = a\) for all \(a \in R\), then we say that
+    \(R\) is a \emph{ring with unity} or a \emph{ring with \(1\)}.
 
-    If multiplication is commutative, i.e. \(a \cdot b = b \cdot a\) for all \(a, b \in R\), then we say that \(R\) is a \emph{commutative ring}.
+    If multiplication is commutative, i.e. \(a \cdot b = b \cdot a\) for all
+    \(a, b \in R\), then we say that \(R\) is a \emph{commutative ring}.
 \end{definition}
 
 \begin{remark}
-    When we speak of a ring with unity, we will often assume without explicitly stating that the multiplicative identity \(1\) is distinct from the additive identity \(0\). In case \(1 = 0\) we get the trivial ring \(\{0\}\) (also called the \emph{zero ring}) whose only element is the additive and multiplicative identity.
+    When we speak of a ring with unity, we will often assume without explicitly
+    stating that the multiplicative identity \(1\) is distinct from the additive
+    identity \(0\). In case \(1 = 0\) we get the trivial ring \(\{0\}\) (also
+    called the \emph{zero ring}) whose only element is the additive and
+    multiplicative identity.
 \end{remark}
 
 \begin{remark}
-    As in Chapter~\ref{ch:groups}, we will often write \(ab\) instead of \(a \cdot b\).
+    As in Chapter~\ref{ch:groups}, we will often write \(ab\) instead of \(a
+    \cdot b\).
 \end{remark}
 
 \begin{example}
-    The sets \(\Z\), \(\Q\), \(\R\), and \(\C\) are all rings with unity under the usual operations of addition and multiplication.
+    The sets \(\Z\), \(\Q\), \(\R\), and \(\C\) are all rings with unity under
+    the usual operations of addition and multiplication.
 \end{example}
 
 \begin{example}
-    The set of \(n \times n\) matrices with entries in a ring \(R\) is a ring with unity under matrix addition and multiplication, denoted \(\mathcal{M}_n(R)\). The ring \(\mathcal{M}_n(R)\) is commutative if and only if \(R\) is commutative and \(n = 1\).
+    The set of \(n \times n\) matrices with entries in a ring \(R\) is a ring
+    with unity under matrix addition and multiplication, denoted
+    \(\mathcal{M}_n(R)\). The ring \(\mathcal{M}_n(R)\) is commutative if and
+    only if \(R\) is commutative and \(n = 1\).
 \end{example}
 
 \begin{theorem}
@@ -38,7 +55,8 @@
         \item \(0a = a0 = 0\) for all \(a \in R\);
         \item \((-a)b = a(-b) = -(ab)\) for all \(a, b \in R\);
         \item \((-a)(-b) = ab\) for all \(a, b \in R\);
-        \item \((na)b = n(ab) = a(nb)\) for all \(a, b \in R\) and \(n \in \mathbb{Z}\);
+        \item \((na)b = n(ab) = a(nb)\) for all \(a, b \in R\) and \(n \in
+        \mathbb{Z}\);
         \item For all \(a, b \in R\),
         \[
             \left(\sum_{i=1}^{n} a_i\right)\left(\sum_{j=1}^{m} b_j\right) = \sum_{i=1}^{n} \sum_{j=1}^{m} a_i b_j.
@@ -47,7 +65,11 @@
 \end{theorem}
 
 \begin{proof}
-    (a) \((0)a = (0 + 0)a = 0a + 0a\), whence \(0a = 0\). (b) \((-a)b = (-a)b + ab = ((-a) + a)b = 0b = 0\). This implies that \((-a)b = -(ab)\). A similar argument shows that \(a(-b) = -(ab)\). (c) \((-a)(-b) + ab = (-a)(-b) + (-a)b = (-a)(-b + b) = (-a)0 = 0\). (d) We prove this by induction on \(n\). The case \(n = 0\) is trivial. Suppose the result holds for \(n = k\). Then
+    (a) \((0)a = (0 + 0)a = 0a + 0a\), whence \(0a = 0\). (b) \((-a)b = (-a)b +
+    ab = ((-a) + a)b = 0b = 0\). This implies that \((-a)b = -(ab)\). A similar
+    argument shows that \(a(-b) = -(ab)\). (c) \((-a)(-b) + ab = (-a)(-b) +
+    (-a)b = (-a)(-b + b) = (-a)0 = 0\). (d) We prove this by induction on \(n\).
+    The case \(n = 0\) is trivial. Suppose the result holds for \(n = k\). Then
     \[
         ((k + 1)a)b = (ka + a)b = kab + ab = (k+1)(ab)
     \]
@@ -63,11 +85,13 @@
 \end{theorem}
 
 \begin{proof}
-    Suppose that \(1\) and \(1'\) are both multiplicative identities in a ring \(R\). Then \(1 = 1 \cdot 1' = 1'\).
+    Suppose that \(1\) and \(1'\) are both multiplicative identities in a ring
+    \(R\). Then \(1 = 1 \cdot 1' = 1'\).
 \end{proof}
 
 \begin{example}
-    Show that the set \(\{0, 2, 4, 6, 8\}\) with addition and multiplication modulo \(10\) is a ring with unity.
+    Show that the set \(\{0, 2, 4, 6, 8\}\) with addition and multiplication
+    modulo \(10\) is a ring with unity.
 
     \begin{solution}
         We have the following addition and multiplication tables:
@@ -93,28 +117,41 @@
             \end{tabular}
         \end{center}
 
-        We see that the set is closed under addition and multiplication. The identity element for addition is \(0\) and for multiplication \(6\). The ring is commutative and has a unity.
+        We see that the set is closed under addition and multiplication. The
+        identity element for addition is \(0\) and for multiplication \(6\). The
+        ring is commutative and has a unity.
     \end{solution}
 \end{example}
 
 \begin{definition}
-    A nonzero element \(a\) in a ring \(R\) is called a \emph{left} (resp. \emph{right}) \emph{zero divisor }if there exists a nonzero element \(b \in R\) such that \(ab = 0\) (resp. \(ba = 0\)). An element that is both a left and right zero divisor is called a \emph{zero divisor.}
+    A nonzero element \(a\) in a ring \(R\) is called a \emph{left} (resp.
+    \emph{right}) \emph{zero divisor }if there exists a nonzero element \(b \in
+    R\) such that \(ab = 0\) (resp. \(ba = 0\)). An element that is both a left
+    and right zero divisor is called a \emph{zero divisor.}
 \end{definition}
 
 \begin{definition}
-    An element \(a\) in a ring \(R\) with unity is said to be \emph{left} (resp. \emph{right}) \emph{invertible} if there exists an element \(b \in R\) such that \(ba = 1\) (resp. \(ab = 1\)). An element that is both left and right invertible is called \emph{invertible} or a \emph{unit.}
+    An element \(a\) in a ring \(R\) with unity is said to be \emph{left} (resp.
+    \emph{right}) \emph{invertible} if there exists an element \(b \in R\) such
+    that \(ba = 1\) (resp. \(ab = 1\)). An element that is both left and right
+    invertible is called \emph{invertible} or a \emph{unit.}
 \end{definition}
 
 \begin{definition}
-    A commutative ring with unity is called an \emph{integral domain} (or simply a \emph{domain}) if it has no zero divisors. A ring with unity is called a \emph{division ring} if every nonzero element is a unit. A commutative division ring is called a \emph{field}.
+    A commutative ring with unity is called an \emph{integral domain} (or simply
+    a \emph{domain}) if it has no zero divisors. A ring with unity is called a
+    \emph{division ring} if every nonzero element is a unit. A commutative
+    division ring is called a \emph{field}.
 \end{definition}
 
 \begin{theorem}
-    The cancellation laws hold in an integral domain. That is for all \(a, b, c \in R\), if \(ab = ac\) and \(a \neq 0\), then \(b = c\).
+    The cancellation laws hold in an integral domain. That is for all \(a, b, c
+    \in R\), if \(ab = ac\) and \(a \neq 0\), then \(b = c\).
 \end{theorem}
 
 \begin{proof}
-    From \(ab = ac\), we have \(ab - ac = 0\), which implies \(a(b - c) = 0\). Since \(a \neq 0\), we must have \(b - c = 0\), i.e. \(b = c\).
+    From \(ab = ac\), we have \(ab - ac = 0\), which implies \(a(b - c) = 0\).
+    Since \(a \neq 0\), we must have \(b - c = 0\), i.e. \(b = c\).
 \end{proof}
 
 \begin{theorem}
@@ -123,7 +160,15 @@
 \end{theorem}
 
 \begin{proof}
-    Let \(D\) be a finite integral domain and \(a\) an element of \(D\) such that \(a \neq 0\). Consider the set \(\{a^n \mid n \in \mathbb{N}\}\). If \(a = 1\) then \(a\) is a unit and so we may assume that \(a \neq 1\). Since \(D\) is finite, there exist positive integers \(j\) and \(k\) with \(j < k\) such that \(a^j = a^k\). Because \(D\) is an integral domain, we have \(a^{j-k} = 1\) by cancellation. Now since \(a \neq 1\), we have \(j - k > 1\), which implies that \(a\) is a unit with inverse \(a^{j-k-1}\). Since \(a\) was arbitrary, we conclude that every nonzero element of \(D\) is a unit.
+    Let \(D\) be a finite integral domain and \(a\) an element of \(D\) such
+    that \(a \neq 0\). Consider the set \(\{a^n \mid n \in \mathbb{N}\}\). If
+    \(a = 1\) then \(a\) is a unit and so we may assume that \(a \neq 1\). Since
+    \(D\) is finite, there exist positive integers \(j\) and \(k\) with \(j <
+    k\) such that \(a^j = a^k\). Because \(D\) is an integral domain, we have
+    \(a^{j-k} = 1\) by cancellation. Now since \(a \neq 1\), we have \(j - k >
+    1\), which implies that \(a\) is a unit with inverse \(a^{j-k-1}\). Since
+    \(a\) was arbitrary, we conclude that every nonzero element of \(D\) is a
+    unit.
 \end{proof}
 
 \begin{theorem}
@@ -131,80 +176,138 @@
 \end{theorem}
 
 \begin{proof}
-    By Theorem~\ref{thm:finite-integral-domain-field}, it suffices to show that \(\mathbb{Z}/p\mathbb{Z}\) is an integral domain. Now suppose that for some \(a, b \in \mathbb{Z}/p\mathbb{Z}\) we have \(ab = 0\). Then \(ab = pk\) for some integer \(k\), which implies that \(p \mid ab\). Since \(p\) is prime, we must have \(p \mid a\) or \(p \mid b\), which implies that \(a = 0\) or \(b = 0\). Thus \(\mathbb{Z}/p\mathbb{Z}\) is an integral domain.
+    By Theorem~\ref{thm:finite-integral-domain-field}, it suffices to show that
+    \(\mathbb{Z}/p\mathbb{Z}\) is an integral domain. Now suppose that for some
+    \(a, b \in \mathbb{Z}/p\mathbb{Z}\) we have \(ab = 0\). Then \(ab = pk\) for
+    some integer \(k\), which implies that \(p \mid ab\). Since \(p\) is prime,
+    we must have \(p \mid a\) or \(p \mid b\), which implies that \(a = 0\) or
+    \(b = 0\). Thus \(\mathbb{Z}/p\mathbb{Z}\) is an integral domain.
 \end{proof}
 
 \begin{theorem}[Binomial theorem]
-    Let \(R\) be a commutative ring with unity, \(n\) a positive integer, and \(a, b \in R\). Then
+    Let \(R\) be a commutative ring with unity, \(n\) a positive integer, and
+    \(a, b \in R\). Then
     \[
         (a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k.
     \]
 \end{theorem}
 
 \begin{definition}
-    Let \(R\) and \(S\) be rings. A function \(\phi: R \to S\) is called a \emph{ring homomorphism} if it preserves addition and multiplication, i.e. for all \(a, b \in R\),
+    Let \(R\) and \(S\) be rings. A function \(\phi: R \to S\) is called a
+    \emph{ring homomorphism} if it preserves addition and multiplication, i.e.
+    for all \(a, b \in R\),
     \[
         \phi(a + b) = \phi(a) + \phi(b) \quad \text{and} \quad \phi(ab) = \phi(a)\phi(b).
     \]
 
-    The same terminology we have introduced in Chapter~\ref{ch:groups}, \S~\ref{def:homomorphism-group} for homomorphism of groups will be used for homomorphisms of rings.
+    The same terminology we have introduced in Chapter~\ref{ch:groups},
+    \S~\ref{def:homomorphism-group} for homomorphism of groups will be used for
+    homomorphisms of rings.
 \end{definition}
 
 \begin{definition}
-    Let \(R\) be a ring. If there is a least positive integer \(n\) such that \(na = 0\) all \(a \in R\), then \(n\) is called the \emph{characteristic} of \(R\), written \(\charx R\). If no such integer exists, then we say that the characteristic of \(R\) is zero.
+    Let \(R\) be a ring. If there is a least positive integer \(n\) such that
+    \(na = 0\) all \(a \in R\), then \(n\) is called the \emph{characteristic}
+    of \(R\), written \(\charx R\). If no such integer exists, then we say that
+    the characteristic of \(R\) is zero.
 \end{definition}
 
 \section{Ideals}
 
 \begin{definition}
-    Let \(R\) be a ring and \(S\) a nonempty subset of \(R\) that is closed under addition and multiplication by elements of \(R\). Then \(S\) is called a \emph{subring} of \(R\) if it is a ring with respect to the operations of \(R\).
+    Let \(R\) be a ring and \(S\) a nonempty subset of \(R\) that is closed
+    under addition and multiplication by elements of \(R\). Then \(S\) is called
+    a \emph{subring} of \(R\) if it is a ring with respect to the operations of
+    \(R\).
 \end{definition}
 
 \begin{definition}
-    A subring \(I\) of a ring \(R\) is called an \emph{left} (resp. \emph{right}) \emph{ideal} of \(R\) if for all \(a \in I\) and \(r \in R\), we have \(ra \in I\) (resp. \(ar \in I\)). If \(I\) is both a left and right ideal, then we say that \(I\) is an \emph{ideal} of \(R\).
+    A subring \(I\) of a ring \(R\) is called an \emph{left} (resp.
+    \emph{right}) \emph{ideal} of \(R\) if for all \(a \in I\) and \(r \in R\),
+    we have \(ra \in I\) (resp. \(ar \in I\)). If \(I\) is both a left and right
+    ideal, then we say that \(I\) is an \emph{ideal} of \(R\).
 \end{definition}
 
 \begin{example}
-    For any ring \(R\), \(R\) itself and the zero ring \(\{0\}\) are ideals of \(R\). If \(I\) is neither \(R\) nor \(\{0\}\), then \(I\) is called a \emph{proper ideal} of \(R\).
+    For any ring \(R\), \(R\) itself and the zero ring \(\{0\}\) are ideals of
+    \(R\). If \(I\) is neither \(R\) nor \(\{0\}\), then \(I\) is called a
+    \emph{proper ideal} of \(R\).
 \end{example}
 
 \begin{remark}
     \label{rem:ideal-contains-0}
-    Every ideal of a ring \(R\) contains the additive identity \(0\). This follows from the fact that for all \(a \in I\), we have \(0a = 0 \in I\).
+    Every ideal of a ring \(R\) contains the additive identity \(0\). This
+    follows from the fact that for all \(a \in I\), we have \(0a = 0 \in I\).
 \end{remark}
 
 \begin{theorem}[Test for ideals]
-    A nonempty subset \(I\) of a ring \(R\) is an left (resp. right) ideal of \(R\) if and only if for all \(a, b \in I\) and \(r \in R\), we have \(a - b \in I\) and \(ra \in I\) (resp. \(ar \in I\)).
+    A nonempty subset \(I\) of a ring \(R\) is an left (resp. right) ideal of
+    \(R\) if and only if for all \(a, b \in I\) and \(r \in R\), we have \(a - b
+    \in I\) and \(ra \in I\) (resp. \(ar \in I\)).
 \end{theorem}
 
 \begin{proof}
-    We prove the test for a left ideal. To prove necessity, suppose that \(I\) is an ideal. Then the statements \(a - b \in I\) and \(ra \in I\) follow directly from the ring axioms and the definition of a left ideal. On the other hand, suppose that \(I\) is a nonempty subset of \(R\) such that \(a - b \in I\) and \(ra \in I\) for all \(a, b \in I\) and \(r \in R\). Since \(I\) is nonempty, there exists an element \(a \in I\) and from our assumption we have \(a - a = 0 \in I\). This further implies that \(-a \in I\) for all \(a \in I\). From this it follows that \(a + b \in I\) and \(I\) is closed under addition. Now since \(b \in I\) implies \(b \in R\), it follows that \(ba \in I\). Thus \(I\) is closed under addition and multiplication (as defined in \(R\)) and hence \(I\) is a subring. Since \(I\) is a subring such that \(ra \in I\) for all \(a \in I\) and \(r \in R\), it follows from the definition that \(I\) is a left ideal.
+    We prove the test for a left ideal. To prove necessity, suppose that \(I\)
+    is an ideal. Then the statements \(a - b \in I\) and \(ra \in I\) follow
+    directly from the ring axioms and the definition of a left ideal. On the
+    other hand, suppose that \(I\) is a nonempty subset of \(R\) such that \(a -
+    b \in I\) and \(ra \in I\) for all \(a, b \in I\) and \(r \in R\). Since
+    \(I\) is nonempty, there exists an element \(a \in I\) and from our
+    assumption we have \(a - a = 0 \in I\). This further implies that \(-a \in
+    I\) for all \(a \in I\). From this it follows that \(a + b \in I\) and \(I\)
+    is closed under addition. Now since \(b \in I\) implies \(b \in R\), it
+    follows that \(ba \in I\). Thus \(I\) is closed under addition and
+    multiplication (as defined in \(R\)) and hence \(I\) is a subring. Since
+    \(I\) is a subring such that \(ra \in I\) for all \(a \in I\) and \(r \in
+    R\), it follows from the definition that \(I\) is a left ideal.
 \end{proof}
 
 \begin{theorem}
-    Let \(R\) be a commutative ring with unity and \(I\) an ideal of \(R\). If a unit \(u\) of \(R\) is in \(I\), then \(I = R\).
+    Let \(R\) be a commutative ring with unity and \(I\) an ideal of \(R\). If a
+    unit \(u\) of \(R\) is in \(I\), then \(I = R\).
 \end{theorem}
 
 \begin{proof}
-    Let \(v \in R\) be the inverse of \(u\). From the definition of an ideal, we have \(uv = 1 \in I\) but this would imply that \(r = 1r \in I\) for all \(r \in R\) and thus \(R \subseteq I\). Sine \(I \subseteq R\), we have \(I = R\).
+    Let \(v \in R\) be the inverse of \(u\). From the definition of an ideal, we
+    have \(uv = 1 \in I\) but this would imply that \(r = 1r \in I\) for all \(r
+    \in R\) and thus \(R \subseteq I\). Sine \(I \subseteq R\), we have \(I =
+    R\).
 \end{proof}
 
 \begin{theorem}
-    Let \(\mathcal{I}\) be a nonempty collection of left (resp. right) ideals of a ring \(R\). Then the intersection of all the ideals in \(\mathcal{I}\) is an left (resp. right) ideal of \(R\).
+    Let \(\mathcal{I}\) be a nonempty collection of left (resp. right) ideals of
+    a ring \(R\). Then the intersection of all the ideals in \(\mathcal{I}\) is
+    an left (resp. right) ideal of \(R\).
 \end{theorem}
 
 \begin{proof}
-    From Remark~\ref{rem:ideal-contains-0}, each \(I \in \mathcal{I}\) contains the additive identity \(0\). Thus the intersection of all the ideals in \(\mathcal{I}\) is nonempty and contains \(0\). Let \(a, b\) be elements of the intersection and \(r\) an element of \(R\). Then for all \(I \in \mathcal{I}\), we have \(a, b \in I\) and hence \(a - b \in I\). This implies that \(a - b\) is in the intersection. Similarly, for all \(I \in \mathcal{I}\), we have \(ra \in I\) and hence \(ra\) is in the intersection. Thus the intersection of all the ideals in \(\mathcal{I}\) is a left ideal.
+    From Remark~\ref{rem:ideal-contains-0}, each \(I \in \mathcal{I}\) contains
+    the additive identity \(0\). Thus the intersection of all the ideals in
+    \(\mathcal{I}\) is nonempty and contains \(0\). Let \(a, b\) be elements of
+    the intersection and \(r\) an element of \(R\). Then for all \(I \in
+    \mathcal{I}\), we have \(a, b \in I\) and hence \(a - b \in I\). This
+    implies that \(a - b\) is in the intersection. Similarly, for all \(I \in
+    \mathcal{I}\), we have \(ra \in I\) and hence \(ra\) is in the intersection.
+    Thus the intersection of all the ideals in \(\mathcal{I}\) is a left ideal.
 \end{proof}
 
 \begin{definition}
-    Let \(X\) be a nonempty subset of a ring \(R\). The \emph{ideal generated by} \(X\), denoted \((X)\), is the intersection of all ideals of \(R\) that contain \(X\). The elements of \(X\) are called \emph{generators} of the ideal \((X)\). If \(X\) is finite, we say that \((X)\) is a \emph{finitely generated ideal}.
+    Let \(X\) be a nonempty subset of a ring \(R\). The \emph{ideal generated
+    by} \(X\), denoted \((X)\), is the intersection of all ideals of \(R\) that
+    contain \(X\). The elements of \(X\) are called \emph{generators} of the
+    ideal \((X)\). If \(X\) is finite, we say that \((X)\) is a \emph{finitely
+    generated ideal}.
 
-    If \(X\) is a singleton \(\{a\}\), then we write \((a)\) instead of \((\{a\})\). We call such an ideal a \emph{principal ideal}. A \emph{principal ideal ring} is a ring in which every ideal is principal. A principal ideal ring which is also an integral domain is called a \emph{principal ideal domain} (PID).
+    If \(X\) is a singleton \(\{a\}\), then we write \((a)\) instead of
+    \((\{a\})\). We call such an ideal a \emph{principal ideal}. A
+    \emph{principal ideal ring} is a ring in which every ideal is principal. A
+    principal ideal ring which is also an integral domain is called a
+    \emph{principal ideal domain} (PID).
 \end{definition}
 
 \begin{theorem}
-    Let \(\phi: R \to S\) be a ring homomorphism. Then the kernel of \(\phi\) is an ideal of \(R\).
+    Let \(\phi: R \to S\) be a ring homomorphism. Then the kernel of \(\phi\) is
+    an ideal of \(R\).
 \end{theorem}
 
 \begin{proof}

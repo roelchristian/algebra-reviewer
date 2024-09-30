@@ -98,8 +98,8 @@
             A \arrow[r, "f"] & B.
         \end{tikzcd}
     \]
-    We call the latter a \emph{diagram}. The notation \(a \mapsto f(a)\) is also used to explicitly define the
-    function \(f\).
+    We call the latter a \emph{diagram}. The notation \(a \mapsto f(a)\) is also
+    used to explicitly define the function \(f\).
 
     The \emph{domain} of \(f : A \to B\) is the set \(\dom f = \{a \in A : f(a)
     \text{ is defined}\}\) while the \emph{codomain} of \(f\) is the set \(B\). 
@@ -117,16 +117,33 @@
     \(a, b \in A\), \(f(a) = f(b)\) implies \(a = b\). The function \(f\) is
     \emph{surjective} (or \emph{onto}) if for all \(b \in B\), there exists an
     \(a \in A\) such that \(f(a) = b\). The function \(f\) is \emph{bijective}
-    if it is both injective and surjective. If there exists a bijection between two sets \(A\) and \(B\), we say that \(A\) and \(B\) are \emph{isomorphic} and write
+    if it is both injective and surjective. If there exists a bijection between
+    two sets \(A\) and \(B\), we say that \(A\) and \(B\) are \emph{isomorphic}
+    and write
     \[
         A \cong B.
     \]
 
-    When drawing diagrams, we would sometimes write \(\hookrightarrow\) and \(\twoheadrightarrow\) to emphasize that a function is injective and surjective, respectively.
+    When drawing diagrams, we would sometimes write \(\hookrightarrow\) and
+    \(\twoheadrightarrow\) to emphasize that a function is injective and
+    surjective, respectively.
 \end{sectionthm}
 
+\begin{remark}
+    Two functions \(f: A \to B\) and \(g: A \to B\) are \emph{equal} if they
+    have the same domain, codomain, and for all \(a \in A\), \(f(a) = g(a)\). We
+    write \(f = g\) to denote this equality. Note that if \(f = g\) and \(f\) is
+    injective (resp. surjective), then so is \(g\). Indeed if \(f = g\) is
+    injective and \(f\) is injective \(f(a) = f(b)\) implies \(g(a) = f(a) =
+    f(b) = g(b)\) and thus \(a = b\). Similarly if \(f = g\) is surjective and
+    \(f\) is surjective, then for all \(b \in B\) there exists an \(a \in A\)
+    such that \(f(a) = b\) and thus \(g(a) = f(a) = b\).
+\end{remark}
+
 \begin{sectionthm}
-    If \(f: A \to B\) and \(g: B \to C\) are functions, then the \emph{composition} of \(f\) and \(g\) (written \(g \circ f\)) is the function from \(A\) to \(C\) defined by
+    If \(f: A \to B\) and \(g: B \to C\) are functions, then the
+    \emph{composition} of \(f\) and \(g\) (written \(g \circ f\)) is the
+    function from \(A\) to \(C\) defined by
     \[
         (g \circ f)(a) = g(f(a)),
     \]
@@ -136,9 +153,11 @@
             A \arrow[r, "f"'] \arrow[rr, "g \circ f", bend left] & B \arrow[r, "g"'] & C
         \end{tikzcd}
     \]
-    We say that the diagram above \emph{commutes} if \(g \circ f = g(f(a))\) (which is precisely our definition of composition).
+    We say that the diagram above \emph{commutes} if \(g \circ f = g(f(a))\)
+    (which is precisely our definition of composition).
 
-    We can verify that composition is associative: if \(f: A \to B\), \(g: B \to C\), and \(h: C \to D\), then
+    We can verify that composition is associative: if \(f: A \to B\), \(g: B \to
+    C\), and \(h: C \to D\), then
     \[
         h \circ (g \circ f) = (h \circ g) \circ f.
     \]
@@ -149,6 +168,20 @@
         \end{tikzcd}
     \]
     which again commutes.
+
+    Suppose now that \(g \circ f\) is an injection and assume that \(f(a) =
+    f(b)\) for some \(a, b \in A\). Then
+    \[
+        (g \circ f)(a) = g(f(a)) = g(f(b)) = (g \circ f)(b).
+    \]
+    Thus \(a = b\) and \(f\) is injective. Similarly, if \(g \circ f\) is
+    surjective, then for all \(c \in C\) there exists an \(a \in A\) such that
+    \(g(f(a)) = c\). Since \(f\) is a function, there exists a \(b \in B\) such
+    that \(f(a) = b\). Thus \(g(b) = g(f(a)) = c\) and \(g\) is surjective.
+    Observe that in the first case, if \(g \circ f\) is injective we have shown
+    that the function applied first (i.e., \(f\)) is injective, while in the
+    second case we have shown that the function applied last (i.e., \(g\)) is
+    surjective.
 \end{sectionthm}
 
 \begin{sectionthm}
@@ -156,14 +189,123 @@
     \[
         \id_A: A \to A
     \]
-    which sends each element \(a \in A\) to itself. This is called the \emph{identity function} on \(A\). We can verify that the diagrams
+    which sends each element \(a \in A\) to itself. This is called the
+    \emph{identity function} on \(A\). We can verify that the diagrams
     \[
         \begin{tikzcd}
             A \arrow[r, "f"'] \arrow[rr, "f", bend left] & B \arrow[r, "\id_B"'] & B & \text{and}& A \arrow[r, "\id_A"'] \arrow[rr, "f", bend left] & A \arrow[r, "f"'] & B
         \end{tikzcd}
     \]
-    commute, i.e.,
+    commute; i.e.,
     \[
         f \circ \id_A = f = \id_B \circ f.
     \]
+
+    We can immediately verify that the identity function is a bijection.
 \end{sectionthm}
+
+\begin{sectionthm}
+    Suppose \(f : A \to B\) is a bijection. Then since \(f\) is surjective, for
+    all \(b \in B\) there exists a unique \(a \in A\) such that \(f(a) = b\).
+    Since \(f\) is injective as well, this \(a\) is unique. Recall that the
+    (graph of the) function \(f\) is the set
+    \[
+        \{(a, b) \in A \times B : f(a) = b\}.
+    \]
+    Thus the set of ordered pairs \((b, a)\) is also well-defined as a function.
+    Call this function \(g : B \to A\) defined by \(g(b) = a\) when \(f(a) =
+    b\). The function \(g\) is such that the diagrams
+    \[
+        \begin{tikzcd}
+            A \arrow[r, "f"'] \arrow[rr, "\id_A", bend left] & B \arrow[r, "g"'] & A & \text{and}& B \arrow[r, "g"'] \arrow[rr, "\id_B", bend left] & A \arrow[r, "f"'] & B
+        \end{tikzcd}
+    \]
+    commute; i.e.,
+    \[
+        g \circ f = \id_A \text{ and } f \circ g = \id_B.
+    \]
+    The identity on the left tells us that \(g\) is a \emph{left inverse} of
+    \(f\), while the identity on the right tells us that \(g\) is a \emph{right
+    inverse} of \(f\). A function \(g\) satisfying both identities is called an
+    \emph{inverse} of \(f\).
+
+    Now suppose \(h\) is another function such that \(h \circ f = \id_A\) and
+    \(f \circ h = \id_B\). Then
+    \[
+        g = g \circ \id_B = g \circ (f \circ h) = (g \circ f) \circ h = \id_A \circ h = h.
+    \]
+    Thus the inverse of a bijection is unique and we can speak of \emph{the}
+    inverse of a bijection \(f\). We would usually denote this inverse by
+    \(f^{-1}\). Now does the converse hold? That is, if \(f\) has an inverse, is
+    \(f\) a bijection?
+\end{sectionthm}
+
+\begin{theorem}
+    Let \(f: A \to B\) with \(A \neq \emptyset\). Then
+    \begin{enumerate}[label=(\alph*)]
+        \item \(f\) is injective if and only if it has a left inverse; and
+        \item \(f\) is surjective if and only if it has a right inverse.
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    A function \(f: A \to B\) is a bijection if and only if it has an inverse.
+\end{corollary}
+
+\begin{proof}\(\)
+
+    \begin{enumerate}[label=(\alph*), wide]
+        \item Suppose \(f\) is injective. Fix some element \(s \in A\) (this is
+        possible because \(A \neq \emptyset\) by assumption) and define the
+        function \(g : B \to A\) by
+        \[
+            g(b) = \begin{cases}
+                a & \text{if } f(a) = b, \\
+                s & \text{if } b \notin \img f.
+            \end{cases}
+        \]
+        Since \(f\) is injective, every \(b\) that is the image of some \(a \in
+        A\) is the image of a unique \(a\) and thus \(g\) is well-defined. For
+        all \(a \in A\),
+        \[
+            (g \circ f)(a) = g(f(a)) = a = \id_A(a).
+        \]
+        Thus \(g\) is a left inverse of \(f\).
+
+        Conversely, suppose \(f\) has a left inverse \(g : B \to A\) with \(g
+        \circ f = \id_A\). Let \(a, b \in A\) with \(a \neq b\). Then
+        \[
+            (g \circ f)(a) = \id_A(a) = a \neq b = \id_A(b) = (g \circ f)(b).
+        \]
+        This implies that \(f(a) \neq f(b)\) and thus \(f\) is injective.
+
+        \item Suppose \(f\) is surjective. Then for all \(b \in B\), there
+        exists an \(a \in A\) such that \(f(a) = b\). Define the function \(g :
+        B \to A\) by sending each \(b \in B\) to some \(a \in A\) such that
+        \(f(a) = b\). Since \(a\) need not be unique, we use the axiom of choice
+        to select a unique \(a\) for each \(b\) in an arbitrary way. (We cannot
+        let \(g(b)\) be a set of all \(a\) such that \(f(a) = b\) because then
+        \(g\) would not be a function.) Then for all \(b \in B\),
+        \[
+            (f \circ g)(b) = f(g(b)) = f(a) = b = \id_B(b).
+        \]
+        Thus \(g\) is a right inverse of \(f\).
+
+        Conversely, suppose \(f\) has a right inverse \(g : B \to A\) with \(f
+        \circ g = \id_B\). Because \(\id_B\) is bijective (and hence
+        surjective), \(f \circ g\) must be surjective and so must \(f\). This
+        completes the proof.
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    The second part of the preceding proof require the axiom of choice. We also
+    note that as we have seen in construction in the proofs, the left and right
+    inverses of a function are not unique.
+
+    Another observation must be made: thus far our definition of injectivity and surjectivity relies on the property of sets consisting of `elements'. It is natural to ask then whether we can define these properties in a more general setting, i.e., without relying on the notion of elements and simply looking at the properties of the functions themselves. This is the motivation for the following definition.
+\end{remark}
+
+\begin{definition}
+    A function \(f: A \to B\) is a \emph{monomorphism} (or \emph{monic}) if for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if \(f \circ \alpha = f \circ \beta\), then \(\alpha = \beta\). Similarly \(f\) is an \emph{epimorphism} (or \emph{epic}) if for all sets \(Y\) and all functions \(\gamma, \delta: B \to Y\), if \(\gamma \circ f = \delta \circ f\), then \(\gamma = \delta\).
+\end{definition}

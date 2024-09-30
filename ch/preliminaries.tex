@@ -282,7 +282,7 @@
         \item Suppose \(f\) is surjective. Then for all \(b \in B\), there
         exists an \(a \in A\) such that \(f(a) = b\). Define the function \(g :
         B \to A\) by sending each \(b \in B\) to some \(a \in A\) such that
-        \(f(a) = b\). Since \(a\) need not be unique, we use the axiom of choice
+        \(f(a) = b\). Since \(A \neq \emptyset\) and \(a\) need not be unique, we use the axiom of choice
         to select a unique \(a\) for each \(b\) in an arbitrary way. (We cannot
         let \(g(b)\) be a set of all \(a\) such that \(f(a) = b\) because then
         \(g\) would not be a function.) Then for all \(b \in B\),
@@ -300,12 +300,62 @@
 
 \begin{remark}
     The second part of the preceding proof require the axiom of choice. We also
-    note that as we have seen in construction in the proofs, the left and right
+    note that as we have seen in construction in the proof, the left and right
     inverses of a function are not unique.
 
     Another observation must be made: thus far our definition of injectivity and surjectivity relies on the property of sets consisting of `elements'. It is natural to ask then whether we can define these properties in a more general setting, i.e., without relying on the notion of elements and simply looking at the properties of the functions themselves. This is the motivation for the following definition.
 \end{remark}
 
 \begin{definition}
-    A function \(f: A \to B\) is a \emph{monomorphism} (or \emph{monic}) if for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if \(f \circ \alpha = f \circ \beta\), then \(\alpha = \beta\). Similarly \(f\) is an \emph{epimorphism} (or \emph{epic}) if for all sets \(Y\) and all functions \(\gamma, \delta: B \to Y\), if \(\gamma \circ f = \delta \circ f\), then \(\gamma = \delta\).
+    A function \(f: A \to B\) is a \emph{monomorphism} (or \emph{monic}) if for
+    all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if \(f \circ
+    \alpha = f \circ \beta\), then \(\alpha = \beta\). Similarly \(f\) is an
+    \emph{epimorphism} (or \emph{epic}) if for all sets \(Y\) and all functions
+    \(\gamma, \delta: B \to Y\), if \(\gamma \circ f = \delta \circ f\), then
+    \(\gamma = \delta\).
 \end{definition}
+
+\begin{theorem}
+    A function \(f: A \to B\) is injective if and only if it is a monomorphism.
+    Similarly, \(f\) is surjective if and only if it is an epimorphism.
+\end{theorem}
+
+\begin{proof}
+    Suppose \(f\) is injective. If \(A\) is empty then for all sets \(X\) there is no function \(\alpha: X \to A\), so the statement is vacuously true. We can then assume that \(A\) is nonempty. Then \(f\) has a left inverse \(g\) and for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if \(f \circ \alpha = f \circ \beta\),
+    then 
+    \[
+        (g \circ f)\circ \alpha = (g \circ f) \circ \beta.
+    \]
+    But since \(g\) is a left inverse of \(f\), we have
+    \[
+        \id_A \circ\,\alpha = \id_A \circ\,\beta,
+    \]
+    from which we conclude that \(\alpha = \beta\). Thus \(f\) is a monomorphism. 
+    
+    Conversely, suppose \(f\) is a monomorphism. Then for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if \(f \circ \alpha = f \circ \beta\), then \(\alpha = \beta\). We need to show that for all \(a, b \in A\), if \(a \neq b\) then \(f(a) \neq f(b)\). Since the monomorphism property holds for all sets \(X\), we can take \(X = \{*\}\) and the functions \(\alpha, \beta: \{*\} \to A\) defined by \(\alpha(*) = a\) and \(\beta(*) = b\), with \(a \neq b\). This ensures that \(\alpha \neq \beta\) and thus \(f \circ \alpha \neq f \circ \beta\). But \(f \circ \alpha = f(a)\) and \(f \circ \beta = f(b)\), so we have \(f(a) \neq f(b)\) and thus \(f\) is injective.
+
+    On the other hand, suppose \(f\) is surjective. Then if \(\gamma, \delta: B \to Y\) are functions such that \(\gamma \circ f = \delta \circ f\), then since \(f\) is surjective, for all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus \(\gamma(b) = \gamma(f(a)) = \delta(f(a)) = \delta(b)\). This implies that \(\gamma = \delta\) and thus \(f\) is an epimorphism.
+
+    Conversely, suppose \(f\) is an epimorphism. That is, for all sets \(Y\) and all functions \(\gamma, \delta: B \to Y\), if \(\gamma \circ f = \delta \circ f\), then \(\gamma = \delta\). Suppose that \(f\) is not surjective, i.e., \(\img f \neq B\). Let \(\gamma, \delta: B \to Y\) be functions that are equal for all \(b \in \img f\) but differ for some \(b \notin \img f\). Then \(\gamma \circ f = \delta \circ f\) but \(\gamma \neq \delta\), which contradicts the assumption that \(f\) is an epimorphism. Thus \(f\) is surjective.
+\end{proof}
+
+\begin{sectionthm}
+    We review some examples of functions arising from basic set operations. We can rephrase our definition of set inclusion as a function. Given two sets \(A\) and \(B\) with \(A \subset B\), we call
+    \[
+        \iota: A \to B
+    \]
+    the \emph{inclusion function} defined by \(\iota(a) = a\) for all \(a \in A\). This is clearly injective. This function sends each element of \(A\) to itself as an element of \(B\). A more descriptive name for this function is the \emph{embedding} of \(A\) in \(B\).
+
+    Given two sets \(A\) and \(B\) and their product \(A \times B\), the maps
+    \[
+        \begin{tikzcd}
+            & A\times B \arrow[ld, "\pi_a"'] \arrow[rd, "\pi_b"] &   \\
+          A &                                                    & B
+          \end{tikzcd}
+    \]
+    defined by
+    \[
+        \pi_a(a, b) = a \text{ and } \pi_b(a, b) = b
+    \]
+    are called the \emph{projection maps} from \(A \times B\) to \(A\) and \(B\), respectively. These are surjective functions.
+\end{sectionthm}

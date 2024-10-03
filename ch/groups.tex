@@ -11,36 +11,36 @@
         \item \emph{Associativity:} For all \(a, b, c \in G\), \(\mult(\mult(a,
         b), c) = \mult(a, \mult(b, c))\).
         \item \emph{Identity element:} There exists an element \(e \in G\) such
-        that for all \(a \in G\), \(\mult(e, a) = \mult(a, e) = a\).
+        that for all \(a \in G\), \(\mult(e, a) = \mult(a, e) = a\). This
+        element is called the \emph{identity element} (or the \emph{neutral
+        element}) of the group.
         \item \emph{Inverses:} For each \(a \in G\), there exists an element
         \(a^{-1} \in G\) such that \(\mult(a, a^{-1}) = \mult(a^{-1}, a) = e\).
     \end{enumerate}
 \end{definition}
 
-\begin{remark}
-    If the pair \((G, \mult)\) satisfies only the first two axioms, then it is
-    called a \emph{monoid}. If it satisfies only the first axiom, then it is
-    called a \emph{semigroup}.
-\end{remark}
+If the pair \((G, \mult)\) satisfies only the first two axioms, then it is
+called a \emph{monoid}. If it satisfies only the first axiom, then it is called
+a \emph{semigroup}.
 
-\begin{remark}
-    We shall succumb to some abuse of language and refer to the group \((G,
-    \mult)\) simply as the group \(G\) when the binary operation \(\mult\) is
-    clear from the context. We shall also write \(ab\) or \(a \cdot b\) instead
-    of \(\mult(a, b)\) for the image of \((a, b)\) under the binary operation.
-    We shall call the binary operation `multiplication' and the element \(ab\)
-    the `product' of \(a\) and \(b\).
-\end{remark}
+We shall succumb to some abuse of language and refer to the group \((G, \mult)\)
+simply as the group \(G\) when the binary operation \(\mult\) is clear from the
+context. We shall also write \(ab\) or \(a \cdot b\) instead of \(\mult(a, b)\)
+for the image of \((a, b)\) under the binary operation. We shall call the binary
+operation `multiplication' (or more generally as the `group operation' of the
+group \(G\)) and the element \(ab\) the `product' of \(a\) and \(b\). The set
+\(G\) is called the `underlying set' of the group \(G\). When talking about two
+groups \(G\) and \(H\), we shall often write as a subscript on \(\mult\) and
+\(e\) the underlying set of the group in order to specify in which group we are
+defining those terms.
 
-\begin{remark}
-    Because we require the existence of an identity element in a group \(G\), we
-    can conclude that the set \(G\) is nonempty. At the very least it must
-    contain the identity element. This group is called the \emph{trivial group}
-    and is denoted by \(\{e\}\). Note also that any singleton \(\{*\}\) is a
-    group if we define the binary operation to be the trivial operation
-    \(\mult(*, *) = *\) so that the choice of writing \(\{e\}\) instead of
-    \(\{*\}\) or any other symbol is purely a matter of convention.
-\end{remark}
+Because we require the existence of an identity element in a group \(G\), we can
+conclude that the set \(G\) is nonempty. At the very least it must contain the
+identity element. This group is called the \emph{trivial group} and is denoted
+by \(\{e\}\). Note also that any singleton \(\{*\}\) is a group if we define the
+binary operation to be the trivial operation \(\mult(*, *) = *\) so that the
+choice of writing \(\{e\}\) instead of \(\{*\}\) or any other symbol is purely a
+matter of convention.
 
 \begin{theorem}
     The identity element in a group is unique. For each \(a \in G\), the inverse
@@ -52,37 +52,61 @@
     \[
         e = e \cdot e' = e'.
     \]
-    Similarly, uppose \(b\) and \(b'\) are both inverses of \(a \in G\). Then
+    Similarly, suppose \(b\) and \(b'\) are both inverses of \(a \in G\). Then
     \[
         b = b \cdot e = b \cdot (a \cdot b') = (b \cdot a) \cdot b' = e \cdot b' = b'.
     \]
 \end{proof}
 
-\begin{remark}
-    The preceding result allow us to speak of \emph{the} identity element and
-    \emph{the} inverse of an element in a group.
-\end{remark}
+
+The preceding result allow us to speak of \emph{the} identity element and
+\emph{the} inverse of an element in a group.
 
 \begin{theorem}
-    Let \(G\) be a group and let \(a \in G\). Then \((a^{-1})^{-1} = a\).
+    Let \(G\) be a group and let \(a \in G\). Then \((a^{-1})^{-1} = a\). If in addition, \(b \in G\), then \((ab)^{-1} = b^{-1}a^{-1}\).
 \end{theorem}
 
 \begin{proof}
     Suppose \(b \neq a\) is the inverse of \(a^{-1}\) where \(b \in G\). Then
     \(a^{-1}b = e = ba^{-1}\). But \(a\) also satisfies this property, and since
     inverses are unique, we must have \(b = a\).
-\end{proof}
 
-\begin{theorem}
-    Let \(G\) be a group and \(a, b\) elements of \(G\). Then \((ab)^{-1} =
-    b^{-1}a^{-1}\).
-\end{theorem}
-
-\begin{proof}
-    We have
+    On the other hand we have
     \[
         (ab)(b^{-1}a^{-1}) = a(bb^{-1})a^{-1} = aea^{-1} = aa^{-1} = e.
     \]
+\end{proof}
+
+
+\begin{theorem}[Cancellation laws]
+    Let \(G\) be a group. For all \(a, b, c \in G\),
+    \begin{enumerate}
+        \item If \(ab = ac\), then \(b = c\).
+        \item If \(ba = ca\), then \(b = c\).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    We prove the first statement. Suppose \(ab = ac\). Then
+    \begin{align*}
+        a^{-1}(ab) &= a^{-1}(ac) &\\
+        (a^{-1}a)b &= (a^{-1}a)c &\text{(associativity)}\\
+        eb &= ec &\text{(definition of inverse)}\\
+        b &= c. &\text{(definition of identity)}
+    \end{align*}
+    The second statement is proved similarly.
+\end{proof}
+
+\begin{corollary}
+    For all \(a, b \in G\), the equations \(ax = b\) and \(ya = b\) have unique solutions in \(G\).
+\end{corollary}
+
+\begin{proof}
+    Observe that the solutions to the equations are \(x = a^{-1}b\) and \(y = ba^{-1}\), respectively. In the first case we have
+    \[
+        ax = a(a^{-1}b) = (aa^{-1})b = eb = b.
+    \]
+    If \(x'\) is also a solution for the first equation then \(xa = b = x'a\) implies \(x = x'\) by right cancellation. The second equation is proved similarly.
 \end{proof}
 
 \begin{theorem}[Generalized associative law]
@@ -148,24 +172,6 @@
     \end{enumerate}
 \end{proof}
 
-\begin{theorem}[Cancellation laws]
-    Let \(G\) be a group. For all \(a, b, c \in G\),
-    \begin{enumerate}
-        \item If \(ab = ac\), then \(b = c\).
-        \item If \(ba = ca\), then \(b = c\).
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-    We prove the first statement. Suppose \(ab = ac\). Then
-    \begin{align*}
-        a^{-1}(ab) &= a^{-1}(ac) &\\
-        (a^{-1}a)b &= (a^{-1}a)c &\text{(associativity)}\\
-        eb &= ec &\text{(definition of inverse)}\\
-        b &= c. &\text{(definition of identity)}
-    \end{align*}
-    The second statement is proved similarly.
-\end{proof}
 
 \begin{definition}
     A group \(G\) is said to be \emph{abelian} (or \emph{commutative}) if for
@@ -221,57 +227,77 @@
     \ldots, n\}\), then we write \(S_n\) instead of \(S_X\).
 \end{definition}
 
-\begin{definition}
-    \label{def:zmodn}
-    Let \(n\) be a positive integer. Recall that congruence modulo \(n\),
-    defined by
+\begin{example}[\(\Z\) and \(\Z/n\Z\)]
+    \label{def:z-and-zmodn}
+    The set of integers \(\Z\) forms a group under the usual addition of
+    integers with identity element \(0\). Let \(n\) be a positive integer.
+    Recall that congruence modulo \(n\), defined by
     \[
         a \equiv b \pmod{n} \quad \text{if and only if} \quad n \mid (a - b),
     \]
-    for all integers \(a, b\), is an equivalence relation on \(\Z\). The set of
-    equivalence classes modulo \(n\) forms a group under addition modulo \(n\),
-    denoted by \(\Z/n\Z\).
-\end{definition}
+    for all integers \(a, b\), is an equivalence relation on \(\Z\). We define
+    \(\Z/n\Z\) to be the set of equivalence classes of this relation. We can
+    verify that \(\Z/n\Z\) consists of exactly \(n\) elements, namely
+    \[
+        [0]_n, [1]_n, \ldots, [n - 1]_n,
+    \]
+    where \([a]_n\) denotes the equivalence class of \(a\) modulo \(n\). We
+    define the group operation on \(\Z/n\Z\) by
+    \[
+        [a]_n + [b]_n = [a + b]_n.
+    \]
+    First we need to show that this operation is well-defined, i.e., the result
+    of the operation does not depend on the choice of representatives of the
+    equivalence classes. Suppose that \(a \equiv a' \pmod{n}\) and \(b \equiv b'
+    \pmod{n}\). Then \(a = a' + kn\) and \(b = b' + \ell n\) for some integers \(k,
+    \ell\). We then have
+    \[
+        (a' + b') - (a + b) = (a' - a) + (b' - b) = kn + \ell n = (k + \ell)n,
+    \]
+    and thus
+    \[
+        (a + b) \equiv (a' + b') \pmod{n}.
+    \]
+\end{example}
 
 \section{Homomorphisms and the category {\normalfont\sffamily Grp}}
 
-\begin{sectionthm}
-    Recall that we have defined a group to be the pair \((G, m_G)\) where \(G\)
-    is a set and \(m_G\) is a binary operation on \(G\). That is, \(m_G\) is a
-    map from \(G \times G\) to \(G\). For two groups \((G, m_G)\) and \((H,
-    m_H)\), we would like to define a map
-    \[
-        \phi: (G, m_G) \to (H, m_H)
-    \]
-    that is a function (which with some abuse of notation we shall also denote
-    by \(\phi\)) between the underlying sets \(G\) and \(H\) that `preserves'
-    the group structure.
+Recall that we have defined a group to be the pair \((G, \mult_G)\) where \(G\)
+is a set and \(\mult_G\) is a binary operation on \(G\). That is, \(\mult_G\) is
+a map from \(G \times G\) to \(G\). For two groups \((G, \mult_G)\) and \((H,
+\mult_H)\), we would like to define a map
+\[
+    \phi: (G, \mult_G) \to (H, \mult_H)
+\]
+that is a function (which with some abuse of notation we shall also denote by
+\(\phi\)) between the underlying sets \(G\) and \(H\) that `preserves' the group
+structure.
 
-    If we define the function
-    \[
-        \phi \times \phi: G \times G \to H \times H
-    \]
-    by \((a, b) \mapsto (\phi(a), \phi(b))\), then we get the following diagram:
-    \[
-        \begin{tikzcd}
-            G \times G \arrow{r}{\phi \times \phi} \arrow[swap]{d}{m_G} & H \times H \arrow{d}{m_H} \\
-            G \arrow{r}{\phi} & H
-        \end{tikzcd}
-    \]
-    By requiring that the diagram commute, we obtain a function \(\phi: G \to
-    H\) that does exactly what we want. Indeed if the diagram commutes, then for
-    all \(a, b \in G\),
-    \[
-        \begin{tikzcd}
-            (a, b) \arrow[swap, mapsto]{d}{m_G} & & (a, b) \arrow{r}{\phi \times \phi} & (\phi(a), \phi(b)) \arrow[mapsto]{d}{m_H} \\
-            a\cdot b \arrow[mapsto]{r}{\phi} & \phi(a\cdot b) && \phi(a)\cdot\phi(b)
-        \end{tikzcd}
-    \]
-    where \(\cdot\) on the left-hand side is the group operation in \(G\) and
-    \(\cdot\) on the right-hand side is the group operation in \(H\). Since the
-    diagram commutes, we must arrive at the same element in \(H\) by following
-    the two paths. This gives us the following more familiar definition.
-\end{sectionthm}
+If we define the function
+\[
+    \phi \times \phi: G \times G \to H \times H
+\]
+by \((a, b) \mapsto (\phi(a), \phi(b))\), then we get the following diagram:
+\[
+    \begin{tikzcd}
+        G \times G \arrow{r}{\phi \times \phi} \arrow[swap]{d}{\mult_G} & H \times H \arrow{d}{\mult_H} \\
+        G \arrow{r}{\phi} & H
+    \end{tikzcd}
+\]
+By requiring that the diagram commute, we obtain a function \(\phi: G \to H\)
+that does exactly what we want. Indeed if the diagram commutes, then for all
+\(a, b \in G\),
+\[
+    \begin{tikzcd}
+        (a, b) \arrow[swap, mapsto]{d}{\mult_G} & & (a, b) \arrow{r}{\phi \times \phi} & (\phi(a), \phi(b)) \arrow[mapsto]{d}{\mult_H} \\
+        a\cdot b \arrow[mapsto]{r}{\phi} & \phi(a\cdot b) && \phi(a)\cdot\phi(b)
+    \end{tikzcd}
+\]
+where \(\cdot\) on the left-hand side is the group operation in \(G\) and
+\(\cdot\) on the right-hand side is the group operation in \(H\). Since the
+diagram commutes, we must arrive at the same element in \(H\) by following the
+two paths. This gives us the following more familiar definition.
+
 
 \begin{definition}
     Let \(G\) and \(H\) be groups. A \emph{homomorphism} from \(G\) to \(H\) is
@@ -485,84 +511,80 @@ multiplications in \(G\) and \(H\) and simply write \(\phi(ab) =
 
 \section{Free groups}
 
-\begin{sectionthm}
-    Given some set \(X\) that does not necessarily have any group structure, we
-    would now like to construct another group \(F(X)\) containing \(X\) as a
-    subset
-\end{sectionthm}
+Given some set \(X\) that does not necessarily have any group structure, we
+would now like to construct another group \(F\) containing \(X\) as a subset in
+the `most efficient' way possible
 
 \begin{definition}
-    The group \(F(X)\) is a \emph{free group} on the set \(X\) (or
-    alternatively, we say that \(F(X)\) is \emph{free} on \(X\)) if there is a
-    set function \(\iota: X \to F(X)\) such that for any group \(G\) and any set
-    function \(\phi: X \to G\), there exists a unique group homomorphism \(\Phi:
-    F(X) \to G\) such that \(\Phi \circ \iota = \phi\), i.e., the following
-    diagram commutes:
+    The group \(F\) is a \emph{free group} on the set \(X\) (or alternatively,
+    we say that \(F\) is \emph{free} on \(X\)) if there is a set function
+    \(\iota: X \to F\) such that for any group \(G\) and any set function
+    \(\phi: X \to G\), there exists a unique group homomorphism \(\Phi: F \to
+    G\) such that \(\Phi \circ \iota = \phi\), i.e., the following diagram
+    commutes:
     \[
         \begin{tikzcd}
             X \arrow[d, "\iota"'] \arrow[r, "\phi"] & G \\
-            F(X) \arrow[ru, "\exists!\Phi"', dashed]        &  
+            F \arrow[ru, "\exists!\Phi"', dashed]        &  
         \end{tikzcd}
     \]
-    This means that every function from a set \(X\) to a group \(G\) can be
-    decomposed into a function from \(X\) to \(F(X)\) followed by a homomorphism
-    from \(F(X)\) to \(G\). Writing \(F(X)\) is purely a notational convenience,
-    to remind us that the group is free on \(X\).
-
-    If such a group exists, it is unique up to isomorphism. Consider for example
-    a set \(X\) and a set \(G\) and suppose that \(F_1\) and \(F_2\) are groups
-    satisfying the universal property in our definition. Then because \(F_1\) is
-    free on \(X\) and \(F_2\) is a group (and vice versa), we have:
-    \[
-        \begin{tikzcd}
-            & X \arrow[dl, "\iota_1"'] \arrow[dr, "\iota_2"] & \\
-            F_1 \arrow[rr, "\exists!\Phi", shift left] & & F_2 \arrow[ll, "\exists!\Psi", shift left]
-        \end{tikzcd}
-    \]
-    where \(\Phi\) and \(\Psi\) are group homomorphisms whose existence is
-    guaranteed by the universal property for \(F_1\) and \(F_2\), respectively.
-    We then have
-    \[
-        \Phi \circ \iota_1 = \iota_2 \quad \text{and} \quad \Psi \circ \iota_2 = \iota_1.
-    \]
-    Substituting \(\iota_1\) in the first equation with \(\Psi \circ \iota_2\)
-    (and vice versa) gives us
-    \[
-        \Phi \circ \Psi \circ \iota_2 = \iota_2 \quad \text{i.e.,} \quad \Phi \circ \Psi = \id_{F_2}
-    \]
-    and
-    \[
-        \Psi \circ \Phi \circ \iota_1 = \iota_1 \quad \text{i.e.,} \quad \Psi \circ \Phi = \id_{F_1}.
-    \]
-    That is \(\Phi\) and \(\Psi\) are inverses of each other, so \(F_1\) and
-    \(F_2\) are isomorphic.
 \end{definition}
 
-\begin{remark}
-    An alternative characterization would be to consider for a set \(X\) the
-    category \(\catg{F}^X\) whose objects are pairs \((k, G)\) where each \(k\)
-    is a set function \(X \to G\) and each \(G\) is a group, and whose morphisms
-    are commutative diagrams of set functions of the form
-    \[
-        \begin{tikzcd}
-            G_1 \arrow[r, "\phi"]                 & G_2 \\
-            X \arrow[u, "k_1"] \arrow[ru, "k_2"'] &    
-        \end{tikzcd}
-    \]
-    where again each \(k_i\) is a set function \(X \to G_i\) and each \(G_i\) is
-    a group, and where \(\phi\) is a group homomorphism. Since we are
-    considering all set functions \(X \to G\), we are not encoding any group
-    structure in the objects of \(\catg{F}^X\). The free group \(F(X)\) is then
-    the group component of an initial object (which we write \((k_0, F(X))\)) in
-    \(\catg{F}^X\).
+This means that every function from a set \(X\) to a group \(G\) can be
+decomposed into a function from \(X\) to \(F\) followed by a homomorphism from
+\(F\) to \(G\). (An alternative notation is to write \(F(X)\) to emphasize that
+\(F\) is the free group on \(X\).)
 
-    Because \((k_0, F(X))\) is initial in \(\catg{F}^X\), there is a unique
-    morphism from \((k_0, F(X))\) to any other object \((k, G)\) in
-    \(\catg{F}^X\). This morphism is a group homomorphism \(\Phi: F(X) \to G\)
-    such that \(\Phi \circ k_0 = k\). This is the same as saying that \(F(X)\)
-    is free on \(X\) (based on our earlier definition). Moreover, because
-    \((k_0, F(X))\) is initial, it is unique up to isomorphism.
-\end{remark}
+If such a group exists, it is unique up to isomorphism. Consider for example a
+set \(X\) and a set \(G\) and suppose that \(F_1\) and \(F_2\) are groups
+satisfying the universal property in our definition. Then because \(F_1\) is
+free on \(X\) and \(F_2\) is a group (and vice versa), we have:
+\[
+    \begin{tikzcd}
+        & X \arrow[dl, "\iota_1"'] \arrow[dr, "\iota_2"] & \\
+        F_1 \arrow[rr, "\exists!\Phi", shift left] & & F_2 \arrow[ll, "\exists!\Psi", shift left]
+    \end{tikzcd}
+\]
+where \(\Phi\) and \(\Psi\) are group homomorphisms whose existence is
+guaranteed by the universal property for \(F_1\) and \(F_2\), respectively. We
+then have
+\[
+    \Phi \circ \iota_1 = \iota_2 \quad \text{and} \quad \Psi \circ \iota_2 = \iota_1.
+\]
+Substituting \(\iota_1\) in the first equation with \(\Psi \circ \iota_2\) (and
+vice versa) gives us
+\[
+    \Phi \circ \Psi \circ \iota_2 = \iota_2 \quad \text{i.e.,} \quad \Phi \circ \Psi = \id_{F_2}
+\]
+and
+\[
+    \Psi \circ \Phi \circ \iota_1 = \iota_1 \quad \text{i.e.,} \quad \Psi \circ \Phi = \id_{F_1}.
+\]
+That is \(\Phi\) and \(\Psi\) are inverses of each other, so \(F_1\) and \(F_2\)
+are isomorphic.
+
+An alternative characterization would be to consider for a set \(X\) the
+category \(\catg{F}^X\) whose objects are pairs \((k, G)\) where each \(k\) is a
+set function \(X \to G\) and each \(G\) is a group, and whose morphisms are
+commutative diagrams of set functions of the form
+\[
+    \begin{tikzcd}
+        G_1 \arrow[r, "\phi"]                 & G_2 \\
+        X \arrow[u, "k_1"] \arrow[ru, "k_2"'] &    
+    \end{tikzcd}
+\]
+where again each \(k_i\) is a set function \(X \to G_i\) and each \(G_i\) is a
+group, and where \(\phi\) is a group homomorphism. Since we are considering all
+set functions \(X \to G\), we are not encoding any group structure in the
+objects of \(\catg{F}^X\). The free group \(F\) is then the group component of
+an initial object (which we write \((k_0, F)\)) in \(\catg{F}^X\).
+
+Because \((k_0, F)\) is initial in \(\catg{F}^X\), there is a unique morphism
+from \((k_0, F)\) to any other object \((k, G)\) in \(\catg{F}^X\). This
+morphism is a group homomorphism \(\Phi: F \to G\) such that \(\Phi \circ k_0 =
+k\). This is the same as saying that \(F\) is free on \(X\) (based on our
+earlier definition). Moreover, because \((k_0, F)\) is initial, it is unique up
+to isomorphism.
 
 An initial object in a category need not necessarily exist. We shall now show
 however that there exists an initial object in the category \(\catg{F}^X\). 
@@ -712,16 +734,16 @@ case we refer to the following result, often called the `diamond lemma.'
 
 Write \(\overline{w}\) for the reduced word obtained from a word \(w\) by a
 sequence of elementary reductions (this must exist and be unique by the results
-we have established thus far). Let \(F(X)\) be the set of all reduced words in
-\(X\). Then the empty word \(\epsilon\) is a reduced word and must be in
-\(F(X)\). Define a binary operation \(\cdot\) on \(F(X)\) by
+we have established thus far). Let \(F\) be the set of all reduced words in
+\(X\). Then the empty word \(\epsilon\) is a reduced word and must be in \(F\).
+Define a binary operation \(\cdot\) on \(F\) by
 \[
     w_1 \cdot w_2 = \overline{w_1 w_2}
 \]
-where \(w_1, w_2 \in F(X)\) and \(w_1 w_2\) is the concatenation of \(w_1\) and
-\(w_2\). We claim that \((F(X), \cdot)\) is a group under this operation.
+where \(w_1, w_2 \in F\) and \(w_1 w_2\) is the concatenation of \(w_1\) and
+\(w_2\). We claim that \((F, \cdot)\) is a group under this operation.
 
-The empty word \(\epsilon\) is the identity element of \(F(X)\) under this
+The empty word \(\epsilon\) is the identity element of \(F\) under this
 operation. Indeed, for any word \(w\), we have
 \[
     w \cdot \epsilon = \overline{w \epsilon} = \overline{w} = w = \overline{\epsilon w} = \epsilon \cdot w.
@@ -738,7 +760,7 @@ and thus
     w \cdot w^{-1} = x_1 \cdots x_n x_n^{-1} \cdots x_1 = \epsilon.
 \]
 (We can show the same for \(w^{-1}w\).) Finally, we want to show that the
-operation \(\cdot\) is associative. Let \(w_1, w_2, w_3\) be words in \(F(X)\).
+operation \(\cdot\) is associative. Let \(w_1, w_2, w_3\) be words in \(F\).
 Then since \(\overline{(\overline{w_1 w_2})w_3}\) and
 \(\overline{w_1(\overline{w_2 w_3})}\) can be obtained from \(w_1 w_2 w_3\) by a
 sequence of elementary reductions, we have
@@ -746,35 +768,35 @@ sequence of elementary reductions, we have
     \overline{\overline{w_1 w_2} w_3} = \overline{w_1 w_2 w_3} = \overline{w_1 \overline{w_2 w_3}},
 \]
 and thus the operation \(\cdot\) is associative. This completes the proof that
-\((F(X), \cdot)\) is a group.
+\((F, \cdot)\) is a group.
 
 \begin{theorem}
-    Let \(X\) be a set and let \(F(X)\) be the set of all reduced words in \(X\)
-    with the operation \(\cdot\) defined as above. Then \(F(X)\) is the free
-    group on \(X\). 
+    Let \(X\) be a set and let \(F\) be the set of all reduced words in \(X\)
+    with the operation \(\cdot\) defined as above. Then \(F\) is the free group
+    on \(X\). 
 \end{theorem}
 
 \begin{proof}
-    We need to show that \(F(X)\) satisfies the universal property for free
-    groups on the set \(X\), i.e., there exists a map \(\iota: X \to F(X)\) such
-    that for any group \(G\) and any set function \(\phi: X \to G\), there
-    exists a unique group homomorphism \(\Phi: F(X) \to G\) such that \(\Phi
-    \circ \iota = \phi\).
+    We need to show that \(F\) satisfies the universal property for free groups
+    on the set \(X\), i.e., there exists a map \(\iota: X \to F\) such that for
+    any group \(G\) and any set function \(\phi: X \to G\), there exists a
+    unique group homomorphism \(\Phi: F \to G\) such that \(\Phi \circ \iota =
+    \phi\).
 
-    The map \(\iota: X \to F(X)\) is the inclusion map that sends each element
-    of \(X\) to the corresponding letter in \(F(X)\). (From this we observe that
-    \(X\) is contained in \(F(X)\) as we intended it to be at the beginning of
-    this section.) Let \(G\) be a group and let \(\phi: X \to G\) be a set
-    function; we want to construct a group homomorphism \(\Phi: F(X) \to G\)
-    such that the diagram
+    The map \(\iota: X \to F\) is the inclusion map that sends each element of
+    \(X\) to the corresponding letter in \(F\). (From this we observe that \(X\)
+    is contained in \(F\) as we intended it to be at the beginning of this
+    section.) Let \(G\) be a group and let \(\phi: X \to G\) be a set function;
+    we want to construct a group homomorphism \(\Phi: F \to G\) such that the
+    diagram
     \[
         \begin{tikzcd}
             X \arrow[d, "\iota"'] \arrow[r, "\phi"] & G \\
-            F(X) \arrow[ru, "\exists!\Phi"', dashed]        &  
+            F \arrow[ru, "\exists!\Phi"', dashed]        &  
         \end{tikzcd}
     \]
-    commutes. Since \(F(X)\) is the set of reduced words in \(X\), each \(w \in
-    F(X)\) is of the form
+    commutes. Since \(F\) is the set of reduced words in \(X\), each \(w \in F\)
+    is of the form
     \[
         w = x_1^{\epsilon_1} x_2^{\epsilon_2} \cdots x_n^{\epsilon_n}
     \]
@@ -788,13 +810,13 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
     
     We claim that \(\Phi\) is a group homomorphism. We identify with \(X\) its
     image under \(\iota\), i.e., we take \(X\) to be a subset of the underlying
-    set of \(F(X)\). To prove our claim, we first need to show that if \(w\) is
-    a reduced word and \(x \in X\), then \(\Phi(x\cdot w) = \phi(x)\Phi(w)\) and
+    set of \(F\). To prove our claim, we first need to show that if \(w\) is a
+    reduced word and \(x \in X\), then \(\Phi(x\cdot w) = \phi(x)\Phi(w)\) and
     \(\Phi(x^{-1} \cdot w) = \phi(x)^{-1}\Phi(w)\). From this it would then
-    follow, using the fact that the operation \(\cdot\) on \(F(X)\) is
-    associative, and by induction on the length of the reduced word \(w\), that
-    for all reduced words \(w_1\) and \(w_2\), we have \(\Phi(w_1 \cdot w_2) =
-    \Phi(w_1) \Phi(w_2)\) and thus \(\Phi\) is a group homomorphism.
+    follow, using the fact that the operation \(\cdot\) on \(F\) is associative,
+    and by induction on the length of the reduced word \(w\), that for all
+    reduced words \(w_1\) and \(w_2\), we have \(\Phi(w_1 \cdot w_2) = \Phi(w_1)
+    \Phi(w_2)\) and thus \(\Phi\) is a group homomorphism.
 
     Write the reduced word \(w\) as \(w = x_1^{\epsilon_1} x_2^{\epsilon_2}
     \cdots x_r ^{\epsilon_r}\) where each \(x_i \in X\) and each \(\epsilon_i =
@@ -804,8 +826,8 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
         \Phi(x)\Phi(w) & \phi(x)(\phi(x_1)^{\epsilon_1} \cdots \phi(x_r)^{\epsilon_r}) = \phi(x)\phi(x_1)^{\epsilon_1} \cdots \phi(x_r)^{\epsilon_r} \\
                        & = \phi(x x_1^{\epsilon_1} \cdots x_r^{\epsilon_r}) = \Phi(x \cdot w).
     \end{align*}
-    If \(x = x_1\) and \(\epsilon_1 = -1\), then the reduction \(x \cdot w\) is
-    the reduced word \(x_2^{\epsilon_2} \cdots x_r^{\epsilon_r}\), so that
+    If \(x = x_1\) and \(\epsilon_1 = -1\), then  \(x \cdot w\) is the reduced
+    word \(x_2^{\epsilon_2} \cdots x_r^{\epsilon_r}\), so that
     \begin{align*}
         \Phi(x \cdot w) & = \Phi(x_2^{\epsilon_2} \cdots x_r^{\epsilon_r}) = \phi(x_2)^{\epsilon_2} \cdots \phi(x_r)^{\epsilon_r} \\
             & = \phi(x_1)\phi(x_1)^{-1}\phi(x_2)^{\epsilon_2} \cdots \phi(x_r)^{\epsilon_r} \\ &= \phi(x)(\phi(x_1)^{-1}\phi(x_2)^{\epsilon_2} \cdots \phi(x_r)^{\epsilon_r}) \\
@@ -814,7 +836,7 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
     as desired. A similar argument establishes \(\Phi(x^{-1} \cdot w) =
     \Phi(x)^{-1}\Phi(w)\).
 
-    Now let \(w_1\), \(w_2\) be reduced words in \(F(X)\) and let \(w_1\) have
+    Now let \(w_1\), \(w_2\) be reduced words in \(F\) and let \(w_1\) have
     length \(n\). We proceed by induction on \(n\). The case \(n = 1\) is the
     result we have just established. Suppose that the result holds for \(w_1\)
     of length \(k\) and suppose that \(w_1\) is of the form
@@ -833,45 +855,45 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
     \end{align*}
     This shows that \(\Phi\) is a group homomorphism. By construction, \(\Phi(x)
     = \phi(x)\) for all \(x \in X\), and \(\Phi\) is uniquely determined by
-    \(\phi\). This completes the proof that \(F(X)\) is the free group on \(X\).
+    \(\phi\). This completes the proof that \(F\) is the free group on \(X\).
 \end{proof}
 
 \begin{example}
-    Consider the set \(X = \{x\}\). We claim that \(F(X) \cong \Z\). We shall
-    show this first by using the universal property of free groups and again by
-    an explicit construction of \(F(X)\).
+    Consider the set \(X = \{x\}\). We claim that \(F \cong \Z\). By the
+    universal property for free groups on \(X\), there exists a map \(\iota : X
+    \to F\) such that for any group \(G\) and any set function \(\phi : X \to
+    G\), there exists a unique group homomorphism \(\Phi : F \to G\) such that
+    \(\Phi \circ \iota = \phi\). Since \(X\) is a singleton, the map \(\iota\)
+    is the inclusion map that sends \(x\) to its image in \(F\), i.e., as a
+    letter in the alphabet on \(X\). Let \(G\) be a group and let \(\phi : X \to
+    G\) be a set function. Again since \(X\) is a singleton, \(\phi\) is
+    determined by the image of \(x\) in \(G\) and \(\phi(x) = g\) for some \(g
+    \in G\).
 
-    % Proof by universal property
-    By the universal property for free groups, if \(F(X) \cong \Z\), there
-    exists a function \(\iota : X \to \Z\) such that for any group \(G\) and any
-    set function \(\phi: X \to G\), there exists a unique group homomorphism
-    \(\Phi: \Z \to G\) such that \(\Phi \circ \iota = \phi\). Consider the
-    function \(\iota : X \to \Z\) that sends \(x \in X\) to some element \(n \in
-    \Z\). Since \(\Phi\) must be a group homomorphism, \(n\)
-
-    % Proof by explicit construction
-    On the other hand, we can construct \(F(X)\) explicitly. The set of reduced
-    words in \(X\) is the set of all words in \(x\) that do not contain any
-    substring of the form \(xx^{-1}\) or \(x^{-1}x\). This is the set of all
-    words of the form
+    From the previous theorem, \(F\) is the set of all reduced words in \(X\)
+    with the operation \(\cdot\) defined above. The alphabet on \(X\) is \(\{x,
+    x^{-1}\}\) and each word in \(W(X)\) must then be of the form  \(x^n\) for
+    some \(n \in \Z\). Thus \(F\) is the cyclic group generated by \(x\), i.e.,
     \[
-        x_1 x_2 \cdots x_n,
+        F = \{x^n : n \in \Z\} = \{\dots, x^{-2}, x^{-1}, x_0, x, x^2, \dots\},
     \]
-    where each \(x_i = x \in X\). Writing \(x^n = x x \cdots x\) for \(n\)
-    copies of \(x\), we can see that the set of reduced words in \(F(X)\) is the
-    cyclic group \(\langle x \rangle\), which is isomorphic to \(\Z\).
-
+    where \(x_0 = e\) is the identity element of \(F\), i.e., the empty word. We
+    define a map \(\Phi : F \to G\) by \(\Phi(x^n) = g^n\). This is a group
+    homomorphism because
+    \[
+        \Phi(x^m \cdot x^n) = \Phi(x^{m + n}) = g^{m + n} = g^m g^n = \Phi(x^m) \Phi(x^n).
+    \]
+    Moreover, \(\Phi \circ \iota = \phi\) because \(\Phi(\iota(x)) = \Phi(x) = g
+    = \phi(x)\).
 \end{example}
 
 \section{Subgroups}
 
-\begin{remark}
-    Another way to construct a group is to look at subsets of a group that are
-    themselves groups. Consider a group \((G, \mult)\) and a subset \(H\) of the
-    underlying set \(G\). Suppose further that \((H, \mult')\) is itself a
-    group. How are the group operations \(\mult\) and \(\mult'\) related? We
-    first consider the following definition.
-\end{remark}
+Another way to construct a group is to look at subsets of a group that are
+themselves groups. Consider a group \((G, \mult)\) and a subset \(H\) of the
+underlying set \(G\). Suppose further that \((H, \mult')\) is itself a group.
+How are the group operations \(\mult\) and \(\mult'\) related? We first consider
+the following definition.
 
 \begin{definition}
     Let \((G, \mult)\) and \((H, \mult')\) be groups such that \(H \subset G\).
@@ -880,22 +902,20 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
     \(G\), we write \(H < G\).
 \end{definition}
 
-\begin{remark}
-    Let us first fix some notation and write \(a \cdot b\) for \(\mult(a,b)\)
-    and \(a * b\) for \(\mult'(a,b)\). Then because \(\iota\) is a group
-    homomorphism, we have
-    \[
-        \iota(a * b) = \iota(a) \cdot \iota(b).
-    \]
-    Moreover, because \(\iota\) is a group homomorphism, it must preserve the
-    identity element and inverses. Thus \(\iota(e_H) = e_G\) and \(\iota(a^{-1})
-    = \iota(a)^{-1}\) for all \(a \in H\). We can thus see that the group
-    operation \(\mult'\) in \(H\) is the restriction of the group operation
-    \(\mult\) in \(G\) to \(H\). Thus, we can alternatively characterize a
-    subgroup as a subset \(H\) of a group \(G\) that is itself a group under the
-    group operation of \(G\) (retricted to \(H\)). The next result is a useful
-    criterion for determining whether a subset is a subgroup.
-\end{remark}
+Let us first fix some notation and write \(a \cdot b\) for \(\mult(a,b)\) and
+\(a * b\) for \(\mult'(a,b)\). Then because \(\iota\) is a group homomorphism,
+we have
+\[
+    \iota(a * b) = \iota(a) \cdot \iota(b).
+\]
+Moreover, because \(\iota\) is a group homomorphism, it must preserve the
+identity element and inverses. Thus \(\iota(e_H) = e_G\) and \(\iota(a^{-1}) =
+\iota(a)^{-1}\) for all \(a \in H\). We can thus see that the group operation
+\(\mult'\) in \(H\) is the restriction of the group operation \(\mult\) in \(G\)
+to \(H\). Thus, we can alternatively characterize a subgroup as a subset \(H\)
+of a group \(G\) that is itself a group under the
+group operation of \(G\) (retricted to \(H\)). The next result is a useful
+criterion for determining whether a subset is a subgroup.
 
 \begin{theorem}[Subgroup test]
     \label{thm:subgroup-test}
@@ -940,34 +960,34 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
     \(H\). Then \(\phi^{-1}(H)\) is a subgroup of \(G\).
 \end{theorem}
 
-\begin{remark}
-    Every group \(G\) has at least two subgroups: the trivial subgroup \(\{e\}\)
-    and \(G\) itself. Consider the homomorphism \(\phi: G \to H\). Define
-    \[
-        \ker \phi = \{g \in G : \phi(g) = e_G\} = \phi^{-1}(\{e_H\}).
-    \]
-    and
-    \[
-        \img \phi = \{h \in H : h = \phi(g) \text{ for some } g \in G\}.
-    \]
-    Since \(\{e_H\}\) is a subgroup of \(H\), we have by the preceding theorem
-    that \(\ker \phi\) is a subgroup of \(G\). For a more explicit proof,
-    observe that \(\ker \phi\) is not empty (because at the very least \(e_G \in
-    \ker \phi\)) and that if \(a, b \in \ker \phi\), then 
-    \[
-        \phi(ab^{-1}) = \phi(a)\phi(b)^{-1} = e_H e_H^{-1} = e_H,
-    \]
-    so \(ab^{-1} \in \ker \phi\) and by the subgroup test, \(\ker \phi\) is a
-    subgroup of \(G\).
 
-    On the other hand, observe that \(\img \phi\) is likewise not empty (because
-    it contains \(e_H\)). If \(a, b \in \img \phi\), then there exist \(x, y \in
-    G\) such that \(\phi(x) = a\) and \(\phi(y) = b\). Then
-    \[
-        ab^{-1} = \phi(x)\phi(y)^{-1} = \phi(xy^{-1}),
-    \]
-    so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
-\end{remark}
+Every group \(G\) has at least two subgroups: the trivial subgroup \(\{e\}\) and
+\(G\) itself. Consider the homomorphism \(\phi: G \to H\). Define
+\[
+    \ker \phi = \{g \in G : \phi(g) = e_G\} = \phi^{-1}(\{e_H\}).
+\]
+and
+\[
+    \img \phi = \{h \in H : h = \phi(g) \text{ for some } g \in G\}.
+\]
+Since \(\{e_H\}\) is a subgroup of \(H\), we have by the preceding theorem that
+\(\ker \phi\) is a subgroup of \(G\). For a more explicit proof, observe that
+\(\ker \phi\) is not empty (because at the very least \(e_G \in \ker \phi\)) and
+that if \(a, b \in \ker \phi\), then 
+\[
+    \phi(ab^{-1}) = \phi(a)\phi(b)^{-1} = e_H e_H^{-1} = e_H,
+\]
+so \(ab^{-1} \in \ker \phi\) and by the subgroup test, \(\ker \phi\) is a
+subgroup of \(G\).
+
+On the other hand, observe that \(\img \phi\) is likewise not empty (because it
+contains \(e_H\)). If \(a, b \in \img \phi\), then there exist \(x, y \in G\)
+such that \(\phi(x) = a\) and \(\phi(y) = b\). Then
+\[
+    ab^{-1} = \phi(x)\phi(y)^{-1} = \phi(xy^{-1}),
+\]
+so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
+
 
 \section{Quotient groups and the isomorphism theorems}
 

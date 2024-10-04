@@ -407,14 +407,14 @@ all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
 \end{sectionthm}
 
 
-\section{Some category theory}
+\section{Thinking in diagrams}
 \label{sec:category-theory}
 
-In \S~\ref{set-functions} we have defined injective and surjective functions in
-terms of their properties with respect to elements of sets. For example, we have
-defined an injective function as one for which \(f(a) = f(b)\) implies \(a = b\)
-(where \(a\) and \(b\) are elements in the domain of \(f\)). Moreover, we have
-also established that this definition can be generalized without specific
+In \S~\ref{sec:set-functions} we have defined injective and surjective functions
+in terms of their properties with respect to elements of sets. For example, we
+have defined an injective function as one for which \(f(a) = f(b)\) implies \(a
+= b\) (where \(a\) and \(b\) are elements in the domain of \(f\)). Moreover, we
+have also established that this definition can be generalized without specific
 reference to membership in a set: that is, a set function \(f: A \to B\) is
 injective if for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if
 \(f \circ \alpha = f \circ \beta\), then \(\alpha = \beta\). (In fact a function
@@ -430,12 +430,12 @@ between arbitrary objects).
 \begin{definition}[Category]
     A \emph{category} \(\catg{C}\) consists of the following data:
     \begin{enumerate}[label=(\alph*), itemsep=0pt]
-        \item A class \(\Obj(\catg{C})\) of \emph{objects}.
-        \item To each pair of objects \(A, B \in \Obj(\catg{C})\), a set
+        \item A class \(\Obj{\catg{C}}\) of \emph{objects}.
+        \item To each pair of objects \(A, B \in \Obj{\catg{C}}\), a set
         \(\Hom_{\catg{C}}(A, B)\) of \emph{morphisms} or \emph{arrows} from
         \(A\) to \(B\) satisfying the following properties:
         \begin{enumerate}[label=(\roman*), itemsep=0pt]
-            \item For all \(A \in \Obj(\catg{C})\), there exists at least one
+            \item For all \(A \in \Obj{\catg{C}}\), there exists at least one
             morphism \(\id_A \in \Hom_{\catg{C}}(A, A)\) called the
             \emph{identity morphism} on \(A\).
             
@@ -446,7 +446,7 @@ between arbitrary objects).
             \(f\) and \(g\). 
             
             \item This composition law is associative: i.e., for all \(A, B, C,
-            D\) in \(\Obj(\catg{C})\) and \(f \in \Hom_{\catg{C}}(A, B)\), \(g
+            D\) in \(\Obj{\catg{C}}\) and \(f \in \Hom_{\catg{C}}(A, B)\), \(g
             \in \Hom_{\catg{C}}(B, C)\), and \(h \in \Hom_{\catg{C}}(C, D)\), we
             have
             \[
@@ -454,7 +454,7 @@ between arbitrary objects).
             \]
 
             \item The identity morphisms are \emph{neutral} with respect to
-            composition: i.e., for all \(A, B \in \Obj(\catg{C})\) and \(f \in
+            composition: i.e., for all \(A, B \in \Obj{\catg{C}}\) and \(f \in
             \Hom_{\catg{C}}(A, B)\), we have
             \[
                 f \circ \id_A = f = \id_B \circ f.
@@ -500,9 +500,10 @@ sets form a category.
     morphism is the identity function \(\id_A : A \to A\) for all sets \(A\);
     for any two functions \(f: A \to B\) and \(g: B \to C\), with \(A, B, C\)
     sets, the composition \(g \circ f\) is the composition of functions; in
-    \S~\ref{set-functions} we have shown that this composition is associative.
-    Finally, for any function \(f: A \to B\), we have \(f \circ \id_A = f =
-    \id_B \circ f\). Thus \(\catg{Set}\) is a category by our definition.
+    \S~\ref{sec:set-functions} we have shown that this composition is
+    associative. Finally, for any function \(f: A \to B\), we have \(f \circ
+    \id_A = f = \id_B \circ f\). Thus \(\catg{Set}\) is a category by our
+    definition.
 \end{example}
 
 \begin{example}
@@ -575,4 +576,44 @@ sets form a category.
     (this is again reflexive and transitive). Then the category \(\catg{R}\)
     would have only identity morphisms and no other morphisms. Categories of
     this form are called \emph{discrete categories}.
+
+    As a final variation on this theme, consider a set \(S\) and let
+    \(\catg{\hat{S}}\) be the category whose objects are elements of the power
+    set \(\mathcal{P}(S)\) of \(S\) and whose morphisms are defined by the
+    subset relation \(\subset\). (We are taking some liberty when we say
+    `relation' here since we have only defined a `relation' in terms of elements
+    of a set.) First observe that \(A \subset A\) and \(A \subset B\) and \(B
+    \subset C\) implies \(A \subset C\) so that \(\subset\) is reflexive and
+    transitive. More specifically, we define \(\Hom_{\catg{\hat{S}}}(A, B)\) to
+    contain the pair \((A, B)\) if \(A \subset B\) and the empty set otherwise.
+    Verifying the axioms of a category is straightforward (following our earlier
+    example) and we see that \(\catg{\hat{S}}\) is a category.
+\end{example}
+
+\begin{example}
+    Let us now look at a more complex example. Let \(\catg{C}\) be a category and let \(A\) be an object of \(\catg{C}\). We shall now construct a category \(\catg{C}_A\) whose objects are some morphisms in \(\catg{C}\) and whose morphisms are certain diagrams of morphisms in \(\catg{C}\). We define \(\catg{C}_A\) as follows:
+    \begin{enumerate}[label=(\alph*), itemsep=0pt, wide]
+        \item The objects of \(\catg{C}_A\) are all morphisms in \(\catg{C}\) with codomain \(A\). Graphically, each object of \(\catg{C}_A\) is an arrow from some object \(X\) to \(A\) (usually written top down):
+        \[
+            \begin{tikzcd}
+                X \arrow[d, "f"'] \\
+                A                
+            \end{tikzcd}
+        \]
+        \item If \(f_1 : X \to A\) and \(f_2 : Y \to A\) (where \(X, Y \in \Obj{\catg{C}}\)) are two arrows in \(\catg{C}_A\), i.e.,
+        \[
+            \begin{tikzcd}
+                X \arrow[d, "f_1"'] &  & Y \arrow[d, "f_2"'] \\
+                A                   &  & A                  
+            \end{tikzcd}
+        \]
+        then we define \(\Hom_{\catg{C}_A}(f_1, f_2)\) to be the set of all morphisms \(g \in \Hom_{\catg{C}}(X, Y)\) such that the diagram
+        \[
+            \begin{tikzcd}
+                X \arrow[rr, "g"] \arrow[rd, "f_1"'] &   & Y \arrow[ld, "f_2"] \\
+                                                     & A &                    
+                \end{tikzcd}
+        \]
+        commutes (in the `ambient' category \(\catg{C}\)). That is, \(f_1 \to f_2\) correspond to morphisms \(g : X \to Y\) in \(\catg{C}\) such that \(f_2 \circ g = f_1\).
+    \end{enumerate}
 \end{example}

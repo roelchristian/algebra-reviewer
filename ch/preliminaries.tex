@@ -129,6 +129,7 @@ thus \(\mathcal{P} = \mathcal{P}_{\sim}\).
 \end{definition}
 
 \section{Set functions}
+\label{sec:set-functions}
 
 \begin{definition}
     A function \(f\) from a set \(A\) to a set \(B\) is a relation \(f \subseteq
@@ -162,33 +163,28 @@ If \(S = A\) then we simply write \(\img f\) for \(f(A)\). This is called
 the \emph{image} of \(f\).
 
 
-\begin{sectionthm}
-    The function \(f\) is \emph{injective} (or \emph{one-to-one}) if for all
-    \(a, b \in A\), \(f(a) = f(b)\) implies \(a = b\). The function \(f\) is
-    \emph{surjective} (or \emph{onto}) if for all \(b \in B\), there exists an
-    \(a \in A\) such that \(f(a) = b\). The function \(f\) is \emph{bijective}
-    if it is both injective and surjective. If there exists a bijection between
-    two sets \(A\) and \(B\), we say that \(A\) and \(B\) are \emph{isomorphic}
-    and write
-    \[
-        A \cong B.
-    \]
+The function \(f\) is \emph{injective} (or \emph{one-to-one}) if for all \(a, b
+\in A\), \(f(a) = f(b)\) implies \(a = b\). The function \(f\) is
+\emph{surjective} (or \emph{onto}) if for all \(b \in B\), there exists an \(a
+\in A\) such that \(f(a) = b\). The function \(f\) is \emph{bijective} if it is
+both injective and surjective. If there exists a bijection between two sets
+\(A\) and \(B\), we say that \(A\) and \(B\) are \emph{isomorphic} and write
+\[
+    A \cong B.
+\]
 
-    When drawing diagrams, we would sometimes write \(\hookrightarrow\) and
-    \(\twoheadrightarrow\) to emphasize that a function is injective and
-    surjective, respectively.
-\end{sectionthm}
+When drawing diagrams, we would sometimes write \(\hookrightarrow\) and
+\(\twoheadrightarrow\) to emphasize that a function is injective and surjective,
+respectively.
 
-\begin{remark}
-    Two functions \(f: A \to B\) and \(g: A \to B\) are \emph{equal} if they
-    have the same domain, codomain, and for all \(a \in A\), \(f(a) = g(a)\). We
-    write \(f = g\) to denote this equality. Note that if \(f = g\) and \(f\) is
-    injective (resp. surjective), then so is \(g\). Indeed if \(f = g\) is
-    injective and \(f\) is injective \(f(a) = f(b)\) implies \(g(a) = f(a) =
-    f(b) = g(b)\) and thus \(a = b\). Similarly if \(f = g\) is surjective and
-    \(f\) is surjective, then for all \(b \in B\) there exists an \(a \in A\)
-    such that \(f(a) = b\) and thus \(g(a) = f(a) = b\).
-\end{remark}
+Two functions \(f: A \to B\) and \(g: A \to B\) are \emph{equal} if they have
+the same domain, codomain, and for all \(a \in A\), \(f(a) = g(a)\). We write
+\(f = g\) to denote this equality. Note that if \(f = g\) and \(f\) is injective
+(resp. surjective), then so is \(g\). Indeed if \(f = g\) is injective and \(f\)
+is injective \(f(a) = f(b)\) implies \(g(a) = f(a) = f(b) = g(b)\) and thus \(a
+= b\). Similarly if \(f = g\) is surjective and \(f\) is surjective, then for
+all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
+\(g(a) = f(a) = b\).
 
 \begin{sectionthm}
     If \(f: A \to B\) and \(g: B \to C\) are functions, then the
@@ -409,3 +405,89 @@ the \emph{image} of \(f\).
     \]
     are called the \emph{projection maps} from \(A \times B\) to \(A\) and \(B\), respectively. These are surjective functions.
 \end{sectionthm}
+
+
+\section{Some category theory}
+\label{sec:category-theory}
+
+In \S~\ref{set-functions} we have defined injective and surjective functions in
+terms of their properties with respect to elements of sets. For example, we have
+defined an injective function as one for which \(f(a) = f(b)\) implies \(a = b\)
+(where \(a\) and \(b\) are elements in the domain of \(f\)). Moreover, we have
+also established that this definition can be generalized without specific
+reference to membership in a set: that is, a set function \(f: A \to B\) is
+injective if for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if
+\(f \circ \alpha = f \circ \beta\), then \(\alpha = \beta\). A function \(f\)
+satisfying this latter property is a monomorphism, but we have shown that this
+is equivalent to the property of injectivity when dealing with functions between
+sets. The advantage of the second definition is that it does not rely on the
+notion of membership in a set, and can be applied to `functions' between objects
+in a more general setting (if somehow we are able to define `functions' between arbitrary objects).
+
+% EXPAND SECTION ABOVE
+
+\begin{definition}[Category]
+    A \emph{category} \(\catg{C}\) consists of the following data:
+    \begin{enumerate}[label=(\alph*), itemsep=0pt]
+        \item A class \(\Obj(\catg{C})\) of \emph{objects}.
+        \item To each pair of objects \(A, B \in \Obj(\catg{C})\), a set
+        \(\Hom_{\catg{C}}(A, B)\) of \emph{morphisms} or \emph{arrows} from
+        \(A\) to \(B\) satisfying the following properties:
+        \begin{enumerate}[label=(\roman*), itemsep=0pt]
+            \item For all \(A \in \Obj(\catg{C})\), there exists at least one
+            morphism \(\id_A \in \Hom_{\catg{C}}(A, A)\) called the
+            \emph{identity morphism} on \(A\).
+            
+            \item There exists a composition law on morphisms: i.e., if \(A, B,
+            C\) are objects in \(\catg{C}\), then \(f \in \Hom_{\catg{C}}(A,
+            B)\) and \(g \in \Hom_{\catg{C}}(B, C)\) determine a morphism \(g
+            \circ f \in \Hom_{\catg{C}}(A, C)\) called the \emph{composition} of
+            \(f\) and \(g\). 
+            
+            \item This composition law is associative: i.e., for all \(A, B, C,
+            D\) in \(\Obj(\catg{C})\) and \(f \in \Hom_{\catg{C}}(A, B)\), \(g
+            \in \Hom_{\catg{C}}(B, C)\), and \(h \in \Hom_{\catg{C}}(C, D)\), we
+            have
+            \[
+                h \circ (g \circ f) = (h \circ g) \circ f.
+            \]
+
+            \item The identity morphisms are \emph{neutral} with respect to
+            composition: i.e., for all \(A, B \in \Obj(\catg{C})\) and \(f \in
+            \Hom_{\catg{C}}(A, B)\), we have
+            \[
+                f \circ \id_A = f = \id_B \circ f.
+            \]
+        \end{enumerate}
+    \end{enumerate}
+\end{definition}
+
+Note that we have not defined a category as a set of objects. Consider an object
+whose categories are sets. Then since there is no `set of all sets' (cf.
+Russell's paradox), we cannot define a category as a set of such objects. Now it
+will be tempting to look at objects in a category as sets and morphisms (or
+arrows) between the objects as functions between the sets. Indeed we shall often
+do so (in a qualified manner) when dealing with concrete categories, i.e.,
+categories whose objects, having removed any additional data about their
+algebraic structure, can be identified with sets. While this might seem simpler,
+`thinking in categories' helps us analyze the constructions by looking directly
+at the objects and the morphisms between them.
+
+As a simple example, consider our definition of a morphism. For the time being
+let us call morphisms `arrows' to rid us the notion of any suggestive meaning
+the word `morphism' might have. We have posited that in a category \(\catg{C}\),
+any two objects \(A\) and \(B\) have a set of arrows \(\Hom_{\catg{C}}(A, B)\)
+between them (satisfying some additional properties related to associativity and
+identities) and an arrow is simply an element of this set. Contrast this with
+our earlier definition of a function: we say that \(f\) is a function between
+two sets \(A\) and \(B\) if for every element \(a \in A\) there exists a unique
+element \(b \in B\) such that \((a, b) \in f\). We have been able to define
+arrows in a manner that does not exactly rely on any intrinsic property of the
+objects (in this case membership in a set) but rather on the relationships
+between the objects. Before we explore examples that show us the helpfulness of
+such abstraction, let us first tread more familiar ground and show that sets and
+functions between sets form a category.
+
+\begin{example}
+    
+\end{example}

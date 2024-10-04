@@ -82,12 +82,12 @@
 
 
 
-\usepackage[backend=biber]{biblatex}
-\DeclareFieldFormat[article]{title}{\mkbibquote{#1}} % make article titles in quotes
-\DeclareFieldFormat[thesis]{title}{\mkbibemph{#1}} % make theses italics
-\addbibresource{./bib/bibliography.bib}
-\setlength\bibitemsep{0.4\itemsep}
-\renewcommand*{\bibfont}{\small}
+% \usepackage[backend=biber]{biblatex}
+% \DeclareFieldFormat[article]{title}{\mkbibquote{#1}} % make article titles in quotes
+% \DeclareFieldFormat[thesis]{title}{\mkbibemph{#1}} % make theses italics
+% \addbibresource{./bib/bibliography.bib}
+% \setlength\bibitemsep{0.4\itemsep}
+% \renewcommand*{\bibfont}{\small}
 \usepackage{tikz-cd}
 \tikzcdset{arrow style=tikz, diagrams={>=stealth}}
 
@@ -139,7 +139,7 @@
 \include{ch/fields}
 
 \cleardoublepage
-\nocite{*}
-\printbibliography
+% \nocite{*}
+% \printbibliography
 
 \end{document}

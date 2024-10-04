@@ -417,12 +417,13 @@ defined an injective function as one for which \(f(a) = f(b)\) implies \(a = b\)
 also established that this definition can be generalized without specific
 reference to membership in a set: that is, a set function \(f: A \to B\) is
 injective if for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if
-\(f \circ \alpha = f \circ \beta\), then \(\alpha = \beta\). A function \(f\)
-satisfying this latter property is a monomorphism, but we have shown that this
-is equivalent to the property of injectivity when dealing with functions between
-sets. The advantage of the second definition is that it does not rely on the
-notion of membership in a set, and can be applied to `functions' between objects
-in a more general setting (if somehow we are able to define `functions' between arbitrary objects).
+\(f \circ \alpha = f \circ \beta\), then \(\alpha = \beta\). (In fact a function
+\(f\) satisfying this latter property is a monomorphism, but we have shown that
+this is equivalent to the property of injectivity when dealing with functions
+between sets.) The advantage of the second definition is that it does not rely
+on the notion of membership in a set, and can be applied to `functions' between
+objects in a more general setting (if somehow we are able to define `functions'
+between arbitrary objects).
 
 % EXPAND SECTION ABOVE
 
@@ -484,10 +485,94 @@ two sets \(A\) and \(B\) if for every element \(a \in A\) there exists a unique
 element \(b \in B\) such that \((a, b) \in f\). We have been able to define
 arrows in a manner that does not exactly rely on any intrinsic property of the
 objects (in this case membership in a set) but rather on the relationships
-between the objects. Before we explore examples that show us the helpfulness of
-such abstraction, let us first tread more familiar ground and show that sets and
-functions between sets form a category.
+between the objects. In this vein, studying categories focuses on the
+relationship between the objects (the `arrows') rather than the objects
+themselves.
+
+Before we explore examples that show us the helpfulness of such abstraction, let
+us first tread more familiar ground and show that sets and functions between
+sets form a category.
 
 \begin{example}
-    
+    We define \(\catg{Set}\) as the category whose objects are sets and whose
+    morphisms are functions between sets. Set functions obey the axioms for
+    morphisms in a category. The verifications are routine: the identity
+    morphism is the identity function \(\id_A : A \to A\) for all sets \(A\);
+    for any two functions \(f: A \to B\) and \(g: B \to C\), with \(A, B, C\)
+    sets, the composition \(g \circ f\) is the composition of functions; in
+    \S~\ref{set-functions} we have shown that this composition is associative.
+    Finally, for any function \(f: A \to B\), we have \(f \circ \id_A = f =
+    \id_B \circ f\). Thus \(\catg{Set}\) is a category by our definition.
+\end{example}
+
+\begin{example}
+    Consider a set \(S\) and a relation \(\rho\) in \(S\) that is reflexive and
+    transitive. That is \(a\rho a\) for all \(a \in S\) and if \(a\rho b\) and
+    \(b\rho c\) then \(a\rho c\). We claim that we can define the category
+    \(\catg{R}\) whose objects are the elements of \(S\) and whose morphisms are
+    the elements of \(\rho\). We define a category \(\catg{R}\) as follows:
+    \begin{enumerate}[label=(\alph*), itemsep=0pt]
+        \item The objects of \(\catg{R}\) are the elements of \(S\).
+        \item For all \(a, b \in S\), we define \(\Hom_{\catg{R}}(a, b)\) to be
+        the ordered pair \((a, b)\) if \(a\rho b\) and the empty set otherwise.
+    \end{enumerate}
+    We claim that \(\catg{R}\) is a category. Let us verify this against the
+    axioms of a category.
+
+    Since \(\rho\) is reflexive (by definition), for all \(a \in S\) we have
+    \(a\rho a\) and thus \((a, a) \in \Hom_{\catg{R}}(a, a)\). Now if \(f \in
+    \Hom_{\catg{R}}(a, b)\) and \(g \in \Hom_{\catg{R}}(b, c)\), then the
+    transitivity of \(\rho\) allows us to define a composition \(g \circ f \in
+    \Hom_{\catg{R}}(b, c)\) which is precisely the element \((a, c)\) in
+    \(\Hom_{\catg{R}}(a, c)\). If \(f \in \Hom_{\catg{R}}(a, b)\), \(g \in
+    \Hom_{\catg{R}}(b, c)\), and \(h \in \Hom_{\catg{R}}(c, d)\), for all \(a,
+    b, c, d \in S\), then 
+    \[
+        f = (a, b), \quad g = (b, c), \quad h = (c, d),
+    \]
+    and
+    \[
+        g \circ f = (a, c)\quad \text{and}\quad h \circ g = (b, d),
+    \]
+    by the transitivity of \(\rho\) and thus
+    \[
+        h \circ (g \circ f) \implies a \rho c \land c \rho d \implies a \rho d
+    \]
+    and
+    \[
+        (h \circ g) \circ f \implies a \rho b \land b \rho d \implies a \rho d,
+    \]
+    again by the transitivity of \(\rho\), thus proving associativity.
+
+    Finally, for all \(a \in S\), we have \(\id_a = (a, a)\) as established
+    earlier, and thus
+    \[
+        f \circ \id_a \implies a \rho a \land a \rho b \implies a \rho b
+    \]
+    and
+    \[
+        \id_b \circ f \implies a \rho b \land b \rho b \implies a \rho b,
+    \]
+    so that the identity morphisms are neutral with respect to composition. Thus
+    \(\catg{R}\) is indeed a category.
+
+    As a concrete example, consider the set \(\Z\) of integers and the relation
+    \(\leq\) (this is both reflexive and transitive). A diagram in this category
+    would look like
+    \[
+        \begin{tikzcd}
+            2 \arrow[r] & 3 \arrow[r] \arrow[d, "\id_3"'] & 8 \arrow[r]            & 9 \\
+                        & 3 \arrow[r] \arrow[ru]          & 4 \arrow[u] \arrow[ru] &  
+        \end{tikzcd}
+    \]
+    If we write \(3\) for the object \(3\) in the first row and \(3'\) for the
+    same object in the second row, we can reverse the arrow denoted by \(\id_3\)
+    and the diagram will still commute. We have, for example \(3' \to 3 \to 8\)
+    and \(3' \to 8\); but we cannot, reverse the arrow from \(3\) to \(8\)
+    because \(8 \to 3\) is not true with respect to the relation \(\leq\).
+
+    A more trivial example is to consider instead of \(\leq\) the relation \(=\)
+    (this is again reflexive and transitive). Then the category \(\catg{R}\)
+    would have only identity morphisms and no other morphisms. Categories of
+    this form are called \emph{discrete categories}.
 \end{example}

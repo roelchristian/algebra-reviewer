@@ -71,6 +71,57 @@
     classes of \(\sim\) form a partition of \(A\).
 \end{theorem}
 
+\begin{proof}
+    Let \(A\) be a set and let \(\sim\) be an equivalence relation on \(A\).
+    Consider the family of equivalence classes of \(\sim\) on \(A\):
+    \[
+        \mathcal{P}_{\sim} = \{[a]_{\sim} : a \in A\}.
+    \]
+    Let \([a]_{\sim} \in \mathcal{P}_{\sim}\). Then since \(\sim\) is an
+    equivalence relation, we have by reflexivity, \(a \sim a\) and thus
+    \([a]_{\sim}\) is not empty. Suppose \(a, b \in A\) such that \(a\not\sim
+    b\) and suppose for the sake of contradiction that there exists a \(c \in
+    [a]_{\sim} \cap [b]_{\sim}\). Then \(a \sim c\) and \(b \sim c\), so by
+    symmetry and transitivity, \(a \sim b\), which contradicts our assumption.
+    Thus the intersection of any two distinct sets in \(\mathcal{P}_{\sim}\) is
+    empty. Finally, for all \(a \in A\), we have \(a \in [a]_{\sim}\) and thus
+    the union of all sets in \(\mathcal{P}_{\sim}\) is \(A\). Thus
+    \(\mathcal{P}_{\sim}\) is a partition of \(A\).
+\end{proof}
+
+On the other hand, given a partition \(\mathcal{P}\) of a set \(A\), we can
+define an equivalence relation \(\sim\) on \(A\) such that \(\mathcal{P} =
+\mathcal{P}_{\sim}\) as follows: let \(a \sim b\) if and only if there exists an
+\(X \in \mathcal{P}\) such that \(a \in X\) and \(b \in X\). We can verify that
+this is an equivalence relation.
+\begin{enumerate}[label=(\alph*), wide, itemsep=0pt]
+    \item For all \(a \in A\), \(a \sim a\) because \(a \in X\) implies \(a \in
+    X \land a \in X\).
+    \item For all \(a, b \in A\), if \(a \sim b\), then there exists an \(X \in
+    \mathcal{P}\) such that \(a \in X\) and \(b \in X\). But this implies that
+    \(b \in X\) and \(a \in X\), so \(b \sim a\).
+    \item Finally, \(a \sim b\) and \(b \sim c\) implies that there exist \(X, Y
+    \in \mathcal{P}\) such that \(a \in X\), \(b \in X \land b \in Y\), and \(c
+    \in Y\) which implies that \(b \in X \cap Y \neq \emptyset\). Since
+    \(\mathcal{P}\) is a partition, this further implies that \(X = Y\) and thus
+    \(a \sim c\). Thus, \(\sim\) is transitive.
+\end{enumerate}
+
+It remains to show that \(\mathcal{P} = \mathcal{P}_{\sim}\). Now for if \(X \in
+\mathcal{P}\), then for all \(a, b \in X\), there exists a \(Y \in \mathcal{P}\)
+such that \(a \in Y\) and \(b \in Y\), so \(a \sim b\) and thus \(X \in
+\mathcal{P}_{\sim}\) and \(\mathcal{P} \subset \mathcal{P}_{\sim}\). Conversely,
+given any \([a]_{\sim} \in \mathcal{P}_{\sim}\), then there exists an \(X \in
+\mathcal{P}\) such that \(a \in X\). If \(a' \in X\) then there exists a \(Y \in
+\mathcal{P}\) such that \(a \in Y\) and \(a' \in Y\), so \(a \sim a'\) and thus
+\(a' \in [a]_{\sim}\) and \(X \subset [a]_{\sim}\). If \(a' \in [a]_{\sim}\)
+then there exists a \(Y \in \mathcal{P}\) such that \(a \in Y\) and \(a' in Y\)
+and thus \(a \in X \cap Y = \emptyset\), so that \(X = Y\) and hence \(a' \in
+X\). This means that \([a]_{\sim} \subset X\) and thus \([a]_{\sim} = X\) (by
+the previous inclusion). Therefore both inclusions \(\mathcal{P} \subset
+\mathcal{P}_{\sim}\) and \(\mathcal{P}_{\sim} \subset \mathcal{P}\) hold and
+thus \(\mathcal{P} = \mathcal{P}_{\sim}\).
+
 \begin{definition}
     The \emph{quotient} of a set \(A\) with respect to an equivalence relation
     \(\sim\) is the set of equivalence classes of \(\sim\). We denote this set
@@ -78,6 +129,7 @@
 \end{definition}
 
 \section{Set functions}
+\label{sec:set-functions}
 
 \begin{definition}
     A function \(f\) from a set \(A\) to a set \(B\) is a relation \(f \subseteq
@@ -85,60 +137,54 @@
     B\) such that \((a, b) \in f\).
 \end{definition}
 
-\begin{sectionthm}
-    We introduce some terminology and notation. if \((a, b) \in f\), it is
-    customary to write \(f(a) = b\). We call \(f(a)\) the \emph{image} of \(a\)
-    under \(f\). Because \(f(a) = b\) is unique, it follows immediately that if
-    \(a = b\) we must have \(f(a) = f(b)\). Following the convention in the
-    literature, we would say that \(f\) is \emph{well-defined.}
+We introduce some terminology and notation. if \((a, b) \in f\), it is
+customary to write \(f(a) = b\). We call \(f(a)\) the \emph{image} of \(a\)
+under \(f\). Because \(f(a) = b\) is unique, it follows immediately that if
+\(a = b\) we must have \(f(a) = f(b)\). Following the convention in the
+literature, we would say that \(f\) is \emph{well-defined.}
 
-    If \(f\) is a function from \(A\) to \(B\), we write
-    \[
-        f: A \to B \text{ or } \begin{tikzcd}
-            A \arrow[r, "f"] & B.
-        \end{tikzcd}
-    \]
-    We call the latter a \emph{diagram}. The notation \(a \mapsto f(a)\) is also
-    used to explicitly define the function \(f\).
+If \(f\) is a function from \(A\) to \(B\), we write
+\[
+    f: A \to B \text{ or } \begin{tikzcd}
+        A \arrow[r, "f"] & B.
+    \end{tikzcd}
+\]
+We call the latter a \emph{diagram}. The notation \(a \mapsto f(a)\) is also
+used to explicitly define the function \(f\).
 
-    The \emph{domain} of \(f : A \to B\) is the set \(\dom f = \{a \in A : f(a)
-    \text{ is defined}\}\) while the \emph{codomain} of \(f\) is the set \(B\). 
+The \emph{domain} of \(f : A \to B\) is the set \(\dom f = \{a \in A : f(a)
+\text{ is defined}\}\) while the \emph{codomain} of \(f\) is the set \(B\). 
 
-    If \(S \subset A\), the \emph{image} of \(S\) under \(f\) is the set
-    \[
-        f(S) = \{f(a) : a \in S\}.
-    \]
-    If \(S = A\) then we simply write \(\img f\) for \(f(A)\). This is called
-    the \emph{image} of \(f\).
-\end{sectionthm}
+If \(S \subset A\), the \emph{image} of \(S\) under \(f\) is the set
+\[
+    f(S) = \{f(a) : a \in S\}.
+\]
+If \(S = A\) then we simply write \(\img f\) for \(f(A)\). This is called
+the \emph{image} of \(f\).
 
-\begin{sectionthm}
-    The function \(f\) is \emph{injective} (or \emph{one-to-one}) if for all
-    \(a, b \in A\), \(f(a) = f(b)\) implies \(a = b\). The function \(f\) is
-    \emph{surjective} (or \emph{onto}) if for all \(b \in B\), there exists an
-    \(a \in A\) such that \(f(a) = b\). The function \(f\) is \emph{bijective}
-    if it is both injective and surjective. If there exists a bijection between
-    two sets \(A\) and \(B\), we say that \(A\) and \(B\) are \emph{isomorphic}
-    and write
-    \[
-        A \cong B.
-    \]
 
-    When drawing diagrams, we would sometimes write \(\hookrightarrow\) and
-    \(\twoheadrightarrow\) to emphasize that a function is injective and
-    surjective, respectively.
-\end{sectionthm}
+The function \(f\) is \emph{injective} (or \emph{one-to-one}) if for all \(a, b
+\in A\), \(f(a) = f(b)\) implies \(a = b\). The function \(f\) is
+\emph{surjective} (or \emph{onto}) if for all \(b \in B\), there exists an \(a
+\in A\) such that \(f(a) = b\). The function \(f\) is \emph{bijective} if it is
+both injective and surjective. If there exists a bijection between two sets
+\(A\) and \(B\), we say that \(A\) and \(B\) are \emph{isomorphic} and write
+\[
+    A \cong B.
+\]
 
-\begin{remark}
-    Two functions \(f: A \to B\) and \(g: A \to B\) are \emph{equal} if they
-    have the same domain, codomain, and for all \(a \in A\), \(f(a) = g(a)\). We
-    write \(f = g\) to denote this equality. Note that if \(f = g\) and \(f\) is
-    injective (resp. surjective), then so is \(g\). Indeed if \(f = g\) is
-    injective and \(f\) is injective \(f(a) = f(b)\) implies \(g(a) = f(a) =
-    f(b) = g(b)\) and thus \(a = b\). Similarly if \(f = g\) is surjective and
-    \(f\) is surjective, then for all \(b \in B\) there exists an \(a \in A\)
-    such that \(f(a) = b\) and thus \(g(a) = f(a) = b\).
-\end{remark}
+When drawing diagrams, we would sometimes write \(\hookrightarrow\) and
+\(\twoheadrightarrow\) to emphasize that a function is injective and surjective,
+respectively.
+
+Two functions \(f: A \to B\) and \(g: A \to B\) are \emph{equal} if they have
+the same domain, codomain, and for all \(a \in A\), \(f(a) = g(a)\). We write
+\(f = g\) to denote this equality. Note that if \(f = g\) and \(f\) is injective
+(resp. surjective), then so is \(g\). Indeed if \(f = g\) is injective and \(f\)
+is injective \(f(a) = f(b)\) implies \(g(a) = f(a) = f(b) = g(b)\) and thus \(a
+= b\). Similarly if \(f = g\) is surjective and \(f\) is surjective, then for
+all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
+\(g(a) = f(a) = b\).
 
 \begin{sectionthm}
     If \(f: A \to B\) and \(g: B \to C\) are functions, then the
@@ -359,3 +405,174 @@
     \]
     are called the \emph{projection maps} from \(A \times B\) to \(A\) and \(B\), respectively. These are surjective functions.
 \end{sectionthm}
+
+
+\section{Some category theory}
+\label{sec:category-theory}
+
+In \S~\ref{set-functions} we have defined injective and surjective functions in
+terms of their properties with respect to elements of sets. For example, we have
+defined an injective function as one for which \(f(a) = f(b)\) implies \(a = b\)
+(where \(a\) and \(b\) are elements in the domain of \(f\)). Moreover, we have
+also established that this definition can be generalized without specific
+reference to membership in a set: that is, a set function \(f: A \to B\) is
+injective if for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if
+\(f \circ \alpha = f \circ \beta\), then \(\alpha = \beta\). (In fact a function
+\(f\) satisfying this latter property is a monomorphism, but we have shown that
+this is equivalent to the property of injectivity when dealing with functions
+between sets.) The advantage of the second definition is that it does not rely
+on the notion of membership in a set, and can be applied to `functions' between
+objects in a more general setting (if somehow we are able to define `functions'
+between arbitrary objects).
+
+% EXPAND SECTION ABOVE
+
+\begin{definition}[Category]
+    A \emph{category} \(\catg{C}\) consists of the following data:
+    \begin{enumerate}[label=(\alph*), itemsep=0pt]
+        \item A class \(\Obj(\catg{C})\) of \emph{objects}.
+        \item To each pair of objects \(A, B \in \Obj(\catg{C})\), a set
+        \(\Hom_{\catg{C}}(A, B)\) of \emph{morphisms} or \emph{arrows} from
+        \(A\) to \(B\) satisfying the following properties:
+        \begin{enumerate}[label=(\roman*), itemsep=0pt]
+            \item For all \(A \in \Obj(\catg{C})\), there exists at least one
+            morphism \(\id_A \in \Hom_{\catg{C}}(A, A)\) called the
+            \emph{identity morphism} on \(A\).
+            
+            \item There exists a composition law on morphisms: i.e., if \(A, B,
+            C\) are objects in \(\catg{C}\), then \(f \in \Hom_{\catg{C}}(A,
+            B)\) and \(g \in \Hom_{\catg{C}}(B, C)\) determine a morphism \(g
+            \circ f \in \Hom_{\catg{C}}(A, C)\) called the \emph{composition} of
+            \(f\) and \(g\). 
+            
+            \item This composition law is associative: i.e., for all \(A, B, C,
+            D\) in \(\Obj(\catg{C})\) and \(f \in \Hom_{\catg{C}}(A, B)\), \(g
+            \in \Hom_{\catg{C}}(B, C)\), and \(h \in \Hom_{\catg{C}}(C, D)\), we
+            have
+            \[
+                h \circ (g \circ f) = (h \circ g) \circ f.
+            \]
+
+            \item The identity morphisms are \emph{neutral} with respect to
+            composition: i.e., for all \(A, B \in \Obj(\catg{C})\) and \(f \in
+            \Hom_{\catg{C}}(A, B)\), we have
+            \[
+                f \circ \id_A = f = \id_B \circ f.
+            \]
+        \end{enumerate}
+    \end{enumerate}
+\end{definition}
+
+Note that we have not defined a category as a set of objects. Consider an object
+whose categories are sets. Then since there is no `set of all sets' (cf.
+Russell's paradox), we cannot define a category as a set of such objects. Now it
+will be tempting to look at objects in a category as sets and morphisms (or
+arrows) between the objects as functions between the sets. Indeed we shall often
+do so (in a qualified manner) when dealing with concrete categories, i.e.,
+categories whose objects, having removed any additional data about their
+algebraic structure, can be identified with sets. While this might seem simpler,
+`thinking in categories' helps us analyze the constructions by looking directly
+at the objects and the morphisms between them.
+
+As a simple example, consider our definition of a morphism. For the time being
+let us call morphisms `arrows' to rid us the notion of any suggestive meaning
+the word `morphism' might have. We have posited that in a category \(\catg{C}\),
+any two objects \(A\) and \(B\) have a set of arrows \(\Hom_{\catg{C}}(A, B)\)
+between them (satisfying some additional properties related to associativity and
+identities) and an arrow is simply an element of this set. Contrast this with
+our earlier definition of a function: we say that \(f\) is a function between
+two sets \(A\) and \(B\) if for every element \(a \in A\) there exists a unique
+element \(b \in B\) such that \((a, b) \in f\). We have been able to define
+arrows in a manner that does not exactly rely on any intrinsic property of the
+objects (in this case membership in a set) but rather on the relationships
+between the objects. In this vein, studying categories focuses on the
+relationship between the objects (the `arrows') rather than the objects
+themselves.
+
+Before we explore examples that show us the helpfulness of such abstraction, let
+us first tread more familiar ground and show that sets and functions between
+sets form a category.
+
+\begin{example}
+    We define \(\catg{Set}\) as the category whose objects are sets and whose
+    morphisms are functions between sets. Set functions obey the axioms for
+    morphisms in a category. The verifications are routine: the identity
+    morphism is the identity function \(\id_A : A \to A\) for all sets \(A\);
+    for any two functions \(f: A \to B\) and \(g: B \to C\), with \(A, B, C\)
+    sets, the composition \(g \circ f\) is the composition of functions; in
+    \S~\ref{set-functions} we have shown that this composition is associative.
+    Finally, for any function \(f: A \to B\), we have \(f \circ \id_A = f =
+    \id_B \circ f\). Thus \(\catg{Set}\) is a category by our definition.
+\end{example}
+
+\begin{example}
+    Consider a set \(S\) and a relation \(\rho\) in \(S\) that is reflexive and
+    transitive. That is \(a\rho a\) for all \(a \in S\) and if \(a\rho b\) and
+    \(b\rho c\) then \(a\rho c\). We claim that we can define the category
+    \(\catg{R}\) whose objects are the elements of \(S\) and whose morphisms are
+    the elements of \(\rho\). We define a category \(\catg{R}\) as follows:
+    \begin{enumerate}[label=(\alph*), itemsep=0pt]
+        \item The objects of \(\catg{R}\) are the elements of \(S\).
+        \item For all \(a, b \in S\), we define \(\Hom_{\catg{R}}(a, b)\) to be
+        the ordered pair \((a, b)\) if \(a\rho b\) and the empty set otherwise.
+    \end{enumerate}
+    We claim that \(\catg{R}\) is a category. Let us verify this against the
+    axioms of a category.
+
+    Since \(\rho\) is reflexive (by definition), for all \(a \in S\) we have
+    \(a\rho a\) and thus \((a, a) \in \Hom_{\catg{R}}(a, a)\). Now if \(f \in
+    \Hom_{\catg{R}}(a, b)\) and \(g \in \Hom_{\catg{R}}(b, c)\), then the
+    transitivity of \(\rho\) allows us to define a composition \(g \circ f \in
+    \Hom_{\catg{R}}(b, c)\) which is precisely the element \((a, c)\) in
+    \(\Hom_{\catg{R}}(a, c)\). If \(f \in \Hom_{\catg{R}}(a, b)\), \(g \in
+    \Hom_{\catg{R}}(b, c)\), and \(h \in \Hom_{\catg{R}}(c, d)\), for all \(a,
+    b, c, d \in S\), then 
+    \[
+        f = (a, b), \quad g = (b, c), \quad h = (c, d),
+    \]
+    and
+    \[
+        g \circ f = (a, c)\quad \text{and}\quad h \circ g = (b, d),
+    \]
+    by the transitivity of \(\rho\) and thus
+    \[
+        h \circ (g \circ f) \implies a \rho c \land c \rho d \implies a \rho d
+    \]
+    and
+    \[
+        (h \circ g) \circ f \implies a \rho b \land b \rho d \implies a \rho d,
+    \]
+    again by the transitivity of \(\rho\), thus proving associativity.
+
+    Finally, for all \(a \in S\), we have \(\id_a = (a, a)\) as established
+    earlier, and thus
+    \[
+        f \circ \id_a \implies a \rho a \land a \rho b \implies a \rho b
+    \]
+    and
+    \[
+        \id_b \circ f \implies a \rho b \land b \rho b \implies a \rho b,
+    \]
+    so that the identity morphisms are neutral with respect to composition. Thus
+    \(\catg{R}\) is indeed a category.
+
+    As a concrete example, consider the set \(\Z\) of integers and the relation
+    \(\leq\) (this is both reflexive and transitive). A diagram in this category
+    would look like
+    \[
+        \begin{tikzcd}
+            2 \arrow[r] & 3 \arrow[r] \arrow[d, "\id_3"'] & 8 \arrow[r]            & 9 \\
+                        & 3 \arrow[r] \arrow[ru]          & 4 \arrow[u] \arrow[ru] &  
+        \end{tikzcd}
+    \]
+    If we write \(3\) for the object \(3\) in the first row and \(3'\) for the
+    same object in the second row, we can reverse the arrow denoted by \(\id_3\)
+    and the diagram will still commute. We have, for example \(3' \to 3 \to 8\)
+    and \(3' \to 8\); but we cannot, reverse the arrow from \(3\) to \(8\)
+    because \(8 \to 3\) is not true with respect to the relation \(\leq\).
+
+    A more trivial example is to consider instead of \(\leq\) the relation \(=\)
+    (this is again reflexive and transitive). Then the category \(\catg{R}\)
+    would have only identity morphisms and no other morphisms. Categories of
+    this form are called \emph{discrete categories}.
+\end{example}

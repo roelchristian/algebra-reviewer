@@ -71,6 +71,57 @@
     classes of \(\sim\) form a partition of \(A\).
 \end{theorem}
 
+\begin{proof}
+    Let \(A\) be a set and let \(\sim\) be an equivalence relation on \(A\).
+    Consider the family of equivalence classes of \(\sim\) on \(A\):
+    \[
+        \mathcal{P}_{\sim} = \{[a]_{\sim} : a \in A\}.
+    \]
+    Let \([a]_{\sim} \in \mathcal{P}_{\sim}\). Then since \(\sim\) is an
+    equivalence relation, we have by reflexivity, \(a \sim a\) and thus
+    \([a]_{\sim}\) is not empty. Suppose \(a, b \in A\) such that \(a\not\sim
+    b\) and suppose for the sake of contradiction that there exists a \(c \in
+    [a]_{\sim} \cap [b]_{\sim}\). Then \(a \sim c\) and \(b \sim c\), so by
+    symmetry and transitivity, \(a \sim b\), which contradicts our assumption.
+    Thus the intersection of any two distinct sets in \(\mathcal{P}_{\sim}\) is
+    empty. Finally, for all \(a \in A\), we have \(a \in [a]_{\sim}\) and thus
+    the union of all sets in \(\mathcal{P}_{\sim}\) is \(A\). Thus
+    \(\mathcal{P}_{\sim}\) is a partition of \(A\).
+\end{proof}
+
+On the other hand, given a partition \(\mathcal{P}\) of a set \(A\), we can
+define an equivalence relation \(\sim\) on \(A\) such that \(\mathcal{P} =
+\mathcal{P}_{\sim}\) as follows: let \(a \sim b\) if and only if there exists an
+\(X \in \mathcal{P}\) such that \(a \in X\) and \(b \in X\). We can verify that
+this is an equivalence relation.
+\begin{enumerate}[label=(\alph*), wide, itemsep=0pt]
+    \item For all \(a \in A\), \(a \sim a\) because \(a \in X\) implies \(a \in
+    X \land a \in X\).
+    \item For all \(a, b \in A\), if \(a \sim b\), then there exists an \(X \in
+    \mathcal{P}\) such that \(a \in X\) and \(b \in X\). But this implies that
+    \(b \in X\) and \(a \in X\), so \(b \sim a\).
+    \item Finally, \(a \sim b\) and \(b \sim c\) implies that there exist \(X, Y
+    \in \mathcal{P}\) such that \(a \in X\), \(b \in X \land b \in Y\), and \(c
+    \in Y\) which implies that \(b \in X \cap Y \neq \emptyset\). Since
+    \(\mathcal{P}\) is a partition, this further implies that \(X = Y\) and thus
+    \(a \sim c\). Thus, \(\sim\) is transitive.
+\end{enumerate}
+
+It remains to show that \(\mathcal{P} = \mathcal{P}_{\sim}\). Now for if \(X \in
+\mathcal{P}\), then for all \(a, b \in X\), there exists a \(Y \in \mathcal{P}\)
+such that \(a \in Y\) and \(b \in Y\), so \(a \sim b\) and thus \(X \in
+\mathcal{P}_{\sim}\) and \(\mathcal{P} \subset \mathcal{P}_{\sim}\). Conversely,
+given any \([a]_{\sim} \in \mathcal{P}_{\sim}\), then there exists an \(X \in
+\mathcal{P}\) such that \(a \in X\). If \(a' \in X\) then there exists a \(Y \in
+\mathcal{P}\) such that \(a \in Y\) and \(a' \in Y\), so \(a \sim a'\) and thus
+\(a' \in [a]_{\sim}\) and \(X \subset [a]_{\sim}\). If \(a' \in [a]_{\sim}\)
+then there exists a \(Y \in \mathcal{P}\) such that \(a \in Y\) and \(a' in Y\)
+and thus \(a \in X \cap Y = \emptyset\), so that \(X = Y\) and hence \(a' \in
+X\). This means that \([a]_{\sim} \subset X\) and thus \([a]_{\sim} = X\) (by
+the previous inclusion). Therefore both inclusions \(\mathcal{P} \subset
+\mathcal{P}_{\sim}\) and \(\mathcal{P}_{\sim} \subset \mathcal{P}\) hold and
+thus \(\mathcal{P} = \mathcal{P}_{\sim}\).
+
 \begin{definition}
     The \emph{quotient} of a set \(A\) with respect to an equivalence relation
     \(\sim\) is the set of equivalence classes of \(\sim\). We denote this set
@@ -85,32 +136,31 @@
     B\) such that \((a, b) \in f\).
 \end{definition}
 
-\begin{sectionthm}
-    We introduce some terminology and notation. if \((a, b) \in f\), it is
-    customary to write \(f(a) = b\). We call \(f(a)\) the \emph{image} of \(a\)
-    under \(f\). Because \(f(a) = b\) is unique, it follows immediately that if
-    \(a = b\) we must have \(f(a) = f(b)\). Following the convention in the
-    literature, we would say that \(f\) is \emph{well-defined.}
+We introduce some terminology and notation. if \((a, b) \in f\), it is
+customary to write \(f(a) = b\). We call \(f(a)\) the \emph{image} of \(a\)
+under \(f\). Because \(f(a) = b\) is unique, it follows immediately that if
+\(a = b\) we must have \(f(a) = f(b)\). Following the convention in the
+literature, we would say that \(f\) is \emph{well-defined.}
 
-    If \(f\) is a function from \(A\) to \(B\), we write
-    \[
-        f: A \to B \text{ or } \begin{tikzcd}
-            A \arrow[r, "f"] & B.
-        \end{tikzcd}
-    \]
-    We call the latter a \emph{diagram}. The notation \(a \mapsto f(a)\) is also
-    used to explicitly define the function \(f\).
+If \(f\) is a function from \(A\) to \(B\), we write
+\[
+    f: A \to B \text{ or } \begin{tikzcd}
+        A \arrow[r, "f"] & B.
+    \end{tikzcd}
+\]
+We call the latter a \emph{diagram}. The notation \(a \mapsto f(a)\) is also
+used to explicitly define the function \(f\).
 
-    The \emph{domain} of \(f : A \to B\) is the set \(\dom f = \{a \in A : f(a)
-    \text{ is defined}\}\) while the \emph{codomain} of \(f\) is the set \(B\). 
+The \emph{domain} of \(f : A \to B\) is the set \(\dom f = \{a \in A : f(a)
+\text{ is defined}\}\) while the \emph{codomain} of \(f\) is the set \(B\). 
 
-    If \(S \subset A\), the \emph{image} of \(S\) under \(f\) is the set
-    \[
-        f(S) = \{f(a) : a \in S\}.
-    \]
-    If \(S = A\) then we simply write \(\img f\) for \(f(A)\). This is called
-    the \emph{image} of \(f\).
-\end{sectionthm}
+If \(S \subset A\), the \emph{image} of \(S\) under \(f\) is the set
+\[
+    f(S) = \{f(a) : a \in S\}.
+\]
+If \(S = A\) then we simply write \(\img f\) for \(f(A)\). This is called
+the \emph{image} of \(f\).
+
 
 \begin{sectionthm}
     The function \(f\) is \emph{injective} (or \emph{one-to-one}) if for all

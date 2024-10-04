@@ -63,7 +63,8 @@ The preceding result allow us to speak of \emph{the} identity element and
 \emph{the} inverse of an element in a group.
 
 \begin{theorem}
-    Let \(G\) be a group and let \(a \in G\). Then \((a^{-1})^{-1} = a\). If in addition, \(b \in G\), then \((ab)^{-1} = b^{-1}a^{-1}\).
+    Let \(G\) be a group and let \(a \in G\). Then \((a^{-1})^{-1} = a\). If in
+    addition, \(b \in G\), then \((ab)^{-1} = b^{-1}a^{-1}\).
 \end{theorem}
 
 \begin{proof}
@@ -98,15 +99,19 @@ The preceding result allow us to speak of \emph{the} identity element and
 \end{proof}
 
 \begin{corollary}
-    For all \(a, b \in G\), the equations \(ax = b\) and \(ya = b\) have unique solutions in \(G\).
+    For all \(a, b \in G\), the equations \(ax = b\) and \(ya = b\) have unique
+    solutions in \(G\).
 \end{corollary}
 
 \begin{proof}
-    Observe that the solutions to the equations are \(x = a^{-1}b\) and \(y = ba^{-1}\), respectively. In the first case we have
+    Observe that the solutions to the equations are \(x = a^{-1}b\) and \(y =
+    ba^{-1}\), respectively. In the first case we have
     \[
         ax = a(a^{-1}b) = (aa^{-1})b = eb = b.
     \]
-    If \(x'\) is also a solution for the first equation then \(xa = b = x'a\) implies \(x = x'\) by right cancellation. The second equation is proved similarly.
+    If \(x'\) is also a solution for the first equation then \(xa = b = x'a\)
+    implies \(x = x'\) by right cancellation. The second equation is proved
+    similarly.
 \end{proof}
 
 \begin{theorem}[Generalized associative law]
@@ -246,11 +251,11 @@ The preceding result allow us to speak of \emph{the} identity element and
     \[
         [a]_n + [b]_n = [a + b]_n.
     \]
-    First we need to show that this operation is well-defined, i.e., the result
-    of the operation does not depend on the choice of representatives of the
-    equivalence classes. Suppose that \(a \equiv a' \pmod{n}\) and \(b \equiv b'
-    \pmod{n}\). Then \(a = a' + kn\) and \(b = b' + \ell n\) for some integers \(k,
-    \ell\). We then have
+    which we call `addition modulo \(n\)'.  First we need to show that this
+    operation is well-defined, i.e., the result of the operation does not depend
+    on the choice of representatives of the equivalence classes. Suppose that
+    \(a \equiv a' \pmod{n}\) and \(b \equiv b' \pmod{n}\). Then \(a = a' + kn\)
+    and \(b = b' + \ell n\) for some integers \(k, \ell\). We then have
     \[
         (a' + b') - (a + b) = (a' - a) + (b' - b) = kn + \ell n = (k + \ell)n,
     \]
@@ -258,9 +263,49 @@ The preceding result allow us to speak of \emph{the} identity element and
     \[
         (a + b) \equiv (a' + b') \pmod{n}.
     \]
+    Associativity follows from the associativity of addition in \(\Z\) and the
+    identity element is \([0]_n\), viz.,
+    \[
+        [a]_n + [0]_n = [a + 0]_n = [a]_n.
+    \]
+    Similarly for each \([a]_n\) there exists an inverse \([-a]_n\) (which is
+    taken to be the equivalence class of \(-a\) modulo \(n\) where \(-a\) is the
+    inverse of \(a\) in \(\Z\)) such that
+    \[
+        [a]_n + [-a]_n = [a - a]_n = [0]_n.
+    \]
+\end{example}
+
+\begin{example}[Cyclic groups]
+    A group \(C\) is said to be \emph{cyclic} if there exists an element \(g \in
+    C\) such that
+    \[
+        C = \{g^k \mid k \in \Z\}.
+    \]
+    That is, every element of \(C\) is a power of \(g\). In this case, we say
+    that \(C\) is \emph{generated} by \(g\), and we write \(C = \gen{g}\). If
+    \(g\) has order \(n\) in \(C = \gen{g}\), then \(g^{n+1} = g\), and \(C\)
+    must have a finite number of elements, namely
+    \[
+        C = \{e, g, g^2, \ldots, g^{n - 1}\}.
+    \]
+    Otherwise, if \(g\) has infinite order in \(C\), then \(C\) must likewise
+    have an infinite number of elements. In the first case we call \(C\) the
+    \emph{(finite) cyclic group of order \(n\)} and write \(C_n\) instead of
+    just \(C\).
+
+    Taking \(g = 1\) and using the additive notation we can write the elements
+    of \(C_n\) as
+    \[
+        C_n = \{0, 1, 2, \ldots, n - 1\} = \Z/n\Z.
+    \]
+    so that \(\Z/n\Z\) is a cyclic group of order \(n\). In
+    \S~\ref{sec:homomorphisms-grp} we shall establish a stronger result that
+    relates every cyclic group to \(\Z\) and \(\Z/n\Z\).
 \end{example}
 
 \section{Homomorphisms and the category {\normalfont\sffamily Grp}}
+\label{sec:homomorphisms-grp}
 
 Recall that we have defined a group to be the pair \((G, \mult_G)\) where \(G\)
 is a set and \(\mult_G\) is a binary operation on \(G\). That is, \(\mult_G\) is
@@ -331,14 +376,12 @@ multiplications in \(G\) and \(H\) and simply write \(\phi(ab) =
     
 \end{proof}
 
-\begin{sectionthm}
-    It should be noted that we have defined morphisms in the category \(\Grp\)
-    using only the underlying set and the corresponding group operation.
-    However, our definition of a group also posits the existence of an identity
-    element and of inverses. We are able to do so because, as the following
-    theorem shows, preserving the group operation is enough to preserve the
-    identity element and inverses.
-\end{sectionthm}
+It should be noted that we have defined morphisms in the category \(\Grp\) using
+only the underlying set and the corresponding group operation. However, our
+definition of a group also posits the existence of an identity element and of
+inverses. We are able to do so because, as the following theorem shows,
+preserving the group operation is enough to preserve the identity element and
+inverses.
 
 \begin{theorem}
     A homomorphism preserves the identity element and inverses, i.e., given a
@@ -363,18 +406,62 @@ multiplications in \(G\) and \(H\) and simply write \(\phi(ab) =
     \end{enumerate}
 \end{proof}
 
-\begin{remark}
-    The second assertion in the preceding theorem is equivalent to saying that
-    the diagram
+The second assertion in the preceding theorem is equivalent to saying that the
+diagram
+\[
+    \begin{tikzcd}
+        G \arrow{r}{\phi} \arrow[swap]{d}{\id_G} & H \arrow{d}{\id_H} \\
+        G \arrow[swap]{r}{\phi} & H
+    \end{tikzcd}
+\]
+commutes. (Here \(\id_G\) and \(\id_H\) are the identity maps on \(G\) and \(H\)
+respectively.)
+
+Having shown that \(\Grp\) is a category, we now ask whether products and
+coproducts exist in \(\Grp\). If \(G\) and \(H\) are groups, a natural place to
+start is the product \(G \times H\) of their underlying sets in the category
+\(\catg{Set}\). We can endow this set with a group structure by defining the
+group operation componentwise, i.e., for \(g_1, g_2 \in G\) and \(h_1, h_2 \in
+H\),
+\[
+    (g_1, h_1) \cdot (g_2, h_2) = (g_1g_2, h_1h_2).
+\]
+This operation is associative because the group operations in \(G\) and \(H\)
+are associative. The identity element is \((e_G, e_H)\) and the inverse of \((g,
+h)\) is \((g^{-1}, h^{-1})\). The set \(G \times H\) with this group operation
+is called the \emph{direct product} of \(G\) and \(H\). From this definition it
+also follows that the natural projections
+\[
+        \begin{tikzcd}
+            & G\times H \arrow[ld, "\pi_G"'] \arrow[rd, "\pi_H"] &   \\
+          G &                                                    & H
+          \end{tikzcd}
+\]
+defined as set functions are group homomorphisms. We can now establish the
+following result.
+
+\begin{theorem}
+    The direct product \(G \times H\) of two groups \(G\) and \(H\) is a product
+    in the category \(\Grp\).
+\end{theorem}
+
+\begin{proof}
+    We need to show that \(G \times H\) satisfies the universal property of a
+    product: i.e., for any group \(K\) and group homomorphisms \(\phi_G: K \to
+    G\) and \(\phi_H: K \to H\), there exists a unique group homomorphism
+    \(\Phi: K \to G \times H\) such that the following diagram commutes:
     \[
         \begin{tikzcd}
-            G \arrow{r}{\phi} \arrow[swap]{d}{\id_G} & H \arrow{d}{\id_H} \\
-            G \arrow[swap]{r}{\phi} & H
+            &  &                                                    & G \\
+        K \arrow[rr, "\Phi"] \arrow[rrru, "\phi_G", bend left] \arrow[rrrd, "\phi_H"', bend right] &  & G \times H \arrow[rd, "\pi_H"] \arrow[ru, "\pi_G"] &   \\
+                    &  &                                                    & H
         \end{tikzcd}
     \]
-    commutes. (Here \(\id_G\) and \(\id_H\) are the identity maps on \(G\) and
-    \(H\) respectively.)
-\end{remark}
+    Since \(G \times H\) is a product in \(\catg{Set}\), there exists a set
+    function \(\Phi: K \to G \times H\) such that \(\pi_G \circ \Phi = \phi_G\)
+    and \(\pi_H \circ \Phi = \phi_H\). 
+\end{proof}
+
 
 \begin{example}
     We return to \(\Hom(G, H)\). Clearly \(\Hom(G, H)\) is non-empty because we

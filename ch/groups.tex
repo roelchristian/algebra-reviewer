@@ -459,7 +459,21 @@ following result.
     \]
     Since \(G \times H\) is a product in \(\catg{Set}\), there exists a set
     function \(\Phi: K \to G \times H\) such that \(\pi_G \circ \Phi = \phi_G\)
-    and \(\pi_H \circ \Phi = \phi_H\). 
+    and \(\pi_H \circ \Phi = \phi_H\). This function \(\Phi\) is defined as
+    \[
+        \Phi(k) = (\phi_G(k), \phi_H(k)), \quad \text{for all} \quad k \in K.
+    \]
+    It would suffice to show that \(\Phi\) is a group homomorphism. We have for
+    all \(k_1, k_2 \in K\),
+    \begin{align*}
+        \Phi(k_1k_2) & = (\phi_G(k_1k_2), \phi_H(k_1k_2))\\
+        & = (\phi_G(k_1)\phi_G(k_2), \phi_H(k_1)\phi_H(k_2))\\
+        & = (\phi_G(k_1), \phi_H(k_1))(\phi_G(k_2), \phi_H(k_2))\\
+        & = \Phi(k_1)\Phi(k_2).
+    \end{align*}
+    Therefore \(\Phi\) is a group homomorphism. The uniqueness of \(\Phi\) is a
+    consequence of the uniqueness of the set function \(\Phi\) in the category
+    \(\catg{Set}\). Therefore \(G \times H\) is a product in \(\Grp\).
 \end{proof}
 
 

@@ -5,9 +5,6 @@ AUX_EXTS = aux out ilg ind log lot lof maf mtc mtc0 xml toc ent lg dvi idv 4ct 4
 all:
 	lualatex $(doc)
 
-quick:
-	lualatex $(doc)
-
 clean:
 	for ext in $(AUX_EXTS); do \
 		find . -name "*.$$ext" -exec rm {} \; ; \

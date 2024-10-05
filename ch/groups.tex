@@ -443,20 +443,66 @@ that is a function (which with some abuse of notation we shall also denote by
 \(\phi\)) between the underlying sets \(G\) and \(H\) that `preserves' the group
 structure.
 
-If we define the function
+If we define the set function
 \[
     \phi \times \phi: G \times G \to H \times H
 \]
-by \((a, b) \mapsto (\phi(a), \phi(b))\), then we get the following diagram:
-\[
+by
+\begin{equation}
+    \label{eq:phi-times-phi}
+    (a, b) \mapsto (\phi(a), \phi(b))
+\end{equation}
+then we get the following diagram:
+\begin{equation}
     \begin{tikzcd}
         G \times G \arrow{r}{\phi \times \phi} \arrow[swap]{d}{\mult_G} & H \times H \arrow{d}{\mult_H} \\
         G \arrow{r}{\phi} & H
     \end{tikzcd}
+    \label{eq:group-homomorphism-diagram}
+\end{equation}
+Now does such a set function \(\phi \times \phi\) exist in the first place?
+Recall that since \(\Set\) is a category in which products are defined, products
+in \(\Set\) satisfy the universal property for products in a category, i.e.,
+given the set product \(A \times B\) and the set functions \(f_A : X \to A\) and
+\(f_B : X \to B\), for any set \(X\), there exists a unique set function \(f: X
+\to A \times B\) such that \(f_A = \pi_A \circ f\) and \(f_B = \pi_B \circ f\),
+where \(\pi_A\) and \(\pi_B\) are the projections from \(A \times B\) to \(A\)
+and \(B\), respectively. 
+
+Let \(\phi : G \to H\) be a set function and let \(\pi_{G_1}, \pi_{G_2}\) and
+\(\pi_{H_1}, \pi_{H_2}\) be the projections from \(G \times G\) to \(G\) and
+from \(H \times H\) to \(H\), respectively, with the subscript indicating the
+component of the product to which the projection is made, i.e., \(\pi_{G_1}\)
+sends \((a, b)\) to \(a\) and \(\pi_{G_2}\) sends \((a, b)\) to \(b\) for all
+\(a, b \in G\). Consider now the diagram
+\[
+    \begin{tikzcd}
+        G \arrow[r, "\phi"]                                                                  & H                                                        \\
+        G\times G \arrow[d, "\pi_{G_1}"'] \arrow[u, "\pi_{G_1}"] \arrow[r, "\phi\times\phi"] & H\times H \arrow[u, "\pi_{H_1}"'] \arrow[d, "\pi_{H_2}"] \\
+        G \arrow[r, "\phi"']                                                                 & H                                                       
+        \end{tikzcd}
 \]
-By requiring that the diagram commute, we obtain a function \(\phi: G \to H\)
-that does exactly what we want. Indeed if the diagram commutes, then for all
-\(a, b \in G\),
+First note that for all \(a, b\in G\), the composition \(\phi \circ \pi_{G_1}\)
+is a function from \(G \times G\) to \(H\) that sends \((a, b)\) to \(\phi(a)\).
+Similarly, \(\phi \circ \pi_{G_2}\) sends \((a, b)\) to \(\phi(b)\). The
+universal property for products then tells us that there exists a unique
+function \(\Phi : G \times G \to H \times H\) such that \(\phi = \pi_{H_1} \circ
+\Phi\) and \(\phi = \pi_{H_2} \circ \Phi\); moreover, this function is given by 
+\[
+        \Phi(a, b) = (\phi\circ\pi_{G_1}(a, b), \phi\circ\pi_{G_2}(a, b))
+\]
+(see Example~\ref{ex:product-set-universal-property},
+Ch.~\ref{ch:preliminaries}). However, by our earlier remark, this is precisely
+\[
+    \Phi(a, b) = (\phi(a), \phi(b))
+\]
+and thus the set function \(\phi \times \phi\) exists and is unique.
+Furthermore, our definition in \eqref{eq:phi-times-phi} agrees with this
+definition.
+
+By requiring that the diagram in \eqref{eq:group-homomorphism-diagram} commute,
+we obtain a function \(\phi: G \to H\) that does exactly what we want. Indeed if
+the diagram commutes, then for all \(a, b \in G\),
 \[
     \begin{tikzcd}
         (a, b) \arrow[swap, mapsto]{d}{\mult_G} & & (a, b) \arrow{r}{\phi \times \phi} & (\phi(a), \phi(b)) \arrow[mapsto]{d}{\mult_H} \\
@@ -467,7 +513,6 @@ where \(\cdot\) on the left-hand side is the group operation in \(G\) and
 \(\cdot\) on the right-hand side is the group operation in \(H\). Since the
 diagram commutes, we must arrive at the same element in \(H\) by following the
 two paths. This gives us the following more familiar definition.
-
 
 \begin{definition}
     Let \(G\) and \(H\) be groups. A \emph{homomorphism} from \(G\) to \(H\) is
@@ -482,15 +527,13 @@ We are again being imprecise but we shall not distinguish between the the
 multiplications in \(G\) and \(H\) and simply write \(\phi(ab) =
 \phi(a)\phi(b)\) when the context is clear.
 
-\begin{definition}
-    If \(G\) and \(H\) are groups, we denote the set of group homomorphisms from
-    \(G\) to \(H\) as
-    \[
-        \Hom_{\Grp}(G, H).
-    \]
-    This allows us to define the category \(\Grp\) whose objects are groups and
-    whose morphisms are group homomorphisms as in the following theorem.
-\end{definition}
+If \(G\) and \(H\) are groups, we denote the set of group homomorphisms from
+\(G\) to \(H\) as
+\[
+    \Hom_{\Grp}(G, H).
+\]
+This allows us to define the category \(\Grp\) whose objects are groups and
+whose morphisms are group homomorphisms as in the following theorem.
 
 \begin{theorem}
     The category \(\Grp\) is a category whose objects are groups and whose
@@ -498,7 +541,36 @@ multiplications in \(G\) and \(H\) and simply write \(\phi(ab) =
 \end{theorem}
 
 \begin{proof}
-    
+    If \(G\), \(H\), and \(K\) are groups, and \(\phi: G \to H\) and \(\psi: H
+    \to K\) we need to show that the composition \(\psi \circ \phi: G \to K\) is
+    a group homomorphism, i.e., the following diagram commutes:
+    \[
+        \begin{tikzcd}
+            G \times G \arrow[d, "\mult_G"] \arrow[r, "\phi \times \phi"'] \arrow[rr, "(\phi \times \phi) \times (\psi \times \psi)", bend left] & H\times H \arrow[d, "\mult_H"] \arrow[r, "\psi \times \psi"'] & K\times K \arrow[d, "\mult_K"] \\
+            G \arrow[r, "\phi"] \arrow[rr, "\psi \circ \phi"', bend right]                                                                       & H \arrow[r, "\psi"]                                           & K                             
+            \end{tikzcd}
+    \]
+    Because each of the inner rectangles in the diagram commutes, the outer
+    rectangle must also commute. More explicitly, for all \(a, b \in G\),
+    \begin{align*}
+        (\psi \circ \phi)(ab) &= \psi(\phi(ab))&\\
+        &=\psi(\phi(a)\phi(b))& (\text{since \(\phi\) is a homomorphism})\\
+        &= \psi(\phi(a))\psi(\phi(b)) & (\text{since \(\psi\) is a homomorphism})\\
+        &= (\psi \circ \phi)(a)(\psi \circ \phi)(b).&
+    \end{align*}
+    Associativity follows from the associativity of set functions (since group
+    homomorphisms are set functions). For each group \(G\), the identity
+    function \(\id_G: G \to G\) is a group homomorphism because for all \(a, b
+    \in G\),
+    \[
+        \id_G(ab) = ab = \id_G(a)\id_G(b).
+    \]
+    Finally, this identity function is neutral with respect to composition of
+    functions, i.e., for all group homomorphisms \(\phi: G \to H\),
+    \[
+        (\phi \circ \id_G)(a) = \phi(\id_G(a)) = \phi(a) = \id_H(\phi(a)) = (\id_H \circ \phi)(a).
+    \]
+    Thus \(\Grp\) is a category.
 \end{proof}
 
 It should be noted that we have defined morphisms in the category \(\Grp\) using

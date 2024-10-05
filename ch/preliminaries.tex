@@ -1,6 +1,8 @@
 \chapter{Preliminaries}
+\label{ch:preliminaries}
 
 \section{Set theory review}
+\label{sec:set-theory-review}
 
 \begin{definition}[Relation]
     A relation \(R\) on a set \(A\) is a subset of \(A \times A\). For all \(a,
@@ -353,6 +355,7 @@ all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
 \end{remark}
 
 \begin{definition}
+    \label{def:monomorphism-epimorphism-set}
     A function \(f: A \to B\) is a \emph{monomorphism} (or \emph{monic}) if for
     all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if \(f \circ
     \alpha = f \circ \beta\), then \(\alpha = \beta\). Similarly \(f\) is an
@@ -362,6 +365,7 @@ all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
 \end{definition}
 
 \begin{theorem}
+    \label{thm:injective-surjective-monomorphism-epimorphism}
     A function \(f: A \to B\) is injective if and only if it is a monomorphism.
     Similarly, \(f\) is surjective if and only if it is an epimorphism.
 \end{theorem}
@@ -507,6 +511,7 @@ sets form a category.
 \end{example}
 
 \begin{example}
+    \label{ex:category-from-set-relation}
     Consider a set \(S\) and a relation \(\rho\) in \(S\) that is reflexive and
     transitive. That is \(a\rho a\) for all \(a \in S\) and if \(a\rho b\) and
     \(b\rho c\) then \(a\rho c\). We claim that we can define the category
@@ -590,30 +595,335 @@ sets form a category.
     example) and we see that \(\catg{\hat{S}}\) is a category.
 \end{example}
 
-\begin{example}
-    Let us now look at a more complex example. Let \(\catg{C}\) be a category and let \(A\) be an object of \(\catg{C}\). We shall now construct a category \(\catg{C}_A\) whose objects are some morphisms in \(\catg{C}\) and whose morphisms are certain diagrams of morphisms in \(\catg{C}\). We define \(\catg{C}_A\) as follows:
+\begin{example}[Slice category]
+    \label{ex:slice-category}
+    Let us now look at a more abstract example but one that will help us dispel
+    the notion that objects in a category are just sets in disguise. Let
+    \(\catg{C}\) be a category and let \(A\) be an object of \(\catg{C}\). We
+    shall now construct a category \(\catg{C}_A\) whose objects are some
+    morphisms in \(\catg{C}\) (and since we are dealing with morphisms, there is
+    no inherent notion of `elements' in these objects) and whose morphisms are
+    certain diagrams of morphisms in \(\catg{C}\). We define \(\catg{C}_A\) as
+    follows:
     \begin{enumerate}[label=(\alph*), itemsep=0pt, wide]
-        \item The objects of \(\catg{C}_A\) are all morphisms in \(\catg{C}\) with codomain \(A\). Graphically, each object of \(\catg{C}_A\) is an arrow from some object \(X\) to \(A\) (usually written top down):
+        \item The objects of \(\catg{C}_A\) are all morphisms in \(\catg{C}\)
+        with codomain \(A\). Graphically, each object of \(\catg{C}_A\) is an
+        arrow from some object \(X\) to \(A\) (usually written top down):
         \[
             \begin{tikzcd}
                 X \arrow[d, "f"'] \\
                 A                
             \end{tikzcd}
         \]
-        \item If \(f_1 : X \to A\) and \(f_2 : Y \to A\) (where \(X, Y \in \Obj{\catg{C}}\)) are two arrows in \(\catg{C}_A\), i.e.,
+        \item If \(f_1 : X \to A\) and \(f_2 : Y \to A\) (where \(X, Y \in
+        \Obj{\catg{C}}\)) are two arrows in \(\catg{C}_A\), i.e.,
         \[
             \begin{tikzcd}
                 X \arrow[d, "f_1"'] &  & Y \arrow[d, "f_2"'] \\
                 A                   &  & A                  
             \end{tikzcd}
         \]
-        then we define \(\Hom_{\catg{C}_A}(f_1, f_2)\) to be the set of all morphisms \(g \in \Hom_{\catg{C}}(X, Y)\) such that the diagram
+        then we define \(\Hom_{\catg{C}_A}(f_1, f_2)\) to be the set of all
+        morphisms \(g \in \Hom_{\catg{C}}(X, Y)\) such that the diagram
         \[
             \begin{tikzcd}
                 X \arrow[rr, "g"] \arrow[rd, "f_1"'] &   & Y \arrow[ld, "f_2"] \\
-                                                     & A &                    
+                                                                    & A &                    
                 \end{tikzcd}
         \]
-        commutes (in the `ambient' category \(\catg{C}\)). That is, \(f_1 \to f_2\) correspond to morphisms \(g : X \to Y\) in \(\catg{C}\) such that \(f_2 \circ g = f_1\).
+        commutes (in the `ambient' category \(\catg{C}\)). That is, \(f_1 \to
+        f_2\) correspond to morphisms \(g : X \to Y\) in \(\catg{C}\) such that
+        \(f_2 \circ g = f_1\).
     \end{enumerate}
+    
+    For each \(X \in \Obj{\catg{C}}\), the identity morphism \(\id_X\) is
+    inherited from \(\catg{C}\) and corresponds to the diagram
+    \[
+        \begin{tikzcd}
+            X \arrow[rr, "\id_X"] \arrow[rd, "f"'] &   & X \arrow[ld, "f"]\\
+                                                                    & A &
+        \end{tikzcd}
+    \]
+    which commutes because \(\catg{C}\) is a category. The composition \(f_1 \to
+    f_2 \to f_3\) corresponds to juxtaposing the diagrams \(f_1 \to f_2\) and
+    \(f_2 \to f_3\), viz.,
+    \[
+        \begin{tikzcd}
+            X \arrow[rd, "f_1"'] \arrow[r, "g"] & Y \arrow[d, "f_2"] \arrow[r, "h"] & Z \arrow[ld, "f_3"] \\
+            & A &                    
+        \end{tikzcd}
+    \]
+    where again \(f_1: X \to A\), \(f_2: Y \to A\), and \(f_3: Z \to A\) for
+    objects \(X, Y, Z\) of \(\catg{C}\). Because \(\catg{C}\) is a category, the
+    diagram above commutes and we have \(h \circ g : X \to Z\) in \(\catg{C}\).
+    Removing the middle arrow gives us
+    \[
+        \begin{tikzcd}
+            X \arrow[rr, "h \circ g"] \arrow[rd, "f_1"'] &   & Z \arrow[ld, "f_3"] \\
+                                                                    & A &
+        \end{tikzcd}
+    \]
+    which is a morphism in \(\catg{C}_A\). Given another morphism \(k : W \to
+    X\) and \(f_4 : W \to A\) for some object \(W\) of \(\catg{C}\), we can form
+    the diagram
+    \[
+        \begin{tikzcd}
+            W   \arrow[rrd, "f_4"']
+                \arrow[r, "k"]
+            & X \arrow[rd, "f_1"]
+                \arrow[rr, "g"]&   & Y \arrow[ld, "f_2"'] \arrow[r, "h"] & Z \arrow[lld, "f_3"] \\
+                & & A & &                     
+        \end{tikzcd}
+    \]
+    which again commutes by the associativity of composition in \(\catg{C}\).
+    Finally, from the definition of \(\id_X\) and \(\id_Y\) in \(\catg{C}\) we
+    have the diagrams
+    \[
+        \begin{tikzcd}
+            X \arrow[rd, "f_1"']
+            \arrow[r, "\id_X"] &
+            X \arrow[d, "f_1"']
+            \arrow[r, "g"] & Y \arrow[ld, "f_2"] & \text{and}  & X \arrow[r, "g"] \arrow[rd, "f_1"'] & Y \arrow[r, "\id_Y"] \arrow[d, "f_2"'] & Y \arrow[ld, "f_2"] \\
+                                                    & A                                  &                     &  &                                     & A                                      &                    
+            \end{tikzcd}
+    \]
+    which again commute because \(\catg{C}\) is a category and thus
+    \[
+        g \circ \id_X = g = \id_Y \circ g.
+    \]
+    
+    This proves that \(\catg{C}_A\) is a category. Categories constructed in
+    this manner are called \emph{slice categories}.
+
+    Let us try to construct a comma category from the category we have defined
+    on \(\Z\) with the relation \(\leq\) in
+    Example~\ref{ex:category-from-set-relation}. Call this category \(\catg{C}\)
+    and choose an object, say \(A = 3\), in this category. Then the objects of
+    \(\catg{C}_A\) are morphisms in \(\catg{C}\) with target \(3\), i.e.,
+    ordered pairs in \(\Z \times \Z\) of the form \((k, 3)\) where \(k \leq 3\).
+    If \(m\) and \(n\) are objects in this category, then the diagram
+    \[
+        \begin{tikzcd}
+            m \arrow[rd] \arrow[rr, "f"] &   & n \arrow[ld] \\
+                                         & 3 &             
+            \end{tikzcd}
+    \]
+    commutes if and only if \(f\) is a morphism \((m, n)\) in \(\catg{C}\)
+    (where again \(m, n \leq 3\)); more explicitly, the diagram commutes if and
+    only if \(m \leq n\).
 \end{example}
+
+\begin{example}[Coslice category]
+    \label{ex:coslice-category}
+    On the other hand, consider a category \(\catg{C}\) and an object \(A\) of
+    this category. Let us now construct a category whose morphisms are morphisms
+    in \(C\) from \(A\) to some other object \(X\) of \(\catg{C}\). Consider the
+    category \(\catg{Set}\) and the singleton \(\{*\}\) which is an object of
+    this category. We will call the resulting category \(\catg{Set_*}\).
+
+    The objects of \(\catg{Set_*}\) will then be morphisms in \(\catg{Set}\) of
+    the form \(f: \{*\} \to X\) for some set \(X\). Each morphism (in
+    \(\catg{Set}\)) of this type fixes an element \(x \in X\); i.e., \(f\)
+    determines a unique element \(x \in X\) and \(x\) determines \(f\). Thus we
+    can denote the objects of \(\catg{Set_*}\) to be the elements of the ordered
+    pairs \((X, x)\).
+
+    A morphism in \(\catg{Set_*}\) is then a `function' between two objects
+    \((X, x)\) and \((Y, y)\) in \(\catg{Set_*}\). Since \(x \in X\) and \(y \in
+    Y\), this morphism is a set function \(f : X \to Y\) such that \(f(x) = y\)
+    and thus the use of the term `function' is justified. If \(f : (X, x) \to
+    (Y, y)\) and \(g : (Y, y) \to (Z, z)\) are two morphisms in
+    \(\catg{Set_*}\), then their composition is defined as the usual composition
+    of functions; since \(f(x) = y\) and \(g(y) = z\), we have \(g \circ f(x) =
+    g(f(x)) = g(y) = z\). The associativity of this composition follows
+    similarly from the associativity of the composition of functions.
+
+    The identity morphism on an object \((X, x)\) is the function \(\id_X : X
+    \to X\) and thus \(\id_X(x) = x\). The identity morphism is neutral with
+    respect to composition because for all \(f : (X, x) \to (Y, y)\) we have \(f
+    \circ \id_X = f = \id_Y \circ f\). Thus \(\catg{Set_*}\) is a category.
+
+    We call \(\catg{Set_*}\) the \emph{category of pointed sets}. Each object in
+    this category is a set with a distinguished element (also called the
+    \emph{base point}) and a morphism between two objects is a function between
+    the sets that `preserves' the base point, i.e., by sending the base point of
+    the first set to the base point of the second set. The category of pointed
+    sets is an example of a \emph{coslice category}, which we construct by
+    fixing an object in a category and considering morphisms to other objects in
+    the category. The construction is similar to the construction of slice
+    categories in Example~\ref{ex:slice-category}.
+\end{example}
+
+\begin{example}
+    Given two objects \(A\) and \(B\) of a category \(\catg{C}\) we know construct a new category \(\catg{C}_{A, B}\) whose objects are diagrams of \(\catg{C}\) of the form
+    \[
+        \begin{tikzcd}
+                    & A \\
+        X \arrow[rd, "g"'] \arrow[ru, "f"] &   \\
+                    & B
+        \end{tikzcd}
+    \]
+    for some object \(X\) of \(\catg{C}\). The morphisms are then given by
+    arrows from one such diagram to another, i.e.,
+    
+\end{example}
+
+\begin{example}[Opposite category]
+    Let \(\catg{C}\) be a category and consider a structure \(\catg{C}^\op\)
+    with \(\Obj{\catg{C}^\op} = \Obj{\catg{C}}\) and for all objects \(A\) and
+    \(B\) of \(\catg{C}\),
+    \[
+        \Hom_{\catg{C}^\op}(A, B) = \Hom_{\catg{C}}(B, A).
+    \]
+    Intuitively, we can construct \(\catg{C}^\op\) by reversing the direction of
+    all the arrows in \(\catg{C}\), i.e., if \(A \to B\) is an arrow in
+    \(\catg{C}\), then \(B \to A\) is an arrow in \(\catg{C}^\op\). That
+    \(\catg{C}^\op\) is a category follows directly from \(\catg{C}\) being a
+    category. Indeed, for any object \(A\) of \(\catg{C}\), since
+    \(\Obj{\catg{C}^\op} = \Obj{\catg{C}}\), it follows that
+    \(\Hom_{\catg{C}^\op}(A, A) = \Hom_{\catg{C}}(A, A)\) and thus the identity
+    morphism \(\id_A\) in \(\catg{C}\) coincides with the identity morphism in
+    \(\catg{C}^\op\). If we write \(\circ\) for the composition in
+    \(\catg{C}^\op\) and \(*\) for the composition in \(\catg{C}\), then for all
+    objects \(A, B, C\) of \(\catg{C}^\op\) and all morphisms \(f \in
+    \Hom_{\catg{C}^\op}(A, B) = \Hom_{\catg{C}}(B,A)\) and \(g \in
+    \Hom_{\catg{C}^\op}(B, C) = \Hom_{\catg{C}}(C, B)\), the composition law in
+    \(\catg{C}\) determines a morphims \(f * g\) through which we can deduce the
+    composition law in \(\catg{C}^\op\), viz.,
+    \begin{align*}
+        \Hom_{\catg{C}^\op}(A, B) \times \Hom_{\catg{C}^\op}(B, C) &\to \Hom_{\catg{C}^\op}(A, C)\\
+        (f, g) &\mapsto g \circ f = f * g.
+    \end{align*}
+    Moreover, if \(f \in \Hom_{\catg{C}^\op}(A, B)\), \(g \in
+    \Hom_{\catg{C}^\op}(B, C)\), and \(h \in \Hom_{\catg{C}^\op}(C, D)\) (\(A,
+    B, C, D\) objects of \(\catg{C}^\op\)), then the associativity of
+    composition in \(\catg{C}\) implies that
+    \[ 
+        f \circ (g \circ h) = f \circ (h * g) = (h * g) * f = h * (g * f) = (g * f) \circ h = (f \circ g) \circ h.
+    \]
+    Finally, for all \(f \in \Hom_{\catg{C}^\op}(A, B)\) we have
+    \[
+        f \circ \id_A = \id_A * f = f = f * \id_B = \id_B \circ f.
+    \]
+    This gives us a full construction of \(\catg{C}^\op\). We call
+    \(\catg{C}^\op\) the \emph{opposite category} of the category \(\catg{C}\).
+\end{example}
+
+% MORPHISMS
+
+\bigskip
+
+We now look at morphisms in a category in more detail. Recall that in
+\S~\ref{sec:set-functions} we have begun a taxonomy of functions by defining the
+notions of `injective,' `surjective,' and `bijective' functions. We wish now to
+extend this classification to arbitrary categories. However, as we have remarked
+at the start of this section, since the notion or `injectivity' relies on the
+notion of an element's membership in a set, we cannot directly extend this
+definition to categories. Indeed, in Example~\ref{ex:slice-category} we have
+constructed a category whose objects are morphisms in another category; how then
+can one define `injectivity' if the statement `\(f\) is injective if and only if
+for all \(x, y \in X\), \(f(x) = f(y)\) implies \(x = y\)' does not even make
+sense given that we cannot say that \(x\) and \(y\) are elements of a morphism
+in an arbitrary category? 
+
+\begin{definition}[Isomorphism]
+    A morphism \(f: A \to B\) in a category \(\catg{C}\) is an
+    \emph{isomorphism} if there exists a morphism \(g: B \to A\) such that \(g
+    \circ f = \id_A\) and \(f \circ g = \id_B\). If such a morphism \(g\) exists
+    then we say that \(A\) and \(B\) are \emph{isomorphic} and write \(A \cong
+    B\).
+\end{definition}
+
+Observe that this definition does not rely on the notion of membership in a set.
+Instead, in a vein similar to Definition~\ref{def:monomorphism-epimorphism-set}.
+we have defined an isomorphism in terms of its relations with another morphism
+in the category. For a set function \(f : X \to Y\), we have shown that for
+\(f\) to be a bijection there must exist another set function \(g: Y \to X\)
+whose composition \(g \circ f\) maps every element of \(X\) to itself; that is,
+\(g \circ f\) must be the identity function of \(X\). We can establish a similar
+argument (taking away the need for the notion of membership in a set) to
+establish the following result:
+
+\begin{theorem}
+	The inverse of an isomorphism is unique.
+\end{theorem}
+
+\begin{proof}
+	Let \(f : A \to B\) be a morphism in a category \(\catg{C}\), and let
+	\(g_1\) and \(g_2\) be inverses of \(f\). Then by the definition of an
+	isomorphism, we have
+    \[
+        g_1 \circ f = \id_A \quad \text{and} \quad f \circ g_1 = \id_B.
+    \]
+    It then follows that
+    \[
+        g_1 = g_1 \circ \id_B = g_1 \circ (f \circ g_2) = (g_1 \circ f) \circ g_2 = \id_A \circ g_2 = g_2.
+    \]
+\end{proof}
+
+Since the inverse \(g\) is uniquely determined by the isomorphism \(f\), we can
+denote this inverse by \(f^{-1}\) without ambiguity. The following properties of isomorphisms are immediate from the definition:
+
+\begin{theorem}
+    Let \(\catg{C}\) be a category.
+    \begin{enumerate}[label=(\alph*), itemsep=0pt]
+        \item For each object \(A\) in \(\catg{C}\), the identity morphism \(\id_A\) is an isomorphism and is its own inverse.
+        \item If \(f: A \to B\) is an isomorphism, then its inverse \(f^{-1}\) is also an isomorphism and \((f^{-1})^{-1} = f\).
+        \item If \(f : A \to B\) and \(g : B \to C\) are isomorphisms, then so is \(g \circ f\) and \((g \circ f)^{-1} = f^{-1} \circ g^{-1}\).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    We prove each statement for completeness. (a) Observe that \(\id_A \circ
+    \id_A = \id_A\). (b) Note that \(f \circ f^{-1} = \id_B\) and \(f^{-1} \circ
+    f = \id_A\) implies that \(f^{-1}\) is an isomorphism whose inverse is
+    \(f\). (c) Finally, we have
+    \begin{align*}
+        (f^{-1} \circ g^{-1}) &\circ (g \circ f)\\
+        &= f^{-1} \circ (g^{-1} \circ g) \circ f = f^{-1} \circ \id_B \circ f = f^{-1} \circ f = \id_A.
+    \end{align*}
+    The proof that \(f^{-1} \circ g^{-1}\) is a right inverse of \(g \circ f\)
+    follows similarly.
+\end{proof}
+
+The results of \S~\ref{sec:set-functions} tell us that bijections are precisely
+the isomorphisms in the category \(\catg{Set}\). In the category \(\catg{R}\)
+obtained from the relation \(\leq\) on \(\Z\) (as in
+Example~\ref{ex:slice-category}) the only isomorphisms are the identity
+morphisms. On the other hand, a category in which every morphism is an
+isomorphism is called a \emph{groupoid}. Let us construct a groupoid by first
+considering the category \(\catg{R}\) obtained from a set \(S\) and a relation
+\(\sim\) on \(S\) that is reflexive and transitive (we have constructed this
+category in Example~\ref{ex:category-from-set-relation}). Now suppose that
+\(\sim\) is also symmetric (i.e., an equivalence relation). Then we have
+\[
+    (a, b) \in \Hom_{\catg{R}}(a, b) \implies a \sim b \implies b \sim a \implies (b, a) \in \Hom_{\catg{R}}(b, a).
+\]
+Now since
+\[
+    (a, b) \circ (b, a) = (a, a) = \id_a \quad \text{and} \quad (b, a) \circ (a, b) = (b, b) = \id_b,
+\]
+it follows that \((a, b)\) is an isomorphism with inverse \((b, a)\). Since
+\((a, b)\) was arbitrarilly chosen, we see that every morphism in \(\catg{R}\)
+is an isomorphism and thus \(\catg{R}\) is a groupoid.
+
+Having earlier characterized monomorphisms and epimorphisms in \(\catg{Set}\) in
+Definition~\ref{def:monomorphism-epimorphism-set} fully in terms of other set
+functions (without reference to elements of sets), we can now extend these
+definitions nicely to arbitrary categories. Our insistence to present
+Definition~\ref{def:monomorphism-epimorphism-set} in that manner now appear
+justified: indeed, observe that the definition we now give is the same as our
+previous definition, with the only difference being that we have replaced the
+reference to objects of \(\catg{Set}\) with a more general reference to objects
+of an arbitrary category \(\catg{C}\).
+
+\begin{definition}
+    \label{def:monomorphism-epimorphism-category}
+    A morphism \(f: A \to B\) in a category \(\catg{C}\) is a
+    \emph{monomorphism} if for all objects \(X\) and morphisms \(g, h: X \to
+    A\), \(f \circ g = f \circ h\) implies \(g = h\). A morphism \(f: A \to B\)
+    is an \emph{epimorphism} if for all objects \(Y\) and morphisms \(g, h: B
+    \to Y\), \(g \circ f = h \circ f\) implies \(g = h\).
+\end{definition}
+
+In Theorem~\ref{thm:injective-surjective-monomorphism-epimorphism}, we have already shown that monomorphisms and epimorphisms in \(\catg{Set}\) are precisely the injective and surjective functions, respectively. In Example~\ref{ex:category-from-set-relation}

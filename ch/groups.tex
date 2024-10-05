@@ -145,24 +145,46 @@ below.) This shows that \((G, \mu, \iota, e) = (G', \mu', \iota', e')\). This
 illustrates that the group structure is uniquely determined by the group
 operation and the inverse map.
 
-
-
-
-
 % Group as a category
-Finally, building on the categorical intuition we have developed in
+We take one final excursion before studying the properties of groups in detail.
+Building on the categorical intuition we have developed in
 \S~\ref{sec:category-theory} of Chapter~\ref{ch:preliminaries}, we can think of
 a group as a category with a single object. More explicitly, we have the
 following definition.
 
 \begin{definition}
-    A group is a groupoid with a single object.
+    A group is the \(\Hom\)-set of a groupoid with a single object.
 \end{definition}
 
 That this is equivalent to Definition~\ref{def:group} can be illustrated as
 follows. Recall that a groupoid is a category in which every morphism is an
 isomorphism. Let \(\catg{G}\) be a groupoid and suppose that \(*\) is the lone
-object in this category. Then the set of morphisms \(\Hom_{\catg{G}}(*, *)\)
+object in this category. Then \(\Hom_{\catg{G}}(*, *)\) is the set of all
+morphisms from \(*\) to \(*\). Because \(\catg{G}\) is a category, it admits a
+composition law
+\[
+    \Hom_{\catg{G}}(*, *) \times \Hom_{\catg{G}}(*, *) \to \Hom_{\catg{G}}(*, *).
+\]
+that sends a pair of morphisms \((f, g)\) to the morphism \(f \circ g\) that is
+associative, i.e., for all morphisms \(f, g, h \in \Hom_{\catg{G}}(*, *)\),
+\[
+    f \circ (g \circ h) = (f \circ g) \circ h.
+\]
+and admits an identity morphism \(\id_{*}\) such that for all morphisms \(f\),
+\[
+    f \circ \id_{*} = f = \id_{*} \circ f.
+\]
+Since every morphism in \(\catg{G}\) is an isomorphism, each morphism \(f \in
+\Hom_{\catg{G}}(*, *)\) has an inverse \(f\inv\) such that
+\[
+    f \circ f\inv = \id_{*} = f\inv \circ f.
+\]
+Moreover, this inverse is unique
+(Theorem~\ref{thm:isomorphism-unique-inverse-category},
+Ch.~\ref{ch:preliminaries}). Taking these properties together, we observe that
+the elements of the set \(\Hom_{\catg{G}}(*, *)\) satisfy the axioms of a group.
+Thus a group can be thought of as the set of morphisms in a groupoid with a
+single object.
 
 \begin{theorem}
     \label{thm:group-inverses}

@@ -68,7 +68,8 @@ It should be noted that Definition~\ref{def:group} is not the only possible
 definition of a group. Since our initial definition axiomatizes the existence of
 an identity element \(e\) in a group \(G\) and the existence of an inverse
 \(a\inv\) for every element \(a\) in \(G\), which are unique and unique for each
-\(a\in G\), respectively, it would be quite natural to present an alternative definition that directly encodes these properties. Thus we have:
+\(a\in G\), respectively, it would be quite natural to present an alternative
+definition that directly encodes these properties. Thus we have:
 \begin{definition}
     \label{def:group-4-tuple}
     A \emph{group} is a 4-tuple \((G, \mult, \iota, e)\) where \(G\) is a set,
@@ -96,7 +97,8 @@ of Definition~\ref{def:group-4-tuple}, viz.,
 \[
     \mult(a, a\inv) = \mult(a\inv, a) = e.
 \]
-Nonetheless, we shall content ourselves with Definition~\ref{def:group} for the remainder of these notes.
+Nonetheless, we shall content ourselves with Definition~\ref{def:group} for the
+remainder of these notes.
 
 To further illustrate this definition, consider a group \((G, \mult, \iota,
 e)\). Write \(\mult(a,b)\) as \(a\cdot b\) and suppose \(\delta : G \to G\) is a
@@ -311,19 +313,15 @@ single object.
     \]
 \end{definition}
 
-\begin{remark}
-    As a matter of convention, we shall write
-    \[
-        a + b \quad \text{instead of} \quad ab
-    \]
-    in an abelian group and refer to the operation and the term \(a + b\) as
-    `addition' and the `sum' of \(a\) and \(b\), respectively. We shall also
-    write \(-a\) instead of \(a\inv\), \(na\) instead of \(a^n\), and \(0\) for
-    the identity element of the group. The sum \(a + (-b)\) for elements \(a,
-    b\) of an abelian group will also be abbreviated to \(a - b\). Note that
-    \(na\) does not refer to the `group product' in the sense of our definition
-    of a group, but is purely a matter of notation.
-\end{remark}
+As a matter of convention, we shall write \(a + b\) instead of \(ab\) in an
+abelian group and refer to the operation and the term \(a + b\) as `addition'
+and the `sum' of \(a\) and \(b\), respectively. We shall also write \(-a\)
+instead of \(a\inv\), \(na\) instead of \(a^n\), and \(0\) for the identity
+element of the group. The sum \(a + (-b)\) for elements \(a, b\) of an abelian
+group will also be abbreviated to \(a - b\). Note that \(na\) does not refer to
+the `group product' in the sense of our definition of a group, but is purely a
+matter of notation. (Indeed such a `product' might not even make sense given
+that \(n\) is not necessarily an element of the group.)
 
 \begin{theorem}
     In an abelian group \(G\), \((ab)^n = a^n b^n\) and \((ab)\inv = a\inv
@@ -514,6 +512,13 @@ single object.
     so that \(\Z/n\Z\) is a cyclic group of order \(n\). In
     \S~\ref{sec:homomorphisms-grp} we shall establish a stronger result that
     relates every cyclic group to \(\Z\) and \(\Z/n\Z\).
+
+    It follows immediately that every cyclic group is abelian. Indeed, if \(a, b
+    \in C\) (for some cyclic group \(C\)), then \(a = g^m\) and \(b = g^n\) for
+    some integers \(m, n\) and
+    \[
+        ab = g^m g^n = g^{m + n} = g^{n + m} = g^n g^m = ba.
+    \]
 \end{example}
 
 \section{Homomorphisms and the category {\normalfont\bfseries Grp}}
@@ -638,7 +643,8 @@ whose morphisms are group homomorphisms as in the following theorem.
             \end{tikzcd}
     \]
     Because each of the inner rectangles in the diagram commutes, the outer
-    rectangle must also commute. By the universal property for products, there must exist a unique function
+    rectangle must also commute. By the universal property for products, there
+    must exist a unique function
     \[
         (\psi \circ \phi) \times (\psi \circ \phi): G \times G \to K \times K
     \]
@@ -654,7 +660,8 @@ whose morphisms are group homomorphisms as in the following theorem.
     \[
             (\phi \times \phi) \circ (\psi \times \psi) : G \times G \to K \times K,
     \]
-    the universal property for products again tells us that the diagram below commutes:
+    the universal property for products again tells us that the diagram below
+    commutes:
     \[
         \begin{tikzcd}
             G \arrow[r, "\phi"] \arrow[rr, "\psi \circ \phi", bend left]                         & H \arrow[r, "\psi"]                                                                  & K                                                        \\
@@ -662,7 +669,8 @@ whose morphisms are group homomorphisms as in the following theorem.
             G \arrow[r, "\phi"'] \arrow[rr, "\psi \circ \phi"', bend right]                      & H \arrow[r, "\psi"']                                                                 & K                                                       
             \end{tikzcd}
     \]
-    By the uniqueness of \((\psi \circ \phi) \times (\psi \circ \phi)\) we must then have
+    By the uniqueness of \((\psi \circ \phi) \times (\psi \circ \phi)\) we must
+    then have
     \[
         (\psi \circ \phi) \times (\psi \circ \phi) = (\phi \times \phi) \circ (\psi \times \psi).
     \]
@@ -733,9 +741,8 @@ respectively.)
 Having shown that \(\Grp\) is a category, we now ask whether products and
 coproducts exist in \(\Grp\). If \(G\) and \(H\) are groups, a natural place to
 start is the product \(G \times H\) of their underlying sets in the category
-\(\catg{Set}\). We can endow this set with a group structure by defining the
-group operation componentwise, i.e., for \(g_1, g_2 \in G\) and \(h_1, h_2 \in
-H\),
+\(\Set\). We can endow this set with a group structure by defining the group
+operation componentwise, i.e., for \(g_1, g_2 \in G\) and \(h_1, h_2 \in H\),
 \[
     (g_1, h_1) \cdot (g_2, h_2) = (g_1g_2, h_1h_2).
 \]
@@ -770,9 +777,9 @@ following result.
                     &  &                                                    & H
         \end{tikzcd}
     \]
-    Since \(G \times H\) is a product in \(\catg{Set}\), there exists a set
-    function \(\Phi: K \to G \times H\) such that \(\pi_G \circ \Phi = \phi_G\)
-    and \(\pi_H \circ \Phi = \phi_H\). This function \(\Phi\) is defined as
+    Since \(G \times H\) is a product in \(\Set\), there exists a set function
+    \(\Phi: K \to G \times H\) such that \(\pi_G \circ \Phi = \phi_G\) and
+    \(\pi_H \circ \Phi = \phi_H\). This function \(\Phi\) is defined as
     \[
         \Phi(k) = (\phi_G(k), \phi_H(k)), \quad \text{for all} \quad k \in K.
     \]
@@ -786,7 +793,7 @@ following result.
     \end{align*}
     Therefore \(\Phi\) is a group homomorphism. The uniqueness of \(\Phi\) is a
     consequence of the uniqueness of the set function \(\Phi\) in the category
-    \(\catg{Set}\). Therefore \(G \times H\) is a product in \(\Grp\).
+    \(\Set\). Therefore \(G \times H\) is a product in \(\Grp\).
 \end{proof}
 
 

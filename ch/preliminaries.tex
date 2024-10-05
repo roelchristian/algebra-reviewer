@@ -139,11 +139,11 @@ thus \(\mathcal{P} = \mathcal{P}_{\sim}\).
     B\) such that \((a, b) \in f\).
 \end{definition}
 
-We introduce some terminology and notation. if \((a, b) \in f\), it is
-customary to write \(f(a) = b\). We call \(f(a)\) the \emph{image} of \(a\)
-under \(f\). Because \(f(a) = b\) is unique, it follows immediately that if
-\(a = b\) we must have \(f(a) = f(b)\). Following the convention in the
-literature, we would say that \(f\) is \emph{well-defined.}
+We introduce some terminology and notation. if \((a, b) \in f\), it is customary
+to write \(f(a) = b\). We call \(f(a)\) the \emph{image} of \(a\) under \(f\).
+Because \(f(a) = b\) is unique, it follows immediately that if \(a = b\) we must
+have \(f(a) = f(b)\). Following the convention in the literature, we would say
+that \(f\) is \emph{well-defined.}
 
 If \(f\) is a function from \(A\) to \(B\), we write
 \[
@@ -161,8 +161,8 @@ If \(S \subset A\), the \emph{image} of \(S\) under \(f\) is the set
 \[
     f(S) = \{f(a) : a \in S\}.
 \]
-If \(S = A\) then we simply write \(\img f\) for \(f(A)\). This is called
-the \emph{image} of \(f\).
+If \(S = A\) then we simply write \(\img f\) for \(f(A)\). This is called the
+\emph{image} of \(f\).
 
 
 The function \(f\) is \emph{injective} (or \emph{one-to-one}) if for all \(a, b
@@ -330,10 +330,11 @@ all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
         \item Suppose \(f\) is surjective. Then for all \(b \in B\), there
         exists an \(a \in A\) such that \(f(a) = b\). Define the function \(g :
         B \to A\) by sending each \(b \in B\) to some \(a \in A\) such that
-        \(f(a) = b\). Since \(A \neq \emptyset\) and \(a\) need not be unique, we use the axiom of choice
-        to select a unique \(a\) for each \(b\) in an arbitrary way. (We cannot
-        let \(g(b)\) be a set of all \(a\) such that \(f(a) = b\) because then
-        \(g\) would not be a function.) Then for all \(b \in B\),
+        \(f(a) = b\). Since \(A \neq \emptyset\) and \(a\) need not be unique,
+        we use the axiom of choice to select a unique \(a\) for each \(b\) in an
+        arbitrary way. (We cannot let \(g(b)\) be a set of all \(a\) such that
+        \(f(a) = b\) because then \(g\) would not be a function.) Then for all
+        \(b \in B\),
         \[
             (f \circ g)(b) = f(g(b)) = f(a) = b = \id_B(b).
         \]
@@ -351,7 +352,12 @@ all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
     note that as we have seen in construction in the proof, the left and right
     inverses of a function are not unique.
 
-    Another observation must be made: thus far our definition of injectivity and surjectivity relies on the property of sets consisting of `elements'. It is natural to ask then whether we can define these properties in a more general setting, i.e., without relying on the notion of elements and simply looking at the properties of the functions themselves. This is the motivation for the following definition.
+    Another observation must be made: thus far our definition of injectivity and
+    surjectivity relies on the property of sets consisting of `elements'. It is
+    natural to ask then whether we can define these properties in a more general
+    setting, i.e., without relying on the notion of elements and simply looking
+    at the properties of the functions themselves. This is the motivation for
+    the following definition.
 \end{remark}
 
 \begin{definition}
@@ -371,8 +377,11 @@ all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
 \end{theorem}
 
 \begin{proof}
-    Suppose \(f\) is injective. If \(A\) is empty then for all sets \(X\) there is no function \(\alpha: X \to A\), so the statement is vacuously true. We can then assume that \(A\) is nonempty. Then \(f\) has a left inverse \(g\) and for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if \(f \circ \alpha = f \circ \beta\),
-    then 
+    Suppose \(f\) is injective. If \(A\) is empty then for all sets \(X\) there
+    is no function \(\alpha: X \to A\), so the statement is vacuously true. We
+    can then assume that \(A\) is nonempty. Then \(f\) has a left inverse \(g\)
+    and for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if \(f
+    \circ \alpha = f \circ \beta\), then 
     \[
         (g \circ f)\circ \alpha = (g \circ f) \circ \beta.
     \]
@@ -380,21 +389,47 @@ all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
     \[
         \id_A \circ\,\alpha = \id_A \circ\,\beta,
     \]
-    from which we conclude that \(\alpha = \beta\). Thus \(f\) is a monomorphism. 
+    from which we conclude that \(\alpha = \beta\). Thus \(f\) is a
+    monomorphism. 
     
-    Conversely, suppose \(f\) is a monomorphism. Then for all sets \(X\) and all functions \(\alpha, \beta: X \to A\), if \(f \circ \alpha = f \circ \beta\), then \(\alpha = \beta\). We need to show that for all \(a, b \in A\), if \(a \neq b\) then \(f(a) \neq f(b)\). Since the monomorphism property holds for all sets \(X\), we can take \(X = \{*\}\) and the functions \(\alpha, \beta: \{*\} \to A\) defined by \(\alpha(*) = a\) and \(\beta(*) = b\), with \(a \neq b\). This ensures that \(\alpha \neq \beta\) and thus \(f \circ \alpha \neq f \circ \beta\). But \(f \circ \alpha = f(a)\) and \(f \circ \beta = f(b)\), so we have \(f(a) \neq f(b)\) and thus \(f\) is injective.
+    Conversely, suppose \(f\) is a monomorphism. Then for all sets \(X\) and all
+    functions \(\alpha, \beta: X \to A\), if \(f \circ \alpha = f \circ \beta\),
+    then \(\alpha = \beta\). We need to show that for all \(a, b \in A\), if \(a
+    \neq b\) then \(f(a) \neq f(b)\). Since the monomorphism property holds for
+    all sets \(X\), we can take \(X = \{*\}\) and the functions \(\alpha, \beta:
+    \{*\} \to A\) defined by \(\alpha(*) = a\) and \(\beta(*) = b\), with \(a
+    \neq b\). This ensures that \(\alpha \neq \beta\) and thus \(f \circ \alpha
+    \neq f \circ \beta\). But \(f \circ \alpha = f(a)\) and \(f \circ \beta =
+    f(b)\), so we have \(f(a) \neq f(b)\) and thus \(f\) is injective.
 
-    On the other hand, suppose \(f\) is surjective. Then if \(\gamma, \delta: B \to Y\) are functions such that \(\gamma \circ f = \delta \circ f\), then since \(f\) is surjective, for all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus \(\gamma(b) = \gamma(f(a)) = \delta(f(a)) = \delta(b)\). This implies that \(\gamma = \delta\) and thus \(f\) is an epimorphism.
+    On the other hand, suppose \(f\) is surjective. Then if \(\gamma, \delta: B
+    \to Y\) are functions such that \(\gamma \circ f = \delta \circ f\), then
+    since \(f\) is surjective, for all \(b \in B\) there exists an \(a \in A\)
+    such that \(f(a) = b\) and thus \(\gamma(b) = \gamma(f(a)) = \delta(f(a)) =
+    \delta(b)\). This implies that \(\gamma = \delta\) and thus \(f\) is an
+    epimorphism.
 
-    Conversely, suppose \(f\) is an epimorphism. That is, for all sets \(Y\) and all functions \(\gamma, \delta: B \to Y\), if \(\gamma \circ f = \delta \circ f\), then \(\gamma = \delta\). Suppose that \(f\) is not surjective, i.e., \(\img f \neq B\). Let \(\gamma, \delta: B \to Y\) be functions that are equal for all \(b \in \img f\) but differ for some \(b \notin \img f\). Then \(\gamma \circ f = \delta \circ f\) but \(\gamma \neq \delta\), which contradicts the assumption that \(f\) is an epimorphism. Thus \(f\) is surjective.
+    Conversely, suppose \(f\) is an epimorphism. That is, for all sets \(Y\) and
+    all functions \(\gamma, \delta: B \to Y\), if \(\gamma \circ f = \delta
+    \circ f\), then \(\gamma = \delta\). Suppose that \(f\) is not surjective,
+    i.e., \(\img f \neq B\). Let \(\gamma, \delta: B \to Y\) be functions that
+    are equal for all \(b \in \img f\) but differ for some \(b \notin \img f\).
+    Then \(\gamma \circ f = \delta \circ f\) but \(\gamma \neq \delta\), which
+    contradicts the assumption that \(f\) is an epimorphism. Thus \(f\) is
+    surjective.
 \end{proof}
 
 \begin{sectionthm}
-    We review some examples of functions arising from basic set operations. We can rephrase our definition of set inclusion as a function. Given two sets \(A\) and \(B\) with \(A \subset B\), we call
+    We review some examples of functions arising from basic set operations. We
+    can rephrase our definition of set inclusion as a function. Given two sets
+    \(A\) and \(B\) with \(A \subset B\), we call
     \[
         \iota: A \to B
     \]
-    the \emph{inclusion function} defined by \(\iota(a) = a\) for all \(a \in A\). This is clearly injective. This function sends each element of \(A\) to itself as an element of \(B\). A more descriptive name for this function is the \emph{embedding} of \(A\) in \(B\).
+    the \emph{inclusion function} defined by \(\iota(a) = a\) for all \(a \in
+    A\). This is clearly injective. This function sends each element of \(A\) to
+    itself as an element of \(B\). A more descriptive name for this function is
+    the \emph{embedding} of \(A\) in \(B\).
 
     Given two sets \(A\) and \(B\) and their product \(A \times B\), the maps
     \[
@@ -407,7 +442,8 @@ all \(b \in B\) there exists an \(a \in A\) such that \(f(a) = b\) and thus
     \[
         \pi_a(a, b) = a \text{ and } \pi_b(a, b) = b
     \]
-    are called the \emph{projection maps} from \(A \times B\) to \(A\) and \(B\), respectively. These are surjective functions.
+    are called the \emph{projection maps} from \(A \times B\) to \(A\) and
+    \(B\), respectively. These are surjective functions.
 \end{sectionthm}
 
 
@@ -498,7 +534,7 @@ us first tread more familiar ground and show that sets and functions between
 sets form a category.
 
 \begin{example}
-    We define \(\catg{Set}\) as the category whose objects are sets and whose
+    We define \(\Set\) as the category whose objects are sets and whose
     morphisms are functions between sets. Set functions obey the axioms for
     morphisms in a category. The verifications are routine: the identity
     morphism is the identity function \(\id_A : A \to A\) for all sets \(A\);
@@ -506,8 +542,7 @@ sets form a category.
     sets, the composition \(g \circ f\) is the composition of functions; in
     \S~\ref{sec:set-functions} we have shown that this composition is
     associative. Finally, for any function \(f: A \to B\), we have \(f \circ
-    \id_A = f = \id_B \circ f\). Thus \(\catg{Set}\) is a category by our
-    definition.
+    \id_A = f = \id_B \circ f\). Thus \(\Set\) is a category by our definition.
 \end{example}
 
 \begin{example}
@@ -718,15 +753,15 @@ sets form a category.
     On the other hand, consider a category \(\catg{C}\) and an object \(A\) of
     this category. Let us now construct a category whose morphisms are morphisms
     in \(C\) from \(A\) to some other object \(X\) of \(\catg{C}\). Consider the
-    category \(\catg{Set}\) and the singleton \(\{*\}\) which is an object of
-    this category. We will call the resulting category \(\catg{Set_*}\).
+    category \(\Set\) and the singleton \(\{*\}\) which is an object of this
+    category. We will call the resulting category \(\catg{Set_*}\).
 
-    The objects of \(\catg{Set_*}\) will then be morphisms in \(\catg{Set}\) of
-    the form \(f: \{*\} \to X\) for some set \(X\). Each morphism (in
-    \(\catg{Set}\)) of this type fixes an element \(x \in X\); i.e., \(f\)
-    determines a unique element \(x \in X\) and \(x\) determines \(f\). Thus we
-    can denote the objects of \(\catg{Set_*}\) to be the elements of the ordered
-    pairs \((X, x)\).
+    The objects of \(\catg{Set_*}\) will then be morphisms in \(\Set\) of the
+    form \(f: \{*\} \to X\) for some set \(X\). Each morphism (in \(\Set\)) of
+    this type fixes an element \(x \in X\); i.e., \(f\) determines a unique
+    element \(x \in X\) and \(x\) determines \(f\). Thus we can denote the
+    objects of \(\catg{Set_*}\) to be the elements of the ordered pairs \((X,
+    x)\).
 
     A morphism in \(\catg{Set_*}\) is then a `function' between two objects
     \((X, x)\) and \((Y, y)\) in \(\catg{Set_*}\). Since \(x \in X\) and \(y \in
@@ -755,7 +790,9 @@ sets form a category.
 \end{example}
 
 \begin{example}
-    Given two objects \(A\) and \(B\) of a category \(\catg{C}\) we know construct a new category \(\catg{C}_{A, B}\) whose objects are diagrams of \(\catg{C}\) of the form
+    Given two objects \(A\) and \(B\) of a category \(\catg{C}\) we know
+    construct a new category \(\catg{C}_{A, B}\) whose objects are diagrams of
+    \(\catg{C}\) of the form
     \[
         \begin{tikzcd}
                     & A \\
@@ -845,6 +882,7 @@ argument (taking away the need for the notion of membership in a set) to
 establish the following result:
 
 \begin{theorem}
+    \label{thm:isomorphism-unique-inverse-category}
 	The inverse of an isomorphism is unique.
 \end{theorem}
 
@@ -862,14 +900,18 @@ establish the following result:
 \end{proof}
 
 Since the inverse \(g\) is uniquely determined by the isomorphism \(f\), we can
-denote this inverse by \(f^{-1}\) without ambiguity. The following properties of isomorphisms are immediate from the definition:
+denote this inverse by \(f^{-1}\) without ambiguity. The following properties of
+isomorphisms are immediate from the definition:
 
 \begin{theorem}
     Let \(\catg{C}\) be a category.
     \begin{enumerate}[label=(\alph*), itemsep=0pt]
-        \item For each object \(A\) in \(\catg{C}\), the identity morphism \(\id_A\) is an isomorphism and is its own inverse.
-        \item If \(f: A \to B\) is an isomorphism, then its inverse \(f^{-1}\) is also an isomorphism and \((f^{-1})^{-1} = f\).
-        \item If \(f : A \to B\) and \(g : B \to C\) are isomorphisms, then so is \(g \circ f\) and \((g \circ f)^{-1} = f^{-1} \circ g^{-1}\).
+        \item For each object \(A\) in \(\catg{C}\), the identity morphism
+        \(\id_A\) is an isomorphism and is its own inverse.
+        \item If \(f: A \to B\) is an isomorphism, then its inverse \(f^{-1}\)
+        is also an isomorphism and \((f^{-1})^{-1} = f\).
+        \item If \(f : A \to B\) and \(g : B \to C\) are isomorphisms, then so
+        is \(g \circ f\) and \((g \circ f)^{-1} = f^{-1} \circ g^{-1}\).
     \end{enumerate}
 \end{theorem}
 
@@ -887,15 +929,15 @@ denote this inverse by \(f^{-1}\) without ambiguity. The following properties of
 \end{proof}
 
 The results of \S~\ref{sec:set-functions} tell us that bijections are precisely
-the isomorphisms in the category \(\catg{Set}\). In the category \(\catg{R}\)
-obtained from the relation \(\leq\) on \(\Z\) (as in
-Example~\ref{ex:slice-category}) the only isomorphisms are the identity
-morphisms. On the other hand, a category in which every morphism is an
-isomorphism is called a \emph{groupoid}. Let us construct a groupoid by first
-considering the category \(\catg{R}\) obtained from a set \(S\) and a relation
-\(\sim\) on \(S\) that is reflexive and transitive (we have constructed this
-category in Example~\ref{ex:category-from-set-relation}). Now suppose that
-\(\sim\) is also symmetric (i.e., an equivalence relation). Then we have
+the isomorphisms in the category \(\Set\). In the category \(\catg{R}\) obtained
+from the relation \(\leq\) on \(\Z\) (as in Example~\ref{ex:slice-category}) the
+only isomorphisms are the identity morphisms. On the other hand, a category in
+which every morphism is an isomorphism is called a \emph{groupoid}. Let us
+construct a groupoid by first considering the category \(\catg{R}\) obtained
+from a set \(S\) and a relation \(\sim\) on \(S\) that is reflexive and
+transitive (we have constructed this category in
+Example~\ref{ex:category-from-set-relation}). Now suppose that \(\sim\) is also
+symmetric (i.e., an equivalence relation). Then we have
 \[
     (a, b) \in \Hom_{\catg{R}}(a, b) \implies a \sim b \implies b \sim a \implies (b, a) \in \Hom_{\catg{R}}(b, a).
 \]
@@ -907,15 +949,15 @@ it follows that \((a, b)\) is an isomorphism with inverse \((b, a)\). Since
 \((a, b)\) was arbitrarilly chosen, we see that every morphism in \(\catg{R}\)
 is an isomorphism and thus \(\catg{R}\) is a groupoid.
 
-Having earlier characterized monomorphisms and epimorphisms in \(\catg{Set}\) in
+Having earlier characterized monomorphisms and epimorphisms in \(\Set\) in
 Definition~\ref{def:monomorphism-epimorphism-set} fully in terms of other set
 functions (without reference to elements of sets), we can now extend these
 definitions nicely to arbitrary categories. Our insistence to present
 Definition~\ref{def:monomorphism-epimorphism-set} in that manner now appear
 justified: indeed, observe that the definition we now give is the same as our
 previous definition, with the only difference being that we have replaced the
-reference to objects of \(\catg{Set}\) with a more general reference to objects
-of an arbitrary category \(\catg{C}\).
+reference to objects of \(\Set\) with a more general reference to objects of an
+arbitrary category \(\catg{C}\).
 
 \begin{definition}
     \label{def:monomorphism-epimorphism-category}
@@ -926,4 +968,35 @@ of an arbitrary category \(\catg{C}\).
     \to Y\), \(g \circ f = h \circ f\) implies \(g = h\).
 \end{definition}
 
-In Theorem~\ref{thm:injective-surjective-monomorphism-epimorphism}, we have already shown that monomorphisms and epimorphisms in \(\catg{Set}\) are precisely the injective and surjective functions, respectively. In Example~\ref{ex:category-from-set-relation}
+In Theorem~\ref{thm:injective-surjective-monomorphism-epimorphism}, we have
+already shown that monomorphisms and epimorphisms in \(\Set\) are precisely the
+injective and surjective functions, respectively. In
+Example~\ref{ex:category-from-set-relation}
+
+
+%%% UNIVERSAL PROPERTIES
+\section{Universal properties}
+
+\begin{example}
+    \label{ex:product-set-universal-property}
+    Let \(A, B\) be objects of the category \(\Set\). Consider the set product
+    \(A \times B\) and the projections \(\pi_1: A \times B \to A\) and \(\pi_2:
+    A \times B \to B\), i.e.,
+    \[
+        \begin{tikzcd}
+            & A \\
+            A\times B \arrow[ru, "\pi_A"] \arrow[rd, "\pi_B"'] &   \\
+            & B
+    \end{tikzcd}
+    \]
+    where \(\pi_A(a, b) = a\) and \(\pi_B(a, b) = b\). Let \(X\) be another set
+    and let \(f_A : X \to A\) and \(f_B : X \to B\) be set functions, i.e.,
+    \[
+        \begin{tikzcd}
+                & A \\
+        Z \arrow[ru, "f_A"] \arrow[rd, "f_B"'] &   \\
+                & B
+    \end{tikzcd}
+    \]
+    
+\end{example}

@@ -4,6 +4,7 @@
 \section{Definition and basic properties}
 
 \begin{definition}
+    \label{def:group}
     A \emph{group} is a pair \((G, \mult)\) where \(G\) is a  set and \(\mult\)
     is a binary operation on \(G\) (i.e., a map from \(G \times G\) to \(G\))
     that satisfies the following axioms:
@@ -15,7 +16,7 @@
         element is called the \emph{identity element} (or the \emph{neutral
         element}) of the group.
         \item \emph{Inverses:} For each \(a \in G\), there exists an element
-        \(a^{-1} \in G\) such that \(\mult(a, a^{-1}) = \mult(a^{-1}, a) = e\).
+        \(a\inv \in G\) such that \(\mult(a, a\inv) = \mult(a\inv, a) = e\).
     \end{enumerate}
 \end{definition}
 
@@ -58,23 +59,125 @@ matter of convention.
     \]
 \end{proof}
 
+The preceding result allow us to speak of \emph{the} identity element of a group
+and \emph{the} inverse of an element in a group. Thus for any element \(a\) in a
+group, we can denote its inverse by \(a\inv\) without ambiguity.
 
-The preceding result allow us to speak of \emph{the} identity element and
-\emph{the} inverse of an element in a group.
+% Group as a 4-tuple
+It should be noted that Definition~\ref{def:group} is not the only possible
+definition of a group. Since our initial definition axiomatizes the existence of
+an identity element \(e\) in a group \(G\) and the existence of an inverse
+\(a\inv\) for every element \(a\) in \(G\), which are unique and unique for each
+\(a\in G\), respectively, it would be quite natural to present an alternative definition that directly encodes these properties. Thus we have:
+\begin{definition}
+    \label{def:group-4-tuple}
+    A \emph{group} is a 4-tuple \((G, \mult, \iota, e)\) where \(G\) is a set,
+    \(\mult\) is a binary operation on \(G\), \(\iota\) is a map \(G \to G\) and
+    \(e\) is an element of \(G\) such that:
+    \begin{enumerate}[label=(\alph*), itemsep=0pt]
+        \item For all \(a, b, c \in G\), \(\mult(\mult(a, b), c) = \mult(a,
+        \mult(b, c))\).
+        \item For all \(a \in G\), \(\mult(a, e) = \mult(e, a) = a\).
+        \item For all \(a \in G\), \(\mult(a, \iota(a)) = \mult(\iota(a), a) =
+        e\).
+    \end{enumerate}
+\end{definition}
+
+Observe that one major difference between the two definitions is that the second
+definition explicitly posits the existence of a map \(\iota: G \to G\) which
+then reduces each of the axioms to universal statements for all elements of
+\(G\). While this point might seem pedantic, such a definition is often useful
+especially in the context of universal algebra where one would want to look at
+more general algebraic structures (see e.g., Bergman). Still, the equivalence of
+the two definitions can be immediately deduced. In particular if we define
+\(\iota\) as the map \(a \mapsto a\inv\) (where \(a\inv\) is the unique inverse
+of \(a\) based on Definition~\ref{def:group}), then this satisfies property (c)
+of Definition~\ref{def:group-4-tuple}, viz.,
+\[
+    \mult(a, a\inv) = \mult(a\inv, a) = e.
+\]
+Nonetheless, we shall content ourselves with Definition~\ref{def:group} for the remainder of these notes.
+
+To further illustrate this definition, consider a group \((G, \mult, \iota,
+e)\). Write \(\mult(a,b)\) as \(a\cdot b\) and suppose \(\delta : G \to G\) is a
+map such that for all \(a, b \in G\),
+\[
+    \delta(a, b) = a\cdot\iota(b).
+\]
+Does \((G, \delta)\) determine the group \((G, \mult, \iota, e)\)? That is if
+\((G, \mult, \iota, e)\) and \((G', \mult', \iota', e')\) yield the same pair
+\((G, \delta') = (G', \delta')\), then must
+\[(G, \mult, \iota, e) = (G', \mult', \iota', e')?\]
+
+Let \((G', \mu', \iota', e')\) be another group and let \((G', \delta')\) be
+similarly defined. Now suppose \((G, \delta) = (G' \delta')\), i.e., \(G = G'\)
+and for all \(a, b \in G = G'\) we have
+\[
+\delta(a, b) = a \cdot \iota(b) = a * \iota'(b) = \delta'(a, b).
+\]
+where \(\mu(a, b) = a \cdot b\) and \(\mu'(a', b') = a' * b'\).
+
+Now observe that
+\[
+e = a \cdot \iota(a) = \delta(a, a) = \delta'(a, a) = a * \iota'(a) = e'.
+\]
+Thus the identity elements of the two groups coincide. Let \(a \in G = G'\) and
+let \(\alpha = \iota(a)\) and \(\alpha' = \iota'(a)\). Then in \(G\) we have by
+the equality of \(e\) and \(e'\),
+\[
+\iota(a) = e \cdot \iota(a) = \delta(e, a) = \delta'(e, a) = e * \iota'(a) = \iota'(a)
+\]
+and
+\[
+ \iota'(a) = e' * \iota'(a) = \delta'(e', a) = \delta(e',a) = e' \cdot \iota(a) = \iota(a).
+\]
+Finally, we have
+\[
+a \cdot b = \delta(a, \iota(b)) = \delta'(a, \iota(b)) = a * \iota'(\iota(b))
+\]
+but then by the equality of inverses it follows that
+\[
+ a * \iota'(\iota(b)) = a * \iota'(\iota'(b)) = a * b.
+\]
+(Here we have exploited the fact that the inverse of an inverse is the original
+element, a property that will only establish in Theorem~\ref{thm:group-inverses}
+below.) This shows that \((G, \mu, \iota, e) = (G', \mu', \iota', e')\). This
+illustrates that the group structure is uniquely determined by the group
+operation and the inverse map.
+
+
+
+
+
+% Group as a category
+Finally, building on the categorical intuition we have developed in
+\S~\ref{sec:category-theory} of Chapter~\ref{ch:preliminaries}, we can think of
+a group as a category with a single object. More explicitly, we have the
+following definition.
+
+\begin{definition}
+    A group is a groupoid with a single object.
+\end{definition}
+
+That this is equivalent to Definition~\ref{def:group} can be illustrated as
+follows. Recall that a groupoid is a category in which every morphism is an
+isomorphism. Let \(\catg{G}\) be a groupoid and suppose that \(*\) is the lone
+object in this category. Then the set of morphisms \(\Hom_{\catg{G}}(*, *)\)
 
 \begin{theorem}
-    Let \(G\) be a group and let \(a \in G\). Then \((a^{-1})^{-1} = a\). If in
-    addition, \(b \in G\), then \((ab)^{-1} = b^{-1}a^{-1}\).
+    \label{thm:group-inverses}
+    Let \(G\) be a group and let \(a \in G\). Then \((a\inv)\inv = a\). If in
+    addition, \(b \in G\), then \((ab)\inv = b\inv a\inv\).
 \end{theorem}
 
 \begin{proof}
-    Suppose \(b \neq a\) is the inverse of \(a^{-1}\) where \(b \in G\). Then
-    \(a^{-1}b = e = ba^{-1}\). But \(a\) also satisfies this property, and since
+    Suppose \(b \neq a\) is the inverse of \(a\inv\) where \(b \in G\). Then
+    \(a\inv b = e = ba\inv\). But \(a\) also satisfies this property, and since
     inverses are unique, we must have \(b = a\).
 
     On the other hand we have
     \[
-        (ab)(b^{-1}a^{-1}) = a(bb^{-1})a^{-1} = aea^{-1} = aa^{-1} = e.
+        (ab)(b\inv a\inv) = a(bb\inv)a\inv = aea\inv = aa\inv = e.
     \]
 \end{proof}
 
@@ -90,8 +193,8 @@ The preceding result allow us to speak of \emph{the} identity element and
 \begin{proof}
     We prove the first statement. Suppose \(ab = ac\). Then
     \begin{align*}
-        a^{-1}(ab) &= a^{-1}(ac) &\\
-        (a^{-1}a)b &= (a^{-1}a)c &\text{(associativity)}\\
+        a\inv(ab) &= a\inv(ac) &\\
+        (a\inv a)b &= (a\inv a)c &\text{(associativity)}\\
         eb &= ec &\text{(definition of inverse)}\\
         b &= c. &\text{(definition of identity)}
     \end{align*}
@@ -104,10 +207,10 @@ The preceding result allow us to speak of \emph{the} identity element and
 \end{corollary}
 
 \begin{proof}
-    Observe that the solutions to the equations are \(x = a^{-1}b\) and \(y =
-    ba^{-1}\), respectively. In the first case we have
+    Observe that the solutions to the equations are \(x = a\inv b\) and \(y =
+    ba\inv\), respectively. In the first case we have
     \[
-        ax = a(a^{-1}b) = (aa^{-1})b = eb = b.
+        ax = a(a\inv b) = (aa\inv)b = eb = b.
     \]
     If \(x'\) is also a solution for the first equation then \(xa = b = x'a\)
     implies \(x = x'\) by right cancellation. The second equation is proved
@@ -143,13 +246,13 @@ The preceding result allow us to speak of \emph{the} identity element and
     brackets. Where each of the \(a_i\) is equal to an element \(a\) of the
     group, we shall write \(a^n\) for the product of \(n\) terms of \(a\). Thus
     \(a^1 = a\), \(a^2 = aa\), and so on. We also define \(a^0\) to be the
-    identity element of the group and \(a^{-n}\) to be \((a^{-1})^n\).
+    identity element of the group and \(a^{-n}\) to be \((a\inv)^n\).
 \end{remark}
 
 \begin{theorem}
     If \(G\) is a group and \(a \in G\), then for all integers \(m, n\),
     \begin{enumerate}[label=(\alph*)]
-        \item \((a^n)^{-1} = (a^{-1})^n\),
+        \item \((a^n)\inv = (a\inv)^n\),
         \item \(a^m a^n = a^{m + n}\), and
         \item \((a^m)^n = a^{mn}\).
     \end{enumerate}
@@ -162,12 +265,12 @@ The preceding result allow us to speak of \emph{the} identity element and
         trivial. Suppose the result holds for \(n = k\). Then
         \begin{align*}
             a^{k + 1} & = a^k a\\
-            (a^{k + 1})^{-1} & = (a^k a)^{-1} = a^{-1} (a^k)^{-1}\\
-            & = a^{-1} (a^{-1})^k = (a^{-1})^{k + 1}.
+            (a^{k + 1})\inv & = (a^k a)\inv = a\inv (a^k)\inv\\
+            & = a\inv (a\inv)^k = (a\inv)^{k + 1}.
         \end{align*}
         \item We only outline the proof. For \(m > 0\), \(n > 0\) this result
         follows directly from the generalized associative law. For \(m < 0\),
-        \(n < 0\), we can replace \(a, m, n\) by \(a^{-1}, -m, -n\) respectively
+        \(n < 0\), we can replace \(a, m, n\) by \(a\inv, -m, -n\) respectively
         and argue similarly. The case \(m = 0\) and \(n = 0\) is trivial. The
         case \(m \geq 0\), \(n < 0\) and \(m < 0\), \(n \geq 0\) can be shown by
         induction on \(m\) and \(n\), respectively.
@@ -193,7 +296,7 @@ The preceding result allow us to speak of \emph{the} identity element and
     \]
     in an abelian group and refer to the operation and the term \(a + b\) as
     `addition' and the `sum' of \(a\) and \(b\), respectively. We shall also
-    write \(-a\) instead of \(a^{-1}\), \(na\) instead of \(a^n\), and \(0\) for
+    write \(-a\) instead of \(a\inv\), \(na\) instead of \(a^n\), and \(0\) for
     the identity element of the group. The sum \(a + (-b)\) for elements \(a,
     b\) of an abelian group will also be abbreviated to \(a - b\). Note that
     \(na\) does not refer to the `group product' in the sense of our definition
@@ -201,8 +304,8 @@ The preceding result allow us to speak of \emph{the} identity element and
 \end{remark}
 
 \begin{theorem}
-    In an abelian group \(G\), \((ab)^n = a^n b^n\) and \((ab)^{-1} = a^{-1}
-    b^{-1}\) for all \(a, b \in G\) and all integers \(n\).
+    In an abelian group \(G\), \((ab)^n = a^n b^n\) and \((ab)\inv = a\inv
+    b\inv\) for all \(a, b \in G\) and all integers \(n\).
 \end{theorem}
 
 \begin{definition}
@@ -304,7 +407,7 @@ The preceding result allow us to speak of \emph{the} identity element and
     relates every cyclic group to \(\Z\) and \(\Z/n\Z\).
 \end{example}
 
-\section{Homomorphisms and the category {\normalfont\sffamily Grp}}
+\section{Homomorphisms and the category {\normalfont\bfseries Grp}}
 \label{sec:homomorphisms-grp}
 
 Recall that we have defined a group to be the pair \((G, \mult_G)\) where \(G\)
@@ -388,7 +491,7 @@ inverses.
     homomorphism \(\phi: G \to H\),
     \begin{enumerate}[label=(\alph*)]
         \item \(\phi(e_G) = e_H\), and
-        \item \(\phi(a^{-1}) = \phi(a)^{-1}\),
+        \item \(\phi(a\inv) = \phi(a)\inv\),
     \end{enumerate}
     where \(e_G\) and \(e_H\) are the identity elements of \(G\) and \(H\)
     respectively, and \(a \in G\).
@@ -400,9 +503,9 @@ inverses.
     \begin{enumerate}[label=(\alph*), wide]
         \item We have \(\phi(e_G) = \phi(e_G e_G) = \phi(e_G) \phi(e_G)\). This
         implies that \(\phi(e_G) = e_H\).
-        \item Multiplying \(\phi(a)\) by \(\phi(a^{-1})\) gives us
-        \(\phi(a)\phi(a^{-1}) = \phi(aa^{-1}) = \phi(e_G) = e_H\). This implies
-        that \(\phi(a^{-1}) = \phi(a)^{-1}\).
+        \item Multiplying \(\phi(a)\) by \(\phi(a\inv)\) gives us
+        \(\phi(a)\phi(a\inv) = \phi(aa\inv) = \phi(e_G) = e_H\). This implies
+        that \(\phi(a\inv) = \phi(a)\inv\).
     \end{enumerate}
 \end{proof}
 
@@ -428,8 +531,8 @@ H\),
 \]
 This operation is associative because the group operations in \(G\) and \(H\)
 are associative. The identity element is \((e_G, e_H)\) and the inverse of \((g,
-h)\) is \((g^{-1}, h^{-1})\). The set \(G \times H\) with this group operation
-is called the \emph{direct product} of \(G\) and \(H\). From this definition it
+h)\) is \((g\inv, h\inv)\). The set \(G \times H\) with this group operation is
+called the \emph{direct product} of \(G\) and \(H\). From this definition it
 also follows that the natural projections
 \[
         \begin{tikzcd}
@@ -481,7 +584,7 @@ following result.
     We return to \(\Hom(G, H)\). Clearly \(\Hom(G, H)\) is non-empty because we
     can construct at the very least a homomorphism that maps every element of
     \(G\) to the identity element of \(H\). Alternatively, from a
-    category-theoretic perspective, the fact thet the trivial group are initial
+    category-theoretic perspective, the fact that the trivial groups are initial
     and terminal objects in \(\Grp\) allows us to define the unique morphisms
     \[
         G \to T \quad \text{and} \quad T \to G
@@ -571,23 +674,23 @@ following result.
     An isomorphism of groups \(\phi: G \to H\) is an isomorphism in the category
     \(\Grp\), i.e., it admits an inverse
     \[
-        \phi^{-1}: H \to G
+        \phi\inv : H \to G
     \]
     that is also a group homomorphism.
 \end{theorem}
 
 \begin{proof}
     Suppose that \(\phi: G \to H\) is an isomorphism of groups (i.e., it is
-    bijective as a map between sets). Then it has an inverse \(\phi^{-1}: H \to
-    G\) that is also a map between sets. We claim that \(\phi^{-1}\) is a group
+    bijective as a map between sets). Then it has an inverse \(\phi\inv : H \to
+    G\) that is also a map between sets. We claim that \(\phi\inv\) is a group
     homomorphism. Let \(a, b \in H\). Then there exist \(x, y \in G\) such that
     \(\phi(x) = a\) and \(\phi(y) = b\). We have
     \[
-        \phi^{-1}(ab) = \phi^{-1}(\phi(x)\phi(y)) = \phi^{-1}(\phi(xy)) = xy = \phi^{-1}(a)\phi^{-1}(b).
+        \phi\inv(ab) = \phi\inv(\phi(x)\phi(y)) = \phi\inv(\phi(xy)) = xy = \phi\inv(a)\phi\inv(b).
     \]
     
     Conversely, suppose that \(\phi\) is a group homomorphism that admits an
-    inverse \(\phi^{-1}\) that is also a group homomorphism. Then \(\phi\) is
+    inverse \(\phi\inv\) that is also a group homomorphism. Then \(\phi\) is
     bijective as a map between sets and thus an isomorphism of groups.
 \end{proof}
 
@@ -690,12 +793,12 @@ to isomorphism.
 An initial object in a category need not necessarily exist. We shall now show
 however that there exists an initial object in the category \(\catg{F}^X\). 
 
-Consider a set \(X\) and let \(X^{-1}\) be an isomorphic copy of \(X\) with \(X
-\cap X^{-1} = \emptyset\). Since \(X \cong X^{-1}\), we can choose a bijection
-\(\phi : X \to X^{-1}\) and write \(x^{-1}\) for \(\phi(x)\) for all \(x \in
-X\). (If \(x^{-1} X^{-1}\) then the preimage of \(x^{-1}\) is \(x\) and thus
-\(x^{**} = x\) by definition.) We define a \emph{word} in \(X\) to be a finite
-\(n\)-tuple of elements of \(x_i \in X \cup X^{-1}\) of the form
+Consider a set \(X\) and let \(X\inv\) be an isomorphic copy of \(X\) with \(X
+\cap X\inv = \emptyset\). Since \(X \cong X\inv\), we can choose a bijection
+\(\phi : X \to X\inv\) and write \(x\inv\) for \(\phi(x)\) for all \(x \in X\).
+(If \(x\inv X\inv\) then the preimage of \(x\inv\) is \(x\) and thus \(x^{**} =
+x\) by definition.) We define a \emph{word} in \(X\) to be a finite \(n\)-tuple
+of elements of \(x_i \in X \cup X\inv\) of the form
 \[
     (x_1, x_2, \ldots, x_n)
 \]
@@ -703,19 +806,19 @@ which we will denote by juxtaposition
 \[
     w = x_1 x_2 \cdots x_n.
 \]
-We shall call \(X \cup X^{-1}\) the \emph{alphabet} on \(X\) and each \(a_i\) a
+We shall call \(X \cup X\inv\) the \emph{alphabet} on \(X\) and each \(a_i\) a
 \emph{letter} on this alphabet. The number \(n\) is the \emph{length} of the
 word \(w\). For example if \(X = \{a, b\}\), then
 \[
-    abba^{-1}b^{-1}a^{-1}
+    abba\inv b\inv a\inv
 \]
-is a word of length \(6\) on the alphabet \(\{a, b, a^{-1}, b^{-1}\}\). For each
-\(a\) we call \(a^{-1}\) the \emph{inverse} of \(a\), noting however that our
+is a word of length \(6\) on the alphabet \(\{a, b, a\inv, b\inv\}\). For each
+\(a\) we call \(a\inv\) the \emph{inverse} of \(a\), noting however that our
 usage here does not necessarily coincide with the group-theoretic notion of an
 inverse. (We shall later show that for each letter \(x\), its inverse is exactly
-\(x^{-1}\) but we shall stop short of this claim for now.) Write \(W(X)\) for
-the set of all words in \(X\), with the empty word (written \(\epsilon\))
-defined as the set containing no letters.
+\(x\inv\) but we shall stop short of this claim for now.) Write \(W(X)\) for the
+set of all words in \(X\), with the empty word (written \(\epsilon\)) defined as
+the set containing no letters.
 
 The concatenation of two words \(w_1 = x_1 x_2 \cdots x_m\) and \(w_2 = y_1 y_2
 \cdots y_n\) is the word
@@ -726,16 +829,16 @@ A \emph{substring} of a word \(w = x_1 x_2 \cdots x_n\) is a word of the form
 \(x_i x_{i + 1} \cdots x_j\) for some \(i, j\) with \(1 \leq i \leq j \leq n\).
 We can immediately observe that the empty word is a substring of any word. We
 shall call a word \(w = x_1 x_2 \cdots x_n\) \emph{reduced} if it contains no
-substrings of the form \(aa^{-1}\) or \(a^{-1}a\). For example, the word
-\(abb^{-1}a\) is not reduced, but the word \(ab\) is.
+substrings of the form \(aa\inv\) or \(a\inv a\). For example, the word
+\(abb\inv a\) is not reduced, but the word \(ab\) is.
 
 
-Now we want to introduce a process through which, say two words \(bab^{-1}bb\)
-and \(babb^{-1}baa^{-1}\) in \(X = \{a, b\}\) both simplify to the same word
-\(bab\), i.e., we want the `inverse' \(a^{-1}\) of \(a\) to behave in a similar
+Now we want to introduce a process through which, say two words \(bab\inv bb\)
+and \(babb\inv baa\inv\) in \(X = \{a, b\}\) both simplify to the same word
+\(bab\), i.e., we want the `inverse' \(a\inv\) of \(a\) to behave in a similar
 manner as a group inverse (in the limited sense that inverses `cancel out' each
 other). To do this, we first define a map \(W(X) \to W(X)\) that deletes from a
-given word \(w\) any pair of the form \(aa^{-1}\) or \(a^{-1}a\). We call the
+given word \(w\) any pair of the form \(aa\inv\) or \(a\inv a\). We call the
 image of \(w\) under this map an \emph{elementary reduction} of \(w\). Our goal
 then is to find for each word \(w\) in \(X\) a sequence of elementary reductions
 \[
@@ -745,8 +848,8 @@ where \(w_n\) is a word in \(X\) that cannot be further reduced, i.e., any
 elementary reduction of \(w_n\) is equal to \(w_n\). (That is, \(w_n\) is a
 reduced word by our earlier definition.) For each word \(w\), at least one such
 sequence of elementary reductions exists, which we obtain by considering only
-reductions that delete the first occurrence of a pair of the form \(aa^{-1}\) or
-\(a^{-1}a\) from left to right. This must terminate after \(\lfloor \frac{n}{2}
+reductions that delete the first occurrence of a pair of the form \(aa\inv\) or
+\(a\inv a\) from left to right. This must terminate after \(\lfloor \frac{n}{2}
 \rfloor\) steps, where \(n\) is the length of \(w\) as each elementary reduction
 of this type decreases the length of the word by \(2\). For the more general
 case we refer to the following result, often called the `diamond lemma.'
@@ -768,9 +871,9 @@ case we refer to the following result, often called the `diamond lemma.'
 \begin{proof}
     Let \(\rho_1 : w \mapsto w_1\) and \(\rho_2 : w \mapsto w_2\) be elementary
     reductions of \(w\). Let \(w = u\omega v\) be a word in \(X\) where \(u, v\)
-    are (possibly empty) substrings of \(w\) and \(\omega \in X \cup X^{-1}\) is
+    are (possibly empty) substrings of \(w\) and \(\omega \in X \cup X\inv\) is
     the substring undergoing an elementary reduction, i.e., \(\omega\) must be
-    of the form \(aa^{-1}\) or \(a^{-1}a\) or the empty string and thus the
+    of the form \(aa\inv\) or \(a\inv a\) or the empty string and thus the
     reduction is given by \(u\omega v \mapsto uv\).
 
     We consider two possible cases. If \(\rho_1\) and \(\rho_2\) are disjoint,
@@ -790,16 +893,16 @@ case we refer to the following result, often called the `diamond lemma.'
     On the other hand, if \(\rho_1\) and \(\rho_2\) are not disjoint, then \(w\)
     must be of the form \(u\omega v\) where \(u, v\) are (possibly empty)
     substrings of \(w\) and \(\omega\) is the substring affected by both
-    \(\rho_1\) and \(\rho_2\) which must then be of the form \(a^{-1}aa^{-1}\)
-    or \(aa^{-1}a\). Without loss of generality, suppose that \(\omega =
-    a^{-1}aa^{-1}\) and \(\rho_1\) reduces \(a^{-1}a\) and \(\rho_2\) reduces
-    \(aa^{-1}\). Then we have
+    \(\rho_1\) and \(\rho_2\) which must then be of the form \(a\inv aa\inv\) or
+    \(aa\inv a\). Without loss of generality, suppose that \(\omega = a\inv
+    aa\inv\) and \(\rho_1\) reduces \(a\inv a\) and \(\rho_2\) reduces
+    \(aa\inv\). Then we have
     \[
-        \rho_1 : w = u(a^{-1}a)a^{-1}v \mapsto ua^{-1}v
+        \rho_1 : w = u(a\inv a)a\inv v \mapsto ua\inv v
     \]
     and
     \[
-        \rho_2 : w = ua^{-1}(aa^{-1})v \mapsto ua^{-1}v
+        \rho_2 : w = ua\inv(aa\inv)v \mapsto ua\inv v
     \]
     and thus the lemma also holds.
 \end{proof}
@@ -849,18 +952,18 @@ operation. Indeed, for any word \(w\), we have
 \[
     w \cdot \epsilon = \overline{w \epsilon} = \overline{w} = w = \overline{\epsilon w} = \epsilon \cdot w.
 \]
-We define the inverse of a word \(w\) to be the word \(w^{-1}\) obtained by
+We define the inverse of a word \(w\) to be the word \(w\inv\) obtained by
 reversing the order of the letters in \(w\) and replacing each letter by its
 inverse. That is, if \(w = x_1 x_2 \cdots x_n\) is a word, then its inverse is
 given by
 \[
-    w^{-1} = x_n^{-1} x_{n - 1}^{-1} \cdots x_1^{-1},
+    w\inv = x_n\inv x_{n - 1}\inv \cdots x_1\inv,
 \]
 and thus
 \[
-    w \cdot w^{-1} = x_1 \cdots x_n x_n^{-1} \cdots x_1^{-1} = \epsilon.
+    w \cdot w\inv = x_1 \cdots x_n x_n\inv \cdots x_1\inv = \epsilon.
 \]
-(We can show the same for \(w^{-1}w\).) Finally, we want to show that the
+(We can show the same for \(w\inv w\).) Finally, we want to show that the
 operation \(\cdot\) is associative. Let \(w_1, w_2, w_3\) be words in \(F\).
 Then since \(\overline{(\overline{w_1 w_2})w_3}\) and
 \(\overline{w_1(\overline{w_2 w_3})}\) can be obtained from \(w_1 w_2 w_3\) by a
@@ -901,19 +1004,19 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
     \[
         w = x_1^{\epsilon_1} x_2^{\epsilon_2} \cdots x_n^{\epsilon_n}
     \]
-    where each \(x_i \in X\) and each \(\epsilon_i = \pm 1\) (in this notation,
-    \(x^{-1} = x^{-1}\)). We define \(\Phi(w)\) to be the product
+    where each \(x_i \in X\) and each \(\epsilon_i = \pm 1\). We define
+    \(\Phi(w)\) to be the product
     \[
         \Phi(w) = \phi(x_1)^{\epsilon_1} \phi(x_2)^{\epsilon_2} \cdots \phi(x_n)^{\epsilon_n}.
     \]
-    The expression \(\phi(x)^{-1}\) is defined because \(\phi(x) \in G\) and
+    The expression \(\phi(x)\inv\) is defined because \(\phi(x) \in G\) and
     inverses exist in \(G\).
     
     We claim that \(\Phi\) is a group homomorphism. We identify with \(X\) its
     image under \(\iota\), i.e., we take \(X\) to be a subset of the underlying
     set of \(F\). To prove our claim, we first need to show that if \(w\) is a
     reduced word and \(x \in X\), then \(\Phi(x\cdot w) = \Phi(x)\Phi(w)\) and
-    \(\Phi(x^{-1} \cdot w) = \Phi(x)^{-1}\Phi(w)\). From this it would then
+    \(\Phi(x\inv \cdot w) = \Phi(x)\inv\Phi(w)\). From this it would then
     follow, using the fact that the operation \(\cdot\) on \(F\) is associative,
     and by induction on the length of the reduced word \(w\), that for all
     reduced words \(w_1\) and \(w_2\), we have \(\Phi(w_1 \cdot w_2) = \Phi(w_1)
@@ -931,11 +1034,11 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
     word \(x_2^{\epsilon_2} \cdots x_r^{\epsilon_r}\), so that
     \begin{align*}
         \Phi(x \cdot w) & = \Phi(x_2^{\epsilon_2} \cdots x_r^{\epsilon_r}) = \phi(x_2)^{\epsilon_2} \cdots \phi(x_r)^{\epsilon_r} \\
-            & = \phi(x_1)\phi(x_1)^{-1}\phi(x_2)^{\epsilon_2} \cdots \phi(x_r)^{\epsilon_r} \\ &= \phi(x)(\phi(x_1)^{-1}\phi(x_2)^{\epsilon_2} \cdots \phi(x_r)^{\epsilon_r}) \\
+            & = \phi(x_1)\phi(x_1)\inv\phi(x_2)^{\epsilon_2} \cdots \phi(x_r)^{\epsilon_r} \\ &= \phi(x)(\phi(x_1)\inv\phi(x_2)^{\epsilon_2} \cdots \phi(x_r)^{\epsilon_r}) \\
             & = \Phi(x)\Phi(w),
     \end{align*}
-    as desired. A similar argument establishes \(\Phi(x^{-1} \cdot w) =
-    \Phi(x)^{-1}\Phi(w)\).
+    as desired. A similar argument establishes \(\Phi(x\inv \cdot w) =
+    \Phi(x)\inv\Phi(w)\).
 
     Now let \(w_1\), \(w_2\) be reduced words in \(F\) and let \(w_1\) have
     length \(n\). We proceed by induction on \(n\). The case \(n = 1\) is the
@@ -973,10 +1076,10 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
 
     From the previous theorem, \(F\) is the set of all reduced words in \(X\)
     with the operation \(\cdot\) defined above. The alphabet on \(X\) is \(\{x,
-    x^{-1}\}\) and each word in \(W(X)\) must then be of the form  \(x^n\) for
+    x\inv\}\) and each word in \(W(X)\) must then be of the form  \(x^n\) for
     some \(n \in \Z\). Thus \(F\) is the cyclic group generated by \(x\), i.e.,
     \[
-        F = \{x^n : n \in \Z\} = \{\dots, x^{-2}, x^{-1}, x^0, x, x^2, \dots\},
+        F = \{x^n : n \in \Z\} = \{\dots, x^{-2}, x\inv, x^0, x, x^2, \dots\},
     \]
     where \(x_0 = e\) is the identity element of \(F\), i.e., the empty word. We
     define a map \(\Phi : F \to G\) by \(\Phi(x^n) = g^n\). This is a group
@@ -1010,26 +1113,26 @@ we have
     \iota(a * b) = \iota(a) \cdot \iota(b).
 \]
 Moreover, because \(\iota\) is a group homomorphism, it must preserve the
-identity element and inverses. Thus \(\iota(e_H) = e_G\) and \(\iota(a^{-1}) =
-\iota(a)^{-1}\) for all \(a \in H\). We can thus see that the group operation
+identity element and inverses. Thus \(\iota(e_H) = e_G\) and \(\iota(a\inv) =
+\iota(a)\inv\) for all \(a \in H\). We can thus see that the group operation
 \(\mult'\) in \(H\) is the restriction of the group operation \(\mult\) in \(G\)
 to \(H\). Thus, we can alternatively characterize a subgroup as a subset \(H\)
-of a group \(G\) that is itself a group under the
-group operation of \(G\) (retricted to \(H\)). The next result is a useful
-criterion for determining whether a subset is a subgroup.
+of a group \(G\) that is itself a group under the group operation of \(G\)
+(retricted to \(H\)). The next result is a useful criterion for determining
+whether a subset is a subgroup.
 
 \begin{theorem}[Subgroup test]
     \label{thm:subgroup-test}
     A nonempty subset \(H\) of a group \(G\) is a subgroup if and only if for
-    all \(a, b \in H\), we have \(ab^{-1} \in H\).
+    all \(a, b \in H\), we have \(ab\inv \in H\).
 \end{theorem}
 
 \begin{proof}
     The forward implication follows directly from the definition. Conversely,
-    suppose that \(H\) is a nonempty subset of \(G\) such that \(ab^{-1} \in H\)
-    for all \(a, b \in H\). Then \(e = aa^{-1} \in H\) for all \(a \in H\).
-    Moreover, if \(a \in H\), then \(a^{-1} = ea^{-1} \in H\). Finally, if \(a,
-    b \in H\), then \(ab = a(b^{-1})^{-1} \in H\). Thus \(H\) is a subgroup of
+    suppose that \(H\) is a nonempty subset of \(G\) such that \(ab\inv \in H\)
+    for all \(a, b \in H\). Then \(e = aa\inv \in H\) for all \(a \in H\).
+    Moreover, if \(a \in H\), then \(a\inv = ea\inv \in H\). Finally, if \(a, b
+    \in H\), then \(ab = a(b\inv)\inv \in H\). Thus \(H\) is a subgroup of
     \(G\).
 \end{proof}
 
@@ -1047,8 +1150,8 @@ criterion for determining whether a subset is a subgroup.
 \begin{proof}
     The intersection \(H\) is nonempty because \(e \in H_\alpha\) for all
     \(\alpha\). If \(a, b \in H\), then \(a, b \in H_\alpha\) for all \(\alpha
-    \in A\). Thus \(ab^{-1} \in H_\alpha\) for all \(\alpha \in A\), so
-    \(ab^{-1} \in H\).
+    \in A\). Thus \(ab\inv \in H_\alpha\) for all \(\alpha \in A\), so \(ab\inv
+    \in H\).
 
     To show that \(H\) is the largest subgroup of \(G\) contained in each of the
     subgroups \(H_{\alpha}\), suppose that \(K\) is a subgroup of \(G\) such
@@ -1058,14 +1161,14 @@ criterion for determining whether a subset is a subgroup.
 
 \begin{theorem}
     Let \(\phi: G \to H\) be a group homomorphism and let \(K\) be a subgroup of
-    \(H\). Then \(\phi^{-1}(H)\) is a subgroup of \(G\).
+    \(H\). Then \(\phi\inv(H)\) is a subgroup of \(G\).
 \end{theorem}
 
 
 Every group \(G\) has at least two subgroups: the trivial subgroup \(\{e\}\) and
 \(G\) itself. Consider the homomorphism \(\phi: G \to H\). Define
 \[
-    \ker \phi = \{g \in G : \phi(g) = e_G\} = \phi^{-1}(\{e_H\}).
+    \ker \phi = \{g \in G : \phi(g) = e_G\} = \phi\inv(\{e_H\}).
 \]
 and
 \[
@@ -1076,27 +1179,27 @@ Since \(\{e_H\}\) is a subgroup of \(H\), we have by the preceding theorem that
 \(\ker \phi\) is not empty (because at the very least \(e_G \in \ker \phi\)) and
 that if \(a, b \in \ker \phi\), then 
 \[
-    \phi(ab^{-1}) = \phi(a)\phi(b)^{-1} = e_H e_H^{-1} = e_H,
+    \phi(ab\inv) = \phi(a)\phi(b)\inv = e_H e_H\inv = e_H,
 \]
-so \(ab^{-1} \in \ker \phi\) and by the subgroup test, \(\ker \phi\) is a
+so \(ab\inv \in \ker \phi\) and by the subgroup test, \(\ker \phi\) is a
 subgroup of \(G\).
 
 On the other hand, observe that \(\img \phi\) is likewise not empty (because it
 contains \(e_H\)). If \(a, b \in \img \phi\), then there exist \(x, y \in G\)
 such that \(\phi(x) = a\) and \(\phi(y) = b\). Then
 \[
-    ab^{-1} = \phi(x)\phi(y)^{-1} = \phi(xy^{-1}),
+    ab\inv = \phi(x)\phi(y)\inv = \phi(xy\inv),
 \]
-so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
+so \(ab\inv \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
 
 
 \section{Quotient groups and the isomorphism theorems}
 
 \begin{definition}
     Let \(H\) be a subgroup of a group \(G\) and \(a, b \in G\). We say that
-    \(a\) is \emph{left congruent} to \(b\) modulo \(H\) if \(a^{-1}b \in H\)
+    \(a\) is \emph{left congruent} to \(b\) modulo \(H\) if \(a\inv b \in H\)
     and write \(a \equiv_L b \pmod{H}\). Similarly, we say that \(a\) is
-    \emph{right congruent} to \(b\) modulo \(H\) if \(ba^{-1} \in H\) and write
+    \emph{right congruent} to \(b\) modulo \(H\) if \(ba\inv \in H\) and write
     \(a \equiv_R b \pmod{H}\). If \(a \equiv_L b \pmod{H}\) and \(a \equiv_R b
     \pmod{H}\), then we say that \(a\) is \emph{congruent} to \(b\) modulo \(H\)
     and simply write \(a \equiv b \pmod{H}\).
@@ -1112,14 +1215,14 @@ so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
     right congruence is an equivalence relation is similar.
 
     \begin{enumerate}
-        \item \emph{Reflexivity:} For all \(a \in G\), we have \(a^{-1}a = e \in
+        \item \emph{Reflexivity:} For all \(a \in G\), we have \(a\inv a = e \in
         H\), so \(a \equiv_L a \pmod{H}\).
-        \item \emph{Symmetry:} Suppose \(a \equiv_L b \pmod{H}\). Then \(a^{-1}b
-        \in H\), so \((a^{-1}b)^{-1} = b^{-1}a \in H\), i.e., \(b \equiv_L a
+        \item \emph{Symmetry:} Suppose \(a \equiv_L b \pmod{H}\). Then \(a\inv b
+        \in H\), so \((a\inv b)\inv = b\inv a \in H\), i.e., \(b \equiv_L a
         \pmod{H}\).
         \item \emph{Transitivity:} Suppose \(a \equiv_L b \pmod{H}\) and \(b
-        \equiv_L c \pmod{H}\). Then \(a^{-1}b \in H\) and \(b^{-1}c \in H\), so
-        \((a^{-1}b)(b^{-1}c) = a^{-1}c \in H\), i.e., \(a \equiv_L c \pmod{H}\).
+        \equiv_L c \pmod{H}\). Then \(a\inv b \in H\) and \(b\inv c \in H\), so
+        \((a\inv b)(b\inv c) = a\inv c \in H\), i.e., \(a \equiv_L c \pmod{H}\).
     \end{enumerate}
 \end{proof}
 
@@ -1134,10 +1237,10 @@ so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
     The equivalence class of \(a\) under left congruence modulo \(H\) is given
     by
     \[
-        \{ x \in G : x \equiv_L a \pmod{H} \} = \{ x \in G : x^{-1}a \in H \}.
+        \{ x \in G : x \equiv_L a \pmod{H} \} = \{ x \in G : x\inv a \in H \}.
     \]
-    Since \(H < G\), \((x^{-1}a)^{-1} = a^{-1}x \in H\). Thus \(a^{-1}x = h\)
-    for some \(h \in H\), and so \(x = ah\). The proof for right congruence is
+    Since \(H < G\), \((x\inv a)\inv = a\inv x \in H\). Thus \(a\inv x = h\) for
+    some \(h \in H\), and so \(x = ah\). The proof for right congruence is
     similar.
 \end{proof}
 
@@ -1171,13 +1274,13 @@ so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
 \end{proof}
 
 \begin{theorem}
-    Let \(H < G\) and let \(a, b \in G\). If \(aH = bH\), then \(a^{-1}b \in
+    Let \(H < G\) and let \(a, b \in G\). If \(aH = bH\), then \(a\inv b \in
     H\).
 \end{theorem}
 
 \begin{proof}
     Since \(aH = bH\), we have \(a \in bH\), i.e., \(a = bh\) for some \(h \in
-    H\). This implies that \(a^{-1}b = h \in H\).
+    H\). This implies that \(a\inv b = h \in H\).
 \end{proof}
 
 \begin{definition}
@@ -1185,13 +1288,13 @@ so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
     A subgroup \(N\) of a group \(G\) is said to be \emph{normal} if for all \(g
     \in G\) and \(n \in N\),
     \[
-        gng^{-1} \in N.
+        gng\inv \in N.
     \]
     If \(N\) is a normal subgroup of \(G\), we write \(N \triangleleft G\).
 \end{definition}
 
 \begin{remark}
-    The operation \(gng^{-1}\) is called \emph{conjugation} by \(g\). Thus,
+    The operation \(gng\inv\) is called \emph{conjugation} by \(g\). Thus,
     Definition~\ref{def:normal-subgroup} can be stated as: a subgroup \(N\) of a
     group \(G\) is normal if it is invariant under conjugation by elements of
     \(G\).
@@ -1214,11 +1317,11 @@ so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
 \begin{proof}
     Suppose \(N \triangleleft G\), and let \(a \in G\). Let \(x \in gN\). Then
     \(x = gn\) for some \(n \in N\). Since \(N \triangleleft G\), we have
-    \(gng^{-1} \in N\), so \(x = gn = gng^{-1}g = n'g\) for some \(n' \in N\).
+    \(gng\inv \in N\), so \(x = gn = gng\inv g = n'g\) for some \(n' \in N\).
     Thus \(x \in Ng\) and \(gN \subset Ng\). The proof that \(Ng \subset gN\) is
     similar. Conversely, suppose that left and right cosets of \(N\) coincide.
     Let \(g \in G\) and \(n \in N\). Then \(gn \in Ng = gN\), so \(gn = n'g\)
-    for some \(n' \in N\). This implies that \(gng^{-1} = n' \in N\), and since
+    for some \(n' \in N\). This implies that \(gng\inv = n' \in N\), and since
     \(g\) and \(n\) were arbitrary, we have \(N \triangleleft G\).
 \end{proof}
 
@@ -1240,20 +1343,20 @@ so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
     \begin{enumerate}[label=(\alph*), wide]
         \item The intersection \(H \cap K\) is a subgroup of \(K\) by
         Theorem~\ref{thm:intersection-subgroups}. Since \(N \triangleleft G\),
-        we must have \(gng^{-1} \in N\) for all \(g \in G\) and \(n \in N\). Let
+        we must have \(gng\inv \in N\) for all \(g \in G\) and \(n \in N\). Let
         \(x \in N \cap K\) and \(k \in K\). Then \(x \in K\) and because \(K <
-        G\) (i.e., closed), we must have \(kxk^{-1} \in K\). On the other hand,
+        G\) (i.e., closed), we must have \(kxk\inv \in K\). On the other hand,
         we also have \(x \in N\) and because \(k \in K \subset G\) we have
-        \(kxk^{-1} \in N\). Thus \(kxk^{-1} \in N \cap K\), and so \(N \cap K
+        \(kxk\inv \in N\). Thus \(kxk\inv \in N \cap K\), and so \(N \cap K
         \triangleleft K\).
         
         \item Let \(a, b \in NK\). Then \(a = n_1k_1\) and \(b = n_2k_2\) for
         some \(n_1, n_2 \in N\) and \(k_1, k_2 \in K\). Since \(N \triangleleft
-        G\), and \(k^{-1}_1k_1 = e \in N\), we have
+        G\), and \({k\inv}_1k_1 = e \in N\), we have
         \[
-            ab = (n_1k_1)(n_2k_2) = n_1k_1n_2(k^{-1}_1k_1)k_2 = n_1(k_1n_2k^{-1}_1)k_1k_2
+            ab = (n_1k_1)(n_2k_2) = n_1k_1n_2({k\inv}_1k_1)k_2 = n_1(k_1n_2{k\inv}_1)k_1k_2
         \]
-        Since \(N\) is normal \(k_1n_2k^{-1}_1\) must be equal to some element
+        Since \(N\) is normal \(k_1n_2{k\inv}_1\) must be equal to some element
         \(n_3 \in N\), so \(ab = n_1n_3k_1k_2 \in NK\).
     \end{enumerate}
 \end{proof}
@@ -1271,16 +1374,16 @@ so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
 
 \begin{proof}
     First we show that the operation is well-defined. Suppose \(a, a', b, b' \in
-    G\) such that \(aN = a'N\) and \(bN = b'N\). Then \(a^{-1}a' \in N\) and
-    \(b^{-1}b' \in N\). The first statement implies that \(b^{-1}a^{-1}a' \in
-    b^{-1}H = Hb^{-1}\) (because \(N\)) is normal. Thus there exists an element
-    \(n \in N\) such that \(b^{-1}a^{-1}a' = nb^{-1}\); multiplying on the right
-    by \(b'\) gives us \(b^{-1}a^{-1}a'b' = nb^{-1}b' \in N\). We can simplify
-    this to \((ab)^{-1}(a'b') \in N\), which implies that \((ab)N = (a'b')N\).
+    G\) such that \(aN = a'N\) and \(bN = b'N\). Then \(a\inv a' \in N\) and
+    \(b\inv b' \in N\). The first statement implies that \(b\inv a\inv a' \in
+    b\inv H = Hb\inv\) (because \(N\)) is normal. Thus there exists an element
+    \(n \in N\) such that \(b\inv a\inv a' = nb\inv\); multiplying on the right
+    by \(b'\) gives us \(b\inv a\inv a'b' = nb\inv b' \in N\). We can simplify
+    this to \((ab)\inv(a'b') \in N\), which implies that \((ab)N = (a'b')N\).
 
     The operation is associative because multiplication in \(G\) is associative.
     The identity element of the group is \(eN = N\) where \(e\) is the identity
-    element of \(G\). The inverse of \(aN\) is \(a^{-1}N\). Thus the set of all
+    element of \(G\). The inverse of \(aN\) is \(a\inv N\). Thus the set of all
     left cosets of \(N\) in \(G\) forms a group under the operation \((aN)(bN) =
     abN\).
 \end{proof}
@@ -1306,9 +1409,9 @@ so \(ab^{-1} \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
     We have already established that \(\ker \phi < G\). Let \(g \in G\) and \(n
     \in \ker \phi\). Write \(e'\) for the identity element of \(H\). Then
     \[
-        \phi(gng^{-1}) = \phi(g)\phi(n)\phi(g^{-1}) = \phi(g)e'\phi(g^{-1}) = \phi(g)\phi(g^{-1}) = e'.
+        \phi(gng\inv) = \phi(g)\phi(n)\phi(g\inv) = \phi(g)e'\phi(g\inv) = \phi(g)\phi(g\inv) = e'.
     \]
-    Therefore, \(gng^{-1} \in \ker \phi\).
+    Therefore, \(gng\inv \in \ker \phi\).
 
     On the other hand, since each element of \(G/N\) is of the form \(gN\) for
     some \(g \in G\), the map \(\pi\) is surjective. By our definition of coset
@@ -1539,15 +1642,15 @@ nonetheless because of its importance.
 
     We can also verify that the map \(\gamma: G \times G \to G\) defined by
     \[
-        \gamma(g, x) = gxg^{-1}
+        \gamma(g, x) = gxg\inv
     \]
     is an action of \(G\) on itself. Indeed, we have
     \[
-        \gamma(e, x) = exe^{-1} = x
+        \gamma(e, x) = exe\inv = x
     \]
     and
     \[
-        \gamma(g, \gamma(h, x)) = g(hxh^{-1})g^{-1} = (gh)x(gh)^{-1} = \gamma(gh, x),
+        \gamma(g, \gamma(h, x)) = g(hxh\inv)g\inv = (gh)x(gh)\inv = \gamma(gh, x),
     \]
     for all \(g, h, x \in G\). This action is called \emph{conjugation}.
 \end{example}

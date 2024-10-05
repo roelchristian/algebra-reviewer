@@ -5,7 +5,7 @@
     a5paper,
     inner=0.8in,
     outer=0.4in,
-    top=0.5in,
+    top=0.6in,
     bottom=0.5in
 }
 
@@ -104,7 +104,6 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\cyclic}[1]{\langle #1 \rangle}
-\newcommand{\Grp}{\mathsf{Grp}}
 \newcommand{\charx}{\operatorname{char}}
 \newcommand{\img}{\operatorname{im}}
 \newcommand{\Hom}{\operatorname{Hom}}
@@ -112,11 +111,13 @@
 \newcommand{\id}{\operatorname{id}}
 \newcommand{\normal}[2]{#1 \triangleleft #2}
 \newcommand{\catg}[1]{\mathbf{#1}}
+\newcommand{\Grp}{\catg{Grp}}
 \newcommand{\Aut}{\operatorname{Aut}}
 \newcommand{\dom}{\operatorname{dom}}
-\newcommand{\Obj}[1]{\operatorname{Obj}(\catg{#1})}
+\newcommand{\Obj}[1]{\operatorname{ob}(\catg{#1})}
 \newcommand{\gen}[1]{\langle #1 \rangle}
-
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\inv}{^{-1}}
 
 
 % \newcommand{\field}{\mathsf{k}}
@@ -130,11 +131,14 @@
 
 \begin{document}
 
+\frontmatter
 \raggedbottom
 
 \maketitle
 
 \tableofcontents
+
+\mainmatter
 
 \include{ch/preliminaries}
 \include{ch/groups}

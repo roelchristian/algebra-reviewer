@@ -338,6 +338,11 @@ single object.
     is said to have \emph{infinite order} and we write \(\order{a} = \infty\).
 \end{definition}
 
+\begin{definition}
+    The order of a group \(G\) is the cardinality of the set \(G\), denoted by
+    \(\order{G}\).
+\end{definition}
+
 \begin{theorem}
     If \(g^n = e\) for some integer \(n\), then \(\order{g}\) divides \(n\).
 \end{theorem}
@@ -399,6 +404,88 @@ single object.
     \[
         [a]_n + [-a]_n = [a - a]_n = [0]_n.
     \]
+\end{example}
+
+\begin{example}[Cayley tables]
+    Given a group \(G\), the \emph{Cayley table} (or \emph{multiplication
+    table}) of \(G\) is a square table with \(|G|\) rows and columns where the
+    entry in the \(i\)-th row and \(j\)-th column is the product of the \(i\)-th
+    and \(j\)-th elements of \(G\). The Cayley table of a group is unique up to
+    the order of the elements in the table. Each entry in the table is an
+    element of \(G\), and each element of \(G\) appears exactly once in each row
+    and column of the table: indeed, if for some fixed element \(a \in G\) such
+    that \(ab = ac\), then by the cancellation law \(b = c\).
+    
+    The Cayley table of a group is a useful tool for understanding the structure
+    of the group, especially for small groups. We would often write an outer row
+    and an outer column (call them the 0th row and the 0th column for
+    convenience) that list the elements of the group in some order, with the (0,
+    0)th entry being the group operation. We would also often write the identity
+    element in cells \(0, 1\) and \(1, 0\) so that their product (which is also
+    the identity) would appear on the first row and first column.
+
+    Consider for example the group, \(\Z/2\Z\). The Cayley table of this group
+    is
+    \[
+        \begin{array}{c|cc}
+            + & 0 & 1\\
+            \hline
+            0 & 0 & 1\\
+            1 & 1 & 0
+        \end{array}
+    \]
+
+    We can illustrate the usefulness of Cayley tables by considering groups of
+    order up to \(3\). We claim that there is only one way to construct a Cayley
+    table for groups of order \(1\), \(2\), and \(3\). The case \(|G| = 1\) is
+    the trivial group. If \(|G| = 2\), then it must have an identity element and
+    another element \(a \neq e\). First we have \(ea = ae = a\); but what does
+    \(aa\) equal? If \(aa = a\) then \(a\) is the identity element, which is a
+    contradiction; since there is only one other element in the group, \(aa\)
+    must equal \(e\). Thus the Cayley table of a group of order \(2\) is
+    \[
+        \begin{array}{c|cc}
+            \cdot & e & a\\
+            \hline
+            e & e & a\\
+            a & a & e
+        \end{array}
+    \]
+    Observe, however, that we could have written \(e\) as \(0\) and \(a\) as
+    \(1\) and obtain the Cayley table of \(\Z/2\Z\). Thus the Cayley table for a
+    group of order \(2\) is unique up to some `relabelling' of its elements;
+    i.e., if we know any consistent `relabelling' from \(\Z/2\Z\) to some group
+    of order \(2\), then we can determine the Cayley table of that group by
+    sending \(0\) to the identity element and \(1\) to the other element. There
+    is a more precise way to state this result: we say that every group of order
+    \(2\) is `isomorphic' to \(\Z/2\Z\). We shall define this notion more
+    precisely in \S~\ref{sec:homomorphisms-grp} but shall content ourselves with
+    this informal definition for now.
+
+    Now consider a group of order \(3\). It must have an identity element \(e\)
+    and two other elements, say \(a\) and \(b\), both distinct from \(e\) and
+    from each other. From the definition of the identity, we have \(ea = ae =
+    a\), \(eb = be = b\). Consider the product \(ab \in G\). Then \(ab\) must be
+    one of \(e, a, b\) since there are only three elements in the group. If \(ab
+    = b\) or \(ab = a\), then \(b = e\) or \(a = e\), respectively, which
+    contradicts are assumption that both \(a\) and \(b\) are distinct from
+    \(e\). Thus \(ab = e\). A similar argument shows that \(ba = e\) and \(G\)
+    is abelian. Now \(aa \neq a\) because \(a\) is distinct from \(e\), and \(aa
+    \neq e = ab\) because cancellation gives us \(a = b\), which is a
+    contradiction. Thus \(aa = b\). Similarly, \(bb = a\). The Cayley table of a
+    group of order \(3\) is then
+    \[
+        \begin{array}{c|ccc}
+            \cdot & e & a & b\\
+            \hline
+            e & e & a & b\\
+            a & a & b & e\\
+            b & b & e & a
+        \end{array}
+    \]
+    A similar exercise in relabelling shows that every group of order \(3\) is
+    isomorphic to this group (which, by rewriting \(e\) as \(0\), \(a\) as
+    \(1\), and \(b\) as \(2\), is the group \(\Z/3\Z\)).
 \end{example}
 
 \begin{example}[Cyclic groups]
@@ -478,7 +565,7 @@ sends \((a, b)\) to \(a\) and \(\pi_{G_2}\) sends \((a, b)\) to \(b\) for all
 \[
     \begin{tikzcd}
         G \arrow[r, "\phi"]                                                                  & H                                                        \\
-        G\times G \arrow[d, "\pi_{G_1}"'] \arrow[u, "\pi_{G_1}"] \arrow[r, "\phi\times\phi"] & H\times H \arrow[u, "\pi_{H_1}"'] \arrow[d, "\pi_{H_2}"] \\
+        G\times G \arrow[d, "\pi_{G_2}"'] \arrow[u, "\pi_{G_1}"] \arrow[r, "\phi\times\phi"] & H\times H \arrow[u, "\pi_{H_1}"'] \arrow[d, "\pi_{H_2}"] \\
         G \arrow[r, "\phi"']                                                                 & H                                                       
         \end{tikzcd}
 \]
@@ -546,12 +633,41 @@ whose morphisms are group homomorphisms as in the following theorem.
     a group homomorphism, i.e., the following diagram commutes:
     \[
         \begin{tikzcd}
-            G \times G \arrow[d, "\mult_G"] \arrow[r, "\phi \times \phi"'] \arrow[rr, "(\phi \times \phi) \times (\psi \times \psi)", bend left] & H\times H \arrow[d, "\mult_H"] \arrow[r, "\psi \times \psi"'] & K\times K \arrow[d, "\mult_K"] \\
+            G \times G \arrow[d, "\mult_G"] \arrow[r, "\phi \times \phi"'] \arrow[rr, "(\psi \circ \phi) \times (\psi \circ \phi)", bend left] & H\times H \arrow[d, "\mult_H"] \arrow[r, "\psi \times \psi"'] & K\times K \arrow[d, "\mult_K"] \\
             G \arrow[r, "\phi"] \arrow[rr, "\psi \circ \phi"', bend right]                                                                       & H \arrow[r, "\psi"]                                           & K                             
             \end{tikzcd}
     \]
     Because each of the inner rectangles in the diagram commutes, the outer
-    rectangle must also commute. More explicitly, for all \(a, b \in G\),
+    rectangle must also commute. By the universal property for products, there must exist a unique function
+    \[
+        (\psi \circ \phi) \times (\psi \circ \phi): G \times G \to K \times K
+    \]
+    such that the diagram below commutes:
+    \[
+        \begin{tikzcd}
+            G \arrow[rr, "\psi \circ \phi"]                                                                                &  & K                                                        \\
+            G\times G \arrow[d, "\pi_{G_1}"'] \arrow[u, "\pi_{G_1}"] \arrow[rr, "(\psi \circ \phi)\times(\psi \circ\phi)"] &  & K\times K \arrow[u, "\pi_{K_1}"'] \arrow[d, "\pi_{K_2}"] \\
+            G \arrow[rr, "\psi \circ \phi"']                                                                                          &  & K                                                       
+            \end{tikzcd}
+    \]
+    On the other hand, since
+    \[
+            (\phi \times \phi) \circ (\psi \times \psi) : G \times G \to K \times K,
+    \]
+    the universal property for products again tells us that the diagram below commutes:
+    \[
+        \begin{tikzcd}
+            G \arrow[r, "\phi"] \arrow[rr, "\psi \circ \phi", bend left]                         & H \arrow[r, "\psi"]                                                                  & K                                                        \\
+            G\times G \arrow[d, "\pi_{G_1}"'] \arrow[u, "\pi_{G_1}"] \arrow[r, "\phi\times\phi"] & H\times H \arrow[u, "\pi_{H_1}"'] \arrow[d, "\pi_{H_2}"] \arrow[r, "\psi\times\psi"] & K\times K \arrow[u, "\pi_{K_1}"'] \arrow[d, "\pi_{K_2}"] \\
+            G \arrow[r, "\phi"'] \arrow[rr, "\psi \circ \phi"', bend right]                      & H \arrow[r, "\psi"']                                                                 & K                                                       
+            \end{tikzcd}
+    \]
+    By the uniqueness of \((\psi \circ \phi) \times (\psi \circ \phi)\) we must then have
+    \[
+        (\psi \circ \phi) \times (\psi \circ \phi) = (\phi \times \phi) \circ (\psi \times \psi).
+    \]
+
+    More explicitly, for all \(a, b \in G\),
     \begin{align*}
         (\psi \circ \phi)(ab) &= \psi(\phi(ab))&\\
         &=\psi(\phi(a)\phi(b))& (\text{since \(\phi\) is a homomorphism})\\
@@ -643,8 +759,8 @@ following result.
 \end{theorem}
 
 \begin{proof}
-    We need to show that \(G \times H\) satisfies the universal property of a
-    product: i.e., for any group \(K\) and group homomorphisms \(\phi_G: K \to
+    We need to show that \(G \times H\) satisfies the universal property for
+    products: i.e., for any group \(K\) and group homomorphisms \(\phi_G: K \to
     G\) and \(\phi_H: K \to H\), there exists a unique group homomorphism
     \(\Phi: K \to G \times H\) such that the following diagram commutes:
     \[

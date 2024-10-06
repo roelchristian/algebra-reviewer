@@ -546,28 +546,30 @@ sets form a category.
 \end{example}
 
 \begin{example}
-    \label{ex:category-from-set-relation}
+    \label{ex:category-preordered-sets}
     Consider a set \(S\) and a relation \(\rho\) in \(S\) that is reflexive and
     transitive. That is \(a\rho a\) for all \(a \in S\) and if \(a\rho b\) and
     \(b\rho c\) then \(a\rho c\). We claim that we can define the category
-    \(\catg{R}\) whose objects are the elements of \(S\) and whose morphisms are
-    the elements of \(\rho\). We define a category \(\catg{R}\) as follows:
+    \(\catg{Ord}\) whose objects are the elements of \(S\) and whose morphisms
+    are the elements of \(\rho\). We define a category \(\catg{Ord}\) as
+    follows:
     \begin{enumerate}[label=(\alph*), itemsep=0pt]
-        \item The objects of \(\catg{R}\) are the elements of \(S\).
-        \item For all \(a, b \in S\), we define \(\Hom_{\catg{R}}(a, b)\) to be
-        the ordered pair \((a, b)\) if \(a\rho b\) and the empty set otherwise.
+        \item The objects of \(\catg{Ord}\) are the elements of \(S\).
+        \item For all \(a, b \in S\), we define \(\Hom_{\catg{Ord}}(a, b)\) to
+        be the ordered pair \((a, b)\) if \(a\rho b\) and the empty set
+        otherwise.
     \end{enumerate}
-    We claim that \(\catg{R}\) is a category. Let us verify this against the
+    We claim that \(\catg{Ord}\) is a category. Let us verify this against the
     axioms of a category.
 
     Since \(\rho\) is reflexive (by definition), for all \(a \in S\) we have
-    \(a\rho a\) and thus \((a, a) \in \Hom_{\catg{R}}(a, a)\). Now if \(f \in
-    \Hom_{\catg{R}}(a, b)\) and \(g \in \Hom_{\catg{R}}(b, c)\), then the
+    \(a\rho a\) and thus \((a, a) \in \Hom_{\catg{Ord}}(a, a)\). Now if \(f \in
+    \Hom_{\catg{Ord}}(a, b)\) and \(g \in \Hom_{\catg{Ord}}(b, c)\), then the
     transitivity of \(\rho\) allows us to define a composition \(g \circ f \in
-    \Hom_{\catg{R}}(b, c)\) which is precisely the element \((a, c)\) in
-    \(\Hom_{\catg{R}}(a, c)\). If \(f \in \Hom_{\catg{R}}(a, b)\), \(g \in
-    \Hom_{\catg{R}}(b, c)\), and \(h \in \Hom_{\catg{R}}(c, d)\), for all \(a,
-    b, c, d \in S\), then 
+    \Hom_{\catg{Ord}}(b, c)\) which is precisely the element \((a, c)\) in
+    \(\Hom_{\catg{Ord}}(a, c)\). If \(f \in \Hom_{\catg{Ord}}(a, b)\), \(g \in
+    \Hom_{\catg{Ord}}(b, c)\), and \(h \in \Hom_{\catg{Ord}}(c, d)\), for all
+    \(a, b, c, d \in S\), then 
     \[
         f = (a, b), \quad g = (b, c), \quad h = (c, d),
     \]
@@ -595,7 +597,8 @@ sets form a category.
         \id_b \circ f \implies a \rho b \land b \rho b \implies a \rho b,
     \]
     so that the identity morphisms are neutral with respect to composition. Thus
-    \(\catg{R}\) is indeed a category.
+    \(\catg{Ord}\) is indeed a category. This category is often called the
+    \emph{category of preordered sets}.
 
     As a concrete example, consider the set \(\Z\) of integers and the relation
     \(\leq\) (this is both reflexive and transitive). A diagram in this category
@@ -613,7 +616,7 @@ sets form a category.
     because \(8 \to 3\) is not true with respect to the relation \(\leq\).
 
     A more trivial example is to consider instead of \(\leq\) the relation \(=\)
-    (this is again reflexive and transitive). Then the category \(\catg{R}\)
+    (this is again reflexive and transitive). Then the category \(\catg{Ord}\)
     would have only identity morphisms and no other morphisms. Categories of
     this form are called \emph{discrete categories}.
 
@@ -627,7 +630,10 @@ sets form a category.
     transitive. More specifically, we define \(\Hom_{\catg{\hat{S}}}(A, B)\) to
     contain the pair \((A, B)\) if \(A \subset B\) and the empty set otherwise.
     Verifying the axioms of a category is straightforward (following our earlier
-    example) and we see that \(\catg{\hat{S}}\) is a category.
+    example) and we see that \(\catg{\hat{S}}\) is a category. While this might
+    appear first as another flavor of the category of preordered sets, we must
+    note that the objects in this category are not elements of a set but rather
+    sets themselves.
 \end{example}
 
 \begin{example}[Slice category]
@@ -732,7 +738,7 @@ sets form a category.
 
     Let us try to construct a comma category from the category we have defined
     on \(\Z\) with the relation \(\leq\) in
-    Example~\ref{ex:category-from-set-relation}. Call this category \(\catg{C}\)
+    Example~\ref{ex:category-preordered-sets}. Call this category \(\catg{C}\)
     and choose an object, say \(A = 3\), in this category. Then the objects of
     \(\catg{C}_A\) are morphisms in \(\catg{C}\) with target \(3\), i.e.,
     ordered pairs in \(\Z \times \Z\) of the form \((k, 3)\) where \(k \leq 3\).
@@ -929,25 +935,25 @@ isomorphisms are immediate from the definition:
 \end{proof}
 
 The results of \S~\ref{sec:set-functions} tell us that bijections are precisely
-the isomorphisms in the category \(\Set\). In the category \(\catg{R}\) obtained
-from the relation \(\leq\) on \(\Z\) (as in Example~\ref{ex:slice-category}) the
-only isomorphisms are the identity morphisms. On the other hand, a category in
-which every morphism is an isomorphism is called a \emph{groupoid}. Let us
-construct a groupoid by first considering the category \(\catg{R}\) obtained
-from a set \(S\) and a relation \(\sim\) on \(S\) that is reflexive and
-transitive (we have constructed this category in
-Example~\ref{ex:category-from-set-relation}). Now suppose that \(\sim\) is also
-symmetric (i.e., an equivalence relation). Then we have
+the isomorphisms in the category \(\Set\). In the category \(\catg{Ord}\)
+obtained from the relation \(\leq\) on \(\Z\) (as in
+Example~\ref{ex:slice-category}) the only isomorphisms are the identity
+morphisms. On the other hand, a category in which every morphism is an
+isomorphism is called a \emph{groupoid}. Let us construct a groupoid by first
+considering the category \(\catg{Ord}\) obtained from a set \(S\) and a relation
+\(\sim\) on \(S\) that is reflexive and transitive (we have constructed this
+category in Example~\ref{ex:category-preordered-sets}). Now suppose that
+\(\sim\) is also symmetric (i.e., an equivalence relation). Then we have
 \[
-    (a, b) \in \Hom_{\catg{R}}(a, b) \implies a \sim b \implies b \sim a \implies (b, a) \in \Hom_{\catg{R}}(b, a).
+    (a, b) \in \Hom_{\catg{Ord}}(a, b) \implies a \sim b \implies b \sim a \implies (b, a) \in \Hom_{\catg{Ord}}(b, a).
 \]
 Now since
 \[
     (a, b) \circ (b, a) = (a, a) = \id_a \quad \text{and} \quad (b, a) \circ (a, b) = (b, b) = \id_b,
 \]
 it follows that \((a, b)\) is an isomorphism with inverse \((b, a)\). Since
-\((a, b)\) was arbitrarilly chosen, we see that every morphism in \(\catg{R}\)
-is an isomorphism and thus \(\catg{R}\) is a groupoid.
+\((a, b)\) was arbitrarilly chosen, we see that every morphism in \(\catg{Ord}\)
+is an isomorphism and thus \(\catg{Ord}\) is a groupoid.
 
 Having earlier characterized monomorphisms and epimorphisms in \(\Set\) in
 Definition~\ref{def:monomorphism-epimorphism-set} fully in terms of other set
@@ -971,11 +977,108 @@ arbitrary category \(\catg{C}\).
 In Theorem~\ref{thm:injective-surjective-monomorphism-epimorphism}, we have
 already shown that monomorphisms and epimorphisms in \(\Set\) are precisely the
 injective and surjective functions, respectively. In
-Example~\ref{ex:category-from-set-relation}
+Example~\ref{ex:category-preordered-sets}
 
 
 %%% UNIVERSAL PROPERTIES
 \section{Universal properties}
+
+Consider the set product \(A \times B\) and the projections \(\pi_1: A \times B
+\to A\) and \(\pi_2: A \times B \to B\). Suppose that \(X\) is another set and
+\(f_A : X \to A\) and \(f_B : X \to B\) are set functions. A `natural' way to
+compose these functions into a single function \(f: X \to A \times B\) is to
+define \(f(x) = (f_A(x), f_B(x))\). This gives us
+\[
+    f_A = \pi_1 \circ f \quad \text{and} \quad f_B = \pi_2 \circ f.
+\]
+Graphically, this is the commutative diagram
+\[
+    \begin{tikzcd}
+        & X \arrow[ld, "f_A"'] \arrow[rd, "f_B"] \arrow[d, "f"] &   \\
+      A & A \times B \arrow[r, "\pi_B"'] \arrow[l, "\pi_A"]     & B
+      \end{tikzcd} 
+\]
+But is \(f\) then the only possible function satisfying this property?
+
+Examples like this one motivate the notion of a `universal property' in category
+theory which we shall discuss in detail in this section. While this particular
+example considers the set product and functions between sets, category theory
+allows us to generalize this notion to arbitrary categories and morphisms. But
+before we proceed, we consider another familiar example.
+
+Let us look again at the category \(\Set\). Observe that for any set \(X\),
+there is exactly one set function from the empty set \(\emptyset\) to \(X\),
+i.e., the empty map. If we consider a singleton \(\{*\}\), then there are as
+many maps \(\{*\} \to X\) as there are elements in \(X\). For any other \(Y\)
+then the number of maps \(Y \to X\) is merely an exercise in permutations. Thus
+the property of having exactly one map from itself to any other set is a
+`universal' property of the empty set. Before defining exactly what this means,
+we begin with a simpler claim; we say that the empty set is an `initial object'
+in the category \(\Set\). We define this formally as follows.
+
+\begin{definition}
+    An \emph{initial object} in a category \(\catg{C}\) is an object \(A\) such
+    that for every object \(X\) of \(\catg{C}\) there is a unique morphism from
+    \(A\) to \(X\). Similarly, a \emph{terminal object} in a category
+    \(\catg{C}\) is an object \(B\) such that for every object \(X\) of
+    \(\catg{C}\) there is a unique morphism from \(X\) to \(B\). An object that
+    is both initial and terminal is called a \emph{zero object}.
+\end{definition}
+
+The statement `the empty set is an initial object in \({\Set}\)' then means that
+for any set \(X\), there is exactly one set function from the empty set to \(X\)
+(this is the empty map). Initial and terminal objects do not necessarily exist
+in a category. (If they exist, however, it should be apparent that an initial
+object in a category \(\catg{C}\) is terminal in \(\catg{C}^\op\) and vice
+versa.) For example, the category \(\catg{Ord}\) constructed from the relation
+\(\leq\) on \(\Z\) (as in Example~\ref{ex:category-preordered-sets}) has no
+initial object: there is no integer \(i\) such that \(i \leq n\) for all
+integers \(n\). Similarly, a terminal object in this category would be an
+integer \(t\) greater than every other integer, which again does not exist.
+
+If such initial/terminal objects exist, they are not necessarily unique. For
+example, in \(\Set\), the singleton \(\{*\}\) is a final object. Indeed, for any
+set \(X\), there is exactly one set function from \(X\) to \(\{*\}\), i.e., the
+constant map if \(X\) is not empty and the empty map otherwise. However
+\(\{*\}\) is not a unique object; e.g., if \(\{a\}\) and \(\{b\}\) are also
+singletons, then any constant map from a set \(X\) to \(\{a\}\) or \(\{b\}\) is
+also unique. However, there is a bijection from one singleton to another, i.e.,
+all singletons are isomorphic to each other. This observation can be formalized
+in the following result:
+
+\begin{theorem}
+    Let \(\catg{C}\) be a category. An initial (resp. terminal) object in
+    \(\catg{C}\) is unique up to isomorphism.
+\end{theorem}
+
+\begin{proof}
+    Suppose \(I\) and \(J\) are both initial objects in a category \(\catg{C}\).
+    Since \(I\) is initial, there is a unique morphism \(f: I \to J\).
+    Similarly, since \(J\) is initial, there is a unique morphism \(g: J \to
+    I\). But then \(g \circ f: I \to I\); but this must be the identity morphism
+    because since \(\catg{C}\) is a category \(\Hom_{\catg{C}}(I, I)\) must
+    contain at least one morphism, and since \(I\) is initial, this morphism
+    must be unique. Thus \(g \circ f = \id_{I}\). Similarly, \(f \circ g =
+    \id_{J}\) and thus \(I\) and \(J\) are isomorphic. The proof for terminal
+    objects is similar.
+\end{proof}
+
+\begin{theorem}
+    Given two isomorphic objects \(I \cong J\) of a category \(\catg{C}\), if \(I\) is an initial (resp. terminal) object then so is \(J\).
+\end{theorem}
+
+\begin{proof}
+    Suppose (a) \(I\) is initial and (b) \(I \cong J\). For any object \(X\) of
+    \(\catg{C}\), there is a unique morphism \(f: I \to X\) because \(I\) is
+    inital. By (a) and (b), the morphism \(g: I \to J\) is unique. Let \(h\) be
+    any morphism from \(J\) to \(X\); then \(h \circ g: I \to X\), but by the
+    uniqueness of \(f\) we must have \(h \circ g = f\). Since \(g\) is an
+    isomorphism, we can define the inverse \(g^{-1}: J \to I\) and thus \(h = f
+    \circ g^{-1}\). We claim that \(h\) is unique. Suppose \(h_1\) and \(h_2\)
+    are two morphisms from \(J\) to \(X\). Then \(h_1 \circ g = f = h_2 \circ
+    g\) and thus \(h_1 = h_2\). Thus \(J\) is an initial object. The proof for
+    terminal objects is analogous.
+\end{proof}
 
 \begin{example}
     \label{ex:product-set-universal-property}

@@ -1155,11 +1155,8 @@ some examples to illustrate this concept.
     With the notation in place, we are now able to state the universal property
     of the product: given a category \(\catg{C}\) and objects \(A\) and \(B\) of
     \(\catg{C}\), the product of \(P:= A \times B\) of \(A\) and \(B\) is a
-    terminal object in the category \(\catg{C}^A_B\). (We note immediately that
-    since \(\catg{C}_A^B\) is not necessarily the same category as
-    \(\catg{C}_B^A\), the product \(P' := B \times A\) of \(B\) and \(A\) is not
-    necessarily the same as \(P\).) By our definition of a terminal object, we
-    have the following more explicit definition:
+    terminal object in the category \(\catg{C}^A_B\). By our definition of a
+    terminal object, we have the following more explicit definition:
           \begin{quotation}
             A product of two objects \(A\) and \(B\) in a category \(\catg{C}\)
             is an object \(P\) of \(\catg{C}\) such that for every object \(X\)
@@ -1175,10 +1172,14 @@ some examples to illustrate this concept.
             commutes.
           \end{quotation}
     Implicit in this definition of course is the fact that since \(P\) defined
-    in terms \(\catg{C}_A^B\), there are always morphisms \(\pi_A: P \to A\) and
+    in terms \(\catg{C}^A_B\), there are always morphisms \(\pi_A: P \to A\) and
     \(\pi_B: P \to B\) in \(\catg{C}\) that gives us the wedge \((P, \pi_A,
-    \pi_B)\). We also note that this wedge and not the product \(P\) alone is
-    the terminal object in \(\catg{C}_A^B\).
+    \pi_B)\). We also note that this wedge and not the object \(P\) alone is
+    the terminal object in \(\catg{C}_A^B\); for the sake of convenience, we
+    would, however refer to \(P\) as the product when we mean the wedge \((P,
+    \pi_A, \pi_B)\). Lastly, since the existence of terminal objects are not
+    guaranteed in all categories, products are not necessarily defined in all
+    categories.
 
     In order to show that the function \(f\) at the beginning of this section is
     unique in terms of making the diagram in
@@ -1204,4 +1205,39 @@ some examples to illustrate this concept.
     (f_A(x), f_B(x)) = f(x)\) and thus \(g = f\). Thus the function \(f\) is
     unique and the set product \(A \times B\) satisfies the universal property
     for products in \(\Set\).
+
+    Now what do we know about the product \(B \times A\)? In \(\Set\) at least,
+    \(B \times A \cong A \times B\) and
+    Theorem~\ref{thm:isomorphic-objects-initial-terminal} tells us that \(B
+    \times A\) is also a terminal object in the wedge category \(\Set^A_B\), and
+    thus a product in \(\Set\). But does this hold for every category? Let
+    \(\catg{C}\) be a category where products are defined and suppose \((P_1,
+    \pi_A, \pi_B)\), \((P_2, \rho_a, \rho_B)\) are products of \(A\) and \(B\)
+    in \(\catg{C}\). Then by the universal property of products, there are
+    unique morphisms \(\sigma : P_1 \to P_2\) and \(\tau : P_2 \to P_1\) such that the
+    diagrams below commute:
+    \[
+        \begin{tikzcd}
+            & P_1 \arrow[ld, "\pi_A"'] \arrow[rd, "\pi_B"] \arrow[d, "\sigma"] &   &   & P_2 \arrow[ld, "\rho_A"'] \arrow[rd, "\rho_B"] \arrow[d, "\tau"] &   \\
+          A & P_2 \arrow[l, "\rho_A"] \arrow[r, "\rho_B"']                     & B & A & P_1 \arrow[l, "\pi_A"] \arrow[r, "\pi_B"']                       & B
+          \end{tikzcd}
+    \]
+    This means that
+    \[
+          \pi_A = \rho_A \circ \sigma \quad \text{and} \quad \pi_B = \rho_B \circ \sigma
+    \]
+    and similarly,
+    \[
+          \rho_A = \pi_A \circ \tau \quad \text{and} \quad \rho_B = \pi_B \circ \tau.
+    \]
+    Combining this equalities and using the uniqueness of \(\sigma\) and \(\tau\) we then have \(\sigma \circ \tau = \id_{P_2}\) and \(\tau \circ \sigma = \id_{P_1}\). Thus \(P_1 \cong P_2\), i.e., products are unique up to isomorphism. Taking \(A \times B := (A \times B, \pi_1, \pi_2)\) as before, since \(B \times A := (A \times B, \pi_2, \pi_1)\) is also a product of \(A\) and \(B\), we then have \(A \times B \cong B \times A\) for any category \(\catg{C}\) where products are defined.
+
+    One final note. While we have constructed the category \(\catg{C}^A_B\) to
+    illustrate that products are terminal objects in this category, we shall for
+    the remainder of the text, usually not construct the category explicitly
+    instead relying on statements like `an object \(X\) satisfies the the
+    following universal property: for any other object \(Y\) such that \dots,
+    there exist a unique morphism \(f: Y \to X\) such that \dots.' While not as
+    rigorous, this should be sufficient for most of the examples we shall
+    consider.
 \end{example}

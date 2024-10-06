@@ -792,7 +792,8 @@ sets form a category.
     sets is an example of a \emph{coslice category}, which we construct by
     fixing an object in a category and considering morphisms to other objects in
     the category. The construction is similar to the construction of slice
-    categories in Example~\ref{ex:slice-category}.
+    categories in Example~\ref{ex:slice-category}. We denote the coslice
+    category of an object \(A\) in a category \(\catg{C}\) by \(\catg{C}^{A/}\).
 \end{example}
 
 \begin{example}
@@ -992,12 +993,13 @@ define \(f(x) = (f_A(x), f_B(x))\). This gives us
     f_A = \pi_1 \circ f \quad \text{and} \quad f_B = \pi_2 \circ f.
 \]
 Graphically, this is the commutative diagram
-\[
+\begin{equation}
+    \label{eq:set-product-universal-property}
     \begin{tikzcd}
         & X \arrow[ld, "f_A"'] \arrow[rd, "f_B"] \arrow[d, "f"] &   \\
       A & A \times B \arrow[r, "\pi_B"'] \arrow[l, "\pi_A"]     & B
       \end{tikzcd} 
-\]
+\end{equation}
 But is \(f\) then the only possible function satisfying this property?
 
 Examples like this one motivate the notion of a `universal property' in category
@@ -1047,6 +1049,7 @@ all singletons are isomorphic to each other. This observation can be formalized
 in the following result:
 
 \begin{theorem}
+    \label{thm:initial-terminal-unique}
     Let \(\catg{C}\) be a category. An initial (resp. terminal) object in
     \(\catg{C}\) is unique up to isomorphism.
 \end{theorem}
@@ -1064,7 +1067,9 @@ in the following result:
 \end{proof}
 
 \begin{theorem}
-    Given two isomorphic objects \(I \cong J\) of a category \(\catg{C}\), if \(I\) is an initial (resp. terminal) object then so is \(J\).
+    \label{thm:isomorphic-objects-initial-terminal}
+    Given two isomorphic objects \(I \cong J\) of a category \(\catg{C}\), if
+    \(I\) is an initial (resp. terminal) object then so is \(J\).
 \end{theorem}
 
 \begin{proof}
@@ -1080,26 +1085,123 @@ in the following result:
     terminal objects is analogous.
 \end{proof}
 
+The results in Theorems~\ref{thm:initial-terminal-unique} and
+\ref{thm:isomorphic-objects-initial-terminal} tell us that initial (resp.
+terminal) objects in a category are distinguished objects in a category in the
+sense that given any arrow \(f : X \to Y\) between two objects of a category
+\(\catg{C}\) with initial (and/or terminal) objects then there is a
+decomposition of \(f\) in terms of the morphisms from an initial object or to a
+terminal object uniquely determined by \(f\); that is, we can always find
+diagrams of the form
+\[
+    \begin{tikzcd}
+        I \arrow[d, "\phi_X"'] \arrow[r, "\phi_Y"] & Y &  \text{and} & T                                      & Y \arrow[l, "\tau_Y"'] \\
+        X \arrow[ru, "f"']                         &   &   & X \arrow[u, "\tau_X"] \arrow[ru, "f"'] &                       
+        \end{tikzcd}
+\]
+that commute, provided that the category has initial and/or terminal objects.
+Thus if we are able to look at an algebraic construction and show that it is an
+initial or terminal object in a category, then we have shown that the
+construction is unique up to isomorphism and gives us useful results about the
+construction and related objects. We use this as our informal definition of a
+`universal property,' since we do not yet have the necessary machinery to define
+this formally. To wit,
+\begin{quotation}
+    We say that a construction \(X\) satisfies a universal property if it is a
+    terminal object in a category.
+\end{quotation}
+What this category is would usually be defined when explaining a universal
+property. While this definition might seem nebulous at first, let us consider
+some examples to illustrate this concept.
+
 \begin{example}
-    \label{ex:product-set-universal-property}
-    Let \(A, B\) be objects of the category \(\Set\). Consider the set product
-    \(A \times B\) and the projections \(\pi_1: A \times B \to A\) and \(\pi_2:
-    A \times B \to B\), i.e.,
+    We return to the problem posited at the start of this section. We have asked
+    whether, given the diagram
+    \[
+    \begin{tikzcd}
+        & X \arrow[ld, "f_A"'] \arrow[rd, "f_B"] \arrow[d, "f"] &   \\
+      A & A \times B \arrow[r, "\pi_B"'] \arrow[l, "\pi_A"]     & B
+      \end{tikzcd} 
+    \]
+    with the notation as before, the set function \(f\) is unique.
+
+    Let us try to approach this problem from a category-theoretic perspective.
+    First, some definitions are in order. Given a category \(\catg{C}\), a
+    `wedge' between two objects \(A\) and \(B\) is a diagram of the form
     \[
         \begin{tikzcd}
-            & A \\
-            A\times B \arrow[ru, "\pi_A"] \arrow[rd, "\pi_B"'] &   \\
-            & B
-    \end{tikzcd}
+            A & X \arrow[r, "f_2"] \arrow[l, "f_1"'] & B
+            \end{tikzcd}
     \]
-    where \(\pi_A(a, b) = a\) and \(\pi_B(a, b) = b\). Let \(X\) be another set
-    and let \(f_A : X \to A\) and \(f_B : X \to B\) be set functions, i.e.,
+    where \(X\) is another object of \(\catg{C}\) and \(f_1: X \to A\) and
+    \(f_2: X \to B\) are morphisms in \(\catg{C}\). Write \((X, f_1, f_2)\) for
+    the wedge defined in the diagram above. Now recall that \(\catg{C}_A\) and
+    \(\catg{C}^A\) are the slice and coslice categories of \(\catg{C}\) with
+    respect to an object \(A\). We now construct a category \(\catg{C}^A_B\)
+    whose objects are precisely the wedges between \(A\) and \(B\). The
+    morphisms in this category are defined as follows: given two wedges \((X,
+    f_1, f_2)\) and \((Y, g_1, g_2)\), a morphism \(h: (X, f_1, f_2) \to (Y,
+    g_1, g_2)\) is a morphism \(h: X \to Y\) in \(\catg{C}\) such that the
+    diagram
     \[
         \begin{tikzcd}
-                & A \\
-        Z \arrow[ru, "f_A"] \arrow[rd, "f_B"'] &   \\
-                & B
-    \end{tikzcd}
+            & X \arrow[ld, "f_1"'] \arrow[rd, "f_2"] \arrow[d, "h"] &   \\
+          A & Y \arrow[r, "g_2"'] \arrow[l, "g_1"]     & B
+          \end{tikzcd}
     \]
-    
+    commutes. The verification that \(\catg{C}^A_B\) is a category can be done
+    in an analogous way as we did when introducing the slice category.
+
+    With the notation in place, we are now able to state the universal property
+    of the product: given a category \(\catg{C}\) and objects \(A\) and \(B\) of
+    \(\catg{C}\), the product of \(P:= A \times B\) of \(A\) and \(B\) is a
+    terminal object in the category \(\catg{C}^A_B\). (We note immediately that
+    since \(\catg{C}_A^B\) is not necessarily the same category as
+    \(\catg{C}_B^A\), the product \(P' := B \times A\) of \(B\) and \(A\) is not
+    necessarily the same as \(P\).) By our definition of a terminal object, we
+    have the following more explicit definition:
+          \begin{quotation}
+            A product of two objects \(A\) and \(B\) in a category \(\catg{C}\)
+            is an object \(P\) of \(\catg{C}\) such that for every object \(X\)
+            of \(\catg{C}\) and every pair of morphisms \(f_1: X \to A\) and
+            \(f_2: X \to B\), there is a unique morphism \(f: X \to P\) such
+            that the diagram
+            \[
+                \begin{tikzcd}
+                    & X \arrow[ld, "f_1"'] \arrow[rd, "f_2"] \arrow[d, "f"] &   \\
+                  A & P \arrow[r, "\pi_B"'] \arrow[l, "\pi_A"]     & B
+                  \end{tikzcd}
+            \]
+            commutes.
+          \end{quotation}
+    Implicit in this definition of course is the fact that since \(P\) defined
+    in terms \(\catg{C}_A^B\), there are always morphisms \(\pi_A: P \to A\) and
+    \(\pi_B: P \to B\) in \(\catg{C}\) that gives us the wedge \((P, \pi_A,
+    \pi_B)\). We also note that this wedge and not the product \(P\) alone is
+    the terminal object in \(\catg{C}_A^B\).
+
+    In order to show that the function \(f\) at the beginning of this section is
+    unique in terms of making the diagram in
+    \eqref{eq:set-product-universal-property} commute, we can show that the set
+    product \(A \times B\) satisfies the universal property for products in
+    \(\Set\). Now given the set product \(A \times B\), the projections \(\pi_A:
+    A \times B \to A\) and \(\pi_B: A \times B \to B\) tell us that \((A \times
+    B, \pi_A, \pi_B)\) is a wedge between \(A\) and \(B\). Further, given any
+    wedge \((X, f_A, f_B)\), we have defined the function
+    \[
+          f: X \to A \times B \quad \text{by} \quad x \mapsto (f_A(x), f_B(x)).
+    \]
+    Suppose now that this is not unique, i.e., there is another function \(g: X
+    \to A \times B\) such that
+    \[
+        f_A = \pi_A \circ g \quad \text{and} \quad f_B = \pi_B \circ g.
+    \]
+    Then for all \(x \in X\), we have
+    \[
+        \pi_A(g(x)) = f_A(x) = \pi_A(f(x)) \quad \text{and} \quad \pi_B(g(x)) = f_B(x) = \pi_B(f(x)).
+    \]
+    Since \(g(x) \in A \times B\), the equalities above tell us that \(g(x) =
+    (f_A(x), f_B(x)) = f(x)\) and thus \(g = f\). Thus the function \(f\) is
+    unique and the set product \(A \times B\) satisfies the universal property
+    for products in \(\Set\).
 \end{example}

@@ -813,6 +813,7 @@ sets form a category.
 \end{example}
 
 \begin{example}[Opposite category]
+    \label{ex:opposite-category}
     Let \(\catg{C}\) be a category and consider a structure \(\catg{C}^\op\)
     with \(\Obj{\catg{C}^\op} = \Obj{\catg{C}}\) and for all objects \(A\) and
     \(B\) of \(\catg{C}\),
@@ -850,7 +851,8 @@ sets form a category.
         f \circ \id_A = \id_A * f = f = f * \id_B = \id_B \circ f.
     \]
     This gives us a full construction of \(\catg{C}^\op\). We call
-    \(\catg{C}^\op\) the \emph{opposite category} of the category \(\catg{C}\).
+    \(\catg{C}^\op\) the \emph{opposite category} (or the \emph{dual}) of the
+    category \(\catg{C}\).
 \end{example}
 
 % MORPHISMS
@@ -945,9 +947,9 @@ considering the category \(\catg{Ord}\) obtained from a set \(S\) and a relation
 \(\sim\) on \(S\) that is reflexive and transitive (we have constructed this
 category in Example~\ref{ex:category-preordered-sets}). Now suppose that
 \(\sim\) is also symmetric (i.e., an equivalence relation). Then we have
-\[
-    (a, b) \in \Hom_{\catg{Ord}}(a, b) \implies a \sim b \implies b \sim a \implies (b, a) \in \Hom_{\catg{Ord}}(b, a).
-\]
+\begin{align*}
+    (a, b) \in \Hom_{\catg{Ord}}(a, b) &\implies a \sim b \implies b \sim a\\ &\implies (b, a) \in \Hom_{\catg{Ord}}(b, a).
+\end{align*}
 Now since
 \[
     (a, b) \circ (b, a) = (a, a) = \id_a \quad \text{and} \quad (b, a) \circ (a, b) = (b, b) = \id_b,
@@ -1214,8 +1216,8 @@ some examples to illustrate this concept.
     \(\catg{C}\) be a category where products are defined and suppose \((P_1,
     \pi_A, \pi_B)\), \((P_2, \rho_a, \rho_B)\) are products of \(A\) and \(B\)
     in \(\catg{C}\). Then by the universal property of products, there are
-    unique morphisms \(\sigma : P_1 \to P_2\) and \(\tau : P_2 \to P_1\) such that the
-    diagrams below commute:
+    unique morphisms \(\sigma : P_1 \to P_2\) and \(\tau : P_2 \to P_1\) such
+    that the diagrams below commute:
     \[
         \begin{tikzcd}
             & P_1 \arrow[ld, "\pi_A"'] \arrow[rd, "\pi_B"] \arrow[d, "\sigma"] &   &   & P_2 \arrow[ld, "\rho_A"'] \arrow[rd, "\rho_B"] \arrow[d, "\tau"] &   \\
@@ -1230,7 +1232,13 @@ some examples to illustrate this concept.
     \[
           \rho_A = \pi_A \circ \tau \quad \text{and} \quad \rho_B = \pi_B \circ \tau.
     \]
-    Combining this equalities and using the uniqueness of \(\sigma\) and \(\tau\) we then have \(\sigma \circ \tau = \id_{P_2}\) and \(\tau \circ \sigma = \id_{P_1}\). Thus \(P_1 \cong P_2\), i.e., products are unique up to isomorphism. Taking \(A \times B := (A \times B, \pi_1, \pi_2)\) as before, since \(B \times A := (A \times B, \pi_2, \pi_1)\) is also a product of \(A\) and \(B\), we then have \(A \times B \cong B \times A\) for any category \(\catg{C}\) where products are defined.
+    Combining this equalities and using the uniqueness of \(\sigma\) and
+    \(\tau\) we then have \(\sigma \circ \tau = \id_{P_2}\) and \(\tau \circ
+    \sigma = \id_{P_1}\). Thus \(P_1 \cong P_2\), i.e., products are unique up
+    to isomorphism. Taking \(A \times B := (A \times B, \pi_1, \pi_2)\) as
+    before, since \(B \times A := (A \times B, \pi_2, \pi_1)\) is also a product
+    of \(A\) and \(B\), we then have \(A \times B \cong B \times A\) for any
+    category \(\catg{C}\) where products are defined.
 
     One final note. While we have constructed the category \(\catg{C}^A_B\) to
     illustrate that products are terminal objects in this category, we shall for
@@ -1240,4 +1248,67 @@ some examples to illustrate this concept.
     there exist a unique morphism \(f: Y \to X\) such that \dots.' While not as
     rigorous, this should be sufficient for most of the examples we shall
     consider.
+\end{example}
+
+\begin{example}[Coproducts]
+    In Example~\ref{ex:opposite-category} we have constructed a category
+    \(\catg{C}^\op\) from a category \(\catg{C}\) by reversing the direction of
+    all the arrows in \(\catg{C}\). We shall encounter similar constructions,
+    and often enough that we shall give them a name: given some categorical
+    construction, we call the construction obtained by reversing the direction
+    of all the arrows the \emph{dual} of the original construction. We usually
+    indicate this by the prefix `co-' before the name of the original
+    construction. As a concrete example, let us construct the dual of the
+    product, the \emph{coproduct}.
+
+    Now if such a construction exists, we would expect it to satisfy the
+    universal property but with the arrows reversed. In the case of the
+    coproduct, it would have to be an object \(A \amalg B\) such that for all
+    objects \(X\) and morphisms \(f_A: A \to X\) and \(f_B: B \to X\), there is
+    a unique morphism \(f: A \amalg B \to X\) such that the diagram
+    \[
+        \begin{tikzcd}
+            & X                          &                                         \\
+            A \arrow[ru, "f_B"] \arrow[r, "\pi_A"'] & A \amalg B \arrow[u, "f"'] & B \arrow[lu, "f_A"'] \arrow[l, "\pi_B"]
+        \end{tikzcd}
+    \]
+    More succinctly, \(A \amalg B\) must be a product of \(A\) and \(B\) in the
+    category \(\catg{C}^\op\) (thus retaining our requirement that the object
+    satisfying the universal property must be a terminal object in some
+    category).
+
+    Consider again the category \(\Set\). We define the disjoint union of two
+    sets \(A\) and \(B\) as the set 
+    \[
+        A \amalg B := A \times \{*\} \cup B \times \{\star\}.
+    \]
+    where \(\{*\} \neq \{\star\}\) are singletons. We define the injections
+    \(\iota_A: A \to A \amalg B\) and \(\iota_B: B \to A \amalg B\) by
+    \(\iota_A(a) = (a, *)\) and \(\iota_B(b) = (b, \star).\) We claim that this
+    is a coproduct in \(\Set\); i.e., for any set \(X\) and set functions \(f_A:
+    A \to X\) and \(f_B: B \to X\), there is a unique set function \(f: A \amalg
+    B \to X\) such that the diagram
+    \[
+        \begin{tikzcd}
+            & X &                                           \\
+        A \arrow[ru, "f_B"] \arrow[r, "\iota_A"'] & A \amalg B \arrow[u, "f"'] & B \arrow[lu, "f_A"'] \arrow[l, "\iota_B"]
+        \end{tikzcd}
+    \]
+    Define the map \(f: A \amalg B \to X\) by
+    \[
+        f(m, n) = \begin{cases}
+            f_A(m) & \text{if } n = *\\
+            f_B(m) & \text{if } n = \star
+        \end{cases}
+    \]
+    for all \((m, n) \in A \amalg B\). Then it follows that \(f \circ \iota_A =
+    f_A\) and \(f \circ \iota_B = f_B\). Thus the diagram above commutes. Now
+    suppose that there is another set function \(g: A \amalg B \to X\) such that
+    \(g \circ \iota_A = f_A\) and \(g \circ \iota_B = f_B\). Then for all \(a
+    \in A\) and \(b \in B\), we have
+    \[
+        g(a, *) = g \circ \iota_A(a) = f_A(a) \quad \text{and} \quad g(b, \star) = g \circ \iota_B(b) = f_B(b).
+    \]
+    Thus \(g = f\) and the function \(f\) is unique. Thus the disjoint union is
+    a coproduct in \(\Set\).
 \end{example}

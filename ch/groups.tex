@@ -176,8 +176,7 @@ and admits an identity morphism \(\id_{*}\) such that for all morphisms \(f\),
 \[
     f \circ \id_{*} = f = \id_{*} \circ f.
 \]
-Since every morphism in \(\catg{G}\) is an isomorphism, each morphism \(f \in
-\Hom_{\catg{G}}(*, *)\) has an inverse \(f\inv\) such that
+Since every morphism in \(\catg{G}\) is an isomorphism, each morphism \(f\) in this category has an inverse \(f\inv\) such that
 \[
     f \circ f\inv = \id_{*} = f\inv \circ f.
 \]
@@ -328,6 +327,22 @@ that \(n\) is not necessarily an element of the group.)
     b\inv\) for all \(a, b \in G\) and all integers \(n\).
 \end{theorem}
 
+\begin{proof}
+    We prove the first statement by induction on \(n\). The case \(n = 1\) is
+    trivial. Suppose the result holds for \(n = k\). Then
+    \[
+        (ab)^{k + 1} = (ab)^k ab = a^k b^k ab = a^k a b^k b = a^{k + 1} b^{k + 1}.
+    \]
+    On the other hand, we have
+    \[
+        (ab)(a\inv b\inv) = a(ba\inv)b\inv = a(a\inv b)b\inv = e
+    \]
+    and
+    \[
+        (a\inv b\inv)(ab) = a\inv(b\inv a)b = a\inv(a b\inv)b = e.
+    \]
+\end{proof}
+
 \begin{definition}
     An element \(a\) of a group \(G\) is said to have \emph{finite order} if
     there exists a positive integer \(n\) such that \(a^n = e\). In this case,
@@ -336,9 +351,13 @@ that \(n\) is not necessarily an element of the group.)
     is said to have \emph{infinite order} and we write \(\order{a} = \infty\).
 \end{definition}
 
+We make the following analogous definition for a group \(G\):
+
 \begin{definition}
-    The order of a group \(G\) is the cardinality of the set \(G\), denoted by
-    \(\order{G}\).
+    The order of a group \(G\) is the cardinality of the undelrying set \(G\),
+    denoted by \(\order{G}\). If \(\order{G}\) is finite, then \(G\) is said to
+    be a group of \emph{finite order}. Otherwise, \(G\) is said to be a group of
+    \emph{infinite order} and we write \(\order{G} = \infty\).
 \end{definition}
 
 \begin{theorem}
@@ -347,7 +366,12 @@ that \(n\) is not necessarily an element of the group.)
 
 \begin{proof}
     From the definition of order, we immediately have \(n \geq \order{g}\). Let
-    \(\nu = \order{g}\). By 
+    \(\nu = \order{g}\). Then by the division algorithm, we can write \(n = q\nu
+    + r\) for some integers \(q\) and \(r\) with \(0 \leq r < \nu\). Then
+    \[
+        e = g^n = g^{q\nu + r} = (g^\nu)^q g^r = e^q g^r = g^r.
+    \]
+    Thus \(r = 0\) and \(n = q\nu\) and thus \(\nu = \order{g}\) divides \(n\).
 \end{proof}
 
 
@@ -738,11 +762,28 @@ diagram
 commutes. (Here \(\id_G\) and \(\id_H\) are the identity maps on \(G\) and \(H\)
 respectively.)
 
-Having shown that \(\Grp\) is a category, we now ask whether products and
-coproducts exist in \(\Grp\). If \(G\) and \(H\) are groups, a natural place to
-start is the product \(G \times H\) of their underlying sets in the category
-\(\Set\). We can endow this set with a group structure by defining the group
-operation componentwise, i.e., for \(g_1, g_2 \in G\) and \(h_1, h_2 \in H\),
+More formally, we say that \(\Grp\) is a \emph{concrete category}, i.e., there
+exists a faithful functor from \(\Grp\) to \(\Set\). We have not yet introduced
+the machinery to make sense of this definition but what this means, essentially,
+is that we can map objects of \(\Grp\) to sets in \(\Set\) in a way that
+`forgets' the group structure. Now since \(\Set\) has initial and terminal
+objects, do such objects exist in \(\Grp\) as well. We have already shown that
+the empty set is initial in \(\Set\); but note also that \(\emptyset\) is not a
+group because we require at least one element to exist in a group. If \(0\) is
+an initial object in \(\Grp\), then there must exist a unique group homomorphism
+from \(0\) to any group \(G\). But then for this homorphism to be unique, it
+must have exactly one element and the homorphism \(0 \to G\) must send the
+unique element of \(0\) to the identity element of \(G\). Thus \(0\) must be the
+trivial group \(\{e\}\). An analogous argument shows that the terminal object in
+\(\Grp\) is also \(\{e\}\). Thus the trivial group is both an initial and
+terminal object in \(\Grp\), i.e., a \emph{zero object} in this category.
+
+Having shown that \(\Grp\) is a category with initial and terminal objects, we
+now ask whether products and coproducts exist in \(\Grp\). If \(G\) and \(H\)
+are groups, a natural place to start is the product \(G \times H\) of their
+underlying sets in the category \(\Set\). We can endow this set with a group
+structure by defining the group operation componentwise, i.e., for \(g_1, g_2
+\in G\) and \(h_1, h_2 \in H\),
 \[
     (g_1, h_1) \cdot (g_2, h_2) = (g_1g_2, h_1h_2).
 \]
@@ -752,13 +793,17 @@ h)\) is \((g\inv, h\inv)\). The set \(G \times H\) with this group operation is
 called the \emph{direct product} of \(G\) and \(H\). From this definition it
 also follows that the natural projections
 \[
-        \begin{tikzcd}
-            & G\times H \arrow[ld, "\pi_G"'] \arrow[rd, "\pi_H"] &   \\
-          G &                                                    & H
-          \end{tikzcd}
+    \begin{tikzcd}
+        G & G \times H \arrow[r, "\pi_H"] \arrow[l, "\pi_A"'] & H
+    \end{tikzcd}
 \]
-defined as set functions are group homomorphisms. We can now establish the
-following result.
+defined as set functions are group homomorphisms. Indeed for all \((g_1, h_1)\) and \((g_2, h_2)\) in \(G \times H\),
+\begin{align*}
+    \pi_G((g_1, h_1)\cdot(g_2, h_2)) & = \pi_G((g_1g_2, h_1h_2)) = g_1g_2\\
+    &= \pi_G(g_1, h_1)\pi_G(g_2, h_2).
+\end{align*}
+
+We can now establish the following result.
 
 \begin{theorem}
     The direct product \(G \times H\) of two groups \(G\) and \(H\) is a product
@@ -772,9 +817,8 @@ following result.
     \(\Phi: K \to G \times H\) such that the following diagram commutes:
     \[
         \begin{tikzcd}
-            &  &                                                    & G \\
-        K \arrow[rr, "\Phi"] \arrow[rrru, "\phi_G", bend left] \arrow[rrrd, "\phi_H"', bend right] &  & G \times H \arrow[rd, "\pi_H"] \arrow[ru, "\pi_G"] &   \\
-                    &  &                                                    & H
+            & K \arrow[ld, "\phi_G"'] \arrow[rd, "\phi_H"] \arrow[d, "\Phi"] &   \\
+            G & G \times H \arrow[r, "\pi_B"'] \arrow[l, "\pi_A"]     & H
         \end{tikzcd}
     \]
     Since \(G \times H\) is a product in \(\Set\), there exists a set function
@@ -804,9 +848,9 @@ following result.
     category-theoretic perspective, the fact that the trivial groups are initial
     and terminal objects in \(\Grp\) allows us to define the unique morphisms
     \[
-        G \to T \quad \text{and} \quad T \to G
+        G \to 0 \quad \text{and} \quad 0 \to G
     \]
-    (where \(T\) is the trivial group) whose composition is exactly the
+    (where \(0\) is the trivial group) whose composition is exactly the
     homomorphism that maps every element of \(G\) to the identity element of
     \(H\).
 \end{example}
@@ -956,10 +1000,11 @@ decomposed into a function from \(X\) to \(F\) followed by a homomorphism from
 \(F\) to \(G\). (An alternative notation is to write \(F(X)\) to emphasize that
 \(F\) is the free group on \(X\).)
 
-If such a group exists, it is unique up to isomorphism. Consider for example a
-set \(X\) and a set \(G\) and suppose that \(F_1\) and \(F_2\) are groups
-satisfying the universal property in our definition. Then because \(F_1\) is
-free on \(X\) and \(F_2\) is a group (and vice versa), we have:
+If such a group exists, it is unique up to isomorphism (by the universal
+property of free groups). More explicitly, consider for example a set \(X\) and
+a set \(G\) and suppose that \(F_1\) and \(F_2\) are groups satisfying the
+universal property in our definition. Then because \(F_1\) is free on \(X\) and
+\(F_2\) is a group (and vice versa), we have:
 \[
     \begin{tikzcd}
         & X \arrow[dl, "\iota_1"'] \arrow[dr, "\iota_2"] & \\

@@ -1107,7 +1107,9 @@ denote it by \(A \oplus B\).
         h([0]_3) = e, \quad h([1]_3) = (3\ 1\ 2), \quad h([2]_3) = (2\ 3\ 1).
     \]
 
-    Suppose \(C_2 \oplus C_3\) is a coproduct in \(\Grp\); then there would exist a unique group homomorphism \(\Phi: C_2 \oplus C_3 \to S_3\) such that the following diagram commutes:
+    Suppose \(C_2 \oplus C_3\) is a coproduct in \(\Grp\); then there would
+    exist a unique group homomorphism \(\Phi: C_2 \oplus C_3 \to S_3\) such that
+    the following diagram commutes:
     \[
         \begin{tikzcd}
             & S_3 & \\
@@ -1124,8 +1126,26 @@ denote it by \(A \oplus B\).
         \Phi(a, b) &= \Phi(\iota_2(b) + \iota_1(a)) = \Phi(([0]_2, b) + (a, [0]_3))\\
         &= \Phi(([0]_2, b))\Phi((a, [0]_3)) = \Phi(\iota_2(b))\Phi(\iota_1(a)) \\&= h(b)g(a).
     \end{align*}
-    But since \(S_3\) is nonabelian, this is not generally true. Therefore \(C_2 \oplus C_3\) is not a coproduct in \(\Grp\).
+    But since \(S_3\) is nonabelian, this is not generally true. Therefore \(C_2
+    \oplus C_3\) is not a coproduct in \(\Grp\).
 \end{example}
+
+We look at one final example highlighting the nice properties of \(\Ab\). For
+all abelian groups \(A\) and \(B\), we claim that the \(\Hom\)-set of \(A\) and
+\(B\), \(\Hom_{\Ab}(A, B)\), is an abelian group under the operation defined as
+follows: if \(\phi, \psi\) are group homomorphisms from \(A\) to \(B\), the we
+define the sum \(\phi + \psi\) as
+\[
+    (\phi + \psi)(a) = \phi(a) + \psi(a)
+\]
+for all \(a \in A\). Now for all \(a, b \in A\),
+\begin{align*}
+    (\phi + \psi)(a + b) &= \phi(a + b) + \psi(a + b)\\
+    &= \phi(a) + \phi(b) + \psi(a) + \psi(b)\\
+    &= \phi(a) + \psi(a) + \phi(b) + \psi(b)\\
+    &= (\phi + \psi)(a) + (\phi + \psi)(b),
+\end{align*}
+and thus \(\phi + \psi \in \Hom_{\Ab}(A, B)\).
 
 \section{Free groups}
 

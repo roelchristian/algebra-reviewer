@@ -378,12 +378,62 @@ We make the following analogous definition for a group \(G\):
 
 \section{Examples of groups}
 
-\begin{definition}
+\begin{example}[Symmetric groups]
+    \label{ex:symmetric-group}
     Let \(X\) be a set. The set of all bijections from \(X\) to itself forms a
     group under composition of functions, called the \emph{symmetric group} (or
     \emph{permutation group}) on \(X\), denoted by \(S_X\). If \(X = \{1, 2,
     \ldots, n\}\), then we write \(S_n\) instead of \(S_X\).
-\end{definition}
+
+    % Order of symmetric group
+    What can we say about the number of elements in \(S_n\)? Since every element
+    of \(S_n\) is a bijection, we can suppose that the bijection maps \(i\) to
+    \(\sigma(i)\) for some \(\sigma \in S_n\). For \(\sigma(1)\), there are \(n\)
+    possible choices since it can be mapped to any element of \(X\). With
+    \(\sigma(1)\) fixed, there remain \(n-1\) choices for \(\sigma(2)\), and so
+    on. Continuing in this manner, we see that there are \(n(n - 1)(n - 2)
+    \cdots 1 = n!\) elements in \(S_n\). Thus the order of \(S_n\) is \(n!\).
+    This can be generalized for any set \(X\) of cardinality \(n\) by noting
+    that we can do the same counting exercise for each \(a_i\) in \(X\).
+
+    % Notation for symmetric group
+    Since listing the rule defining the bijection would be cumbersome given how
+    large the sets \(S_n\) can be (for example, a \(10\)-element set would have
+    \(10! = 3,628,800\) elements), we would like to be able to permutations in
+    \(S_n\) unambiguously in a shorthand manner. For the rest of this text we
+    shall work with the set \({1, 2, \ldots, n}\) without loss of generality.
+    Given a permutation \(\sigma \in S_n\) we write the array
+    \[
+        \begin{pmatrix}
+            1 & 2 & \cdots & n\\
+            \sigma(1) & \sigma(2) & \cdots & \sigma(n)
+        \end{pmatrix}
+    \]
+    to mean that \(\sigma(i)\) is the image of \(i\) under \(\sigma\). If the
+    images are given, we would omit the top row and write only the row of
+    images. For example, given a permutation such that \(1 \mapsto 2\), \(2
+    \mapsto 3\), and \(3 \mapsto 1\), we would write
+    \[
+        \begin{pmatrix}
+            1 & 2 & 3\\
+            2 & 3 & 1
+        \end{pmatrix},
+    \]
+    or simply \((2\ 3\ 1)\).
+
+    This is not the most efficient way to write permutations; one would often
+    encounter `cycle notation' when dealing with permutations. For our purposes,
+    however, the shorthand we have introduced will suffice.
+
+    Now on to proving that \(S_n\) is a group. We first note that the identity
+    element of \(S_n\) is the identity function on \(X\) (this follows directly
+    from permutations being bijections on \(X\), with the uniqueness following
+    similarly). The inverse of a permutation \(\sigma\) is the permutation that
+    undoes the action of \(\sigma\), i.e., the inverse function \(\sigma^{-1}\):
+    again this is unique and well-defined because \(\sigma\) is a bijection.
+    Finally, the associativity of permutations follows from the associativity of
+    function composition.
+\end{example}
 
 \begin{example}[\(\Z\) and \(\Z/n\Z\)]
     \label{def:z-and-zmodn}
@@ -1056,8 +1106,26 @@ denote it by \(A \oplus B\).
     \[
         h([0]_3) = e, \quad h([1]_3) = (3\ 1\ 2), \quad h([2]_3) = (2\ 3\ 1).
     \]
-\end{example}
 
+    Suppose \(C_2 \oplus C_3\) is a coproduct in \(\Grp\); then there would exist a unique group homomorphism \(\Phi: C_2 \oplus C_3 \to S_3\) such that the following diagram commutes:
+    \[
+        \begin{tikzcd}
+            & S_3 & \\
+            C_2 \arrow[ur, "g"] \arrow[r, "\iota_1"'] & C_2 \oplus C_3 \arrow[u, "\Phi"'] & C_3 \arrow[ul, "h"'] \arrow[l, "\iota_2"].
+        \end{tikzcd}
+    \]
+    In other words, for all \(a \in C_2\) and \(b \in C_3\),
+    \begin{align*}
+        \Phi(a,b) &= \Phi(\iota_1(a) + \iota_2(b)) = \Phi((a, [0]_3) + ([0]_2, b))\\
+        &= \Phi((a, [0]_3)) \Phi(([0]_2, b)) = \Phi(\iota_1(a))\Phi(\iota_2(b)) \\&= g(a)h(b)
+    \end{align*}
+    and
+    \begin{align*}
+        \Phi(a, b) &= \Phi(\iota_2(b) + \iota_1(a)) = \Phi(([0]_2, b) + (a, [0]_3))\\
+        &= \Phi(([0]_2, b))\Phi((a, [0]_3)) = \Phi(\iota_2(b))\Phi(\iota_1(a)) \\&= h(b)g(a).
+    \end{align*}
+    But since \(S_3\) is nonabelian, this is not generally true. Therefore \(C_2 \oplus C_3\) is not a coproduct in \(\Grp\).
+\end{example}
 
 \section{Free groups}
 

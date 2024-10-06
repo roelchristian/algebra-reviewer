@@ -38,10 +38,10 @@ defining those terms.
 Because we require the existence of an identity element in a group \(G\), we can
 conclude that the set \(G\) is nonempty. At the very least it must contain the
 identity element. This group is called the \emph{trivial group} and is denoted
-by \(\{e\}\). Note also that any singleton \(\{*\}\) is a group if we define the
-binary operation to be the trivial operation \(\mult(*, *) = *\) so that the
-choice of writing \(\{e\}\) instead of \(\{*\}\) or any other symbol is purely a
-matter of convention.
+by \(\{e\}\) or simply as \(0\). Note also that any singleton \(\{*\}\) is a
+group if we define the binary operation to be the trivial operation \(\mult(*,
+*) = *\) so that the choice of writing \(\{e\}\) instead of \(\{*\}\) or any
+other symbol is purely a matter of convention.
 
 \begin{theorem}
     The identity element in a group is unique. For each \(a \in G\), the inverse
@@ -176,7 +176,8 @@ and admits an identity morphism \(\id_{*}\) such that for all morphisms \(f\),
 \[
     f \circ \id_{*} = f = \id_{*} \circ f.
 \]
-Since every morphism in \(\catg{G}\) is an isomorphism, each morphism \(f\) in this category has an inverse \(f\inv\) such that
+Since every morphism in \(\catg{G}\) is an isomorphism, each morphism \(f\) in
+this category has an inverse \(f\inv\) such that
 \[
     f \circ f\inv = \id_{*} = f\inv \circ f.
 \]
@@ -771,12 +772,15 @@ objects, do such objects exist in \(\Grp\) as well. We have already shown that
 the empty set is initial in \(\Set\); but note also that \(\emptyset\) is not a
 group because we require at least one element to exist in a group. If \(0\) is
 an initial object in \(\Grp\), then there must exist a unique group homomorphism
-from \(0\) to any group \(G\). But then for this homorphism to be unique, it
-must have exactly one element and the homorphism \(0 \to G\) must send the
+from \(0\) to any group \(G\). But then for this homomorphism to be unique, it
+must have exactly one element and the homomorphism \(0 \to G\) must send the
 unique element of \(0\) to the identity element of \(G\). Thus \(0\) must be the
 trivial group \(\{e\}\). An analogous argument shows that the terminal object in
 \(\Grp\) is also \(\{e\}\). Thus the trivial group is both an initial and
-terminal object in \(\Grp\), i.e., a \emph{zero object} in this category.
+terminal object in \(\Grp\), i.e., a \emph{zero object} in this category. Again
+we note that the trivial group is not a single object: any singleton can be
+group by defining the appropriate group operation but every such group is
+isomorphic to the trivial group by the properties of zero objects.
 
 Having shown that \(\Grp\) is a category with initial and terminal objects, we
 now ask whether products and coproducts exist in \(\Grp\). If \(G\) and \(H\)
@@ -797,7 +801,8 @@ also follows that the natural projections
         G & G \times H \arrow[r, "\pi_H"] \arrow[l, "\pi_A"'] & H
     \end{tikzcd}
 \]
-defined as set functions are group homomorphisms. Indeed for all \((g_1, h_1)\) and \((g_2, h_2)\) in \(G \times H\),
+defined as set functions are group homomorphisms. Indeed for all \((g_1, h_1)\)
+and \((g_2, h_2)\) in \(G \times H\),
 \begin{align*}
     \pi_G((g_1, h_1)\cdot(g_2, h_2)) & = \pi_G((g_1g_2, h_1h_2)) = g_1g_2\\
     &= \pi_G(g_1, h_1)\pi_G(g_2, h_2).
@@ -973,6 +978,86 @@ We can now establish the following result.
     \]
     so \(H\) is abelian. The proof for the converse is similar.
 \end{proof}
+
+\bigskip
+
+We end this section by considering abelian groups in more detail. Now every
+abelian group \(A\) is an object of \(\Grp\); but are we able to construct a
+group \(\Ab\) whose objects are abelian groups and whose morphisms are group
+homomorphisms that preserve the abelian group structure? This turns out to be a
+quite simple task. Since any (group) homomorphism must preserve the group
+structure, if \(A\) and \(B\) are abelian groups, then it follows quite
+naturally that for any group homomorphism \(\phi: A \to B\), we must have (using
+additive notation),
+\[
+    \phi(a+b) = \phi(a)+\phi(b) = \phi(b)+\phi(a) = \phi(b+a).
+\]
+Trivial groups are again zero objects in this category. Products similarly exist
+and coincide with products in groups. One interesting difference with \(\Grp\)
+(and \(\Set\)), however, is that in \(\Ab\) coproducts exist and coincide with
+products in \(\Ab\). That is, if \(A\) and \(B\) are abelian groups and
+\(\iota_A : A \to A \times B\) and \(\iota_B : B \to A \times B\) are the
+`natural' inclusions defined by \(\iota_A(a) = (a, e_B)\) and \(\iota_B(b) =
+(e_A, b)\), then for any abelian group \(C\) and group homomorphisms \(\phi_A: A
+\to C\) and \(\phi_B: B \to C\), there exists a unique group homomorphism
+\(\Phi: A \times B \to C\) such that the following diagram commutes:
+\[
+    \begin{tikzcd}
+        & C & \\
+        A \arrow[ur, "\phi_A"] \arrow[r, "\iota_A"'] & A \times B \arrow[u, "\Phi"'] & B \arrow[ul, "\phi_B"'] \arrow[l, "\iota_B"].
+    \end{tikzcd}
+\]
+Let \(\Phi(a, b) = \phi_A(a) + \phi_B(b)\) for all \(a \in A\) and \(b \in B\).
+Then \(\Phi\) is a group homomorphism because for all \(a_1, a_2 \in A\) and
+\(b_1, b_2 \in B\),
+\begin{align*}
+    \Phi((a_1, b_1) + (a_2, b_2)) & = \Phi(a_1 + a_2, b_1 + b_2)\\
+    & = \phi_A(a_1 + a_2) + \phi_B(b_1 + b_2)\\
+    & = \phi_A(a_1) + \phi_A(a_2) + \phi_B(b_1) + \phi_B(b_2)\\
+    & = \phi_A(a_1) + \phi_B(b_1) + \phi_A(a_2) + \phi_B(b_2)\\
+    & = \Phi(a_1, b_1) + \Phi(a_2, b_2).
+\end{align*}
+From this we have, for all \(a \in A\) and \(b \in B\),
+\[
+    (\Phi \circ \iota_A)(a) = \Phi(\iota_A(a)) = \Phi(a, e_B) = \phi_A(a) + e_C = \phi_A(a)
+\]
+and
+\[
+    (\Phi \circ \iota_B)(b) = \Phi(\iota_B(b)) = \Phi(e_A, b) = e_C + \phi_B(b) = \phi_B(b).
+\]
+Therefore the diagram commutes.
+
+Now suppose that \(\Psi : A \times B \to C\) is another group homomorphism that
+makes the diagram commute. Then for all \(a \in A\) and \(b \in B\),
+\begin{align*}
+    \Psi(a, b) &= \Psi((a, e_B) + (e_A, b)) \\&= \Psi(a, e_B) + \Psi(e_A, b) = \phi_A(a) + \phi_B(b).
+\end{align*}
+But then \(\Psi = \Phi\), so \(\Phi\) is unique. Therefore \(A \times B\) is a
+coproduct in \(\Ab\). In the context of abelian groups, we usually refer to the
+direct product \(A \times B\) as the \emph{direct sum} of \(A\) and \(B\) and
+denote it by \(A \oplus B\).
+
+\begin{example}
+    We would like to emphasize that the fact that the direct sum \(A \oplus B\)
+    of abelian groups \(A\) and \(B\) satisfies both the universal property for
+    products and for coproducts in \(\Ab\) is a property specific to \(\Ab\)
+    (derived from \(\Ab\) being an `abelian category'). That is, \(A \oplus B\)
+    does not necessarily have to be a coproduct in \(\Grp\). To belabor this
+    point a bit, consider the direct sum \(C_2 \oplus C_3\) of the cyclic groups
+    of order \(2\) and \(3\). We shall show that this is not a coproduct in
+    \(\Grp\).
+
+    Consider now the injective homomorphisms \(g: C_2 \to S_3\) and \(h: C_3 \to
+    S_3\) defined by
+    \[
+        g([0]_2) = e, \quad g([1]_2) = (2\ 3),
+    \]
+    and
+    \[
+        h([0]_3) = e, \quad h([1]_3) = (3\ 1\ 2), \quad h([2]_3) = (2\ 3\ 1).
+    \]
+\end{example}
+
 
 \section{Free groups}
 

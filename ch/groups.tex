@@ -1154,6 +1154,7 @@ would now like to construct another group \(F\) containing \(X\) as a subset in
 the `most efficient' way possible
 
 \begin{definition}
+    \label{def:free-group}
     The group \(F\) is a \emph{free group} on the set \(X\) (or alternatively,
     we say that \(F\) is \emph{free} on \(X\)) if there is a set function
     \(\iota: X \to F\) such that for any group \(G\) and any set function
@@ -1223,7 +1224,10 @@ from \((k_0, F)\) to any other object \((k, G)\) in \(\catg{F}^X\). This
 morphism is a group homomorphism \(\Phi: F \to G\) such that \(\Phi \circ k_0 =
 k\). This is the same as saying that \(F\) is free on \(X\) (based on our
 earlier definition). Moreover, because \((k_0, F)\) is initial, it is unique up
-to isomorphism.
+to isomorphism. Indeed if we look again at Definition~\ref{def:free-group},
+we see that the definition describes a universal property, i.e., the group \(F\)
+must be an initial object in some category: the category \(\catg{F}^X\) is
+\emph{that} category.
 
 An initial object in a category need not necessarily exist. We shall now show
 however that there exists an initial object in the category \(\catg{F}^X\). 

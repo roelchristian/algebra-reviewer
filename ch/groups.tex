@@ -1779,6 +1779,51 @@ property:
     \ker \phi\) uniquely determined by \(\psi\).
 \end{proof}
 
+
+It is clear that the the inclusion map \(\iota: \ker \phi \to G\) is injective
+as a map between sets; or more generally, the inclusion map \(\iota: H \to G\)
+for any subgroup \(H\) is injective as a set function. More generally still, for
+any group homomorphism \(\phi: G \to H\), the following result holds:
+
+\begin{theorem}
+    Let \(\phi: G \to H\) be a group homomorphism. The following statements are
+    equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item \(\phi\) is injective as a map between sets.
+        \item \(\phi\) is a monomorphism in \(\Grp\).
+        \item The kernel of \(\phi\) is the trivial subgroup \(\{e\}\).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}\(\)
+
+    \begin{enumerate}[wide]
+        \item[(a) \(\implies\) (b)] If \(\phi\) is injective as a map between
+        sets, then it must be a monomorphism in \(\Set\); i.e., for any set
+        \(X\) and any set functions \(\alpha, \beta: X \to G\), if \(\phi \circ
+        \alpha = \phi \circ \beta\), then \(\alpha = \beta\). In particular, if
+        \(X\) is a group and \(\alpha, \beta: X \to G\) are group homomorphisms,
+        then \(\phi \circ \alpha = \phi \circ \beta\) implies that \(\alpha =
+        \beta\), so that \(\phi\) is a monomorphism in \(\Grp\).
+        
+        \item[(b) \(\implies\) (c)] Suppose that \(\phi\) is a monomorphism in
+        \(\Grp\) and consider the diagram
+        \[
+        \begin{tikzcd}
+            \ker\phi\arrow[r,shift left=2pt,"\iota"]\arrow[r,shift right=2pt,"0", swap] &  G \arrow[r,"\phi"] & H
+        \end{tikzcd}\]
+        where \(\iota\) is the inclusion map \(\ker\phi \to G\) and \(0\) is the
+        zero map \(\ker\phi \to G\). Since \(\phi \circ 0 = \phi \circ \iota\),
+        the fact that \(\phi\) is a monomorphism implies that \(0 = \iota\), so
+        that \(\ker\phi = \{e\}\).
+
+        \item[(c) \(\implies\) (a)] If \(\ker\phi = \{e\}\), then for any \(g, h
+        \in G\), \(\phi(g) = \phi(h)\) implies that \(\phi(gh\inv) = e\), so
+        that \(gh\inv = e\), i.e., \(g = h\). Thus \(\phi\) is injective as a
+        map between sets.
+    \end{enumerate}
+\end{proof}
+
 Before exploring other properties of the kernel that makes them particularly
 useful when studying groups, we end this section by looking at some examples of
 subgroups.

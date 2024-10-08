@@ -388,8 +388,8 @@ We make the following analogous definition for a group \(G\):
     % Order of symmetric group
     What can we say about the number of elements in \(S_n\)? Since every element
     of \(S_n\) is a bijection, we can suppose that the bijection maps \(i\) to
-    \(\sigma(i)\) for some \(\sigma \in S_n\). For \(\sigma(1)\), there are \(n\)
-    possible choices since it can be mapped to any element of \(X\). With
+    \(\sigma(i)\) for some \(\sigma \in S_n\). For \(\sigma(1)\), there are
+    \(n\) possible choices since it can be mapped to any element of \(X\). With
     \(\sigma(1)\) fixed, there remain \(n-1\) choices for \(\sigma(2)\), and so
     on. Continuing in this manner, we see that there are \(n(n - 1)(n - 2)
     \cdots 1 = n!\) elements in \(S_n\). Thus the order of \(S_n\) is \(n!\).
@@ -1224,8 +1224,8 @@ from \((k_0, F)\) to any other object \((k, G)\) in \(\catg{F}^X\). This
 morphism is a group homomorphism \(\Phi: F \to G\) such that \(\Phi \circ k_0 =
 k\). This is the same as saying that \(F\) is free on \(X\) (based on our
 earlier definition). Moreover, because \((k_0, F)\) is initial, it is unique up
-to isomorphism. Indeed if we look again at Definition~\ref{def:free-group},
-we see that the definition describes a universal property, i.e., the group \(F\)
+to isomorphism. Indeed if we look again at Definition~\ref{def:free-group}, we
+see that the definition describes a universal property, i.e., the group \(F\)
 must be an initial object in some category: the category \(\catg{F}^X\) is
 \emph{that} category.
 
@@ -1502,6 +1502,7 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
 \end{proof}
 
 \begin{example}
+    \label{ex:free-group-singleton}
     Consider the set \(X = \{x\}\). We claim that \(F \cong \Z\). By the
     universal property for free groups on \(X\), there exists a map \(\iota : X
     \to F\) such that for any group \(G\) and any set function \(\phi : X \to
@@ -1530,7 +1531,92 @@ and thus the operation \(\cdot\) is associative. This completes the proof that
     = \phi(x)\).
 \end{example}
 
+We now consider the same question for the category of abelian groups. Since
+abelian groups are also objects of \(\Grp\), we can construct for every set
+\(X\) and every abelian group \(A\) a free group \(F\) that satisfies the
+universal property for free groups on \(X\). However, by our construction of
+\(F\), it is clear that, unless \(X\) is the empty set or a singleton, \(F\) is
+not abelian (for example, if \(X = \{x, y\}\), then \(xyx\inv y\inv\) is not
+equal to the identity in \(F\)) and thus \(F\) is not a free object in the
+category \(\Ab\) despite being free on \(X\) in the category \(\Grp\). Our
+objective then would be to find for any object \(A\) of the category \(\Ab\)
+another object \(F^\ab\) of \(\Ab\) (i.e., for any abelian group \(A\) another
+abelian group \(F^\ab\)), such that, if there is a function \(\iota : A \to
+F^\ab\), then for any set \(X\) and any set function \(\phi : X \to A\), there
+exists a unique group homomorphism \(\Phi : F^\ab \to A\) such that the diagram
+below commutes:
+\[
+    \begin{tikzcd}
+        X \arrow[d, "\iota"'] \arrow[r, "\phi"] & A \\
+        F^\ab \arrow[ru, "\exists!\Phi"', dashed] &  
+    \end{tikzcd}
+\]
+Again by the universal property for free groups, this would also mean that
+\(F^\ab\) must be unique up to isomorphism.
+
+Now if \(X\) is a singleton we have noted in
+Example~\ref{ex:free-group-singleton} that \(F \cong \Z\). Since \(\Z\) is
+abelian, \(\Z\) satisfies our requirement and thus \(F^\ab \cong \Z\).
+Similarly, if \(X\) is the empty set, then \(F = \{e\}\) and is trivially
+abelian, so that \(F^\ab \cong \{e\}\). We now consider the case where \(X\) is
+a set with more than one element. Let us first look at the finite set and
+consider a finite set \(X\) with cardinality \(n\) and assume that \(X = \{1, 2,
+\ldots, n\}\).\footnote{In any case, we can exploit the fact that two sets with
+the same cardinality must be isomorphic in \(\Set\).} Let \(\Z^{\oplus n}\) be
+the direct sum of \(n\) copies of \(\Z\) considered as a coproduct in \(\Ab\)
+(recall that products and coproducts coincide in \(\Ab\)). Let \(\iota : X \to
+\Z^{\oplus n}\) be the injective set function that sends each element \(i \in
+X\) to the \(i\)th copy of \(\Z\) in this direct sum with value \(1\). For
+example, if \(i = 4 \in X = \{1, 2, 3, 4, 5\}\) then
+\[
+    \iota(4) = (0, 0, 0, 1, 0) \in \Z^{\oplus 5}.
+\]
+Since each element \(k\) of \(\Z^{\oplus n}\) is an ordered \(n\)-tuple \((k_1,
+k_2, \ldots, k_n)\) where each \(k_i \in \Z\), we can express \(k\) as the sum
+\(\sum_{i = 1}^n k_i \iota(i)\). Indeed we have,
+\begin{align*}
+    (k_1, k_2, \ldots, k_n) & = k_1(1, 0, \ldots, 0) + k_2(0, 1, 0, \ldots, 0) + \cdots + k_n(0, 0, \ldots, 1) \\
+                            & = k_1\iota(1) + k_2\iota(2) + \cdots + k_n\iota(n)\\
+\end{align*}
+
+If \(\phi: X \to A\) is any function, we define the function \(\Phi: \Z^{\oplus
+n} \to A\) by
+\[
+    \Phi\left(\sum_{i = 1}^n k_i \iota(i)\right) = \sum_{i = 1}^n k_i \phi(i).
+\]
+This exploits our earlier characterization of every element \(k \in \Z^{\oplus
+n}\) as a sum of the form \(\sum_{i = 1}^n k_i \iota(i)\). By sending the
+\(i\)th element of \(X\) to \(\phi(i)\) instead of \(1\), we ensure that the
+diagram
+\[
+    \begin{tikzcd}
+        X \arrow[d, "\iota"'] \arrow[r, "\phi"] & A \\
+        \Z^{\oplus n} \arrow[ru, "\exists!\Phi"', dashed] &  
+    \end{tikzcd}
+\]
+commutes, i.e., \(\Phi \circ \iota = \phi\). For example if we have \(i = 4 \in
+X = \{1, 2, 3, 4, 5\}\), \(\iota\) will first send \(i\) to \((0, 0, 0, 1, 0)\)
+in \(\Z^{\oplus 5}\) and then \(\Phi\) will send this to \(\phi(4)\) in \(A\)
+(since each of the \(k_j\) must be zero for \(j \neq 4\)). Since \(\Phi\) is
+determined by \(\phi\), it follows that it must be unique. It remains to show
+that \(\Phi\) is a group homomorphism. For this, we use the fact that \(A\) is
+abelian. Consider \(k, \ell \in Z^{\oplus^n}\). Expressing them as sums of the
+form \(\sum_{i = 1}^n k_i \iota(i)\) and \(\sum_{i = 1}^n \ell_i \iota(i)\)
+respectively, we have
+\begin{align*}
+    \Phi\left(\sum_{i = 1}^n k_i \iota(i)\right) + \Phi\left(\sum_{i = 1}^n \ell_i \iota(i)\right) & = \sum_{i = 1}^n k_i \phi(i) + \sum_{i = 1}^n \ell_i \phi(i) \\
+    & = \sum_{i = 1}^n (k_i + \ell_i) \phi(i),
+\end{align*}
+by the commutativity of \(A\). Thus we have
+\[
+    \Phi(k) + \Phi(\ell) = \Phi(k + \ell),
+\]
+as desired. This shows that \(\Z^{\oplus n}\) satisfies the universal property
+for free objects in the category \(\Ab\), and thus \(F^\ab \cong \Z^{\oplus n}\)
+for finite sets \(X\) with cardinality \(n\).
+
 \section{Subgroups}
+\label{sec:subgroups}
 
 Another way to construct a group is to look at subsets of a group that are
 themselves groups. Consider a group \((G, \mult)\) and a subset \(H\) of the
@@ -1557,8 +1643,13 @@ identity element and inverses. Thus \(\iota(e_H) = e_G\) and \(\iota(a\inv) =
 \(\mult'\) in \(H\) is the restriction of the group operation \(\mult\) in \(G\)
 to \(H\). Thus, we can alternatively characterize a subgroup as a subset \(H\)
 of a group \(G\) that is itself a group under the group operation of \(G\)
-(retricted to \(H\)). The next result is a useful criterion for determining
-whether a subset is a subgroup.
+(retricted to \(H\)). Continuing with our desire to use general definitions
+which we might want to extend to arbitrary categories, the choice to define a
+subgroup by an inclusion map that is also a group homomorphism is again avoids
+having to proceed from the assumption that \(H\) is a subset of \(G\), as the
+notion of a `subset' derives from properties of \(G\) and \(H\) as sets. The
+next result is a useful criterion for determining whether a subset is a
+subgroup.
 
 \begin{theorem}[Subgroup test]
     \label{thm:subgroup-test}
@@ -1631,8 +1722,69 @@ such that \(\phi(x) = a\) and \(\phi(y) = b\). Then
 \]
 so \(ab\inv \in \img \phi\). Thus \(\img \phi\) is a subgroup of \(H\).
 
+For any group homomorphism \(\phi: G \to H\), the kernel \(\ker \phi\) has some
+special properties that we explore in greater detail in
+\S~\ref{sec:quotient-groups}. In the meantime, we shall show that the kernel
+satisfies a universal property. Consider first any group homomorphism \(\phi: G
+\to H\). Then since \(\ker \phi < G\), the inclusion map \(\iota: \ker \phi \to
+G\) is well defined and a group homomorphism. Moreover, if \(0_{\ker\phi, H}:
+\ker \phi \to G\) is the zero map that sends every element of \(\ker \phi\) to
+the identity element of \(G\), then \(0_{\ker\phi, H}\) is a group homomorphism
+and
+\begin{equation}
+    \label{eq:kernel-universal-property}
+    \begin{tikzcd}
+        G \arrow[rd, "\phi"]                        &   \\
+        \ker\phi \arrow[u, "\iota"] \arrow[r, "0_{\ker\phi, H}"'] & H
+    \end{tikzcd}
+\end{equation}
+is a commutative diagram in \(\Grp\). Consider another group \(K\) and a group
+homomorphism \(\psi: K \to G\) such that \(\phi \circ \psi = 0_{K,H}\). That is,
+\begin{equation}
+    \label{eq:kernel-universal-property-2}
+    \begin{tikzcd}
+        G \arrow[rd, "\phi"]                        &   \\
+        K \arrow[u, "\psi"] \arrow[r, "0_{K,H}"'] & H
+    \end{tikzcd}
+\end{equation}
+is also a commutative diagram in \(\Grp\). Now
+\eqref{eq:kernel-universal-property} is clearly a particular case of
+\eqref{eq:kernel-universal-property-2}. Write \((K, G, H)\) as a shorthand for
+the diagram \eqref{eq:kernel-universal-property-2} where we fix \(\phi: G \to
+H\) and consider a category whose objects are triples \((K, G, H)\) as in the
+notation above and whose morphisms are maps between this triples (any morphism
+\((K, G, H) \to (K', G, H)\) must then be a group homomorphism \(\chi: K \to
+K'\) preserving this commutativity). We claim that the kernel \(\ker \phi\) is a
+terminal object in this category. That is, it satisfies the following universal
+property:
+
+\begin{theorem}
+    With the notation as above, there exists a unique group homomorphism
+    \(\kappa : K \to \ker \phi\) such that the diagram
+    \[
+        \begin{tikzcd}
+            & G \arrow[rrd, "\phi"]                               &  &   \\
+            & \ker\phi \arrow[u, "\iota"] \arrow[rr, "{0_{\ker\phi, H}}"] &  & H \\
+        K \arrow[ruu, "\psi"] \arrow[rrru, "{0_{K,H}}"'] \arrow[ru, "\kappa"', dashed] &                                                     &  &  
+        \end{tikzcd}
+    \]
+    commutes.
+\end{theorem}
+
+\begin{proof}
+    Given any diagram \((K, G, H)\) with \(\psi: K \to G\), \(\phi \circ \psi =
+    0_{K,H}\) implies that for all \(k \in K\), \(\phi(\psi(k)) = e_H\), so that
+    \(\psi(k) \in \ker \phi\). By defining \(\kappa(k) = \psi(k)\) restricted to
+    \(\ker \phi\), we have a well-defined group homomorphism \(\kappa: K \to
+    \ker \phi\) uniquely determined by \(\psi\).
+\end{proof}
+
+Before exploring other properties of the kernel that makes them particularly
+useful when studying groups, we end this section by looking at some examples of
+subgroups.
 
 \section{Quotient groups and the isomorphism theorems}
+\label{sec:quotient-groups}
 
 \begin{definition}
     Let \(H\) be a subgroup of a group \(G\) and \(a, b \in G\). We say that

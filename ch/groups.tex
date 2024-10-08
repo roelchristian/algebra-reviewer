@@ -930,25 +930,76 @@ We can now establish the following result.
 \end{example}
 
 \begin{example}
-    Let \(n\) be a positive integer. The map \(\Z \to \Z/n\Z\) defined by \(a
-    \mapsto [a]_n\) for all \(a \in G\) (and where \([a]_n\) is the equivalence
-    class of \(a\) modulo \(n\)) is a group homomorphism. Since this is
-    equivalent to sending \(a\) to \(a \cdot [1]_n\) we see that this is the
-    same as the map \(\epsilon_{[1]_n}\) in the preceding example.
+    \label{ex:homomorphism-Z-to-ZnZ}
+    Let \(n\) be a positive integer. The map \(\pi_n : \Z \to \Z/n\Z\) defined
+    by \(a \mapsto [a]_n\) for all \(a \in G\) (and where \([a]_n\) is the
+    equivalence class of \(a\) modulo \(n\)) is a group homomorphism. Since this
+    is equivalent to sending \(a\) to \(a \cdot [1]_n\) we see that this is the
+    same as the map \(\epsilon_{[1]_n}\) in the preceding example. The function
+    \(\pi_n\) is surjective and the element \([1]_n\) generates \(\Z/n\Z\).
+
+    Suppose now that \(m\) divides \(n\) and define the map \(\pi^n_m : \Z/n\Z
+    \to \Z/m\Z\) by \([a]_n \mapsto [a]_m\). If \([a]_n = [b]_n\), for some
+    integers \(a\) and \(b\), then \(a - b = kn\) for some integer \(k\), which
+    implies that \(a - b = (k\ell)m\) for some integer \(\ell\) (with the last
+    equality following from the fact that \(m\) divides \(n\)). Thus \([a]_m =
+    [b]_m\) and \(\pi^n_m\) is well-defined. Since
+    \[
+        \pi^n_m(\pi_n(a)) = \pi^n_m([a]_n) = [a]_m = \pi_m(a),
+    \]
+    the diagram below must commute:
+    \[
+        \begin{tikzcd}
+            \mathbb{Z} \arrow[rd, "\pi_m"] \arrow[d, "\pi_n"'] &                        \\
+            \mathbb{Z}/n\mathbb{Z} \arrow[r, "\pi^n_m"']       & \mathbb{Z}/m\mathbb{Z}
+        \end{tikzcd}
+    \]
+    Finally, for all \([a]_n, [b]_n \in \Z/n\Z\),
+    \[
+        \pi^n_m([a]_n + [b]_n) = [a + b]_m = [a]_m + [b]_m = \pi^n_m([a]_n) + \pi^n_m([b]_n),
+    \]
+    and thus \(\pi^n_m\) is a group homomorphism. Our definition of \(\pi^n_m\)
+    also implies that the map \(\pi^n_m\) is surjective. Moreover, if \(m_1\)
+    and \(m_2\) are both divisors of \(n\), then the universal property for
+    products in \(\Grp\) implies that there exists a unique group homomorphism
+    \[\pi^n_{m_1} \times \pi^n_{m_2} : \Z/n\Z \to \Z/m_1\Z \times \Z/m_2\Z\]
+    such that the following diagram commutes:
+    \[
+        \begin{tikzcd}
+            &  & \Z/n\Z \arrow[lld, "\pi^n_{m_1}"'] \arrow[rrd, "\pi^n_{m_2}"] \arrow[d, swap, "\pi^n_{m_1} \times \pi^n_{m_2}"] &  &          \\
+        \Z/m_1\Z &  & \Z/m_1\Z \times \Z/m_2\Z \arrow[rr, "\pi_{m_2}"'] \arrow[ll, "\pi_{m_1}"]                                 &  & \Z/m_2\Z
+        \end{tikzcd}
+    \]
+    As an example, since \(2\) and \(3\) are both divisors of \(6\), there is a
+    unique map
+    \[
+        \Z/6\Z \to \Z/2\Z \times \Z/3\Z.
+    \]
+    This is given explicitly by
+    \begin{align*}
+        [0]_6 & \mapsto ([0]_2, [0]_3),\\
+        [1]_6 & \mapsto ([1]_2, [1]_3),\\
+        [2]_6 & \mapsto ([0]_2, [2]_3),\\
+        [3]_6 & \mapsto ([1]_2, [0]_3),\\
+        [4]_6 & \mapsto ([0]_2, [1]_3),\\
+        [5]_6 & \mapsto ([1]_2, [2]_3).
+    \end{align*}
+    We will revisit this example once we have formally defined the notion of an
+    isomorphism.
 \end{example}
 
-\begin{remark}
-    \label{rem:homomorphism-order}
-    As our motivation for defining a group homomorphism was the desire to find a
-    mapping that preserves the group structure, it should be natural to ask
-    whether it would also preserve the order of an element in a group. If we
-    consider an element \(g\) of order \(n\) in a group \(G\) and a group
-    homomorphism \(\phi: G \to H\), we can establish by induction that
-    \[
-        \phi(g)^n = \phi(g^n) = \phi(e_G) = e_H.
-    \]
-    More precisely, we have:
-\end{remark}
+\bigskip
+
+\label{rem:homomorphism-order}
+As our motivation for defining a group homomorphism was the desire to find a
+mapping that preserves the group structure, it should be natural to ask whether
+it would also preserve the order of an element in a group. If we consider an
+element \(g\) of order \(n\) in a group \(G\) and a group homomorphism \(\phi: G
+\to H\), we can establish by induction that
+\[
+    \phi(g)^n = \phi(g^n) = \phi(e_G) = e_H.
+\]
+More precisely, we have:
 
 \begin{theorem}
     \label{thm:order-divides-n-homomorphism}
@@ -976,8 +1027,8 @@ We can now establish the following result.
     consider the element \(1 \in \Z\) and the map \(\pi_n : \Z \to \Z/n\Z\)
     defined by \(a \mapsto [a]_n\). The order of \(1\) in \(\Z\) is infinite,
     but the order of \(\pi_n(1)\) in \(\Z/n\Z\) is \(n\). Isomorphisms, however,
-    do preserve the order of elements, as we shall see in the following
-    sections.
+    do preserve the order of elements, as we shall see in the remainder of this
+    section.
 \end{example}
 
 \begin{theorem}
@@ -1022,6 +1073,28 @@ We can now establish the following result.
     \]
     so \(H\) is abelian. The proof for the converse is similar.
 \end{proof}
+
+\begin{example}
+    We return to the map \(\pi^n_m : \Z/n\Z \to \Z/m\Z\) defined in
+    Example~\ref{ex:homomorphism-Z-to-ZnZ}. Recall that if \(m_1\) and \(m_2\)
+    are both divisors of \(n\), then there is a unique map
+    \[
+        \pi^n_{m_1} \times \pi^n_{m_2}: \Z/n\Z \to \Z/m_1\Z \times \Z/m_2\Z
+    \]
+    that makes the following diagram commute:
+    \[
+        \begin{tikzcd}
+            &  & \Z/n\Z \arrow[lld, "\pi^n_{m_1}"'] \arrow[rrd, "\pi^n_{m_2}"] \arrow[d, swap, "\pi^n_{m_1} \times \pi^n_{m_2}"] &  &          \\
+        \Z/m_1\Z &  & \Z/m_1\Z \times \Z/m_2\Z \arrow[rr, "\pi_{m_2}"'] \arrow[ll, "\pi_{m_1}"]                                 &  & \Z/m_2\Z
+        \end{tikzcd}
+    \]
+    We claim that this map is an isomorphism and thus \(\Z/n\Z\) is isomorphic
+    to the direct product \(\Z/m_1\Z \times \Z/m_2\Z\). That \(\pi^n_{m_1}
+    \times \pi^n_{m_2}\) is surjective follows directly from its definition.
+    Suppose \(a, b \in \Z/m_1\Z \times \Z/m_2\Z\) are given, with \(a \neq b\),
+    and write \(a = ([a_1]_{m_1}, [a_2]_{m_2})\) and \(b = ([b_1]_{m_1},
+    [b_2]_{m_2})\)
+\end{example}
 
 \bigskip
 

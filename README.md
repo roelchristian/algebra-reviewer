@@ -8,11 +8,12 @@ This is a work in progress but will follow the following outline:
 1. Preliminaries (sets, functions, categories, etc.)
 2. Groups
     - Basic definitions
-    - Homomorphisms and subgroups
-    - Quotient groups, the isomorphism theorems
+    - Homomorphisms and the category $\mathbf{Grp}$
+    - Free groups
+    - Subgroups, normal subgroups, and quotient groups
+    - Isomorphism theorems
     - Group actions
     - Sylow theorems
     - Direct and semidirect products
-    - Free groups
 3. Rings and modules
 4. Fields and Galois theory

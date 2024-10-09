@@ -1,5 +1,6 @@
-# algebra-reviewer
-Graduate algebra reviewer
+# Graduate algebra notes
+
+![Image](assets/img/image.png "Diagram showing the relationship between subgroups of Z/nZ")
 
 These are my review notes for the graduate algebra comprehensive exam at De La Salle University. These notes are mainly based on Aluffi's "Algebra: Chapter 0" and Hungerford's "Algebra".
 

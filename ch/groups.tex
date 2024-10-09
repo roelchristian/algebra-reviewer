@@ -1736,6 +1736,28 @@ subgroup.
     definition of \(H\), we have \(K \subset H\).
 \end{proof}
 
+\begin{example}
+    While the intersections behave well with respect to subgroups, the union of
+    subgroups need not be a subgroup. Consider the group \(\Z\) and the
+    subgroups \(2\Z\) and \(3\Z\). Then the union \(2\Z \cup 3\Z\) is not a
+    subgroup of \(\Z\); for example, \(2 + 3 = 5\) is not a multiple of either
+    \(2\) or \(3\) and thus \([5] = [2] + [3] \notin 2\Z \cup 3\Z\).
+
+    Consider a group \(G\) and subgroups \(H\) and \(K\) of \(G\). Then if \(H
+    \subset K\) or \(K \subset H\) (here we include in both cases the
+    possibility that \(H = K\)), then the union \(H \cup K = K\) or \(H\),
+    respectively and is therefore a subgroup. More generally, if \(\{H_i\}_{i
+    \in I}\) is a directed family of sungroups, meaning that for all \(i, j \in
+    I\) there exists \(k \in I\) such that \(H_i \subset H_k\) and \(H_j \subset
+    H_k\), then the union \(H = \bigcup_{i \in I} H_i\) is a subgroup of \(G\).
+    Since each \(H_i\) is a subgroup, the union is nonempty and contains the
+    identity element. If \(a, b \in H\), then \(a \in H_i\) and \(b \in H_j\)
+    for some \(i, j \in I\). Since the family is directed, there exists \(k \in
+    I\) such that \(H_i \cup H_j \subset H_k\), so that \(a, b \in H_k\);
+    because \(H_k\) is a subgroup, \(ab\inv \in H_k \subset H\) and this
+    completes the proof.
+\end{example}
+
 \begin{theorem}
     \label{thm:preimage-subgroup}
     Let \(\phi: G \to H\) be a group homomorphism and let \(K\) be a subgroup of

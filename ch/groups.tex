@@ -556,18 +556,18 @@ We make the following analogous definition for a group \(G\):
     functions. We usually denote this group by \(D_3\), the \emph{dihedral
     group} of order \(6\) (i.e., the group of symmetries of a regular triangle).
 
-    We can extend our definition to regular polygons with \(n\)-gons for
-    arbitrary \(n\). Each group \(D_n\) would have \(n\) rotations (defined by
-    rotating the plane about its center by \(2\pi/n\) radians) and \(n\)
-    reflections (defined by reflecting the plane about the axes of symmetry for
-    each of the \(n\) vertices). The group \(D_n\) is thus a group of order
-    \(2n\).\footnote{An alternative notation is to write \(D_n\) as \(D_{2n}\)
-    to emphasize the order of the group. This is more common in algebra texts,
-    with \(D_n\) preferred in geometry.} If we fix the position of \(A\) and
-    write \((ABC)\) for this configuration, each element of \(D_3\) then
-    determines a permutation of the vertices of the triangle, and thus we can
-    define a map from \(D_3\) to \(S_3\). We will explore this again once we
-    have defined the notion of a homomorphism.
+    We can extend our definition to regular \(n\)-gons for arbitrary \(n\). Each
+    group \(D_n\) would have \(n\) rotations (defined by rotating the plane
+    about its center by \(2\pi/n\) radians) and \(n\) reflections (defined by
+    reflecting the plane about the axes of symmetry for each of the \(n\)
+    vertices). The group \(D_n\) is thus a group of order \(2n\).\footnote{An
+    alternative notation is to write \(D_n\) as \(D_{2n}\) to emphasize the
+    order of the group. This is more common in algebra texts, with \(D_n\)
+    preferred in geometry.} If we fix the position of \(A\) and write \((ABC)\)
+    for this configuration, each element of \(D_3\) then determines a
+    permutation of the vertices of the triangle, and thus we can define a map
+    from \(D_3\) to \(S_3\). We will explore this again once we have defined the
+    notion of a homomorphism.
 \end{example}
 
 \begin{example}[\(\Z\) and \(\Z/n\Z\)]
@@ -2307,14 +2307,12 @@ subgroups.
         gng\inv \in N.
     \]
     If \(N\) is a normal subgroup of \(G\), we write \(N \triangleleft G\).
-\end{definition}
 
-\begin{remark}
     The operation \(gng\inv\) is called \emph{conjugation} by \(g\). Thus,
     Definition~\ref{def:normal-subgroup} can be stated as: a subgroup \(N\) of a
     group \(G\) is normal if it is invariant under conjugation by elements of
     \(G\).
-\end{remark}
+\end{definition}
 
 \begin{example}
     It immediately follows from the definition that every subgroup of an abelian
@@ -2374,6 +2372,14 @@ subgroups.
         \]
         Since \(N\) is normal \(k_1n_2{k\inv}_1\) must be equal to some element
         \(n_3 \in N\), so \(ab = n_1n_3k_1k_2 \in NK\).
+        \item Consider the element \(x = knk\inv n\inv\) of \(G\) for some \(n
+        \in N\) and \(k \in K\). Since \(N \triangleleft G\), we have \(knk\inv
+        \in N\) and because \(N\) is a subgroup, the product \((knk\inv)n\inv\)
+        must likewise be in \(N\). Similarly, since \(k \in K\), it follows that
+        \(k\inv \in K\) (because \(K \subgroup G\)) and \(nk\inv n\inv \in K\)
+        because \(K \triangleleft G\) and the product \(k(nk\inv n\inv) \in K\).
+        Thus \(knk\inv n\inv \in N \cap K\) but since \(N \cap K = \{e\}\), we
+        must have \(knk\inv n\inv = e\), i.e., \(kn = nk\).
     \end{enumerate}
 \end{proof}
 
@@ -2389,13 +2395,14 @@ subgroups.
 \end{theorem}
 
 \begin{proof}
-    First we show that the operation is well-defined. Suppose \(a, a', b, b' \in
-    G\) such that \(aN = a'N\) and \(bN = b'N\). Then \(a\inv a' \in N\) and
-    \(b\inv b' \in N\). The first statement implies that \(b\inv a\inv a' \in
-    b\inv H = Hb\inv\) (because \(N\)) is normal. Thus there exists an element
-    \(n \in N\) such that \(b\inv a\inv a' = nb\inv\); multiplying on the right
-    by \(b'\) gives us \(b\inv a\inv a'b' = nb\inv b' \in N\). We can simplify
-    this to \((ab)\inv(a'b') \in N\), which implies that \((ab)N = (a'b')N\).
+    First we show that the operation is well-defined. Suppose \(a\), \(a'\),
+    \(b\), and \(b'\) are elements of \(G\) such that \(aN = a'N\) and \(bN =
+    b'N\). Then \(a\inv a' \in N\) and \(b\inv b' \in N\). The first statement
+    implies that \(b\inv a\inv a' \in b\inv H = Hb\inv\) (because \(N\)) is
+    normal. Thus there exists an element \(n \in N\) such that \(b\inv a\inv a'
+    = nb\inv\); multiplying on the right by \(b'\) gives us \(b\inv a\inv a'b' =
+    nb\inv b' \in N\). We can simplify this to \((ab)\inv(a'b') \in N\), which
+    implies that \((ab)N = (a'b')N\).
 
     The operation is associative because multiplication in \(G\) is associative.
     The identity element of the group is \(eN = N\) where \(e\) is the identity
@@ -2454,7 +2461,8 @@ subgroups.
         \end{tikzcd}
     \]
     commutes. Here \(\pi: G \to G/N\) is the canonical projection map, defined
-    by \(\pi(g) = gN\).
+    by \(\pi(g) = gN\). The map \(\overline{\phi}\) is called the
+    \emph{homomorphism induced by \(\phi\)}.
 \end{theorem}
 
 \begin{proof}
@@ -2477,11 +2485,6 @@ subgroups.
     \]
     and the diagram therefore commutes.
 \end{proof}
-
-\begin{remark}
-    The map \(\overline{\phi}\) is called the \emph{homomorphism induced by
-    \(\phi\)}.
-\end{remark}
 
 \begin{theorem}
     Given the same conditions as in the preceding theorem, the following
@@ -2585,13 +2588,53 @@ The next result is immediately implied in the preceding theorem but we state it
 nonetheless because of its importance.
 
 \begin{theorem}[First isomorphism theorem]
+    \label{thm:first-isomorphism}
     Let \(\phi: G \to H\) be a group homomorphism. Then
     \[
         G/\ker \phi \cong \img \phi.
     \]
 \end{theorem}
 
+\begin{example}[Free groups and presentations]
+    Consider a group \(G\) generated by a set \(S\) (we can take \(S = G\), for
+    example). Suppose \(X\) is a set isomorphic to \(S\) (in \(\Set\)) and
+    consider the free group \(F\) on \(X\). The universal property for free
+    groups gives us a unique group homomorphism \(\phi: F \to G\) and because
+    \(X \cong S\), this map is surjective. Since \(S \cong X\) and \(S\)
+    generates \(G\), any map \(f: X \to G\) must be surjective and since the
+    inclusion map \(\iota: X \to F\) is surjective, \(\phi\) is thus surjective
+    and \(G = \img \phi\). The first isomorphism theorem then gives us \(G \cong
+    F/\ker \phi\), i.e., every group is isomorphic to a quotient of a free
+    group. (This demonstration holds in \(\Ab\) as well and we say that every
+    abelian group is isomorphic to a quotient of a free abelian group.)
+
+    A \emph{presentation} of a group \(G\) is an explicit isomorphism \(G \cong
+    F/R\) where \(F\) is a free group on some set \(X\) and \(R\) is a set of
+    `relations' on \(X\) viewed as a normal subgroup of the free group \(F\);
+    i.e., it is the kernel of a group homomorphism \(\rho: F \to G\). A
+    presentation is usually written in the form
+    \(\presentation{X}{\mathcal{R}}\) where \(\mathcal{R}\) is a set of words in
+    \(R = \ker\rho\) generating \(R\) (in the sense that \(\mathcal{R}\) is the
+    smallest normal subgroup of \(F\) containing the words in \(\mathcal{R}\)).
+    This notation is particularly helpful when both \(X\) and \(\mathcal{R}\)
+    are finite, in which case we say that \(G\) is \emph{finitely presented}.
+    Another common practice would be to include the equality signs in the
+    presentation, so that \(\presentation{X}{\mathcal{R}}\) would be written as
+    \(\presentation{X}{r_1 = e, r_2 = e, \ldots, r_n = e}\) or as
+    \(\presentation{X}{r_1, r_2, \ldots, r_n = e}\).
+    
+    By choosing the set \(X\) as we have above, we guarantee that every group
+    admits a presentation \(\presentation{X}{\mathcal{R}}\). In particular,
+    every finite group is finitely presented.
+
+    Let us look at the presentations of some familiar groups. If \(X = \{x\}\),
+    then cyclic group of order \(n\) is generated by a single element \(x\) and
+    has the presentation \(\presentation{x}{x^n}\). The group \(D_3\) has the
+    presentation \(\presentation{r, s}{r^3, s^2, rsrs}\).
+\end{example}
+
 \begin{theorem}[Second isomorphism theorem]
+    \label{thm:second-isomorphism}
     Let \(K\) and \(N\) be subgroups of a group \(G\) such that
     \(\normal{N}{G}\). Then \(N \cap K\) is normal in \(K\), and
     \[
@@ -2615,16 +2658,23 @@ nonetheless because of its importance.
             K \arrow[r, "\iota", hook] & NK \arrow[r, "\pi", two heads] & NK/N.
             \end{tikzcd}
     \]
-    By the first isomorphism theorem, we then have
-    \[
-        K/\ker \phi \cong NK/N.
-    \]
+    By the first isomorphism theorem, we then have \(K/\ker \phi \cong NK/N.\)
     But then
     \begin{align*}
         \ker \phi &= \{k \in K : \phi(k) = N\} = \{k \in K : kN = N\} = \{k \in K : k \in N\}\\ &= N \cap K,
     \end{align*}
     and the result follows.
 \end{proof}
+
+Theorem~\ref{thm:second-isomorphism} gives us the following lattice of subgroups
+of \(G\):
+\begin{center}
+    \begin{tikzcd}
+        & NK & \\
+        N \arrow[ur, hook] & & K \arrow[ul, hook] \\
+        & N \cap K \arrow[ul, hook] \arrow[ur, hook] & 
+    \end{tikzcd}
+\end{center}
 
 \section{Group actions}
 

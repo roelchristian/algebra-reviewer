@@ -4,6 +4,43 @@
 \section{Set theory review}
 \label{sec:set-theory-review}
 
+We begin with the following informal definition: a \emph{set} is a collection of
+objects called `elements.' We shall be content with this informal definition for
+the rest of the text and not delve into the foundational issues of set theory.
+To ask `what is an element?' is beyond the scope of this text. Set theory is an
+expansive mathematical field in itself and axiomatizing its foundations is a
+nontrivial task. We shall then rely on our `na\"ive' intuition of what objects
+are and what it means for an object to be a member of a set. By our definition,
+a set is determined by its element. We usually denote sets by explicitly listing
+their elements within braces, e.g., \(\{1, 2, 3\}\) is the set containing the
+numbers 1, 2, and 3. It will also be our convention that the order in which we
+list the elements of a set does not matter, i.e.,
+\[
+    \{1, 2, 3\}, \{2, 1, 3\}, \{3, 2, 1\}
+\]
+all describe the same sets. In the text, we denote sets by capital letters,
+e.g., \(A\), \(B\), \(C\), etc. and elements by lowercase letters, e.g., \(a\),
+\(b\), \(c\), etc. More succinctly, if \(\phi(x)\) is a statement about \(x\),
+then we write
+\[
+    \{x : \phi(x)\}
+\]
+to denote the set of all \(x\) such that \(\phi(x)\) is true. 
+
+If \(a\) is an element of a set \(A\), we write \(a \in A\); otherwise we write
+\(a \notin A\). If \(A\) and \(B\) are sets, then our definition tells us that
+\(A\) and \(B\) are the same sets if and only if they have the same elements; in
+such a case, we would say that \(A\) and \(B\) are \emph{equal} and write \(A =
+B\). We say that a set \(A\) is a \emph{subset} of a set \(B\) if every element
+of \(A\) is an element of \(B\). It is clear from our definition that \(A
+\subset A\) for any set \(A\).
+
+% operations on sets
+Given two sets \(A\) and \(B\), we can define the following operations:
+\begin{enumerate}[label=(\alph*), wide]
+    \item The \emph{union} of \(A\) and \(B\), denoted by \(A \cup B\), is the set of all elements that are in \(A\) or in \(B\).
+\end{enumerate}
+
 \begin{definition}[Relation]
     A relation \(R\) on a set \(A\) is a subset of \(A \times A\). For all \(a,
     b \in A\), we would usually write \(a R b\) to denote that \((a, b) \in R\).
@@ -503,16 +540,20 @@ between arbitrary objects).
     \end{enumerate}
 \end{definition}
 
-Note that we have not defined a category as a set of objects. Consider an object
-whose categories are sets. Then since there is no `set of all sets' (cf.
-Russell's paradox), we cannot define a category as a set of such objects. Now it
-will be tempting to look at objects in a category as sets and morphisms (or
-arrows) between the objects as functions between the sets. Indeed we shall often
-do so (in a qualified manner) when dealing with concrete categories, i.e.,
-categories whose objects, having removed any additional data about their
-algebraic structure, can be identified with sets. While this might seem simpler,
-`thinking in categories' helps us analyze the constructions by looking directly
-at the objects and the morphisms between them.
+There is no standard way to denote a category \(\catg{C}\). Some commonly used
+notations include \(\mathcal{C}\), \(\mathsf{C}\), \(\mathbf{C}\), and
+\(\mathfrak{C}\). We shall use \(\catg{C}\) in this text.
+
+It is important to note that we have not defined a category as a set of objects.
+Consider an object whose categories are sets. Then since there is no `set of all
+sets' (cf. Russell's paradox), we cannot define a category as a set of such
+objects. Now it will be tempting to look at objects in a category as sets and
+morphisms (or arrows) between the objects as functions between the sets. Indeed
+we shall often do so (in a qualified manner) when dealing with concrete
+categories, i.e., categories whose objects, having removed any additional data
+about their algebraic structure, can be identified with sets. While this might
+seem simpler, `thinking in categories' helps us analyze the constructions by
+looking directly at the objects and the morphisms between them.
 
 As a simple example, consider our definition of a morphism. For the time being
 let us call morphisms `arrows' to rid us the notion of any suggestive meaning
@@ -897,6 +938,7 @@ denote this inverse by \(f^{-1}\) without ambiguity. The following properties of
 isomorphisms are immediate from the definition:
 
 \begin{theorem}
+    \label{thm:isomorphism-properties-cat}
     Let \(\catg{C}\) be a category.
     \begin{enumerate}[label=(\alph*), itemsep=0pt]
         \item For each object \(A\) in \(\catg{C}\), the identity morphism
@@ -921,26 +963,50 @@ isomorphisms are immediate from the definition:
     follows similarly.
 \end{proof}
 
-The results of \S~\ref{sec:set-functions} tell us that bijections are precisely
-the isomorphisms in the category \(\Set\). In the category \(\catg{Ord}\)
-obtained from the relation \(\leq\) on \(\Z\) (as in
-Example~\ref{ex:slice-category}) the only isomorphisms are the identity
-morphisms. On the other hand, a category in which every morphism is an
-isomorphism is called a \emph{groupoid}. Let us construct a groupoid by first
-considering the category \(\catg{Ord}\) obtained from a set \(S\) and a relation
-\(\sim\) on \(S\) that is reflexive and transitive (we have constructed this
-category in Example~\ref{ex:category-preordered-sets}). Now suppose that
-\(\sim\) is also symmetric (i.e., an equivalence relation). Then we have
-\begin{align*}
+\begin{example}
+    The results of \S~\ref{sec:set-functions} tell us that bijections are
+    precisely the isomorphisms in the category \(\Set\). In the category
+    \(\catg{Ord}\) obtained from the relation \(\leq\) on \(\Z\) (as in
+    Example~\ref{ex:slice-category}) the only isomorphisms are the identity
+    morphisms. On the other hand, a category in which every morphism is an
+    isomorphism is called a \emph{groupoid}. Let us construct a groupoid by
+    first considering the category \(\catg{Ord}\) obtained from a set \(S\) and
+    a relation \(\sim\) on \(S\) that is reflexive and transitive (we have
+    constructed this category in Example~\ref{ex:category-preordered-sets}). Now
+    suppose that \(\sim\) is also symmetric (i.e., an equivalence relation).
+    Then we have
+    \begin{align*}
     (a, b) \in \Hom_{\catg{Ord}}(a, b) &\implies a \sim b \implies b \sim a\\ &\implies (b, a) \in \Hom_{\catg{Ord}}(b, a).
-\end{align*}
-Now since
-\[
+    \end{align*}
+    Now since
+    \[
     (a, b) \circ (b, a) = (a, a) = \id_a \quad \text{and} \quad (b, a) \circ (a, b) = (b, b) = \id_b,
-\]
-it follows that \((a, b)\) is an isomorphism with inverse \((b, a)\). Since
-\((a, b)\) was arbitrarilly chosen, we see that every morphism in \(\catg{Ord}\)
-is an isomorphism and thus \(\catg{Ord}\) is a groupoid.
+    \]
+    it follows that \((a, b)\) is an isomorphism with inverse \((b, a)\). Since
+    \((a, b)\) was arbitrarilly chosen, we see that every morphism in
+    \(\catg{Ord}\) is an isomorphism and thus \(\catg{Ord}\) is a groupoid.
+\end{example}
+
+\begin{example}
+    \label{ex:endomorphism-automorphism}
+    An \emph{endomorphism} of an object \(A\) in a category \(\catg{C}\) is a
+    morphism \(f: A \to A\). An endomorphism that is an isomorphism is called an
+    \emph{automorphism}. We denote the set of all endomorphisms and
+    automorphisms of an object \(A\) by \(\End_{\catg{C}}{A} =
+    \Hom_{\catg{C}}(A,A)\) and \(\Aut_{\catg{C}}{A}\), respectively, with the
+    subscript omitted as usual if the category is clear from the context. The
+    properties of isomorphisms from Theorem~\ref{thm:isomorphism-properties-cat}
+    endow morphisms in \(\Aut_{\catg{C}}{A}\) with the following properties:
+    \begin{enumerate}[label=(\alph*), itemsep=0pt]
+        \item the composition of two automorphisms is an automorphism;
+        \item composition of automorphisms is associative;
+        \item \(\Aut_{\catg{C}}{A}\) contains the identity morphism \(\id_A\) which is an automorphism and is an `identity' with respect to composition of automorphisms; and
+        \item every automorphism has an inverse which is also an automorphism.
+    \end{enumerate}
+    Note that these properties are independent of the category \(\catg{C}\). They define a \emph{group}, an algebraic structure we shall study in greater detail in Chapter~\ref{ch:groups}.
+\end{example}
+
+\medskip
 
 Having earlier characterized monomorphisms and epimorphisms in \(\Set\) in
 Definition~\ref{def:monomorphism-epimorphism-set} fully in terms of other set

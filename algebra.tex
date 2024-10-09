@@ -8,6 +8,7 @@
     top=0.6in,
     bottom=0.5in
 }
+\overfullrule=10pt
 
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage{enumerate, enumitem}
@@ -79,6 +80,9 @@
 
 
 \usepackage{microtype}
+% Penalties
+\widowpenalty=10000
+\clubpenalty=10000
 
 
 
@@ -88,6 +92,8 @@
 % \addbibresource{./bib/bibliography.bib}
 % \setlength\bibitemsep{0.4\itemsep}
 % \renewcommand*{\bibfont}{\small}
+\usepackage{tikz}
+\usetikzlibrary{calc}
 \usepackage{tikz-cd}
 \tikzcdset{arrow style=tikz, diagrams={>=stealth}}
 
@@ -113,13 +119,21 @@
 \newcommand{\catg}[1]{\mathbf{#1}}
 \newcommand{\Grp}{\catg{Grp}}
 \newcommand{\Set}{\catg{Set}}
+\newcommand{\Ab}{\catg{Ab}}
 \newcommand{\Aut}{\operatorname{Aut}}
 \newcommand{\dom}{\operatorname{dom}}
 \newcommand{\Obj}[1]{\operatorname{ob}(\catg{#1})}
 \newcommand{\gen}[1]{\langle #1 \rangle}
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\inv}{^{-1}}
-
+\newcommand{\ab}{\mathrm{ab}}
+\newcommand{\subgroup}{<}
+\newcommand{\presentation}[2]{\langle #1 \mid #2 \rangle}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\trans}{^{\mathsf{T}}}
+\newcommand{\herm}{^{\mathsf{H}}}
+\newcommand{\End}{\operatorname{End}}
 
 % \newcommand{\field}{\mathsf{k}}
 % Redefine \phi to use \varphi
@@ -130,10 +144,11 @@
   \let\mathcal\mathscr
 }
 
+
 \begin{document}
 
 \frontmatter
-\raggedbottom
+% \raggedbottom
 
 \maketitle
 
@@ -145,9 +160,6 @@
 \include{ch/groups}
 \include{ch/rings}
 \include{ch/fields}
-
 \cleardoublepage
-% \nocite{*}
-% \printbibliography
 
 \end{document}

@@ -15,6 +15,7 @@ chv*/
 *.synctex.gz(busy)
 *.pdf
 PDF/
+test*.*
 
 # Mac
 .DS_Store

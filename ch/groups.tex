@@ -475,14 +475,17 @@ We make the following analogous definition for a group \(G\):
 
     We define a rotation of the triangle \(ABC\) as a rotation of the plane
     about the center \(c\) that maps the triangle to itself (with the vertices
-    permuted). To simplify, suppose \(\rho\) is the counterclockwise rotation by
-    \(2\pi/3\) radians. Then \(\rho\) will map the vertex \(A\) to \(B\), \(B\)
-    to \(C\), and \(C\) to \(A\). The composition \(\rho \circ \rho\) is again
-    another rotation, sending the original vertex \(A\) to \(C\) and so forth;
-    finally \(\rho \circ \rho \circ \rho\) is the identity rotation will map
-    each vertex to itself. Thus we need only consider the three unique rotations
-    \(\rho\), \(\rho \circ \rho\), and \(\rho \circ \rho \circ \rho\), which we
-    thus denote \(\rho_1\), \(\rho_2\), and \(\rho_0\), respectively.
+    permuted). For this to make sense, the rotation must be by a multiple of
+    \(2\pi/3\) radians (since a circle has \(2\pi\) radians and the triangle is
+    equilateral); otherwise the resulting triangle would not coincide with the
+    original. To simplify, suppose \(r\) is the counterclockwise rotation by
+    \(2\pi/3\) radians. Then \(r\) will map the vertex \(A\) to \(B\), \(B\) to
+    \(C\), and \(C\) to \(A\). The composition \(r \circ r\) is again another
+    rotation, sending the original vertex \(A\) to \(C\) and so forth; finally
+    \(r \circ r \circ r\) is the identity rotation will map each vertex to
+    itself. Thus we need only consider the three unique rotations \(r\), \(r
+    \circ r\), and \(r \circ r \circ r\), which we thus denote \(r_1\), \(r_2\),
+    and \(r_0\), respectively.
 
     On the other hand, we define a reflection of the triangle \(ABC\) as a
     reflection of the plane about one of the axes of symmetry of the triangle.
@@ -492,10 +495,10 @@ We make the following analogous definition for a group \(G\):
     the same reflection about the same axis of symmetry results in the original
     triangle. Thus we need only consider the three unique reflections about the
     axes of symmetry \(\alpha_A\), \(\alpha_B\), and \(\alpha_C\), which we
-    denote \(\sigma_A\), \(\sigma_B\), and \(\sigma_C\), respectively.
+    denote \(s_A\), \(s_B\), and \(s_C\), respectively.
 
-    The actions defined by \(\sigma_X\) and \(\rho_i\) interact with each other
-    in a regular way. For example, if we reflect the triangle about the axis of
+    The actions defined by \(s_X\) and \(r_i\) interact with each other in a
+    regular way. For example, if we reflect the triangle about the axis of
     symmetry \(\alpha_A\) and then rotate the triangle by \(2\pi/3\) radians
     counterclockwise, we obtain the same result by just reflecting the triangle
     about the axis of symmetry \(\alpha_C\), that is, the composition
@@ -508,7 +511,7 @@ We make the following analogous definition for a group \(G\):
             \node[above] at (C) {\(C\)};
 
             % node mapsto
-            \node at (3, 0.866) {\(\overset{\sigma_A}{\mapsto}\)};
+            \node at (3, 0.866) {\(\overset{s_A}{\mapsto}\)};
         \end{tikzpicture}
         \begin{tikzpicture}
             \coordinate (A) at (0, 0); \coordinate (B) at (2, 0); \coordinate
@@ -518,7 +521,7 @@ We make the following analogous definition for a group \(G\):
             \node[above] at (C) {\(B\)};
 
             % node mapsto
-            \node at (3, 0.866) {\(\overset{\rho_1}{\mapsto}\)};
+            \node at (3, 0.866) {\(\overset{r_1}{\mapsto}\)};
         \end{tikzpicture}
         \begin{tikzpicture}
             \coordinate (A) at (0, 0); \coordinate (B) at (2, 0); \coordinate
@@ -538,7 +541,7 @@ We make the following analogous definition for a group \(G\):
             \node[above] at (C) {\(C\)};
 
             % node mapsto
-            \node at (3, 0.866) {\(\overset{\sigma_C}{\mapsto}\)};
+            \node at (3, 0.866) {\(\overset{s_C}{\mapsto}\)};
         \end{tikzpicture}
         \begin{tikzpicture}
             \coordinate (A) at (0, 0); \coordinate (B) at (2, 0); \coordinate
@@ -550,28 +553,78 @@ We make the following analogous definition for a group \(G\):
     \end{center}
     In particular, a routine verification will establish the following
     identities:
-    \begin{align*}
-        \rho_2 &= \rho_1 \circ \rho_1\\
-        \sigma_B &= \rho_1 \circ \rho_1 \circ \sigma_A\\
-        \sigma_C &= \rho_1 \circ \sigma_A.
-    \end{align*}
-    Writing \(\rho\) for \(\rho_1\) and \(\sigma\) for \(\sigma_A\) and using
-    the exponential notation we have introduced in
+    \[
+        r_2 = r_1 \circ r_1, \quad s_B = s_A \circ r_1 \circ r_1, \quad s_C = s_A \circ r_1.
+    \]
+
+    Writing \(r\) for \(r_1\) and \(s\) for \(s_A\) and using the exponential
+    notation we have introduced in
     \S~\ref{sec:definition-and-basic-properties-grp}, the distinct elements of
     \(D_3\) are then
     \[
-        R = \{e = \rho_0, \rho, \rho^2, \sigma, \sigma\rho, \sigma\rho^2\}.
+        D_3 = \{e = r_0, r, r^2, r, rs, r^2s\}.
     \]
+    Here we write \(rs\) to mean the composition of the rotation \(r\) and the
+    reflection \(s\), i.e., \(rs = s\circ r\). We can more succinctly write
+    these identities using the following commutative diagram, where each arrow
+    represents the rotation \(r\) and each dashed arrow represents the
+    reflection \(s\):
+    \begin{center}
+        \begin{tikzpicture}[ vertex/.style={circle, draw=black, minimum
+            size=0.85cm}, edge/.style={->, >=Stealth, thick},
+            double/.style={<->, >=Stealth, thick},every
+            node/.style={font=\small} ]
+        
+        % Define vertices
+        \node[vertex] (e) at (0, 0) {\scriptsize\(e\)}; \node[vertex] (r) at (2,
+        0) {\scriptsize\(r\)}; \node[vertex] (r2) at (1, 1.732)
+        {\scriptsize\(r^2\)};
+        
+        % Extend the triangle by making another equilateral triangle containing
+        % the first
+        \draw[edge] (e) -- (r); \draw[edge] (r) -- (r2); \draw[edge] (r2) --
+        (e); \node[vertex] (s) at (-1.6, -1.3) {\scriptsize\(s\)}; \node[vertex]
+        (sr) at (3.6, -1.3) {\scriptsize\(rs\)};
+        % sqrt(2) = 1.414 * 3 = 4.242/2 = 2.121 + 1.732 = 3.853
+        \node[vertex] (sr2) at (1, 3.853) {\scriptsize\(r^2s\)}; \draw[double,
+        dashed] (e) -- (s); \draw[double, dashed] (r) -- (sr); \draw[double,
+        dashed] (r2) -- (sr2); \draw[edge] (sr) to [bend left=20] (s);
+        \draw[edge] (sr2) to [bend left=20] (sr); \draw[edge] (s) to [bend
+        left=20] (sr2);
+        \end{tikzpicture}
+    \end{center}
+    This is called the Cayley diagram of the group \(D_3\). In particular, the
+    Cayley diagram of \(D_3\) shows that the choice of the initial configuration
+    of the vertices of the triangle is irrelevant. Since the relations between
+    the elements of \(D_3\) are preserved regardless of the chosen starting
+    configuration (because we have defined \(e\) to be exactly the identity map
+    that leaves the triangle unchanged), we can ignore the specific arrangement
+    of the vertices and focus solely on the elements and structure of \(D_3\).
 
-    With our notation fixed, we observe that \(e \circ \tau = \tau \circ e =
-    \tau\) for all maps \(\tau \in R\). Moreover, any composition of elements of
-    \(R\) is again an element of \(R\) and this composition is likewise
-    associative. Similarly, each element of \(R\) has an inverse in \(R\) (the
-    inverse of a rotation is the rotation in the opposite direction, and the
-    inverse of a reflection is the reflection about the same axis of symmetry).
-    Thus \(R\) is a group under composition of functions. We usually denote this
-    group by \(D_3\), the \emph{dihedral group} of order \(6\) (i.e., the group
-    of symmetries of a regular triangle). 
+    With our notation fixed, we observe that \(e \tau = \tau  e = \tau\) for all
+    maps \(\tau \in D_3\). Moreover, any composition of elements of \(D_3\) is
+    again an element of \(D_3\) and this composition is likewise associative.
+    Similarly, the commutativity of the Cayley diagram and the fact that the
+    elements of \(D_3\) exhausts all possible unique configurations of the
+    triangle in consideration (by our definition) tell us that \(\tau \in R\)
+    has an inverse in \(R\): that is, given any node \(\tau\) in the Cayley
+    diagram, there is a finite sequence of arrows (which can either be a
+    reflection or a rotation) that will take us back to the identity element
+    \(e\), thus undoing the action of \(\tau\), and because all possible
+    configurations of \(D_3\) are expressible as one of the nodes of the Cayley
+    diagram, this sequence must then be the same as one of the elements of
+    \(D_3\). We can immediately verify, for example, that the inverse of a
+    rotation is the rotation in the opposite direction (but this obtained by
+    rotating the triangle twice), and the inverse of a reflection is the
+    reflection about the same axis of symmetry. For a less trivial example,
+    consider the element \(r^2s\) in the Cayley diagram; observe that \(r^2s
+    \overset{s}{\mapsto} r^2 \overset{r}{\mapsto} e\), and thus \((r^2s)\inv =
+    sr\), but then \(e \overset{s}{\mapsto} s \overset{r}{\mapsto} r^2s\), and
+    therefore \((r^2s)\inv = r^2s\). Indeed the path \(r^2s \overset{r}{\mapsto}
+    rs \overset{r}{\mapsto} s \overset{s}{\mapsto} e\) shows that \(r^2s\) is
+    its own inverse. Thus \(D_3\) is a group under composition of functions. We
+    call \(D_3\) the \emph{dihedral group} of order \(6\), the group of
+    symmetries of a regular triangle.
 
     We can extend our definition to regular \(n\)-gons for arbitrary \(n\). Each
     group \(D_n\) would have \(n\) rotations (defined by rotating the plane
@@ -580,11 +633,37 @@ We make the following analogous definition for a group \(G\):
     vertices). The group \(D_n\) is thus a group of order \(2n\).\footnote{An
     alternative notation is to write \(D_n\) as \(D_{2n}\) to emphasize the
     order of the group. This is more common in algebra texts, with \(D_n\)
-    preferred in geometry.} If we fix the position of \(A\) and write \((ABC)\)
-    for this configuration, each element of \(D_3\) then determines a
-    permutation of the vertices of the triangle, and thus we can define a map
-    from \(D_3\) to \(S_3\). We will explore this again once we have defined the
-    notion of a homomorphism.
+    preferred in geometry.} For example, the group \(D_4\) would have \(8\)
+    elements and is given by the following Cayley diagram:
+    \begin{center}
+        \begin{tikzpicture}[ vertex/.style={circle, draw=black, minimum
+            size=0.85cm}, edge/.style={->, >=Stealth, thick},
+            double/.style={<->, >=Stealth, thick}, every
+            node/.style={font=\small} ]
+        
+        % Define vertices
+        \node[vertex] (e) at (0, 0) {\scriptsize\(e\)}; \node[vertex] (r) at (2,
+        0) {\scriptsize\(r\)}; \node[vertex] (r2) at (2, 2)
+        {\scriptsize\(r^2\)}; \node[vertex] (r3) at (0, 2) {\scriptsize\(r^3\)};
+        
+        % Extend the triangle by making another equilateral triangle containing
+        % the first
+        \draw[edge] (e) -- (r); \draw[edge] (r) -- (r2); \draw[edge] (r2) --
+        (r3); \draw[edge] (r3) -- (e); \node[vertex] (s) at (-1.6, -1.3)
+        {\scriptsize\(s\)}; \node[vertex] (sr) at (3.6, -1.3)
+        {\scriptsize\(rs\)}; \node[vertex] (sr2) at (3.6, 3.3)
+        {\scriptsize\(r^2s\)}; \node[vertex] (sr3) at (-1.6, 3.3)
+        {\scriptsize\(r^3s\)}; \draw[double, dashed] (e) -- (s); \draw[double,
+        dashed] (r) -- (sr); \draw[double, dashed] (r2) -- (sr2); \draw[double,
+        dashed] (r3) -- (sr3); \draw[edge] (sr) -- (s); \draw[edge] (sr2) --
+        (sr); \draw[edge] (sr3) -- (sr2); \draw[edge] (s) -- (sr3);
+        \end{tikzpicture}
+    \end{center}
+    
+    If we fix the position of \(A\) and write \((ABC)\) for this configuration,
+    each element of \(D_3\) then determines a permutation of the vertices of the
+    triangle, and thus we can define a map from \(D_3\) to \(S_3\). We will
+    explore this again once we have defined the notion of a homomorphism.
 \end{example}
 
 \begin{example}[Linear groups]
@@ -2828,12 +2907,9 @@ definition in the context of \(\Set\).
     \(\alpha: G \times G \to G\) defined by \(\alpha(g, x) = gx\) (where the
     multiplication on the right-hand side is the group operation of \(G\)). This
     action is referred to as \emph{left multiplication}. Less trivially, we can
-    also verify that the map \(\gamma: G \times G \to G\) defined by
-    \[
-        \gamma(g, x) = gxg\inv
-    \]
-    is an action of \(G\) on itself. Indeed, we have \(\gamma(e, x) = exe\inv =
-    x\) and
+    also verify that the map \(\gamma: G \times G \to G\) defined by \(
+    \gamma(g, x) = gxg\inv\) is an action of \(G\) on itself. Indeed, we have
+    \(\gamma(e, x) = exe\inv = x\) and
     \[
         \gamma(g, \gamma(h, x)) = g(hxh\inv)g\inv = (gh)x(gh)\inv = \gamma(gh, x),
     \]

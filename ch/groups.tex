@@ -156,6 +156,7 @@ a group as a category with a single object. More explicitly, we have the
 following definition.
 
 \begin{definition}
+    \label{def:group-as-category}
     A group is the \(\Hom\)-set of a groupoid with a single object.
 \end{definition}
 
@@ -2906,8 +2907,10 @@ group \(\Sym{X}\) such that \(\alpha_e = \id_X\) and \(\alpha_{gh} = \alpha_g
 homomorphism). Since the image \(\alpha_g(x)\) is then an element of \(X\),
 \(\alpha\) can then be thought of as a map which takes an element \(g \in G\)
 and an element \(x \in X\) and returns another element \(\alpha(g, x) \in X\)
-that is the image of \(x\) under the permutation \(\alpha_g\). Thus we can give
-the following definition in the context of \(\Set\).
+that is the image of \(x\) under the permutation \(\alpha_g\). (Writing
+\(\alpha(g, x)\) is purely notational and we can also write \(\alpha(x, g)\) to
+denote the same element obtained by the action of \(g\) on \(x\).) Thus we can
+give the following definition in the context of \(\Set\).
 
 \begin{definition}
     A (left) action of a group \(G\) on a set \(X\) is a map
@@ -2917,6 +2920,12 @@ the following definition in the context of \(\Set\).
     such that for all \(g, h \in G\) and \(x \in X\), we have
     \[
         e x = x \quad \text{and} \quad (gh)x = g(hx).
+    \]
+    Similarly, a (right) action of a group \(G\) on a set \(X\) is a map
+    \(\beta: X \times G \to X\) defined by \((x, g) \mapsto \beta(x, g) := xg\)
+    such that for all \(g, h \in G\) and \(x \in X\), we have
+    \[
+        x e = x \quad \text{and} \quad x(gh) = (xg)h.
     \]
 \end{definition}
 
@@ -2931,7 +2940,61 @@ the following definition in the context of \(\Set\).
     \[
         \gamma(g, \gamma(h, x)) = g(hxh\inv)g\inv = (gh)x(gh)\inv = \gamma(gh, x),
     \]
-    for all \(g, h, x \in G\). This action is called \emph{conjugation}.
+    for all \(g, h, x \in G\). Recall that this action is called (left)
+    \emph{conjugation}.
+
+    Of course we can make analogous definitions for right actions. In this case,
+    we can define right multiplication as the map \(\alpha': G \times G \to G\)
+    such that \(\beta(x, g) = xg\) for all \(x, g \in G\). Similarly, we can
+    define the right conjugation map \(\gamma': G \times G \to G\) by
+    \(\gamma'(g, x) = g\inv xg\) again for all \(x, g \in G\). A routine
+    verification shows that these maps satisfies the axioms of a group action.
+    Indeed any left action of a group \(G\) on a set \(X\) can be turned into a
+    right action. To illustrate this consider the left action \(\alpha: G \times
+    X \to X\). We can define a right action \(\beta: X \times G \to X\) by
+    \(\beta(x, g) = \alpha(g\inv, x)\). Then for all \(g, h \in G\) and \(x \in
+    X\), we have \(\beta(x, e) = \alpha(e\inv, x) = \alpha(e, x) = x,\) and
+    \begin{align*}
+        \beta(x, gh) &= \alpha((gh)\inv, x) = \alpha(h\inv g\inv, x) \\
+        &= \alpha(h\inv, \alpha(g\inv, x)) = \beta(\beta(x, g), h).
+    \end{align*}
+    More generally, given a group \(G\) whose operation we denote by \(\cdot\),
+    we can define the opposite group \(G^\op\) as the set \(G\) with the
+    operation \(\cdot^\op\) defined by \(g \cdot^\op h = h \cdot g\). In
+    category-theoretic terms, since we can characterize \(G\) as a groupoid with
+    a single object, the group \(G^\op\) is then the dual of the groupoid \(G\),
+    i.e., the groupoid obtained by reversing all the arrows of \(G\) (cf.
+    Example~\ref{ex:opposite-category}, Ch.~\ref{ch:preliminaries}). If \(*\) is
+    the lone object of the groupoid \(G\), then the elements of \(G\) are
+    isomorphisms of the form \(g: * \to *\); the elements of \(G^\op\) are then
+    isomorphisms of the form \(g^\op: * \to *\) obtained from each \(g \in G\)
+    by reversing the direction of the arrow. Since each arrow is an isomorphism,
+    it is reversible and thus \(g^\op\) is precisely the isomorphism \(g\inv\).
+    Since \(G^\op\) is itself a category, for any morphisms \(\gamma, \eta\) in
+    \(G^\op\) with \(\gamma = g\inv\), \(\eta = h\inv\) for some \(g, h \in G\),
+    the composition law in \(G^\op\) is thus given by
+    \[
+        \gamma \circ \eta = (g\inv) \circ (h\inv) = (h \circ g)\inv = (h \circ g)^\op.
+    \]
+    In group notation, this is the operation \(g \cdot^\op h = h \cdot g\) we
+    have defined above. Moreover, defining the map \(\phi : G \to G^\op\) by
+    \(\phi(g) = g^\op := g\inv\), we see that \(\phi\) is an isomorphism of
+    groups and thus \(G \cong G^\op\).
+
+    Therefore, if  \(\alpha : G \times X \to X\) is a left action of a group
+    \(G\) on a set \(X\), then since \(G \cong G^\op\) and in particular for all
+    \(g^\op \in G^\op\), we have \(g^\op = g\inv\) for some \(g \in G\) we can
+    take the same map as the map \(\alpha : G^\op \times X \to X\) and define
+    the right action \(\beta : X \times G \to X\) by \(\beta(x, g) =
+    \alpha(g^\op, x)\). We then have \(\beta(x, e) = \alpha(e, x) = x\) and
+    \begin{align*}
+        \beta(x, gh) &= \alpha((gh)^\op, x) = \alpha(h^\op g^\op, x) \\
+        &= \alpha(h^\op, \alpha(g^\op, x)) = \alpha(h^\op, \beta(x, g))\\
+        &= \beta(\beta(x, g), h),
+    \end{align*}
+    for all \(g, h \in G\) and \(x \in X\). Thus we can consider only left
+    actions without loss of generality. Every group action would henceforth be
+    assumed to be a left action unless otherwise stated.
 \end{example}
 
 An action of a group \(G\) on a set \(X\) is said to be \emph{faithful} if for
@@ -2950,8 +3013,8 @@ category-theoretic sense) and thus the action is injective.
     \(gx = x\) if and only if \(g = e\), this action is faithful. By the first
     isomorphism theorem, we then have \(\img \alpha \cong G/\ker \alpha\), where
     \(\ker \alpha\) is the kernel of the action. But \(\ker \alpha = \{e\}\)
-    since the action is faithful, and thus \(G \cong \img \alpha \subgroup
-    \Sym{G}\).
+    since the action is faithful, and thus \(G/\{e\} = G \cong \img \alpha
+    \subgroup \Sym{G}\).
 \end{proof}
 
 

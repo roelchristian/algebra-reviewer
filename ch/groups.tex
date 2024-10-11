@@ -2927,6 +2927,7 @@ give the following definition in the context of \(\Set\).
     \[
         x e = x \quad \text{and} \quad x(gh) = (xg)h.
     \]
+    The set \(X\) is then called a \(G\)-set.
 \end{definition}
 
 \begin{example}
@@ -2979,7 +2980,9 @@ give the following definition in the context of \(\Set\).
     In group notation, this is the operation \(g \cdot^\op h = h \cdot g\) we
     have defined above. Moreover, defining the map \(\phi : G \to G^\op\) by
     \(\phi(g) = g^\op := g\inv\), we see that \(\phi\) is an isomorphism of
-    groups and thus \(G \cong G^\op\).
+    groups and thus \(G \cong G^\op\). In particular, if \(G\) is abelian then
+    \(G^\op = G\) since \(g +^\op h = h + g = g + h\) for all \(g, h \in G\) and
+    thus \(+^\op\) and \(+\) are the same operation.
 
     Therefore, if  \(\alpha : G \times X \to X\) is a left action of a group
     \(G\) on a set \(X\), then since \(G \cong G^\op\) and in particular for all
@@ -2998,10 +3001,20 @@ give the following definition in the context of \(\Set\).
 \end{example}
 
 An action of a group \(G\) on a set \(X\) is said to be \emph{faithful} if for
-all \(g \in G\), \(gx = x\) if and only if \(g = e\). That is, the only element
-of \(G\) that fixes every element of \(X\) is the identity element.
-Equivalently, this means that the kernel of the action is trivial (in the
-category-theoretic sense) and thus the action is injective.
+all \(g, h \in G\) it holds that \(g \neq h\) implies \(gx \neq hx\) for
+\emph{some} \(x \in X\). On the other hand, an action is said to be \emph{free}
+if for all \(g, h \in G\), \(g \neq h\) implies \(gx \neq hx\) for \emph{all}
+\(x \in X\). Suppose \(G\) acts on a set \(X\) faithfully. Then in particular
+\(gx = x\) holds if and only if \(g = e\) for all \(x\). Indeed if \(gx = x\)
+for all \(x\), then since the action is faithful, if \(g \neq e\), there exists
+some \(y \in X\) such that \(gy \neq y\), which contradicts the assumption that
+\(gx = x\) for all \(x\). Conversely, if \(g = e\), then \(gx = x\) for all
+\(x\) by the definition of a group action. Thus the action is faithful if and
+only if \(gx = x\) implies \(g = e\) for all \(x\). Equivalently, this means
+that the kernel of the action is trivial (in the category-theoretic sense) and
+thus the action is injective. More generally, a free action is manifestly
+faithful: since \(g \neq h\) implies \(gx \neq hx\) for all \(x\), the
+implication holds for some \(x\) in particular.
 
 \begin{theorem}[Cayley's theorem]
     Every group acts faithfully on some set. That is, every group is isomorphic
@@ -3017,5 +3030,69 @@ category-theoretic sense) and thus the action is injective.
     \subgroup \Sym{G}\).
 \end{proof}
 
+Before we discuss the implications of this theorem We first consider an
+important class of group actions and introduce some terminology. We say that a
+group action of a group \(G\) on a set \(X\) is transitive if for all \(x, y \in
+X\), there exists a \(g \in G\) such that \(gx = y\) (where \(gx\) is the image
+of the group action). The \emph{orbit} of an element \(x \in X\) under the
+action of \(G\) is the set
+\[
+    Gx = \{gx \in X : g \in G\}.
+\]
+In other words, for all \(x \in X\), its orbit \(Gx\) is the set of all elements
+\(y\) that locally makes the action transitive, i.e., the group action is
+transitive if we restrict it on the elements of \(Gx\). From this it follows
+also that the group action is transitive (in the sense of our original
+definition) if and only if \(Gx = X\) for all \(x \in X\), i.e., there is only
+one orbit under the action of \(G\). We also see that the orbits of the action
+partition the set \(X\). If we define a relation \(\sim\) on \(X\) by \(x \sim
+y\) if and only if there exists a \(g \in G\) such that \(gx = y\), then the
+orbits of the action are precisely the equivalence classes of this relation.
+That this relation is an equivalence relation can be demonstrated routinely: (a)
+if \(x \in X\), then \(ex = x\) by the definition of a group action and thus \(x
+\sim x\) and the relation is reflexive; (b) if \(x \sim y\), then there exists a
+\(g \in G\) such that \(gx = y\) and thus \(g\inv y = x\) and \(y \sim x\),
+i.e., the relation is symmetric; (c) if \(x \sim y\) and \(y \sim z\), then
+there exist \(g, h \in G\) such that \(gx = y\) and \(hy = z\), and thus \(hgx =
+z\) and \(x \sim z\), so that the relation is transitive.
+
+We say that an element \(x \in X\) is invariant (or fixed) under the action of
+\(G\) if for all \(g \in G\), \(gx = x\). We define the \emph{stabilizer} of an
+element \(x \in X\) as the set of all elements of \(G\) that fix \(x\):
+\[
+    \Stab_G(x) = \{g \in G : gx = x\},
+\]
+with the subscript \(G\) omitted when the group is clear from the context. We
+can verify that this is a subgroup of \(G\). Indeed, if \(g, h \in \Stab(x)\),
+then \((gh)x = g(hx) = gx = x\) and 
+\[
+    x = ex = (g\inv g)x = g\inv(gx) = g\inv x.
+\]
+
+% Intuitive connector
+
+
+% Category of G-sets
+Now consider two \(G\)-sets \(X\) and \(Y\) with \(\alpha : G \times X \to X\) and \(\beta : G \times Y \to Y\) as the (left) group actions. We can construct a category {\Gset} whose objects are pairs of the form \((X, \alpha)\) where \(X\) is a set and \(\alpha\) is a group action of \(G\) on \(X\) and whose morphisms are functions \(\phi: X \to Y\) such that the diagram below commutes:
+\[
+    \begin{tikzcd}
+        G \times X \arrow[d, "\alpha"'] \arrow[r, "\id_G \times \phi"] & G\times Y \arrow[d, "\beta"] \\
+        X \arrow[r, "\phi"']                                           & Y                           
+    \end{tikzcd}
+\]
+This means that for all \(g \in G\) and \(x \in X\), we have \(\beta(g, \phi(x)) = \phi(\alpha(g, x))\) or in our usual shorthand, \(g\phi(x) = \phi(gx)\). This condition is referred to as `equivariance' and we say that \(X\) and \(Y\) are equivariant sets. If \(\phi: X \to Y\) and \(\psi: Y \to Z\) are equivariant functions, then \(\psi \circ \phi: X \to Z\) is the function
+\[
+    (\psi \circ \phi)(gx) = \psi(\phi(gx)) = \psi(g\phi(x)) = g\psi(\phi(x)) = g(\psi \circ \phi)(x),
+\]
+which is also equivariant. If \(\chi: Z \to A\) is a third equivariant function, then
+\begin{align*}
+    (\phi \circ (\psi \circ \chi))(gx) &= \phi(g(\psi \circ \chi)(x)) = \phi(g\psi(\chi(x)))\\
+    &= g\phi(\psi(\chi(x))) = g(\phi \circ \psi)(\chi(x)) = g((\phi \circ \psi) \circ \chi)(x),
+\end{align*}
+and thus composition is also associative. The identity functions \(\id_X: X \to X\) for all sets \(X\)is equivariant since \(\id_X(gx) = gx = g(\id_X(x))\) and behaves as the identity in the category \Gset, i.e.,
+\begin{align*}
+    (\id_Y \circ \phi)(gx) &= \id_Y(g\phi(x)) = g\phi(x) = \phi(gx) \\
+    &= \phi(\id_X(x)) = (\phi \circ \id_X)(gx).
+\end{align*}
 
 \section{The Sylow theorems}

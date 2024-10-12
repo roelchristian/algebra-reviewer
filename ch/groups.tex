@@ -2433,6 +2433,7 @@ subgroups.
 \end{definition}
 
 \begin{theorem}
+    \label{thm:cosets-order}
     Let \(H\) be a subgroup of a group \(G\). Then \(\order{aH} = \order{H} =
     \order{Ha}\) for all \(a \in G\).
 \end{theorem}
@@ -2918,12 +2919,27 @@ This is the `third isomorphism theorem':
 
 \begin{theorem}[Third isomorphism theorem]
     \label{thm:third-isomorphism}
-    Let \(N\) and \(K\) be normal subgroups of a group \(G\) such that \(N
-    \subset K\). Then \(K/N\) is normal in \(G/N\) and
+    Let \(N\) be a normal subgroup of a group \(G\) and let \(K\) be another
+    subgroup of \(G\) such that \(N \subset K\). Then \(K/N\) is normal in
+    \(G/N\) if and only if \(K\) is normal in \(G\), and in this case
     \[
         (G/N)/(K/N) \cong G/K.
     \]
 \end{theorem}
+
+\begin{proof}
+    If \(K \triangleleft G\), we can define the canonical projection \(G \to
+    G/K\); moreover, by \ref{thm:induced-homomorphism} this induces a
+    homomorphism \(G/N \to G/K\) whose kernel is \(K/N\) and thus \(K/N
+    \triangleleft G/N\). Conversely, if \(K/N \triangleleft G/N\), consider the
+    composition
+    \[
+        G \to G/N \to (G/N)/(K/N),
+    \]
+    where each arrow is a canonical projection. The kernel of this map is \(K\)
+    and thus \(K \triangleleft G\). Moreover, this map is surjective and by the
+    first isomorphism theorem, we have \((G/N)/(K/N) \cong G/K\).
+\end{proof}
 
 Theorem \ref{thm:third-isomorphism} gives us the following commutative diagram:
 \[
@@ -2933,16 +2949,41 @@ Theorem \ref{thm:third-isomorphism} gives us the following commutative diagram:
     \end{tikzcd}
 \]
 The first two downward arrows are canonical projections from \(K\) and \(G\) to
-their quotients by \(N\),respectively, while the third downward arrow is the
+their quotients by \(N\), respectively, while the third downward arrow is the
 identity map. The rows are \emph{exact} at each group \(G_i\) in the row,
 meaning \(\img(\phi_i) = \ker(\phi_{i+1})\) (we shall revisit this notion
 later).
+
+\bigskip
+
+Recall that we have defined \(G/N\) as the set of all (left) cosets of \(N
+\triangleleft G\). We shall use the same notation even if \(N\) is not normal in
+\(G\), in which case \(G/N\) is not necessarily a group but just a set. For any
+subgroup \(H\) of a group \(G\), we can then define the index of \(H\) in \(G\)
+written as \([G : H]\) as the cardinality of \(G/H\) if \(G/H\) is finite and as
+\(\infty\) otherwise. The cosets in \(G/H\) must necessarily be distinct since
+if \(gH = g'H\), then \(g = g'h\) for some \(h \in H\) and thus \(g \in g'H\),
+so that \(gH \subset g'H\) and similarly \(g'H \subset gH\). Theorem~
+\ref{thm:cosets-order} then gives us the following result, due to Lagrange.
 
 \begin{theorem}[Lagrange's theorem]
     Let \(H\) be a subgroup of a finite group \(G\). Then \(|G| = |H| \cdot [G :
     H]\). In particular, the order of \(|H|\) divides the order of \(G\).
 \end{theorem}
 
+\begin{proof}
+    We again consider only left cosets without loss of generality.
+    Theorem~\ref{thm:cosets-order} tells us that the map \(H \to gH\) defined by
+    \(h \mapsto gh\) for all \(g \in G\) and \(h \in H\) is a bijection. Since
+    the cosets partition \(G\), we must then have
+    \[
+        G = g_1H \cup g_2H \cup \cdots \cup g_nH
+    \]
+    where each \(g_iH\) is a distinct coset of \(H\) in \(G\). Since each coset
+    has the same cardinality as \(H\), we must then have \(|G| = n|H|\) but then
+    \(n\) is precisely the index of \([G : H]\). Thus \(|G| = |H| \cdot [G :
+    H]\), as claimed.
+\end{proof}
 \section{Group actions}
 
 The action of a group \(G\) on an object \(X\) of a category \(\catg{C}\) is a
@@ -3190,5 +3231,74 @@ behaves as the identity in the category \Gset, i.e.,
     (\id_Y \circ \phi)(gx) &= \id_Y(g\phi(x)) = g\phi(x) = \phi(gx) \\
     &= \phi(\id_X(x)) = (\phi \circ \id_X)(gx).
 \end{align*}
+The isomorphisms in the category {\Gset} are then precisely the equivariant
+(set) bijections. We can thus speak of two group actions \(\alpha, \beta\) of a
+set \(G\) on sets \(X, Y\) as being isomorphic if there exists an isomorphim (in
+\Gset) between the two equivariant sets \((X, \alpha)\) and \((Y, \beta)\).
+
+\begin{theorem}
+    \label{thm:orbit-stabilizer}
+    Every transitive action of a group \(G\) on a set \(X\) is isomorphic to the
+    left multiplication action of \(G\) on the the set \(G/H\) where \(H\) is
+    the stabilizer of some element \(x \in X\).
+\end{theorem}
+
+\begin{proof}
+    Let \(G\) act transitively on a set \(X\). Fix an element \(x \in X\) and
+    let \(H = \Stab(x)\). Define the map \(\phi: G/H \to X\) by \(\phi(gH) =
+    gx\). We first show that this map is well-defined. Suppose \(gH = g'H\).
+    Then \(g\inv g \in H\) and thus \((g\inv g)x = x\) and \(gx = g'x\). To show
+    that \(\phi\) is a bijection, we first show that it is injective. Suppose
+    \(\phi(gH) = \phi(g'H)\). Then \(gx = g'x\) and thus \(g\inv g'x = x\) and
+    \(g\inv g' \in H\), so that \(gH = g'H\). To show that \(\phi\) is
+    surjective, let \(y \in X\). Since the action is transitive, there exists a
+    \(g \in G\) such that \(gx = y\). Then \(\phi(gH) = gx = y\). Finally, we
+    show that \(\phi\) is equivariant. For all \(g, g' \in G\), we have
+    \(\phi(g'(gH)) = g'(gx) = g'(\phi(gH))\) as required.
+\end{proof}
+
+In particular, this theorem tells us that for \emph{any} group action on a
+finite set \(X\), the order of the orbit of an element \(x \in X\) is equal to
+the index of the stabilizer of \(x\) in \(G\), i.e., \(\order{Gx} = [G :
+\Stab(x)]\). This thus generalizes Lagrange's theorem to orbits of group
+actions. Theorem~\ref{thm:orbit-stabilizer} is sometimes referred to as the
+`orbit-stabilizer theorem.'
+
+\begin{corollary}
+    The order of the orbit of an element \(x \in X\) divides the order of the
+    group \(G\).
+\end{corollary}
+
+\begin{proof}
+    By the preceding theorem, \(Gx\) is isomorphic (in the category \Gset) to
+    the set \(G/H\) where \(H = \Stab(x)\) and thus \(\order{Gx} = [G : H]\)
+    divides \(\order{G}\). By Lagrange's theorem, it then follows that
+    \(\order{Gx}\) divides \(\order{G}\).
+\end{proof}
+
+\begin{theorem}
+    \label{thm:stabilizers-conjugate}
+    Let \(G\) be a group acting on a set \(X\). If \(x \in X\) and \(g \in G\), then for any element \(y \in Gx\),
+    \[
+        \Stab(y) = g\Stab(x)g\inv.
+    \]
+\end{theorem}
+
+While Theorem~\ref{thm:orbit-stabilizer} might appear dependent on the choice of the element \(x \in X\), the above result shows that the stabilizers of elements in the same orbit are conjugate. Thus if \(\Stab(x)\) is a normal subgroup of \(G\), then Theorem~\ref{thm:orbit-stabilizer} is indeed independent of the choice of \(x\). In any case, if we write \(H = \Stab(x)\), then there is an isomorphism of \(G\)-sets between \(G/H\) and \(G/(gHg\inv)\) for any \(g \in G\) and thus the theorem still holds. In particular, observe that if \(xH = yH\) then \(y\inv x \in H\) and \(gy\inv xg\inv \in gHg\inv\), so that \(yg\inv(gHg\inv) = xg\inv(gHg\inv)\). The map \(xH \to xg\inv(gHg\inv)\) is thus well-defined and can be shown to be an isomorphism of \(G\)-sets. 
+
+\begin{proof}
+    Suppose \(h \in \Stab(x)\). Since \(y \in Gx\), there exists a \(g \in G\) such that \(gx = y\) and 
+    \[
+        (ghg\inv)(y) = gh(g\inv gx) = ghx
+    \]
+    but since \(h \in \Stab(x)\), \(hx = x\) and thus \(ghx = gx = y\). This
+    shows that \(ghg\inv \in \Stab(y)\) and thus \(\Stab(x) \subset
+    g\Stab(y)g\inv\). Conversely, suppose \(h \in \Stab(y)\) and note that since
+    \(y \in Gx\), there exists a \(g \in G\) such that \(gx = y\) and thus
+    \(g\inv y = x\). then \(hy = y\) implies \(h(gx) = gx\) and thus \(g\inv hg
+    x = x\) and \(g\inv hg \in \Stab(x)\). Let \(h' = g\inv hg\) for some \(h'
+    \in G\). Then \(h' \in \Stab(x)\) and \(h = gh'g\inv \in g\Stab(x)g\inv\),
+    proving the reverse inclusion.
+\end{proof}
 
 \section{The Sylow theorems}

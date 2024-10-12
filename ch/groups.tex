@@ -2584,6 +2584,7 @@ subgroups.
 \end{remark}
 
 \begin{theorem}
+    \label{thm:canonical-projection-grp}
     Let \(\phi : G \to H\) be a group homomorphism. Then the \(\ker \phi\) is a
     normal subgroup of \(G\). Conversely, if \(N\) is a normal subgroup of
     \(G\), then the map
@@ -2591,7 +2592,8 @@ subgroups.
         \pi : G \to G/N
     \]
     defined by \(\pi(g) = gN\) is an epimorphism with kernel \(N\). We call
-    \(\pi\) the \emph{canonical projection}.
+    \(\pi\) the \emph{canonical projection} of \(G\) onto its quotient group by
+    \(N\).
 \end{theorem}
 
 \begin{proof}
@@ -2803,10 +2805,8 @@ nonetheless because of its importance. This theorem is also referred to as the
 \begin{theorem}[Second isomorphism theorem]
     \label{thm:second-isomorphism}
     Let \(K\) and \(N\) be subgroups of a group \(G\) such that
-    \(\normal{N}{G}\). Then \(N \cap K\) is normal in \(K\), and
-    \[
-        K/(N \cap K) \cong NK/N.
-    \]
+    \(\normal{N}{G}\). Then \(N \cap K\) is normal in \(K\), and \(K/(N \cap K)
+    \cong NK/N.\)
 \end{theorem}
 
 \begin{proof}
@@ -2843,6 +2843,79 @@ of \(G\):
     \end{tikzcd}
 \end{center}
 
+Now what can we say about the subgroups of \(G/N\)? Consider the group
+\(\Z/12\Z\) and observe that \(\gen{[6]}\) is normal in \(\Z/12\Z\). The lattice
+of subgroups is given below, with the with the inclusions between subgroups of
+\(\Z/12\Z\) containing \(\gen{[6]}\) shown as solid lines.
+\begin{center}
+    \begin{tikzpicture}
+        % Make nodes 1pt black circles
+         \tikzset{vtx/.style={circle, draw=black, fill=black, inner sep=1.5pt},
+         edge/.style={draw=black} }
+     
+         % Define nodes
+         \node[vtx] (1) at (1.5,1.5) {}; \node[vtx] (2) at (-0.5,0) {};
+         \node[vtx] (3) at (3.5,0) {}; \node[vtx] (4) at (-0.5,-2) {};
+         \node[vtx] (6) at (3.5,-2) {}; \node[vtx] (0) at (1.5,-3.5) {};
+     
+         % Label nodes
+         \node[above=0.1cm of 1] {$[1]$}; \node[left=0.1cm of 2] {$[2]$};
+         \node[right=0.1cm of 3] {$[3]$}; \node[left=0.1cm of 4] {$[4]$};
+         \node[right=0.1cm of 6] {$[6]$}; \node[below=0.1cm of 0] {$[0]$};
+     
+     
+         % Draw edges
+         \draw (1) -- (2); \draw (1) -- (3); \draw (1) -- (6); \draw (3) -- (6);
+         \draw (2) -- (6);
+     
+         \draw[edge, dashed] (1) -- (0); \draw[edge, dashed] (2) -- (0);
+         \draw[edge, dashed] (3) -- (0); \draw[edge, dashed] (2) -- (4);
+         \draw[edge, dashed] (0) -- (4); \draw[edge, dashed] (0) -- (6);
+     \end{tikzpicture}
+\end{center}
+Observe, however, that the lattice of subgroups of \(\Z/12\Z\) represented by
+the solid lines above corresponds to the lattice of subgroups of \(\gen{[6]}\).
+Formally, we have the following result, often referred to as the `correspondence
+theorem' or the `lattice isomorphism theorem.'
+
+\begin{theorem}
+    \label{thm:correspondence-theorem-group}
+    Let \(N \triangleleft G\). There is an inclusion-preserving bijection
+    between the subgroups of \(G\) containing \(N\) and the subgroups of
+    \(G/N\). The correspondence is given by the map \(K \mapsto K/N\) where
+    \(K\) is a subgroup of \(G\).
+\end{theorem}
+
+\begin{proof}
+     By definition, the group \(K/N\) consists of cosets \(kN \in G/N\) with \(k
+     \in K\) but since \(K \subgroup G\), each \(k \in K\) is also in \(G\) and
+     thus \(K/N \subset G/N\). Now if \(k_1, k_2 \in K\), \(k_1k_2\inv N =
+     k_3N\) for some \(k_3 \in K\) and is thus also in \(K/N\) and thus \(K/N
+     \subgroup G/N\). Let \(\mathcal{K}\) be the set of subgroups \(K\) of \(G\)
+     containing \(N\) and let \(\mathcal{N}\) be the sets of subgroups of
+     \(G/N\) and define the map \(\phi: \mathcal{K} \to \mathcal{N}\) by \(K
+     \mapsto K/N\) as above.
+
+     If \(N \subset K \subset L\) where \(L\) is another subgroup of \(G\)
+     containing \(N\), then \(K/N = \phi(K) \subset \phi(L) = L/N\) and \(\phi\)
+     preserve inclusions. To show that \(\phi\) is a bijection, it suffices to
+     show that it admits an inverse map \(\psi\inv : \mathcal{N} \to
+     \mathcal{K}\). Consider the canonical projection \(G \to G/N\) (cf.
+     Theorem~\ref{thm:canonical-projection-grp}). If \(K'\) is a subgroup of
+     \(G/N\) define \(\psi(K')\) to be the preimage of \(K'\) under the
+     canonical projection, viz.,
+     \[
+        K := \psi(K') = \{g \in G : gN \in K'\} = \pi\inv(K').
+     \]
+     This is a subgroup of \(G\) by Theorem~\ref{thm:preimage-subgroup} and
+     contains \(N\) because \(N = \pi\inv(e)\) and \(e \in K'\). Moreover,
+     \(\pi(K) = K/N = K'\) and \(\psi\) is the inverse of \(\phi\). Then
+     \(\psi\) is the inverse of \(\phi\) and \(\phi\) is a bijection.
+\end{proof}
+
+A yet nicer result tells us that this correspondence also preserves normality.
+This is the `third isomorphism theorem':
+
 \begin{theorem}[Third isomorphism theorem]
     \label{thm:third-isomorphism}
     Let \(N\) and \(K\) be normal subgroups of a group \(G\) such that \(N
@@ -2852,6 +2925,18 @@ of \(G\):
     \]
 \end{theorem}
 
+Theorem \ref{thm:third-isomorphism} gives us the following commutative diagram:
+\[
+    \begin{tikzcd}
+        0 \arrow[r] & K \arrow[r] \arrow[d, "\pi_H"] & G \arrow[r] \arrow[d, "\pi_G"] & G/K \arrow[r] \arrow[d, "\id"] & 0 \\
+        0 \arrow[r] & K/N \arrow[r]                  & G/N \arrow[r]                  & G/K \arrow[r]                  & 0
+    \end{tikzcd}
+\]
+The first two downward arrows are canonical projections from \(K\) and \(G\) to
+their quotients by \(N\),respectively, while the third downward arrow is the
+identity map. The rows are \emph{exact} at each group \(G_i\) in the row,
+meaning \(\img(\phi_i) = \ker(\phi_{i+1})\) (we shall revisit this notion
+later).
 
 \begin{theorem}[Lagrange's theorem]
     Let \(H\) be a subgroup of a finite group \(G\). Then \(|G| = |H| \cdot [G :
@@ -3073,23 +3158,34 @@ then \((gh)x = g(hx) = gx = x\) and
 
 
 % Category of G-sets
-Now consider two \(G\)-sets \(X\) and \(Y\) with \(\alpha : G \times X \to X\) and \(\beta : G \times Y \to Y\) as the (left) group actions. We can construct a category {\Gset} whose objects are pairs of the form \((X, \alpha)\) where \(X\) is a set and \(\alpha\) is a group action of \(G\) on \(X\) and whose morphisms are functions \(\phi: X \to Y\) such that the diagram below commutes:
+Now consider two \(G\)-sets \(X\) and \(Y\) with \(\alpha : G \times X \to X\)
+and \(\beta : G \times Y \to Y\) as the (left) group actions. We can construct a
+category {\Gset} whose objects are pairs of the form \((X, \alpha)\) where \(X\)
+is a set and \(\alpha\) is a group action of \(G\) on \(X\) and whose morphisms
+are functions \(\phi: X \to Y\) such that the diagram below commutes:
 \[
     \begin{tikzcd}
         G \times X \arrow[d, "\alpha"'] \arrow[r, "\id_G \times \phi"] & G\times Y \arrow[d, "\beta"] \\
         X \arrow[r, "\phi"']                                           & Y                           
     \end{tikzcd}
 \]
-This means that for all \(g \in G\) and \(x \in X\), we have \(\beta(g, \phi(x)) = \phi(\alpha(g, x))\) or in our usual shorthand, \(g\phi(x) = \phi(gx)\). This condition is referred to as `equivariance' and we say that \(X\) and \(Y\) are equivariant sets. If \(\phi: X \to Y\) and \(\psi: Y \to Z\) are equivariant functions, then \(\psi \circ \phi: X \to Z\) is the function
+This means that for all \(g \in G\) and \(x \in X\), we have \(\beta(g, \phi(x))
+= \phi(\alpha(g, x))\) or in our usual shorthand, \(g\phi(x) = \phi(gx)\). This
+condition is referred to as `equivariance' and we say that \(X\) and \(Y\) are
+equivariant sets. If \(\phi: X \to Y\) and \(\psi: Y \to Z\) are equivariant
+functions, then \(\psi \circ \phi: X \to Z\) is the function
 \[
     (\psi \circ \phi)(gx) = \psi(\phi(gx)) = \psi(g\phi(x)) = g\psi(\phi(x)) = g(\psi \circ \phi)(x),
 \]
-which is also equivariant. If \(\chi: Z \to A\) is a third equivariant function, then
+which is also equivariant. If \(\chi: Z \to A\) is a third equivariant function,
+then
 \begin{align*}
     (\phi \circ (\psi \circ \chi))(gx) &= \phi(g(\psi \circ \chi)(x)) = \phi(g\psi(\chi(x)))\\
     &= g\phi(\psi(\chi(x))) = g(\phi \circ \psi)(\chi(x)) = g((\phi \circ \psi) \circ \chi)(x),
 \end{align*}
-and thus composition is also associative. The identity functions \(\id_X: X \to X\) for all sets \(X\)is equivariant since \(\id_X(gx) = gx = g(\id_X(x))\) and behaves as the identity in the category \Gset, i.e.,
+and thus composition is also associative. The identity functions \(\id_X: X \to
+X\) for all sets \(X\)is equivariant since \(\id_X(gx) = gx = g(\id_X(x))\) and
+behaves as the identity in the category \Gset, i.e.,
 \begin{align*}
     (\id_Y \circ \phi)(gx) &= \id_Y(g\phi(x)) = g\phi(x) = \phi(gx) \\
     &= \phi(\id_X(x)) = (\phi \circ \id_X)(gx).

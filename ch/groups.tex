@@ -2984,10 +2984,13 @@ so that \(gH \subset g'H\) and similarly \(g'H \subset gH\). Theorem~
     \(n\) is precisely the index of \([G : H]\). Thus \(|G| = |H| \cdot [G :
     H]\), as claimed.
 \end{proof}
+
 \section{Group actions}
 
-The action of a group \(G\) on an object \(X\) of a category \(\catg{C}\) is a
-(group) homomorphism
+For the remainder of this chapter, we shall look at results of a less general
+nature, mainly focusing on structure theorems related to finite groups. We begin
+with the following definition: the \emph{action} of a group \(G\) on an object
+\(X\) of a category \(\catg{C}\) is a (group) homomorphism
 \[
     \alpha: G \to \Aut_{\catg{C}}(X),
 \]
@@ -3194,6 +3197,10 @@ then \((gh)x = g(hx) = gx = x\) and
 \[
     x = ex = (g\inv g)x = g\inv(gx) = g\inv x.
 \]
+The stabilizer of an element \(x \in X\) under the conjugation action is the set
+\(\{g \in G : gxg\inv = x\}\) but then these are the elements of \(G\) that
+commute with \(x\), i.e., \(\{g \in G : gx = xg\}\). We call this subgroup the
+\emph{centralizer} of \(x\) in \(G\) and denote it by \(C_G(x)\). 
 
 % Intuitive connector
 
@@ -3258,7 +3265,7 @@ set \(G\) on sets \(X, Y\) as being isomorphic if there exists an isomorphim (in
 \end{proof}
 
 In particular, this theorem tells us that for \emph{any} group action on a
-finite set \(X\), the order of the orbit of an element \(x \in X\) is equal to
+finite set \(X\), the size of the orbit of an element \(x \in X\) is equal to
 the index of the stabilizer of \(x\) in \(G\), i.e., \(\order{Gx} = [G :
 \Stab(x)]\). This thus generalizes Lagrange's theorem to orbits of group
 actions. Theorem~\ref{thm:orbit-stabilizer} is sometimes referred to as the
@@ -3278,16 +3285,27 @@ actions. Theorem~\ref{thm:orbit-stabilizer} is sometimes referred to as the
 
 \begin{theorem}
     \label{thm:stabilizers-conjugate}
-    Let \(G\) be a group acting on a set \(X\). If \(x \in X\) and \(g \in G\), then for any element \(y \in Gx\),
+    Let \(G\) be a group acting on a set \(X\). If \(x \in X\) and \(g \in G\),
+    then for any element \(y \in Gx\),
     \[
         \Stab(y) = g\Stab(x)g\inv.
     \]
 \end{theorem}
 
-While Theorem~\ref{thm:orbit-stabilizer} might appear dependent on the choice of the element \(x \in X\), the above result shows that the stabilizers of elements in the same orbit are conjugate. Thus if \(\Stab(x)\) is a normal subgroup of \(G\), then Theorem~\ref{thm:orbit-stabilizer} is indeed independent of the choice of \(x\). In any case, if we write \(H = \Stab(x)\), then there is an isomorphism of \(G\)-sets between \(G/H\) and \(G/(gHg\inv)\) for any \(g \in G\) and thus the theorem still holds. In particular, observe that if \(xH = yH\) then \(y\inv x \in H\) and \(gy\inv xg\inv \in gHg\inv\), so that \(yg\inv(gHg\inv) = xg\inv(gHg\inv)\). The map \(xH \to xg\inv(gHg\inv)\) is thus well-defined and can be shown to be an isomorphism of \(G\)-sets. 
+While Theorem~\ref{thm:orbit-stabilizer} might appear dependent on the choice of
+the element \(x \in X\), the above result shows that the stabilizers of elements
+in the same orbit are conjugate. Thus if \(\Stab(x)\) is a normal subgroup of
+\(G\), then Theorem~\ref{thm:orbit-stabilizer} is indeed independent of the
+choice of \(x\). In any case, if we write \(H = \Stab(x)\), then there is an
+isomorphism of \(G\)-sets between \(G/H\) and \(G/(gHg\inv)\) for any \(g \in
+G\) and thus the theorem still holds. In particular, observe that if \(xH = yH\)
+then \(y\inv x \in H\) and \(gy\inv xg\inv \in gHg\inv\), so that
+\(yg\inv(gHg\inv) = xg\inv(gHg\inv)\). The map \(xH \to xg\inv(gHg\inv)\) is
+thus well-defined and can be shown to be an isomorphism of \(G\)-sets. 
 
 \begin{proof}
-    Suppose \(h \in \Stab(x)\). Since \(y \in Gx\), there exists a \(g \in G\) such that \(gx = y\) and 
+    Suppose \(h \in \Stab(x)\). Since \(y \in Gx\), there exists a \(g \in G\)
+    such that \(gx = y\) and 
     \[
         (ghg\inv)(y) = gh(g\inv gx) = ghx
     \]
@@ -3301,4 +3319,108 @@ While Theorem~\ref{thm:orbit-stabilizer} might appear dependent on the choice of
     proving the reverse inclusion.
 \end{proof}
 
-\section{The Sylow theorems}
+The remainder of this section are iterations of the counting formula in
+Theorem~\ref{thm:orbit-stabilizer} and its corollary. We shall do this in
+particular by looking at the conjugation action we have introduced earlier.
+Recall that we say that an element \(x \in X\) is fixed (or invariant) under a
+action of \(G\) on \(X\) if for all \(g \in G\), \(gx = x\). From this
+definition, it immediately follows that the stabilizer of a fixed point is the
+entire group \(G\). Moreover, the orbit of a fixed point is the singleton set
+\(\{x\}\). We denote by \(Z\) the set of fixed points of the action of \(G\) on
+\(X\). If we look at the conjugation action of a group \(G\) on itself, then the
+fixed points of this action is the set
+\[
+    \{x \in G : gxg\inv = x \text{ for all } g \in G\},
+\]
+but then this would imply that \(xg = gx\) for all \(g \in G\) and thus the set
+of fixed points under the conjugation action is precisely the center \(Z(G)\) of
+\(G\). 
+
+Since the orbits form a partition of the set \(X\) and \(Z\) consists precisely
+of elements of \(X\) with trivial orbits, then for any finite group \(G\) acting
+on a set \(X\) we have
+\[
+    \order{X} = \order{Z} + \sum_{a \in A} \order{Ga},
+\]
+where \(A \subset X\) has exactly one element from each nontrivial orbit of the
+action of \(G\) on \(X\). By Theorem~\ref{thm:orbit-stabilizer}, this is the
+same as saying
+\[
+    \order{X} = \order{Z} + \sum_{a \in A} [G : \Stab(a)].
+\]
+Using the notation for the conjugation action we have hitherto introduced, we
+then have the following result, often known as the `class equation.'
+
+\begin{theorem}
+    Let \(G\) be a finite group. Then
+    \[
+        |G| = |Z(G)| + \sum_{a \in A} [G : C(a)],
+    \]
+    where \(Z(G)\) is the center of \(G\), \(A\) is a set of representatives of
+    the nontrivial orbits of the conjugation action of \(G\) on itself, and
+    \(C(a)\) is the centralizer of \(a\) in \(G\).
+\end{theorem}
+
+\begin{example}
+    \label{ex:quotient-by-center-cyclic}
+    A group is abelian if and only if \(Z(G) = G\) as we have shown in
+    \S~\ref{sec:subgroups}. That is, the conjugation action is trivial on \(G\)
+    from which we have \(Z(G) \triangleleft G\). We can thus define the quotient
+    group \(G/Z(G)\) and if this is cyclic, there exists an element \(g \in G\)
+    such that \(gZ(G)\) generates the group. Then for all \(h \in G\), \(hZ(G) =
+    (gZ(G))^n\) for some \(n \in \Z\) and thus \(h = g^nz\) for some \(z \in
+    Z(G)\). Now suppose that \(h\) and \(j\) are elements of \(G\); by the
+    preceding sentence, we must have \(h = g^nz\) and \(j = g^mw\) for some \(n,
+    m \in \Z\) and \(z, w \in Z(G)\). Then
+    \[
+        hj = g^nzg^mw = g^ng^mzw = g^{n+m}zw = g^{m+n}wz = g^mg^nz = jh,
+    \]
+    and thus \(G\) is abelian.
+\end{example}
+
+\begin{example}
+    A \(p\)-group is a finite group whose order is a power of a prime \(p\); we
+    say that a \(p\)-group is `nontrivial' if it has order \(p^n\) for some \(n
+    > 0\). We shall study \(p\)-groups in greater detail in our discussion of
+    the Sylow theorems in \S~\ref{sec:sylow-theorems}. At the present, however,
+    we can use the class equation to establish some elementary results about
+    \(p\)-groups.
+
+    The simplest case is to consider a nontrivial \(p\)-group \(G\) of order
+    \(p\) for some prime \(p\). By Lagrange's theorem, the order of any subgroup
+    of \(G\) must divide \(p\) and thus must be \(1\) or \(p\). If \(g \neq e\)
+    is an element of \(G\) (where \(e\) is the identity) then the subgroup
+    \(\gen{g}\) generated by \(g\) must have order \(p\) and thus \(\order{G} =
+    \order{\gen{g}} = p\) and \(G\) is cyclic.
+
+    If \(G\) is a \(p\)-group acting on a finite set \(X\), then each \([G :
+    \Stab(a)]\) (where \(a\) is a representative of a nontrivial orbit) has size
+    greater than \(1\) and is a power of \(p\). Thus the sum of the indices of
+    the stabilizers of the nontrivial orbits is divisible by \(p\) and we must
+    have \(\order{Z} \equiv \order{X} \bmod p\), where again \(Z\) is the set of
+    fixed points of the action of \(G\) on \(X\). In particular, if \(G\) is a
+    nontrivial \(p\)-group, then the center of \(G\) is nontrivial. Since
+    \(\order{Z(G)} \equiv \order{G} \bmod p\) and \(\order{G} > 1\) is a power
+    of \(p\), then \(\order{Z(G)} \geq p\).
+
+    From the above demonstration and from
+    Example~\ref{ex:quotient-by-center-cyclic}, we can conclude that any group
+    of order \(p^2\) for some prime \(p\) must be abelian. Indeed, if \(G\) is a
+    group of order \(p^2\), then \(\order{Z(G)}\) must divide \(p^2\) by
+    Lagrange's theorem and is thus either \(1\) or \(p\) or \(p^2\). Since \(G\)
+    is a nontrivial \(p\)-group, it follows that \(Z(G)\) cannot be \(1\) and we
+    are left with two choices. If \(\order{Z(G)} = p^2\), then \(G = Z(G)\) and
+    is abelian. If \(\order{Z(G)} = p\), then \(G/Z(G)\) is cyclic and thus
+    \(G\) is abelian.
+\end{example}
+
+\section[Sylow theorems]{The Sylow theorems and the structure of finite groups}
+\label{sec:sylow-theorems}
+
+\section[Composition series]{Composition series and solvability}
+
+\section{Symmetric, alternating and dihedral groups}
+
+\section{Group products}
+
+\section{Finite abelian groups}

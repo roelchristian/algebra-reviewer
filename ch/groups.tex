@@ -3415,29 +3415,114 @@ then have the following result, often known as the `class equation.'
 \end{example}
 
 \begin{example}
-    Consider a group \(G\) of order \(pq\) for distinct primes \(p, q\). If \(G\) is abelian then it is equal to its center and the class equation is trivial, viz.,
+    Consider a group \(G\) of order \(pq\) for distinct primes \(p, q\). If
+    \(G\) is abelian then it is equal to its center and the class equation is
+    trivial, viz.,
     \[
         pq = \order{G} = \order{Z(G)} = pq.
     \]
-    Suppose then that \(G\) is nonabelian. Then \(Z(G)\) is trivial (by Lagrange's theorem and Example~\ref{ex:quotient-by-center-cyclic}) and thus the class equation is given by
+    Suppose then that \(G\) is nonabelian. Then \(Z(G)\) is trivial (by
+    Lagrange's theorem and Example~\ref{ex:quotient-by-center-cyclic}) and thus
+    the class equation is given by
     \[
         pq = \order{G} = 1 + \sum_{a \in A} [G : C(a)].
     \]
-    But each of the summands is a divisor of \(pq\) greater than \(1\) but less than \(pq\) and thus each orbit in the sum must have size \(p\) or \(q\). Thus we have
+    But each of the summands is a divisor of \(pq\) greater than \(1\) but less
+    than \(pq\) and thus each orbit in the sum must have size \(p\) or \(q\).
+    Thus we have
     \[
         pq = 1 + mp + nq,
     \]
-    where \(m\) and \(n\) are the number of orbits of size \(p\) and \(q\), respectively. As a concrete example, consider the group \(G = S_3\) of order \(6\). The conjugation action of \(S_3\) on itself has three orbits: the center \(\{e\}\), the set of transpositions \(\{(12), (13), (23)\}\), and the set of 3-cycles \(\{(123), (132)\}\). Thus the class equation is given by \(6 = 1 + 3 + 2\).
+    where \(m\) and \(n\) are the number of orbits of size \(p\) and \(q\),
+    respectively. As a concrete example, consider the group \(G = S_3\) of order
+    \(6\). The conjugation action of \(\Symx{3}\) on itself has three orbits:
+    the center \(\{e\}\), the set of transpositions \(\{(12), (13), (23)\}\),
+    and the set of 3-cycles \(\{(123), (132)\}\). Thus the class equation is
+    given by \(6 = 1 + 3 + 2\).
 \end{example}
+
+We can also let a group \(G\) act on the power set \(\Power{G}\) of \(G\): for
+any subset \(A \subset G\), we define the conjugate \(gAg\inv\) of \(A\) as the
+subset \(gAg\inv = \{gag\inv : a \in A\}\). We can thus introduce the following
+definition, analogous to our earlier definition of the centralizer of an element
+\(x \in G\).
+
+\begin{definition}
+    \label{def:normalizer-centralizer}
+    Let \(G\) be a group acting on \(\Power{G}\) by conjugation and let \(A
+    \subset G\). The \emph{normalizer} of \(A\) in \(G\), written \(N_G(A)\), is
+    its stabilizer under this action. The \emph{centralizer} of \(A\) in \(G\),
+    written \(C_G(A)\), is the set of all elements of \(G\) fixing every element
+    of \(A\).
+\end{definition}
+
+If \(A = \{a\}\) is a singleton, then the normalizer and the centralizer
+coincide and is precisely the centralizer of the single element \(a\) (in the
+sense of our earlier definition). In general,
+Definition~\ref{def:normalizer-centralizer} tells us that \(g \in N_G(A)\) if
+and only if \(gAg\inv = A\) and \(g \in C_G(A)\) if and only if \(gag\inv = a\)
+for all \(a \in A\). Thus it follows that \(C_G(A) \subset N_G(A)\). We have
+also already shown that \(N_G(A)\) and \(C_G(A)\) are subgroups of \(G\) and in
+particular, \(C_G(A)\) is a subgroup of \(N_G(A)\).
+
+Given any subgroup \(H\) of \(G\), the definition also tells us that \(H\) is
+normal in \(G\) if and only if \(G = N_G(H)\). Moreover, \(N_G(H)\) is the
+largest subgroup of \(G\) in which \(H\) is normal: indeed, if \(K\) is another
+subgroup of \(G\) containing \(H\) and such that \(H \triangleleft K\), then
+\(kHk\inv = H\) for all \(k \in K\) and thus \(K \subset N_G(H)\). Moreover,
+applying the counting formula from Theorem~\ref{thm:orbit-stabilizer}, it must
+hold that, for any finite group \(G\) and any subgroup \(H\) of \(G\), the
+number of subgroups conjugate to \(H\) is equal to the index \([G : N_G(H)]\).
+In particular, by Lagrange's theorem, \([G : N_G(H)]\) divides \([G : H]\).
 
 \section[Sylow theorems]{The Sylow theorems and the structure of finite groups}
 \label{sec:sylow-theorems}
+
 
 \section[Composition series]{Composition series and solvability}
 
 \section{Symmetric, alternating and dihedral groups}
 \label{sec:sym-alt-dihedral}
 
+In Example~\ref{ex:symmetric-group} we have the symmetric group \(\Symx{n}\) and
+the array notation
+\[
+    \begin{pmatrix}
+        1 & 2 & 3 & \cdots & n \\
+        \sigma(1) & \sigma(2) & \sigma(3) & \cdots & \sigma(n)
+    \end{pmatrix}
+\]
+For example if \(\sigma \in S_6\) is the permutation that sends \(3\) to \(1\),
+\(1\) to \(2\) and \(2\) to \(3\) and fixes all other elements, then we can
+write this as
+\[
+    \sigma = \begin{pmatrix}
+        1 & 2 & 3 & 4 & 5 & 6 \\
+        2 & 3 & 1 & 4 & 5 & 6
+    \end{pmatrix}
+\]
+or as the single line \((2\ 3\ 1\ 4\ 5\ 6)\), in this latter case considering
+only the images. This notation, while simple, might be cumbersome for larger
+permutations. 
+
+We shall now introduce an alternative notation for the symmetric group \(S_n\),
+building on the understanding of group actions we have thus far developed. By
+the very definition of \(\Symx{n}\), we can see that it acts on the set \(\{1,
+2, \ldots, n\}\) and thus so thus any subgroup of \(\Symx{n}\). Now given the
+permutation \(\sigma \in \Symx{6}\) above, consider the cyclic subgroup
+\(\gen{\sigma}\) generated by \(\sigma\) and its action on the set \(\{1, 2,
+\ldots, n\}\). The orbits of this action partition the set \(\{1, 2, \ldots,
+n\}\) into  the following equivalence classes:
+\[
+    \{1, 2, 3\}, \quad \{4\}, \quad \{5\}, \quad \{6\}.
+\]
+By the definition of an orbit, the action of \(\gen{\sigma}\) must be transitive
+on each of these sets and thus given any element of the set, we can get to any
+other element and then back to the original element by repeated applications of
+the permutation \(\sigma\). In the above example, for instance, we have
+\[
+    1 \mapsto 2 \mapsto 3 \mapsto 1, \quad 4 \mapsto 4, \quad 5 \mapsto 5, \quad 6 \mapsto 6.
+\]
 \section{Group products}
 
 \section{Finite abelian groups}

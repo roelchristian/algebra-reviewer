@@ -13,7 +13,7 @@
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage{enumerate, enumitem}
 \usepackage{xcolor}
-\usepackage{newtxtext, newtxmath}
+% \usepackage{newtxtext, newtxmath}
 
 \definecolor{burgundy}{HTML}{BA0F30}
 \definecolor{yaleblue}{HTML}{0047AB}
@@ -21,9 +21,11 @@
 
 % \usepackage{setspace}
 % % 1.15 line spacing
-% \setstretch{1.1}
+% \setstretch{1.2}
 % Remove chapter from section numbering
 \renewcommand{\thesection}{\arabic{section}}
+% Roman numerals for chapter numbering
+\renewcommand{\thechapter}{\Roman{chapter}}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -140,6 +142,8 @@
 \newcommand{\Symx}[1]{S_{#1}}
 \newcommand{\Stab}{\operatorname{Stab}}
 \newcommand{\Gset}{\(G\)-\(\Set\)}
+\newcommand{\Power}[1]{\mathcal{P}(#1)}
+\newcommand{\Ring}{\catg{Ring}}
 
 % \newcommand{\field}{\mathsf{k}}
 % Redefine \phi to use \varphi
@@ -147,7 +151,7 @@
   \let\phi\varphi
   % \let\epsilon\varepsilon
   \let\emptyset\varnothing
-  \let\mathcal\mathscr
+  \let\mathcal\mathfrak
 }
 
 

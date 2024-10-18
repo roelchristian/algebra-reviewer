@@ -88,21 +88,80 @@ the distributive law. In particular we have the following results.
         + 0a\), whence \(0a = 0\). Similarly, \(a0 = a(0 + 0) = a0 + a0\), so
         \(a0 = 0\).
 
-        \item If \(0 = 1\), then for all \(a \in R\), we have \(a = a1 = a0 = 0\), from which it follows that \(R\) contains only the zero element, i.e., \(R\) is the zero ring.
+        \item If \(0 = 1\), then for all \(a \in R\), we have \(a = a1 = a0 =
+        0\), from which it follows that \(R\) contains only a single element
+        which is both the additive and multiplicative identity. We call this the
+        \emph{zero ring}. As in the case of groups, we can consider any
+        singleton \(\{*\}\) with addition and multiplication defined by \(* + *
+        = *\) and \(* \cdot * = *\), respectively, to be the zero ring
+        (analogous to the trivial group).
         
         \item From (a) above and the distributive law, we have
         \[
             0 = 0b = (a + (-a))b = ab + (-a)b,
         \]
-        whence \((-a)b = -(ab)\). An analogous argument shows that \(a(-b) = -(ab)\).
+        whence \((-a)b = -(ab)\). An analogous argument shows that \(a(-b) =
+        -(ab)\).
 
-        Since \(-(-a) = a\), we then have, as an immediate consequence, that \((-a)(-b) = a(-(-b)) = a(b) = ab\) and in particular \((-1)(-1) = 1\) and \((-1)a = -a\).
+        Since \(-(-a) = a\), we then have, as an immediate consequence, that
+        \((-a)(-b) = a(-(-b)) = a(b) = ab\) and in particular \((-1)(-1) = 1\)
+        and \((-1)a = -a\).
 
-        \item For \(m = 1\), the proof is by induction on \(n\), with the case \(n = 2\) being left distribution. Having established this rule for \(m = 1\), a second induction on \(m\) completes the proof.
+        \item For \(m = 1\), the proof is by induction on \(n\), with the case
+        \(n = 2\) being left distribution. Having established this rule for \(m
+        = 1\), a second induction on \(m\) completes the proof.
         
-        \item For positive \(n\), the first equation is given by \(ab + \cdots + ab = (a + \cdots + a)b\) and is thus a special case of (d) above. For negative \(n\), we can use the result in (c).
+        \item For positive \(n\), the first equation is given by \(ab + \cdots +
+        ab = (a + \cdots + a)b\) and is thus a special case of (d) above. For
+        negative \(n\), we can use the result in (c).
     \end{enumerate}
 \end{proof}
+
+We now look at some examples of rings and introduce some terminology.
+
+\begin{example}[Polynomial rings]
+    Let \(R\) be a ring. A polynomial \(p\) in an indeterminate \(x\) with
+    coefficients in \(R\) is an expression of the form
+    \begin{equation}
+        \label{eq:polynomial}
+        p(x) = \sum_{i \geq 0} a_i x^i = a_0 + a_1 x + a_2 x^2 + \cdots
+    \end{equation}
+    where \(a_i \in R\) for all \(i \geq 0\) and \(a_i = 0\) for all but
+    finitely many \(i\). We say that two polynomials \(p(x) = \sum a_i x^i\) and
+    \(q(x) = \sum b_i x^i\) are equal if and only if their coefficients are
+    equal, i.e., \(a_i = b_i\) for all \(i \geq 0\). We shall denote the set of
+    all polynomials in the indeterminate \(x\) with coefficients in \(R\) by
+    \(R[x]\). Now since all but finitely many of the coefficients of a
+    polynomial are zero, we can alternatively write \eqref{eq:polynomial} as
+    \[
+        p(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n
+    \]
+    where \(n\) is the largest integer such that \(a_n \neq 0\). We call \(n\)
+    the \emph{degree} of the polynomial \(p(x)\) and write \(\deg p = n\). The
+    zero polynomial is the polynomial with all coefficients equal to zero, and
+    is denoted by \(0\). The constant polynomial \(a_0\) (for any \(a_0 \in R\))
+    is the polynomial with all coefficients equal to zero except for the
+    constant term, which is equal to \(a_0\). The polynomial \(1\) is the
+    constant polynomial with constant term equal to \(1\). The sum of two
+    polynomials is defined by adding the coefficients of like terms, while the
+    product of two polynomials is defined by the distributive law. That is, for
+    any two polynomials \(p(x) = \sum a_i x^i\) and \(q(x) = \sum b_i x^i\) in
+    \(R[x]\), we define their sum \(p(x) + q(x)\) as
+    \begin{align*}
+        p(x) + q(x) & = \sum (a_i + b_i) x^i = (a_0 + b_0) + (a_1 + b_1)x + \cdots\\
+        &= (a_0 + a_1 x + \cdots) + (b_0 + b_1 x + \cdots) = \sum a_i x^i + \sum b_i x^i
+    \end{align*}
+    and their product \(p(x)q(x)\) as
+    \begin{align*}
+        p(x)q(x) & = \left(\sum a_i x^i\right)\left(\sum b_i x^i\right) = \sum \left(\sum_{j=0}^{i} a_j b_{i-j}\right) x^i\\
+        &= a_0 b_0 + (a_0 b_1 + a_1 b_0)x + (a_0 b_2 + a_1 b_1 + a_2 b_0)x^2 + \cdots.
+    \end{align*}
+    With the definitions given above, we can see that \(R[x]\) is a ring under
+    the operations of polynomial addition and multiplication with the zero
+    polynomial as the additive identity and the constant polynomial \(1\) as the
+    multiplicative identity. The ring \(R[x]\) is called the \emph{ring of
+    polynomials over \(R\)}.
+\end{example}
 
 
 \begin{definition}
@@ -120,4 +179,33 @@ the distributive law. In particular we have the following results.
     \(S\) is denoted by \(1'\).
 \end{definition}
 
-From the definition it then follows that \(\phi\) is a homomorphism of the additive groups \(R\) and \(S\) so that \(\phi(0) = 0\) and \(\phi(-a) = -\phi(a)\) for all \(a \in R\). However, as part of our definition of a ring homomorphism, we require that \(\phi(1) = 1'\) so that \(\phi\) is also a homomorphism of the monoids \((R, \cdot)\) and \((S, \cdot)\). Indeed the condition \(\phi(1) = 1'\) does not directly follow from (a) and (b) in Definition~\ref{def:ring-homomorphism}. For example, consider a commutative ring \(R\) that contains an idempoent element \(e\), i.e., an element \(e\) satisfying \(e^2 = e\). Then the function \(\phi: R \to R\) defined by \(x \mapsto xe\) satisfies conditions (a) and (b) above, viz., \[\phi(x + y) = (x + y)e = xe + ye = \phi(x) + \phi(y);\] we also have \(\phi(x) \phi(y) = (xe)(ye) = (xy)e\) because \(R\) is commutative and \(e\) is idempotent and thus \(\phi(xy) = \phi(x) \phi(y)\). However, \(\phi(1) = 1e = e\) and thus condition (c) is not satisfied.
+From the definition it then follows that \(\phi\) is a homomorphism of the
+additive groups \(R\) and \(S\) so that \(\phi(0) = 0\) and \(\phi(-a) =
+-\phi(a)\) for all \(a \in R\). However, as part of our definition of a ring
+homomorphism, we require that \(\phi(1) = 1'\) so that \(\phi\) is also a
+homomorphism of the monoids \((R, \cdot)\) and \((S, \cdot)\). Indeed the
+condition \(\phi(1) = 1'\) does not directly follow from (a) and (b) in
+Definition~\ref{def:ring-homomorphism}. For example, consider a commutative ring
+\(R\) that contains an idempoent element \(e\), i.e., an element \(e\)
+satisfying \(e^2 = e\). Then the function \(\phi: R \to R\) defined by \(x
+\mapsto xe\) satisfies conditions (a) and (b) above, viz., \[\phi(x + y) = (x +
+y)e = xe + ye = \phi(x) + \phi(y);\] we also have \(\phi(x) \phi(y) = (xe)(ye) =
+(xy)e\) because \(R\) is commutative and \(e\) is idempotent and thus \(\phi(xy)
+= \phi(x) \phi(y)\). However, \(\phi(1) = 1e = e\) and thus condition (c) is not
+satisfied.
+
+For any ring \(R\), the identity map \(\id_R: R \to R\) is a ring homomorphism.
+Moreover, given any two ring homomorphisms \(\phi: R \to S\) and \(\psi: S \to
+T\), their composition \(\psi \circ \phi: R \to T\) is also a ring homomorphism.
+Thus the collection of all rings and ring homomorphisms forms a category, which
+we denote by \(\Ring\). Injective, surjective and bijective ring homomorphisms
+(in the sense of set functions) are likewise the monomorphisms, epimorphisms and
+isomorphisms in the category \(\Ring\), respectively.
+
+As in the case of the trivial group in \(\Grp\), the zero ring is terminal in
+\(\Ring\). That is, the only ring homomorphism from any ring \(R\) to the zero
+ring is the trivial homomorphism that sends every element of \(R\) to the zero
+element of the zero ring. However, note that the zero ring is not an initial
+object in \(\Ring\): indeed given a map \(\phi: 0 \to R\) from the zero ring to
+any ring \(R\), the condition \(\phi(1) = 1\) is satisfied if and only if \(R\)
+is itself the zero ring.

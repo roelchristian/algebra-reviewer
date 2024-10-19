@@ -157,7 +157,7 @@ following definition.
 
 \begin{definition}
     \label{def:group-as-category}
-    A group is the \(\Hom\)-set of a groupoid with a single object.
+    A group is the hom-set of a groupoid with a single object.
 \end{definition}
 
 That this is equivalent to Definition~\ref{def:group} can be illustrated as
@@ -1453,7 +1453,7 @@ denote it by \(A \oplus B\).
 \end{example}
 
 We look at one final example highlighting the nice properties of \(\Ab\). For
-all abelian groups \(A\) and \(B\), we claim that the \(\Hom\)-set of \(A\) and
+all abelian groups \(A\) and \(B\), we claim that the hom-set of \(A\) and
 \(B\), \(\Hom_{\Ab}(A, B)\), is an abelian group under the operation defined as
 follows: if \(\phi, \psi\) are group homomorphisms from \(A\) to \(B\), the we
 define the sum \(\phi + \psi\) as
@@ -2660,6 +2660,7 @@ subgroups.
 \end{proof}
 
 \begin{theorem}
+    \label{thm:induced-homomorphism-props}
     Given the same conditions as in the preceding theorem, the following
     statements hold:
     \begin{enumerate}[label=(\alph*)]
@@ -2744,6 +2745,7 @@ subgroups.
 \end{example}
 
 \begin{theorem}[Canonical decomposition of a group homomorphism]
+    \label{thm:canonical-decomposition-grp}
     Every group homomorphism \(\phi: G \to H\) can be decomposed as follows:
     \[
         \begin{tikzcd}

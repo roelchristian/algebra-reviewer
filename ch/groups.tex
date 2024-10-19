@@ -1186,6 +1186,7 @@ We can now establish the following result.
 \end{example}
 
 \begin{example}
+    \label{ex:exponential-maps}
     The exponential function is a homomorphism from the group of real numbers
     under addition to the group of positive real numbers under multiplication.
     Indeed,
@@ -1469,6 +1470,7 @@ for all \(a \in A\). Now for all \(a, b \in A\),
 and thus \(\phi + \psi \in \Hom_{\Ab}(A, B)\).
 
 \section{Free groups}
+\label{sec:free-groups}
 
 Given some set \(X\) that does not necessarily have any group structure, we
 would now like to construct another group \(F\) containing \(X\) as a subset in
@@ -1946,6 +1948,7 @@ How are the group operations \(\mult\) and \(\mult'\) related? We first consider
 the following definition.
 
 \begin{definition}
+    \label{def:subgroup}
     Let \((G, \mult)\) and \((H, \mult')\) be groups such that \(H \subset G\).
     We say that \(H\) is a \emph{subgroup} of \(G\) if the inclusion function
     \(\iota : H \to G\) is a group homomorphism. If \(H\) is a subgroup of
@@ -2130,6 +2133,7 @@ for any subgroup \(H\) is injective as a set function. More generally still, for
 any group homomorphism \(\phi: G \to H\), the following result holds:
 
 \begin{theorem}
+    \label{thm:kernel-injective-grp}
     Let \(\phi: G \to H\) be a group homomorphism. The following statements are
     equivalent:
     \begin{enumerate}[label=(\alph*)]
@@ -2142,7 +2146,7 @@ any group homomorphism \(\phi: G \to H\), the following result holds:
 \begin{proof}\(\)
 
     \begin{enumerate}[wide]
-        \item[(a) \(\implies\) (b)] If \(\phi\) is injective as a map between
+        \item[(a) \(\implies\) (b).] If \(\phi\) is injective as a map between
         sets, then it must be a monomorphism in \(\Set\); i.e., for any set
         \(X\) and any set functions \(\alpha, \beta: X \to G\), if \(\phi \circ
         \alpha = \phi \circ \beta\), then \(\alpha = \beta\). In particular, if
@@ -2150,7 +2154,7 @@ any group homomorphism \(\phi: G \to H\), the following result holds:
         then \(\phi \circ \alpha = \phi \circ \beta\) implies that \(\alpha =
         \beta\), so that \(\phi\) is a monomorphism in \(\Grp\).
         
-        \item[(b) \(\implies\) (c)] Suppose that \(\phi\) is a monomorphism in
+        \item[(b) \(\implies\) (c).] Suppose that \(\phi\) is a monomorphism in
         \(\Grp\) and consider the diagram
         \[
         \begin{tikzcd}
@@ -2161,7 +2165,7 @@ any group homomorphism \(\phi: G \to H\), the following result holds:
         the fact that \(\phi\) is a monomorphism implies that \(0 = \iota\), so
         that \(\ker\phi = \{e\}\).
 
-        \item[(c) \(\implies\) (a)] If \(\ker\phi = \{e\}\), then for any \(g, h
+        \item[(c) \(\implies\) (a).] If \(\ker\phi = \{e\}\), then for any \(g, h
         \in G\), \(\phi(g) = \phi(h)\) implies that \(\phi(gh\inv) = e\), so
         that \(gh\inv = e\), i.e., \(g = h\). Thus \(\phi\) is injective as a
         map between sets.
@@ -3379,6 +3383,7 @@ then have the following result, often known as the `class equation.'
 \end{example}
 
 \begin{example}
+    \label{ex:p-group}
     A \(p\)-group is a finite group whose order is a power of a prime \(p\); we
     say that a \(p\)-group is `nontrivial' if it has order \(p^n\) for some \(n
     > 0\). We shall study \(p\)-groups in greater detail in our discussion of
@@ -3478,6 +3483,26 @@ In particular, by Lagrange's theorem, \([G : N_G(H)]\) divides \([G : H]\).
 \section[Sylow theorems]{The Sylow theorems and the structure of finite groups}
 \label{sec:sylow-theorems}
 
+In this section we shall study \(p\)-groups (which we have briefly introduced in
+Example~\ref{ex:p-group}) in greater detail, culminating in the Sylow theorems,
+a collection of results that describe the structure of finite groups in terms of
+their order. Recall that Lagrange's theorem gives us a strong constraint on the
+structure of a group: in particular if a finite group has order \(n\) for some
+positive integer \(n\), then the order of any subgroup of the group must divide
+\(n\). However, the converse of this statement is not generally true, i.e., it
+does not necessarily hold that every group of order \(n\) has a subgroup of
+order \(m\) for every divisor \(m\) of \(n\). 
+
+
+\begin{theorem}[Cauchy]
+    \label{thm:cauchy}
+    Let \(G\) be a finite group and let \(p\) be a prime dividing the order of
+    \(G\). Then \(G\) has an element of order \(p\).
+\end{theorem}
+
+\begin{proof}
+    
+\end{proof}
 
 \section[Composition series]{Composition series and solvability}
 

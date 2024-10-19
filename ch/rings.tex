@@ -3,6 +3,17 @@
 
 \section{Rings and homomorphisms}
 
+Recall that the hom-set, \(\Hom_{\Ab}(A, B)\), of two abelian groups \(G\) and
+\(H\) is itself an abelian group under pointwise addition. In particular for any
+abelian group \(G\), we have \(\Hom_{\Ab}(G, G) = \End_{\Ab}(G)\), the set of
+all endomorphisms of \(G\). Now since \(\Ab\) is a category, we have a
+well-defined composition law and thus the set \(\End_{\Ab}(G)\) is a monoid
+under composition. Therefore two operations `naturally' arise and coexist on the
+set \(\End_{\Ab}(G)\): the pointwise addition inherited from the abelian group
+structure of \(\Hom_{\Ab}(G, G)\) and the composition inherited from the
+category structure of \(\Ab\). This is a special case of an algebraic structure
+known as a \emph{ring}, which we now formally define.
+
 \begin{definition}
     A \emph{ring} is a triple \((R, +, \cdot)\), where \(R\) is a nonempty set
     and \(+\) and \(\cdot\) are two binary operations (often referred to as
@@ -512,3 +523,113 @@ Chapter~\ref{ch:groups}.
 
 \section{Ideals and quotient rings}
 \label{sec:ideals}
+
+We have studied normal subgroups and their equivalence to kernels of group
+homomorphisms in Chapter~\ref{ch:groups}. We now introduce a similar concept in
+the context of rings.
+
+\begin{definition}[Ideal]
+    \label{def:ideal}
+    Let \(R\) be a ring. A subgroup \(\idl{a}\) of the additive group of \(R\)
+    is called a left (resp. right) \emph{ideal} of \(R\) if for all \(r \in R\)
+    we have \(r\idl{a} \subset \idl{a}\) (resp. \(\idl{a}r \subset \idl{a}\)).
+    That is, for all \(r \in R\) and \(a \in \idl{a}\), we have \(ra \in
+    \idl{a}\) (resp. \(ar \in \idl{a}\)). An ideal that is both a left and right
+    ideal is called a \emph{two-sided ideal} or simply an \emph{ideal}.
+\end{definition}
+
+As expected, if \(R\) is a commutative ring, then every left ideal is a right
+ideal and vice versa, so that every ideal is a two-sided ideal. For the
+remainder of this section, we consider only commutative rings and thus refer to
+ideals without classification, unless otherwise stated. Analogously, we see that
+the kernel of any ring homomorphism \(\phi: R \to S\) is an ideal of \(R\).
+Indeed, if \(\phi: R \to S\) is a ring homomorphism, then the kernel of \(\phi\)
+is a subgroup of the additive group of \(R\), and for any \(r \in R\) and \(a
+\in \ker \phi\), we have \(\phi(ra) = \phi(r)\phi(a) = \phi(r)0 = 0\) and thus
+\(ra \in \ker \phi\). (A parallel argument shows that \(\ker \phi\) is a right
+ideal of \(R\).) The zero ideal \(\{0\}\) is the trivial subgroup of the
+additive group of \(R\) and can be routinely shown to be an ideal of \(R\).
+
+Since the additive group \(R\) is abelian, every subgroup \(\idl{a}\) is
+necessarily normal and thus we can define the quotient group \(R/\idl{a}\) whose
+elements are cosets of \(\idl{a}\), i.e., the sets \(r + \idl{a}\) for all \(r
+\in R\) (written in additive notation). We can likewise define the canonical
+projection \(\pi: R \to R/\idl{a}\) that sends each element \(r \in R\) to its
+coset \(r + \idl{a}\). This is a surjective group homomorphism with kernel
+\(\idl{a}\) (Theorem~\ref{thm:induced-homomorphism-props}, Ch.~\ref{ch:groups}).
+Moreover, \(R/\idl{a}\) is itself a group under the operation \((r + \idl{a}) +
+(s + \idl{a}) = (r + s) + \idl{a}\) (Theorem~\ref{thm:quotient-group},
+Ch.~\ref{ch:groups}, this time in additive notation). We shall now want to ask
+if we can define a ring structure on \(R/\idl{a}\) that makes \(\pi: R \to
+R/\idl{a}\) a ring homomorphism.
+
+As we have already defined an addition operation on \(R/\idl{a}\), we shall now
+define a multiplication operation that induces a unity element and is
+distributive with respect to addition. But first note that since \(R\) is
+abelian, then we have, for all \(r, s \in R\),
+\[
+    (r + \idl{a})+(s + \idl{a}) = (r + s) + \idl{a} = (s + r) + \idl{a} = (s + \idl{a})+(r + \idl{a}),
+\]
+so that the addition we have defined in \(R/\idl{a}\) is commutative. For
+\(\pi\) to be a ring homomorphism, the multiplication in \(R/\idl{a}\) must
+follow, for all \(r, s \in R\),
+\[
+    (r + \idl{a})(s + \idl{a}) = \pi(r)\pi(s) =^* \pi(rs) = rs + \idl{a},
+\]
+with the starred equality holding because we require that \(\pi\) be a ring
+homomorphism. Thus the only sensible definition of multiplication in
+\(R/\idl{a}\) is
+\[
+    (r + \idl{a})(s + \idl{a}) = rs + \idl{a}.
+\]
+This operation is well-defined because if \(r + \idl{a} = r' + \idl{a}\) and \(s
++ \idl{a} = s' + \idl{a}\), then \(r - r' \in \idl{a}\) and \(s - s' \in
+\idl{a}\) so that
+\[
+    rs - r's' = rs - rs' + rs' - r's' = r(s - s') + (r - r')s' \in \idl{a}
+\]
+from which it follows that \(rs + \idl{a} = r's' + \idl{a}\). Associativity
+follows from the associativity of multiplication in \(R\), and the unity element
+of \(R/\idl{a}\) is the coset \(1 + \idl{a}\) where \(1\) is the unity element
+of \(R\). The distributive law follows from the distributive law in \(R\), and
+thus we have defined a ring structure on \(R/\idl{a}\) that makes \(\pi: R \to
+R/\idl{a}\) a ring homomorphism. We call \(R/\idl{a}\) the \emph{quotient ring}
+of \(R\) modulo the ideal \(\idl{a}\).
+
+The universal property of quotients holds and is analogous to the result for
+groups. We reproduce the statement here for completeness.
+
+\begin{theorem}
+    \label{thm:ideal-universal-property}
+    Let \(R\) be a ring and \(\idl{a}\) be an ideal of \(R\). Then for any ring
+    \(S\) and any ring homomorphism \(\phi: R \to S\) such that \(\idl{a}
+    \subset \ker \phi\), there exists a unique ring homomorphism
+    \(\overline{\phi}: R/\idl{a} \to S\) such that the diagram
+    \[
+        \begin{tikzcd}
+            R \ar[r, "\phi"] & S\\
+            R/\idl{a} \ar[u, "\pi"] \ar[ur, "\overline{\phi}"']
+        \end{tikzcd}
+    \]
+    commutes. Here \(\pi: R \to R/\idl{a}\) is the canonical projection.
+\end{theorem}
+
+As before, the induced homomorphism \(\overline{\phi}\) is defined by
+\(\overline{\phi}(r + \idl{a}) = \phi(r)\) for all \(r \in R\). The proof of
+this theorem is analogous to that of Theorem~\ref{thm:induced-homomorphism} of
+Chapter~\ref{ch:groups} and is thus left out here. Continuing our analogy with
+groups, we have the following result, which gives us the canonical decomposition
+of any ring homomorphism (cf. Theorem~\ref{thm:canonical-decomposition-grp} of
+Chapter~\ref{ch:groups}).
+
+\begin{theorem}
+    \label{thm:canonical-decomposition-ring}
+    Every ring homomorphism \(\phi: R \to S\) may be decomposed as follows:
+    \[
+        \begin{tikzcd}
+            R \arrow[r, two heads] \arrow[rrr, bend left, "\phi"]   & R/\ker\phi \arrow[r,"\sim" above, "\overline{\phi}" below]   & \img\phi \arrow[r, hook]  & S,
+        \end{tikzcd}
+    \]
+    where \(\overline{\phi}\) is the induced isomorphism in the preceding
+    theorem.
+\end{theorem}

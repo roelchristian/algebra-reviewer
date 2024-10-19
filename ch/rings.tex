@@ -159,7 +159,59 @@ We now look at some examples of rings and introduce some terminology.
 \end{example}
 
 \begin{example}[Units, division rings, fields]
-    An element \(u\) of a ring \(R\) is a left (resp. right) \emph{unit}
+    An element \(u\) of a ring \(R\) is a left (resp. right) \emph{unit} if
+    there exists an element \(v \in R\) such that \(uv = 1\) (resp. \(vu = 1\)).
+    The element \(v\) is called a right (resp. left) inverse of \(u\). An
+    element that is both a left and right unit is simply called a (two-sided)
+    \emph{unit}. If \(u\) is a two-sided unit in a ring \(R\) with a left
+    inverse \(v\) and a right inverse \(w\), then we have
+    \[
+        vu = 1 \implies vuw = w \implies v(uw) = w \implies v = w
+    \]
+    Thus we can speak unambiguously of \emph{the} inverse \(u\inv\) of a
+    two-sided unit \(u\). It also follows from this definition that the inverse
+    of a unit is itself a unit. Left (resp. right) units are always non zero
+    divisors: indeed, if \(u\) is a left (resp. right) unit in a ring \(R\),
+    then there exists an element \(v \in R\) such that \(uv = 1\) (resp. \(vu =
+    1\)). If \(u\) is a right (resp. left) zero divisor, then there exists a
+    nonzero element \(a \in R\) such that \(au = 0\) (resp. \(ua = 0\)). But
+    then (in the case of a right zero divisor) we have
+    \[
+        a = a(1) = a(uv) = (au)v = 0v = 0
+    \]
+    and thus \(a = 0\), a contradiction. Thus left (resp. right) units are never
+    zero divisors.
+
+    The set of all units in a ring \(R\) is denoted by \(R^\times\), which forms
+    a group under the multiplication of \(R\). This is called the \emph{group of
+    units} of \(R\). Indeed the unity \(1\) is also a unit and is its own
+    inverse and by the definition of a ring serves as the identity element of
+    the group \(R^\times\). Associativity is inherited from the ring \(R\), and
+    the existence of inverses (which are themselves units as remarked above)
+    follows from the definition of a unit. If \(u\) and \(v\) are units in a
+    ring \(R\), then there exist elements \(u\inv\) and \(v\inv\) in \(R\) such
+    that \(uu\inv = u\inv u = 1\) and \(vv\inv = v\inv v = 1\). To show that the
+    product \(uv\) is a also a unit, consider the product \(v\inv u\inv\) and
+    observe that
+    \[
+        (uv)(v\inv u\inv) = u(vv\inv)u\inv =  uu\inv = 1
+    \]
+    and
+    \[
+        (v\inv u\inv)(uv) = v\inv(uu\inv)v = v\inv v = 1.
+    \]
+    Thus closure is satisfied and we have verified that \(R^\times\) is indeed a
+    group under multiplication.
+
+    A \emph{division ring} is  (nonzero) ring in which every nonzero element is
+    a unit. A \emph{field} is a commutative division ring. The familiar sets
+    \(\Q\), \(\R\) and \(\C\) are all fields, as are the sets \(\Z/p\Z\) where
+    \(p\) is a prime number.  By the relation between units and zero divisors we
+    have established, it follows that every field is an integral domain. The
+    converse is not true: the ring \(\Z\) is an integral domain but is not a
+    field since the only units in \(\Z\) are \(\pm 1\). However, both notions
+    coincide in the finite case: that is, given a finite commutative ring \(R\),
+    then \(R\) is a field if and only if \(R\) is an integral domain.
 \end{example}
 
 \begin{example}[Polynomial rings]

@@ -156,6 +156,19 @@ We now look at some examples of rings and introduce some terminology.
     p\) is a prime number, so that for all integers \(a, b\) with \(1 < a, b <
     p\), \([ab] = [0]\) implies that \([a] = [0]\) or \([b] = [0]\), and thus
     \(\Z/p\Z\) is an integral domain.
+
+    Alternatively, for any ring \(R\), an element \(a \in R\) is \emph{not} a
+    left (resp. right) zero divisor if and only if the left (resp. right)
+    multiplication map \(R \to R\) defined by \(x \mapsto ax\) (resp. \(x
+    \mapsto xa\)) is injective. Verifying the left case (with the right case
+    being analogous), if \(a \neq 0\) is not a left zero divisor, we have for
+    any \(b, c \in R\) such that \(ab = ac\), that \(ab - ac = a(b - c) = 0\),
+    so that if \(a \neq 0\) and \(a\) is not a left zero divisor, then \(b = c\)
+    and left multipication by \(a\) is injective. (This is essentially the same
+    argument in the previous paragraph establishing multiplicative cancellation
+    in an integral domain.) Conversely, if \(a\) is a left zero divisor, then
+    there exists a nonzero element \(b \in R\) such that \(ab = 0 = a \cdot 0\),
+    so that the left multiplication map \(x \mapsto ax\) is not injective. 
 \end{example}
 
 \begin{example}[Units, division rings, fields]
@@ -170,17 +183,35 @@ We now look at some examples of rings and introduce some terminology.
     \]
     Thus we can speak unambiguously of \emph{the} inverse \(u\inv\) of a
     two-sided unit \(u\). It also follows from this definition that the inverse
-    of a unit is itself a unit. Left (resp. right) units are always non zero
-    divisors: indeed, if \(u\) is a left (resp. right) unit in a ring \(R\),
-    then there exists an element \(v \in R\) such that \(uv = 1\) (resp. \(vu =
-    1\)). If \(u\) is a right (resp. left) zero divisor, then there exists a
-    nonzero element \(a \in R\) such that \(au = 0\) (resp. \(ua = 0\)). But
-    then (in the case of a right zero divisor) we have
+    of a unit is itself a unit.
+
+    We can again alternatively characterize units in terms of the multiplication
+    map \(R \to R\). We claim that an element \(u \in R\) is a unit if and only
+    if the left (resp. right) multiplication map \(x \mapsto ux\) (resp. \(x
+    \mapsto xu\)) is surjective. We establish the claim for right
+    multiplication, with the left case being analogous. Write \(\rho_u : R \to
+    R\) for the right multiplication map \(x \mapsto xu\). If \(u\) is a right
+    unit, then there exists a \(v \in R\) such that \(vu = 1\) and we have
     \[
-        a = a(1) = a(uv) = (au)v = 0v = 0
+        \rho_u \circ \rho_v(x) = \rho_u(xv) = xvu = x
     \]
-    and thus \(a = 0\), a contradiction. Thus left (resp. right) units are never
-    zero divisors.
+    and thus \(\rho_v\) is a right inverse of \(\rho_u\) and hence \(\rho_u\) is
+    surjective. Conversely, if \(\rho_u\) is surjective, then there exists a \(v
+    \in R\) such that \(\rho_u(v) = 1\) and thus \(vu = 1\), and \(u\) is a
+    right unit.
+
+    Moreover, we can establish an important relation between units and zero
+    divisors: we claim that if an element \(u \in R\) is a left (resp. right)
+    unit then \(u\) is not a right (resp. left) zero divisor. We prove the case
+    for right units, with the other case being analogous. Write \(\lambda_u : R
+    \to R\) for the left multiplication map \(x \mapsto ux\). If \(u\) is a
+    right unit, then there exists a \(v \in R\) such that \(vu = 1\), and we
+    have
+    \[
+        \lambda_v \circ \lambda_u(x) = \lambda_v(ux) = vux = x
+    \]
+    and thus \(\lambda_v\) is a left inverse of \(\lambda_u\) and hence
+    \(\lambda_u\) is injective. 
 
     The set of all units in a ring \(R\) is denoted by \(R^\times\), which forms
     a group under the multiplication of \(R\). This is called the \emph{group of
@@ -211,7 +242,12 @@ We now look at some examples of rings and introduce some terminology.
     converse is not true: the ring \(\Z\) is an integral domain but is not a
     field since the only units in \(\Z\) are \(\pm 1\). However, both notions
     coincide in the finite case: that is, given a finite commutative ring \(R\),
-    then \(R\) is a field if and only if \(R\) is an integral domain.
+    then \(R\) is a field if and only if \(R\) is an integral domain. We only
+    need to show that if \(R\) is a finite integral domain, then it is a field.
+    If \(a\) is not a zero divisor, then multiplication by \(a\) is injective
+    and since \(R\) is finite, it must be surjective (by the pigeonhole
+    principle) and thus \(a\) is a unit. Since every nonzero element of \(R\) is
+    a unit, \(R\) is a field.
 \end{example}
 
 \begin{example}[Polynomial rings]
@@ -318,6 +354,9 @@ determined by the condition that \(\phi(1) = 1_R\) and that \(\phi\) preserve
 addition, it must be unique. Thus we have shown that \(\mathbb{Z}\) is initial
 in \(\Ring\).
 
-Ring homomorphisms also preserve units: that is, if \(u\) i
+Ring homomorphisms also preserve units: that is, if \(u\) is a 
+
+
+
 
 \section{Ideals and quotient rings}

@@ -119,6 +119,49 @@ the distributive law. In particular we have the following results.
 
 We now look at some examples of rings and introduce some terminology.
 
+\begin{example}[Integral domains]
+    \label{ex:integral-domains}
+    Rings generalize our notion of number systems. In particular, the familiar
+    sets \(\Z\), \(\Q\), \(\R\) and \(\C\) are all commutative rings under the
+    usual operations of addition and multiplication. 
+
+    The additive group \(\Z/n\Z\) of integers modulo \(n\) is a ring under the
+    usual addition modulo \(n\) and multiplication modulo \(n\) which we define
+    as \([a] \cdot [b] = [ab]\). Observe however that while additive
+    cancellation holds in both \(\Z\) and \(\Z/n\Z\), multiplicative
+    cancellation does not hold in \(\Z/n\Z\). For example, in \(\Z/6\Z\), we
+    have \([2] \cdot [3] = [0] = [2] \cdot [0]\) but \([3] \neq [0]\). This is
+    because the element \([3]\) is a zero divisor in \(\Z/6\Z\), i.e., there
+    exists a nonzero element \([a] \in \Z/6\Z\) such that \([3] \cdot [a] =
+    [0]\). In general, an element \(a \in R\) is a left (resp. right) \emph{zero
+    divisor} if there exists a nonzero element \(b \in R\) such that \(ab = 0\)
+    (resp. \(ba = 0\)). An element that is both a left and right zero divisor is
+    simply called a (two-sided) \emph{zero divisor}. In any nonzero ring \(R\),
+    the zero element is trivially a zero divisor. We say that a (left, right,
+    two-sided) zero divisor is \emph{nontrivial} if it is not the zero element
+    of \(R\).
+
+    A nonzero commutative ring \(R\) is called an \emph{integral domain} if it
+    has no nontrivial zero divisors. In other words, \(R\) is an integral domain
+    if for all \(a, b \in R\), \(ab = 0\) implies that either \(a = 0\) or \(b =
+    0\). This condition guarantees that multiplicative cancellation also holds
+    in \(R\). Indeed if \(ab = ac\) for some \(a \neq 0\) in an integral domain
+    \(R\), then \(ab - ac = a(b - c) = 0\); but since \(a \neq 0\) and \(R\) is
+    an integral domain, we must have \(b - c = 0\) and thus \(b = c\). The
+    familiar sets \(\Z\), \(\Q\), \(\R\) and \(\C\) are all integral domains but
+    \(\Z/n\Z\) is an integral domain if and only if \(n\) is a prime number.
+    Indeed if \(n = ab\) for some integers \(a, b\) with \(1 < a, b < n\), then
+    \([a] \cdot [b] = [ab] = [n] = [0]\) and \([a] \neq [0]\) and \([b] \neq
+    [0]\), so \(\Z/n\Z\) is not an integral domain. On the other hand if \(n =
+    p\) is a prime number, so that for all integers \(a, b\) with \(1 < a, b <
+    p\), \([ab] = [0]\) implies that \([a] = [0]\) or \([b] = [0]\), and thus
+    \(\Z/p\Z\) is an integral domain.
+\end{example}
+
+\begin{example}[Units, division rings, fields]
+    An element \(u\) of a ring \(R\) is a left (resp. right) \emph{unit}
+\end{example}
+
 \begin{example}[Polynomial rings]
     Let \(R\) be a ring. A polynomial \(p\) in an indeterminate \(x\) with
     coefficients in \(R\) is an expression of the form
@@ -208,4 +251,21 @@ ring is the trivial homomorphism that sends every element of \(R\) to the zero
 element of the zero ring. However, note that the zero ring is not an initial
 object in \(\Ring\): indeed given a map \(\phi: 0 \to R\) from the zero ring to
 any ring \(R\), the condition \(\phi(1) = 1\) is satisfied if and only if \(R\)
-is itself the zero ring.
+is itself the zero ring. So does \(\Ring\) then have an initial object?
+
+Given any ring \(R\), we can define the group homomorphism \(\phi: \mathbb{Z}
+\to R\) by \(\phi(n) = n1_R\) for all \(n \in \mathbb{Z}\). (This is the
+exponential map given as in Example~\ref{ex:exponential-maps} of
+Chapter~\ref{ch:groups}.) But observe that this is also a ring homomorphism,
+since \(\phi(1) = 1 \cdot 1_R = 1_R\) and
+\[
+    \phi(mn) = (mn)1_R = m(n1_R) =^* (m1_R)\cdot(n1_R) = \phi(m)\phi(n)
+\]
+with the starred equality following from the distributive law. Since \(\phi\) is
+determined by the condition that \(\phi(1) = 1_R\) and that \(\phi\) preserve
+addition, it must be unique. Thus we have shown that \(\mathbb{Z}\) is initial
+in \(\Ring\).
+
+Ring homomorphisms also preserve units: that is, if \(u\) i
+
+\section{Ideals and quotient rings}

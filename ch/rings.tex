@@ -186,12 +186,12 @@ We now look at some examples of rings and introduce some terminology.
     of a unit is itself a unit.
 
     We can again alternatively characterize units in terms of the multiplication
-    map \(R \to R\). We claim that an element \(u \in R\) is a unit if and only
-    if the left (resp. right) multiplication map \(x \mapsto ux\) (resp. \(x
-    \mapsto xu\)) is surjective. We establish the claim for right
-    multiplication, with the left case being analogous. Write \(\rho_u : R \to
-    R\) for the right multiplication map \(x \mapsto xu\). If \(u\) is a right
-    unit, then there exists a \(v \in R\) such that \(vu = 1\) and we have
+    map \(R \to R\). We claim that an element \(u \in R\) is a left (resp.
+    right) unit if and only if the left (resp. right) multiplication map \(x
+    \mapsto ux\) (resp. \(x \mapsto xu\)) is surjective. We establish the claim
+    for right multiplication, with the left case being analogous. Write \(\rho_u
+    : R \to R\) for the right multiplication map \(x \mapsto xu\). If \(u\) is a
+    right unit, then there exists a \(v \in R\) such that \(vu = 1\) and we have
     \[
         \rho_u \circ \rho_v(x) = \rho_u(xv) = xvu = x
     \]
@@ -292,8 +292,14 @@ We now look at some examples of rings and introduce some terminology.
     polynomial as the additive identity and the constant polynomial \(1\) as the
     multiplicative identity. The ring \(R[x]\) is called the \emph{ring of
     polynomials over \(R\)}.
-\end{example}
 
+    Polynomial rings in more than one indeterminate can be defined by iterating
+    the construction above. For example, the ring of polynomials in two
+    indeterminates \(x\) and \(y\) with coefficients in a ring \(R\) is denoted
+    by \(R[x, y]\) can be defined as the set of all formal sums of the form
+    given in \eqref{eq:polynomial} with coefficients in \(R[x]\); i.e., \(R[x,
+    y] = R[x][y]\), etc.
+\end{example}
 
 \begin{definition}
     \label{def:ring-homomorphism}
@@ -354,9 +360,155 @@ determined by the condition that \(\phi(1) = 1_R\) and that \(\phi\) preserve
 addition, it must be unique. Thus we have shown that \(\mathbb{Z}\) is initial
 in \(\Ring\).
 
-Ring homomorphisms also preserve units: that is, if \(u\) is a 
+Ring homomorphisms also preserve units: that is, if \(u\) is a unit in a ring
+\(R\) with inverse \(v\), then the image \(\phi(u)\) is a unit in the ring
+\(\phi(R)\) with inverse \(\phi(v)\). Indeed we have
+\[
+    \phi(u)\phi(v) = \phi(uv) = \phi(1) = 1.
+\]
+
+\medskip
+
+Polynomial rings satisfy a universal property similar to that of free groups we
+saw in \S~\ref{sec:free-groups} of Chapter~\ref{ch:groups}. At this time we only
+consider the case for the polynomial ring \(R[x_1, \ldots, x_n]\) in \(n\)
+indeterminates with respect to commutative rings.
+
+Consider a set \(X = \{\xi_1, \ldots, \xi_n\}\) of cardinality \(n\) and
+consider the category \(\catg{R}_X\) whose objects are pairs \((k, R)\) where
+\(R\) is a commutative ring and \(k\) is a (set) function from \(X\) to \(R\).
+As in our construction of free groups, we define a morphism \((k_1, R_1) \to
+(k_2, R_2)\) in \(\catg{R}_X\) to be a commutative diagram
+\[
+    \begin{tikzcd}
+        R_1 \ar[r, "\phi"] & R_2\\
+         X \ar[u, "k_1"] \ar[ur, "k_2"'] &
+    \end{tikzcd}
+\]
+where \(\phi\) is a ring homomorphism.
+
+\begin{theorem}
+    With the notation as above, let \[i: X \to \Z[x_1, \ldots, x_n]\] be the map
+    that sends each \(\xi_i\) to the indeterminate \(x_i\). Then the pair \((i,
+    \Z[x_1, \ldots, x_n])\) is an initial object in \(\catg{R}_X\).
+\end{theorem}
+
+\begin{proof}
+    To prove that \((i, \Z[x_1, \ldots, x_n])\) is an initial object in
+    \(\catg{R}_X\), we must show that for any object \((k, R)\) in
+    \(\catg{R}_X\), there exists a unique ring homomorphism \(\phi: \Z[x_1,
+    \ldots, x_n] \to R\) such that the diagram
+    \[
+        \begin{tikzcd}
+            \Z[x_1, \ldots, x_n] \ar[r, "\phi"] & R\\
+            X \ar[u, "i"] \ar[ur, "k"']
+        \end{tikzcd}
+    \]
+    commutes. Now if \(\phi\) makes the above diagram commute, we must have
+    \(\phi(x_i) = (\phi \circ i)(\xi_i) = k(\xi_i)\). By defining \(\phi\) to be
+    precisely this map, it remains for us to show that \(\phi\) is a unique ring
+    homomorphism, in which case we must have
+    \begin{align*}
+        \phi\left(\sum_{i_1, \ldots, i_n} a_{i_1, \ldots, i_n} x_1^{i_1} \cdots x_n^{i_n}\right) &= \sum_{i_1, \ldots, i_n} \phi(a_{i_1, \ldots, i_n}) \phi(x_1)^{i_1} \cdots \phi(x_n)^{i_n}\\
+        &= \sum_{i_1, \ldots, i_n} \iota(a_{i_1, \ldots, i_n}) k(\xi_1)^{i_1} \cdots k(\xi_n)^{i_n}
+    \end{align*}
+    where \(\iota: \Z \to R\) is the unique ring homomorphism that sends each
+    integer to the corresponding element of \(R\) (since \(\Z\) is initial in
+    \(\Ring\)). Thus \(\phi\) is uniquely determined by the condition that
+    \(\phi(x_i) = k(\xi_i)\) for all \(i\), preserves addition and
+    multiplication, and sends the unity of \(\Z[x_1, \ldots, x_n]\) to the unity
+    of \(R\) and is therefore a ring homomorphism.
+\end{proof}
 
 
+For \(n = 1\), the universal property tells us that if \(r\) is an element of
+any ring \(R\), then there exists a unique ring homomorphism \(\phi: \Z[x] \to
+R\) such that \(\phi(x) = r\). That is, \(\phi\) `extends' the canonical
+embedding \(\iota: \Z \to R\) (since \(Z\) is initial in \(\Ring\)) and we have
+\(\iota = \phi{|_{\Z}}\). Since each \(p \in \Z[x]\) can be written uniquely as
+a sum of the form \(\sum a_i x^i\), we can write \(\phi(p) = \sum a_i r^i\); but
+then this latter sum is well-defined even if \(R\) is not commutative. More
+generally, if we let \(\alpha: R \to S\) be a fixed ring homomorphism and let
+\(s \in S\) be an element of \(S\) commuting with \(\alpha(r)\) for all \(r \in
+R\), then there exists a unique ring homomorphism \(\psi: R[x] \to S\) that
+extends \(\alpha\) and sends \(x\) to \(s\). In particular, we can define the
+\emph{evaluation homomorphism} \(\ev_r: R[x] \to R\) for any \(r \in R\) by 
+\[
+    \ev_r(p) = p(r) = \sum_{i \geq 0} a_i r^i.
+\]
+This can ve viewed as \(\psi(p(x))\) with \(\psi\) obtained as above by taking
+\(\alpha = \id_R\) and \(s = r\). Thus every polynomial \(p(x)\) determines a
+\emph{polynomial function} \(R \to R\) that sends each element \(r \in R\) to
+\(p(r)\).
+
+We can similarly define the kernel of a ring homomorphism \(\phi: R \to S\) as
+the set
+\[
+    \ker \phi = \{r \in R : \phi(r) = 0\};
+\]
+that is, the kernel of \(\phi\) is kernel of the group homomorphism \(\phi: R
+\to S\), with both rings viewed as additive groups. Kernels are (normal)
+subgroups of the additive group \(R\) as we have shown in
+Chapter~\ref{ch:groups} and play a similarly important role in the theory of
+rings, as we shall later explore in detail in \S~\ref{sec:ideals}. In the
+meantime, we present the following result, analogous to
+Theorem~\ref{thm:kernel-injective-grp} of Chapter~\ref{ch:groups}.
+
+\begin{theorem}
+    Let \(\phi: R \to S\) be a ring homomorphism. The following statements are
+    equivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item \(\phi\) is injective as a map between sets.
+        \item \(\phi\) is a monomorphism in \(\Ring\).
+        \item The kernel of \(\phi\) is \(\{0\}\).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}\(\)
+
+    \begin{enumerate}[wide]
+        \item[(a) \(\implies\) (b).] If \(\phi\) is injective as a map between
+        sets, then it must be a monomorphism in \(\Set\); i.e., for any set
+        \(X\) and any functions \(\alpha, \beta: X \to R\) such that \(\phi
+        \circ \alpha = \phi \circ \beta\), we must have \(\alpha = \beta\). In
+        particular, if \(X\) is a ring and \(\alpha, \beta: X \to R\) are ring
+        homomorphisms, then \(\phi \circ \alpha = \phi \circ \beta\) implies
+        that \(\alpha = \beta\), so that \(\phi\) is a monomorphism in
+        \(\Ring\).
+        
+        \item[(b) \(\implies\) (c).] Let \(\phi\) is a monomorphism in \(\Ring\)
+        and suppose that \(r \in \ker \phi\). The universal property of
+        integer-valued polynomial rings allow us to define unique ring
+        homomorphisms \(\ev_r : \Z[x] \to R\) and \(\ev_0: \Z[x] \to R\) such
+        that \(\ev_r(x) = r\) and \(\ev_0(x) = 0\), respectively. This gives us
+        the diagram
+        \[
+            \begin{tikzcd}
+                \Z[x]\arrow[r,shift left=2pt,"\ev_r"]\arrow[r,shift right=2pt,"\ev_0", swap] &  R \arrow[r,"\phi"] & S;
+            \end{tikzcd}
+        \]
+        but since \(r \in \ker \phi\), we have \(\phi(r) = 0 = \phi(0)\) and
+        thus \(\phi \circ \ev_r = \phi \circ \ev_0\). Since \(\phi\) is a
+        monomorphism, we must have \(\ev_r = \ev_0\) and thus \(r = 0\), so that
+        \(\ker \phi = \{0\}\).
+
+        \item[(c) \(\implies\) (a).] If \(\ker \phi = \{0\}\), then for any \(r,
+        s \in R\) such that \(\phi(r) = \phi(s)\), we have \(\phi(r - s) = 0\)
+        and thus \(r - s = 0\), so that \(r = s\). Thus \(\phi\) is injective as
+        a map between sets.
+    \end{enumerate}
+\end{proof}
+
+By the above theorem, we see that if \(R \to S\) is a monomorphism, then \(R\)
+may be identified with a subset of \(S\). We can thus formalize this notion
+using the following definition, analogous to Definition~\ref{def:subgroup} of
+Chapter~\ref{ch:groups}.
+
+\begin{definition}
+    A \emph{subring} of a ring \(R\) is a subset \(S \subseteq R\) such that the
+    inclusion map \(\iota: S \to R\) is a ring homomorphism. 
+\end{definition}
 
 
 \section{Ideals and quotient rings}
+\label{sec:ideals}

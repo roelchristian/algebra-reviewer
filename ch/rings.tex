@@ -65,11 +65,10 @@ and because \(R\) is also abelian we have
 \[
     m(a+b) = ma + mb
 \]
-for all \(a, b \in R\) and \(m, n \in \mathbb{Z}\). Because \(R\) is also a
-monoid under multiplication, the distinguished element \(1 \in R\) (called the
-\emph{unity}) must likewise be unique and the usual laws of exponents must
-similarly hold, so that we have, for all \(a \in R\) and \(m, n \in
-\mathbb{Z}\),
+for all \(a, b \in R\) and \(m, n \in \Z\). Because \(R\) is also a monoid under
+multiplication, the distinguished element \(1 \in R\) (called the \emph{unity})
+must likewise be unique and the usual laws of exponents must similarly hold, so
+that we have, for all \(a \in R\) and \(m, n \in \Z\),
 \[
     a^m a^n = a^{m+n} \quad \text{and} \quad (a^m)^n = a^{mn}.
 \]
@@ -84,12 +83,16 @@ the distributive law. In particular we have the following results.
         \item \(0a = a0 = 0\) for all \(a \in R\);
         \item if \(R\) is not the zero ring, then \(0 \neq 1\);
         \item \((-a)b = a(-b) = -(ab)\) for all \(a, b \in R\);
-        \item For all \(a, b \in R\),
+        \item for all \(a, b \in R\),
         \[
             \left(\sum_{i=1}^{m} a_i\right)\left(\sum_{j=1}^{n} b_j\right) = \sum_{i=1}^{m} \sum_{j=1}^{n} a_i b_j;
         \]
-        \item \((na)b = n(ab) = a(nb)\) for all \(a, b \in R\) and \(n \in
-        \mathbb{Z}\).
+        \item \((na)b = n(ab) = a(nb)\) for all \(a, b \in R\) and \(n \in \Z\);
+        \item if \(R\) is commutative, then for all \(a, b \in R\) and \(n \in
+        \Z\),
+            \[
+                (a + b)^n = \sum_{r = 0}^{n} \binom{n}{r} a^{n-r} b^r.
+            \]
     \end{enumerate}
 \end{theorem}
 
@@ -125,10 +128,34 @@ the distributive law. In particular we have the following results.
         \item For positive \(n\), the first equation is given by \(ab + \cdots +
         ab = (a + \cdots + a)b\) and is thus a special case of (d) above. For
         negative \(n\), we can use the result in (c).
+
+        \item This result is often called the binomial theorem. First recall that
+        \[
+            \binom{n}{r} := \frac{n!}{r!(n-r)!}
+        \]
+        for all integers \(n\) and \(r\) with \(0 \leq r \leq n\). The proof is by induction on \(n\). For \(n = 0\), both sides of the equation are equal to \(1\). We can also verify that the result holds for \(n = 1\) and \(n = 2\). Now suppose that the result holds for some \(k \geq 2\), i.e.,
+        \[
+            (a + b)^k = \sum_{r = 0}^{k} \binom{k}{r} a^{k-r} b^r.
+        \]
+        We then have
+        \begin{align*}
+            (a + b)^{k+1} &= (a + b)(a + b)^k\\
+            &= (a + b)\sum_{r = 0}^{k} \binom{k}{r} a^{k-r} b^r\\
+            &= \sum_{r = 0}^{k} \binom{k}{r} a^{k-r+1} b^r + \sum_{r = 0}^{k} \binom{k}{r} a^{k-r} b^{r+1}\\
+            &= \sum_{r = 0}^{k} \binom{k}{r} a^{k-r+1} b^r + \sum_{r = 1}^{k+1} \binom{k}{r-1} a^{k-r+1} b^r\\
+            &= \binom{k}{0} a^{k+1} + \sum_{r = 1}^{k} \left(\binom{k}{r} + \binom{k}{r-1}\right) a^{k-r+1} b^r + \binom{k}{k} b^{k+1}\\
+            &= a^{k+1} + \sum_{r = 1}^{k} \binom{k+1}{r} a^{k-r+1} b^r + b^{k+1} {\small \text{  (by Pascal's identity)}}\\
+            &= \sum_{r = 0}^{k+1} \binom{k+1}{r} a^{k+1-r} b^r,
+        \end{align*}
+        thereby completing the induction step and establishing the result for all \(n \in \N\).
     \end{enumerate}
 \end{proof}
 
 We now look at some examples of rings and introduce some terminology.
+
+\begin{example}[Boolean rings]
+    Consider two subsets \(A\) and \(B\)
+\end{example}
 
 \begin{example}[Integral domains]
     \label{ex:integral-domains}
@@ -358,18 +385,17 @@ object in \(\Ring\): indeed given a map \(\phi: 0 \to R\) from the zero ring to
 any ring \(R\), the condition \(\phi(1) = 1\) is satisfied if and only if \(R\)
 is itself the zero ring. So does \(\Ring\) then have an initial object?
 
-Given any ring \(R\), we can define the group homomorphism \(\phi: \mathbb{Z}
-\to R\) by \(\phi(n) = n1_R\) for all \(n \in \mathbb{Z}\). (This is the
-exponential map given as in Example~\ref{ex:exponential-maps} of
-Chapter~\ref{ch:groups}.) But observe that this is also a ring homomorphism,
-since \(\phi(1) = 1 \cdot 1_R = 1_R\) and
+Given any ring \(R\), we can define the group homomorphism \(\phi: \Z \to R\) by
+\(\phi(n) = n1_R\) for all \(n \in \Z\). (This is the exponential map given as
+in Example~\ref{ex:exponential-maps} of Chapter~\ref{ch:groups}.) But observe
+that this is also a ring homomorphism, since \(\phi(1) = 1 \cdot 1_R = 1_R\) and
 \[
     \phi(mn) = (mn)1_R = m(n1_R) =^* (m1_R)\cdot(n1_R) = \phi(m)\phi(n)
 \]
 with the starred equality following from the distributive law. Since \(\phi\) is
 determined by the condition that \(\phi(1) = 1_R\) and that \(\phi\) preserve
-addition, it must be unique. Thus we have shown that \(\mathbb{Z}\) is initial
-in \(\Ring\).
+addition, it must be unique. Thus we have shown that \(\Z\) is initial in
+\(\Ring\).
 
 Ring homomorphisms also preserve units: that is, if \(u\) is a unit in a ring
 \(R\) with inverse \(v\), then the image \(\phi(u)\) is a unit in the ring
@@ -516,10 +542,20 @@ using the following definition, analogous to Definition~\ref{def:subgroup} of
 Chapter~\ref{ch:groups}.
 
 \begin{definition}
-    A \emph{subring} of a ring \(R\) is a subset \(S \subseteq R\) such that the
+    A \emph{subring} of a ring \(R\) is a subset \(S \subset R\) such that the
     inclusion map \(\iota: S \to R\) is a ring homomorphism. 
 \end{definition}
 
+\bigskip
+
+We end this section by reviewing the ring \(\End_{\Ab}(G)\) of endomorphisms of
+an abelian group \(G\) we have introduced at the start of this chapter with the
+operations of pointwise addition and composition. In particular, for \(G = \Z\),
+we have the following result:
+
+\begin{theorem}
+    The ring \(\End_{\Ab}(\Z)\) is isomorphic to the ring \(\Z\).
+\end{theorem}
 
 \section{Ideals and quotient rings}
 \label{sec:ideals}
@@ -633,3 +669,7 @@ Chapter~\ref{ch:groups}).
     where \(\overline{\phi}\) is the induced isomorphism in the preceding
     theorem.
 \end{theorem}
+
+\section{Modules}
+
+\section{Complexes and homology}

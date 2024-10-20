@@ -410,7 +410,7 @@ Moreover, given any two ring homomorphisms \(\phi: R \to S\) and \(\psi: S \to
 T\), their composition \(\psi \circ \phi: R \to T\) is also a ring homomorphism.
 Thus the collection of all rings and ring homomorphisms forms a category, which
 we denote by \(\Ring\). Injective, surjective and bijective ring homomorphisms
-(in the sense of set functions) are likewise the monomorphisms, epimorphisms and
+(in the sense of set functions) are likewise monomorphisms, epimorphisms and
 isomorphisms in the category \(\Ring\), respectively.
 
 As in the case of the trivial group in \(\Grp\), the zero ring is terminal in
@@ -528,6 +528,7 @@ meantime, we present the following result, analogous to
 Theorem~\ref{thm:kernel-injective-grp} of Chapter~\ref{ch:groups}.
 
 \begin{theorem}
+    \label{thm:kernel-injective-ring}
     Let \(\phi: R \to S\) be a ring homomorphism. The following statements are
     equivalent:
     \begin{enumerate}[label=(\alph*)]
@@ -582,6 +583,50 @@ Chapter~\ref{ch:groups}.
     inclusion map \(\iota: S \to R\) is a ring homomorphism. 
 \end{definition}
 
+As in \(\Grp\), this is equivalent to saying that \(G\) is a subring if it
+contains the unity of \(R\) and is itself a ring under the operations of
+addition and multiplication in \(R\) (restricted to \(S\)). By this definition,
+the zero ring is not a subring of any nonzero ring, since the zero ring does not
+contain the unity of any nonzero ring.
+
+Our exposition has thus far established important parallels between the theory
+of rings and that of groups (as well as their corresponding categories) but we
+now note one major difference. We have remarked that injective, surjective and
+bijective ring homomorphisms are monomorphisms, epimorphisms and isomorphisms in
+\(\Ring\), respectively. In Theorem~\ref{thm:kernel-injective-ring} we have
+established that injectivity and monicity are equivalent notions in \(\Ring\);
+we shall now show however that no such equivalence holds for surjective
+functions and epimorphisms in \(\Ring\). Now a surjective ring homomorphism is
+an epimorphism in \(\Ring\) since it is already an epimorphism in \(\Set\)
+(following an analogous argument as the implication (a) \(\implies\) (b) in the
+proof of Theorem~\ref{thm:kernel-injective-ring}). However, the converse is not
+true in \(\Ring\): i.e., an epimorphism in \(\Ring\) need not be surjective. To
+see this, consider the inclusion map \(\iota: \Z \to \Q\) of the integers into
+the rationals which is clearly not a surjective map between sets. However, we
+shall show that \(\iota\) is an epimorphism in \(\Ring\).
+
+Consider the diagram
+\[
+    \begin{tikzcd}
+        \Z \arrow[r,"\iota"] & \Q \arrow[r,shift left=2pt,"\alpha_1"]\arrow[r,shift right=2pt,"\alpha_2", swap] &  R
+    \end{tikzcd}
+\]
+where \(R\) is any ring and \(\alpha_1, \alpha_2: \Q \to R\) are ring
+homomorphisms that agree on \(\Z\) (which we can guarantee because \(\Z\) is
+initial); that is, \(\alpha_1 \circ \iota = \alpha_2 \circ \iota\). Write
+\(\alpha\) for this common value. Then for any \(p, q \in \Z\) with \(q \neq
+0\), we have
+\[
+    \alpha_k\left(\frac{p}{q}\right) = \alpha_k(p)\alpha_k(q\inv) = \alpha(p)\alpha(q)\inv
+\]
+for \(k = 1, 2\). But then \(\alpha_1 = \alpha_2\) and thus \(\iota\) is an
+epimorphism in \(\Ring\). Thus we see that the category \(\Ring\) does not
+satisfy the epimorphism axiom of the category \(\Set\), which states that a
+morphism is an epimorphism if and only if it is surjective. For this, it also
+follows that a ring homomorphism that is both a monomorphism and an epimorphism
+is not necessarily an isomorphism since satisfying both conditions does not
+guarantee that the homomorphism is bijective and thus an isomorphism.
+
 \bigskip
 
 We end this section by reviewing the ring \(\End_{\Ab}(G)\) of endomorphisms of
@@ -592,6 +637,10 @@ we have the following result:
 \begin{theorem}
     The ring \(\End_{\Ab}(\Z)\) is isomorphic to the ring \(\Z\).
 \end{theorem}
+
+\begin{proof}
+    
+\end{proof}
 
 \section{Ideals and quotient rings}
 \label{sec:ideals}

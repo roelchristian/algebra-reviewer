@@ -129,11 +129,16 @@ the distributive law. In particular we have the following results.
         ab = (a + \cdots + a)b\) and is thus a special case of (d) above. For
         negative \(n\), we can use the result in (c).
 
-        \item This result is often called the binomial theorem. First recall that
+        \item This result is often called the binomial theorem. First recall
+        that
         \[
             \binom{n}{r} := \frac{n!}{r!(n-r)!}
         \]
-        for all integers \(n\) and \(r\) with \(0 \leq r \leq n\). The proof is by induction on \(n\). For \(n = 0\), both sides of the equation are equal to \(1\). We can also verify that the result holds for \(n = 1\) and \(n = 2\). Now suppose that the result holds for some \(k \geq 2\), i.e.,
+        for all integers \(n\) and \(r\) with \(0 \leq r \leq n\). The proof is
+        by induction on \(n\). For \(n = 0\), both sides of the equation are
+        equal to \(1\). We can also verify that the result holds for \(n = 1\)
+        and \(n = 2\). Now suppose that the result holds for some \(k \geq 2\),
+        i.e.,
         \[
             (a + b)^k = \sum_{r = 0}^{k} \binom{k}{r} a^{k-r} b^r.
         \]
@@ -147,14 +152,45 @@ the distributive law. In particular we have the following results.
             &= a^{k+1} + \sum_{r = 1}^{k} \binom{k+1}{r} a^{k-r+1} b^r + b^{k+1} {\small \text{  (by Pascal's identity)}}\\
             &= \sum_{r = 0}^{k+1} \binom{k+1}{r} a^{k+1-r} b^r,
         \end{align*}
-        thereby completing the induction step and establishing the result for all \(n \in \N\).
+        thereby completing the induction step and establishing the result for
+        all \(n \in \N\).
     \end{enumerate}
 \end{proof}
 
 We now look at some examples of rings and introduce some terminology.
 
 \begin{example}[Boolean rings]
-    Consider two subsets \(A\) and \(B\)
+    Consider two subsets \(A\) and \(B\) of a set \(X\) and recall that the
+    symmetric difference of \(A\) and \(B\) is defined by
+    \[
+        A \triangle B := (A \setminus B) \cup (B \setminus A).
+    \]
+    Let \(\Power{X}\) be the power set of \(X\) and define the operations of
+    addition and multiplication on \(\Power{X}\) by (a) \(A + B := A \triangle
+    B\) and (b) \(AB := A \cap B\). The empty set \(\emptyset\) is the zero
+    element, since \(\emptyset + A = A + \emptyset = A\); and each subset \(A\)
+    is its own inverse since \(A + A = A \triangle A = \emptyset\). The unity is
+    the set \(X\) itself, since \(X A = A X = A\). Associativity of addition and
+    multiplication is inherited from the set operations, and the distributive
+    law holds since
+    \[
+        A (B + C) = A \cap (B \triangle C) = (A \cap B) \triangle (A \cap C) = (A B) + (A C).
+    \]
+    Thus \(\Power{X}\) is a ring under the operations of symmetric difference
+    and intersection, and is called the \emph{Boolean ring} of subsets of \(X\).
+    The Boolean ring is commutative since both addition and multiplication are
+    commutative in \(\Power{X}\). Other set operations can be expressed in terms
+    of the operations of the Boolean ring. In particular, the union of two sets
+    \(A\) and \(B\) is given by \(A + B + AB\), and the complement of a set \(X
+    \setminus A\) is given by \(1 + A\). The familiar De Morgan's law
+    \[
+        (A \cup B)^c = A^c \cap B^c
+    \]
+    (where \(A^c = X\setminus A\)) can be expressed, for example, in terms of
+    the operations of the Boolean ring as
+    \[
+        1 + A + B + AB = (1 + A)(1 + B).
+    \]
 \end{example}
 
 \begin{example}[Integral domains]

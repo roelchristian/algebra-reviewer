@@ -109,7 +109,7 @@ map such that for all \(a, b \in G\),
 \]
 Does \((G, \delta)\) determine the group \((G, \mult, \iota, e)\)? That is if
 \((G, \mult, \iota, e)\) and \((G', \mult', \iota', e')\) yield the same pair
-\((G, \delta') = (G', \delta')\), then must
+\((G, \delta) = (G', \delta')\), then must
 \[(G, \mult, \iota, e) = (G', \mult', \iota', e')?\]
 
 Let \((G', \mu', \iota', e')\) be another group and let \((G', \delta')\) be
@@ -186,9 +186,12 @@ this category has an inverse \(f\inv\) such that
 Moreover, this inverse is unique
 (Theorem~\ref{thm:isomorphism-unique-inverse-category},
 Ch.~\ref{ch:preliminaries}). Taking these properties together, we observe that
-the elements of the set \(\Hom_{\catg{G}}(*, *)\) satisfy the axioms of a group.
-Thus a group can be thought of as the set of morphisms in a groupoid with a
-single object.
+the elements of the set \(\Hom_{\catg{G}}(*, *)\) satisfy the axioms of a group
+in Definition~\ref{def:group} and vice versa. Thus a group can be thought of as
+the set of morphisms in a groupoid with a single object.
+
+We now continue with a survey of the basic properties of groups that we shall
+have frequent recourse to in the remainder of this text.
 
 \begin{theorem}
     \label{thm:group-inverses}
@@ -203,7 +206,11 @@ single object.
 
     On the other hand we have
     \[
-        (ab)(b\inv a\inv) = a(bb\inv)a\inv = aea\inv = aa\inv = e.
+        (ab)(b\inv a\inv) = a(bb\inv)a\inv = aea\inv = aa\inv = e
+    \]
+    and similarly
+    \[
+        (b\inv a\inv)(ab) = b\inv (a\inv a)b = b\inv eb = b\inv b = e.
     \]
 \end{proof}
 
@@ -1086,7 +1093,7 @@ exists a faithful functor from \(\Grp\) to \(\Set\). We have not yet introduced
 the machinery to make sense of this definition but what this means, essentially,
 is that we can map objects of \(\Grp\) to sets in \(\Set\) in a way that
 `forgets' the group structure. Now since \(\Set\) has initial and terminal
-objects, do such objects exist in \(\Grp\) as well. We have already shown that
+objects, do such objects exist in \(\Grp\) as well? We have already shown that
 the empty set is initial in \(\Set\); but note also that \(\emptyset\) is not a
 group because we require at least one element to exist in a group. If \(0\) is
 an initial object in \(\Grp\), then there must exist a unique group homomorphism
@@ -1969,7 +1976,7 @@ to \(H\). Thus, we can alternatively characterize a subgroup as a subset \(H\)
 of a group \(G\) that is itself a group under the group operation of \(G\)
 (retricted to \(H\)). Continuing with our desire to use general definitions
 which we might want to extend to arbitrary categories, the choice to define a
-subgroup by an inclusion map that is also a group homomorphism is again avoids
+subgroup by an inclusion map that is also a group homomorphism again avoids
 having to proceed from the assumption that \(H\) is a subset of \(G\), as the
 notion of a `subset' derives from properties of \(G\) and \(H\) as sets. The
 next result is a useful criterion for determining whether a subset is a
@@ -2024,15 +2031,15 @@ subgroup.
     \subset K\) or \(K \subset H\) (here we include in both cases the
     possibility that \(H = K\)), then the union \(H \cup K = K\) or \(H\),
     respectively and is therefore a subgroup. More generally, if \(\{H_i\}_{i
-    \in I}\) is a directed family of sungroups, meaning that for all \(i, j \in
+    \in I}\) is a directed family of subgroups, meaning that for all \(i, j \in
     I\) there exists \(k \in I\) such that \(H_i \subset H_k\) and \(H_j \subset
     H_k\), then the union \(H = \bigcup_{i \in I} H_i\) is a subgroup of \(G\).
     Since each \(H_i\) is a subgroup, the union is nonempty and contains the
     identity element. If \(a, b \in H\), then \(a \in H_i\) and \(b \in H_j\)
-    for some \(i, j \in I\). Since the family is directed, there exists \(k \in
+    for some \(i, j \in I\). Since the family is directed, there exists a \(k \in
     I\) such that \(H_i \cup H_j \subset H_k\), so that \(a, b \in H_k\);
     because \(H_k\) is a subgroup, \(ab\inv \in H_k \subset H\) and this
-    completes the proof.
+    completes the proof of the above claim.
 \end{example}
 
 \begin{theorem}
@@ -2165,8 +2172,8 @@ any group homomorphism \(\phi: G \to H\), the following result holds:
         the fact that \(\phi\) is a monomorphism implies that \(0 = \iota\), so
         that \(\ker\phi = \{e\}\).
 
-        \item[(c) \(\implies\) (a).] If \(\ker\phi = \{e\}\), then for any \(g, h
-        \in G\), \(\phi(g) = \phi(h)\) implies that \(\phi(gh\inv) = e\), so
+        \item[(c) \(\implies\) (a).] If \(\ker\phi = \{e\}\), then for any \(g,
+        h \in G\), \(\phi(g) = \phi(h)\) implies that \(\phi(gh\inv) = e\), so
         that \(gh\inv = e\), i.e., \(g = h\). Thus \(\phi\) is injective as a
         map between sets.
     \end{enumerate}
@@ -2485,12 +2492,10 @@ subgroups.
     \(G\).
 \end{definition}
 
-\begin{example}
-    It immediately follows from the definition that every subgroup of an abelian
-    group is normal. In general, however, not all subgroups are normal. An
-    example of a commutative group where every subgroup is normal is the
-    quaternion group \(Q_8\).
-\end{example}
+It immediately follows from the definition that every subgroup of an abelian
+group is normal. In general, however, not all subgroups are normal. An example
+of a commutative group where every subgroup is normal is the quaternion group
+\(Q_8\).
 
 \begin{theorem}
     A subgroup \(N\) of a group \(G\) is normal if and only if the left (resp.
@@ -2582,11 +2587,9 @@ subgroups.
     abN\).
 \end{proof}
 
-\begin{remark}
-    The definition of a quotient group in Theorem~\ref{thm:quotient-group} uses
-    left cosets for concreteness, but since we are dealing with a normal
-    subgroup, it holds for right cosets as well.
-\end{remark}
+The definition of a quotient group in Theorem~\ref{thm:quotient-group} uses left
+cosets for concreteness, but since we are dealing with a normal subgroup, it
+holds for right cosets as well.
 
 \begin{theorem}
     \label{thm:canonical-projection-grp}
@@ -2992,6 +2995,7 @@ so that \(gH \subset g'H\) and similarly \(g'H \subset gH\). Theorem~
 \end{proof}
 
 \section{Group actions}
+\label{sec:group-actions}
 
 For the remainder of this chapter, we shall look at results of a less general
 nature, mainly focusing on structure theorems related to finite groups. We begin
